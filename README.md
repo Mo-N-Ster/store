@@ -15,12 +15,15 @@ Au premier lancement, l’assistant demande la création du compte propriétaire
 
 ## Architecture
 
-- `backend/database` : schéma SQLite, accès aux données et règles métier.
-- `backend/electron` : processus principal Electron et pont IPC sécurisé.
-- `frontend/src/components` : composants UI réutilisables.
-- `frontend/src/pages` : écrans fonctionnels.
-- `frontend/src/hooks` : état et comportements React réutilisables.
-- `frontend/src/services` : accès centralisé à l’API Electron.
+- `src/main` : démarrage Electron, création des fenêtres et handlers IPC.
+- `src/preload` : pont sécurisé entre Electron et le renderer.
+- `src/database` : schéma SQLite, accès aux données et règles métier.
+- `src/ipc` et `src/shared` : canaux, types et constantes partagés.
+- `src/renderer/components` : composants UI réutilisables.
+- `src/renderer/pages` : modules Caisse, Dashboard et authentification.
+- `src/renderer/hooks` : panier, produits, thème et notifications.
+- `src/renderer/services` : accès centralisé à l’API Electron.
+- `tests` : tests unitaires et, à terme, tests d’intégration.
 - Base locale dans le dossier de données de l’application Electron.
 - Sauvegardes quotidiennes avec rétention de sept jours.
 
