@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { User } from '../../types';
 import { AuthCard } from '../../components/UI/AuthCard';
 import { authService } from '../../services/authService';
+import { ForgotPasswordDialog } from './ForgotPasswordDialog';
 type View = 'mode' | 'pos' | 'dashboard';
 export function Setup({ onDone }: { onDone: (u: User) => void }) {
   const { t } = useTranslation();
@@ -33,13 +34,15 @@ export function Setup({ onDone }: { onDone: (u: User) => void }) {
 export function Login({ onLogin }: { onLogin: (u: User) => void }) {
   const { t } = useTranslation();
   const [error, setError] = useState('');
+  const [role, setRole] = useState('employee');
+  const [forgotPassword, setForgotPassword] = useState(false);
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     try {
       onLogin(await authService.login(Object.fromEntries(f)));
     } catch {
-      setError('Identifiants invalides ou rôle non autorisé.');
+      setError(t('invalidCredentials'));
     }
   };
   return (
@@ -47,13 +50,19 @@ export function Login({ onLogin }: { onLogin: (u: User) => void }) {
       <form onSubmit={submit}>
         <input name="identifier" placeholder={t('username')} required />
         <input name="password" type="password" placeholder={t('password')} required />
-        <select name="role">
+        <select name="role" value={role} onChange={(event) => setRole(event.target.value)}>
           <option value="employee">{t('employee')}</option>
-          <option value="admin">{t('admin')}</option>
+          <option value="manager">{t('manager')}</option>
         </select>
         {error && <p className="error">{error}</p>}
         <button>{t('login')}</button>
+        {role === 'manager' && (
+          <button type="button" className="ghost" onClick={() => setForgotPassword(true)}>
+            {t('forgotPassword')}
+          </button>
+        )}
       </form>
+      {forgotPassword && <ForgotPasswordDialog onClose={() => setForgotPassword(false)} />}
     </AuthCard>
   );
 }

@@ -29,13 +29,13 @@ export function initDatabase() {
 export const api = {
   needsSetup: () =>
     (
-      db.prepare('SELECT COUNT(*) count FROM users WHERE role = ?').get('admin') as {
+      db.prepare('SELECT COUNT(*) count FROM users WHERE role = ?').get('owner') as {
         count: number;
       }
     ).count === 0,
   setupAdmin: (input: UserInput) => {
     if (!api.needsSetup()) throw new Error('SETUP_ALREADY_COMPLETED');
-    validateUser({ ...input, role: 'admin' }, true);
+    validateUser({ ...input, role: 'owner' }, true);
     const hash = bcrypt.hashSync(input.password!, 10);
     const result = db
       .prepare(
@@ -46,7 +46,7 @@ export const api = {
         input.username.trim(),
         input.email?.trim().toLowerCase() || null,
         hash,
-        'admin',
+        'owner',
         input.firstName.trim(),
         input.lastName.trim(),
         initials(input.firstName, input.lastName),
@@ -68,16 +68,25 @@ export const api = {
     password: string;
     role: string;
   }) => {
-    const user = db
-      .prepare('SELECT * FROM users WHERE (username = ? OR email = ?) AND role = ? AND active = 1')
-      .get(identifier, identifier.toLowerCase(), role) as any;
+    const user =
+      role === 'manager'
+        ? (db
+            .prepare(
+              "SELECT * FROM users WHERE (username=? OR email=?) AND role IN ('manager','owner') AND active=1",
+            )
+            .get(identifier, identifier.toLowerCase()) as any)
+        : (db
+            .prepare(
+              'SELECT * FROM users WHERE (username = ? OR email = ?) AND role = ? AND active = 1',
+            )
+            .get(identifier, identifier.toLowerCase(), role) as any);
     if (!user || !bcrypt.compareSync(password, user.password_hash))
       throw new Error('INVALID_CREDENTIALS');
     return stripPassword(user);
   },
   verifyAdmin: ({ id, password }: { id: number; password: string }) => {
     const user = db
-      .prepare("SELECT * FROM users WHERE id=? AND role='admin' AND active=1")
+      .prepare("SELECT * FROM users WHERE id=? AND role IN ('owner','manager') AND active=1")
       .get(id) as any;
     return Boolean(user && bcrypt.compareSync(password, user.password_hash));
   },
@@ -92,7 +101,7 @@ export const api = {
     const role = input.role ?? 'employee';
     if (
       !input.id &&
-      role === 'admin' &&
+      role !== 'employee' &&
       (!input.securityQuestion?.trim() || !input.securityAnswer?.trim())
     )
       throw new Error('SECURITY_QUESTION_REQUIRED');
@@ -117,7 +126,7 @@ export const api = {
           bcrypt.hashSync(input.password, 10),
           input.id,
         );
-      if (role === 'admin' && input.securityQuestion && input.securityAnswer)
+      if (role !== 'employee' && input.securityQuestion && input.securityAnswer)
         db.prepare('UPDATE users SET security_question=?,security_answer_hash=? WHERE id=?').run(
           input.securityQuestion.trim(),
           bcrypt.hashSync(input.securityAnswer.trim().toLowerCase(), 10),
@@ -142,8 +151,8 @@ export const api = {
         input.phone ?? '',
         input.hireDate ?? null,
         1,
-        role === 'admin' ? input.securityQuestion?.trim() : null,
-        role === 'admin' && input.securityAnswer
+        role !== 'employee' ? input.securityQuestion?.trim() : null,
+        role !== 'employee' && input.securityAnswer
           ? bcrypt.hashSync(input.securityAnswer.trim().toLowerCase(), 10)
           : null,
       );
@@ -153,7 +162,7 @@ export const api = {
   resetPassword: (id: number) => {
     const target = db.prepare('SELECT role FROM users WHERE id=?').get(id) as
       { role: string } | undefined;
-    if (!target || target.role === 'admin') throw new Error('SECURITY_QUESTION_REQUIRED');
+    if (!target || target.role !== 'employee') throw new Error('SECURITY_QUESTION_REQUIRED');
     const password = temporaryPassword();
     db.prepare('UPDATE users SET password_hash=? WHERE id=?').run(
       bcrypt.hashSync(password, 10),
@@ -163,7 +172,9 @@ export const api = {
   },
   securityQuestion: (id: number) => {
     const row = db
-      .prepare("SELECT security_question question FROM users WHERE id=? AND role='admin'")
+      .prepare(
+        "SELECT security_question question FROM users WHERE id=? AND role IN ('owner','manager')",
+      )
       .get(id) as { question: string } | undefined;
     if (!row?.question) throw new Error('QUESTION_NOT_CONFIGURED');
     return row.question;
@@ -179,7 +190,9 @@ export const api = {
   }) => {
     if (newPassword.length < 8) throw new Error('WEAK_PASSWORD');
     const row = db
-      .prepare("SELECT security_answer_hash hash FROM users WHERE id=? AND role='admin'")
+      .prepare(
+        "SELECT security_answer_hash hash FROM users WHERE id=? AND role IN ('owner','manager')",
+      )
       .get(id) as { hash: string } | undefined;
     if (!row?.hash || !bcrypt.compareSync(answer.trim().toLowerCase(), row.hash))
       throw new Error('INVALID_SECURITY_ANSWER');
@@ -189,6 +202,25 @@ export const api = {
     );
     return true;
   },
+  forgotPasswordQuestion: (identifier: string) => {
+    const row = db
+      .prepare(
+        "SELECT id,security_question question FROM users WHERE (username=? OR email=?) AND role IN ('owner','manager') AND active=1",
+      )
+      .get(identifier.trim(), identifier.trim().toLowerCase()) as
+      { id: number; question: string } | undefined;
+    if (!row?.question) throw new Error('QUESTION_NOT_CONFIGURED');
+    return row;
+  },
+  recoverPassword: ({
+    id,
+    answer,
+    newPassword,
+  }: {
+    id: number;
+    answer: string;
+    newPassword: string;
+  }) => api.resetManagerPassword({ id, answer, newPassword }),
   products: ({ search = '', category = '' } = {}) =>
     db
       .prepare(
@@ -343,10 +375,16 @@ export const api = {
       db.prepare('UPDATE attendances SET end_time=? WHERE id=?').run(now(), open.id);
     }
   },
+  attendanceStatuses: () =>
+    db
+      .prepare(
+        `SELECT u.id,CASE WHEN EXISTS(SELECT 1 FROM attendances a WHERE a.employee_id=u.id AND a.end_time IS NULL) THEN 1 ELSE 0 END present FROM users u WHERE u.active=1`,
+      )
+      .all(),
   messages: ({ userId, role }: { userId: number; role: string }) =>
     db
       .prepare(
-        `SELECT m.*,u.first_name||' '||u.last_name sender FROM messages m LEFT JOIN users u ON u.id=m.sender_id WHERE (?='admin' AND m.recipient_type='admin') OR (?='employee' AND (m.recipient_type='all' OR m.recipient_id=?)) ORDER BY m.created_at DESC`,
+        `SELECT m.*,u.first_name||' '||u.last_name sender FROM messages m LEFT JOIN users u ON u.id=m.sender_id WHERE (?<>'employee' AND m.recipient_type='admin') OR (?='employee' AND (m.recipient_type='all' OR m.recipient_id=?)) ORDER BY m.created_at DESC`,
       )
       .all(role, role, userId),
   sendMessage: ({
@@ -479,7 +517,10 @@ export const api = {
     return true;
   },
   reset: ({ adminId, password }: { adminId: number; password: string }) => {
-    if (!api.verifyAdmin({ id: adminId, password })) throw new Error('INVALID_CREDENTIALS');
+    const owner = db
+      .prepare("SELECT password_hash hash FROM users WHERE id=? AND role='owner'")
+      .get(adminId) as { hash: string } | undefined;
+    if (!owner || !bcrypt.compareSync(password, owner.hash)) throw new Error('OWNER_REQUIRED');
     createBackup();
     db.transaction(() => {
       for (const table of [
@@ -509,8 +550,8 @@ function publicUser(id: number) {
   return stripPassword(db.prepare('SELECT * FROM users WHERE id=?').get(id));
 }
 function enforceSingleAdmin(id: number, role: string) {
-  if (role === 'admin')
-    db.prepare("UPDATE users SET role='employee' WHERE role='admin' AND id<>?").run(id);
+  if (role === 'owner')
+    db.prepare("UPDATE users SET role='manager' WHERE role='owner' AND id<>?").run(id);
 }
 function temporaryPassword() {
   return `Store-${Math.random().toString(36).slice(2, 8)}!`;

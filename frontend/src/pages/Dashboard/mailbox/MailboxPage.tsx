@@ -15,7 +15,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
     const form = Object.fromEntries(new FormData(event.currentTarget));
     await messageService.send({
       senderId: user.id,
-      recipientType: user.role === 'admin' ? 'all' : 'admin',
+      recipientType: user.role !== 'employee' ? 'all' : 'admin',
       ...form,
     });
     setCompose(false);
@@ -48,7 +48,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
             {message.sender} · {new Date(message.created_at).toLocaleString()}
           </small>
           <p>{message.content}</p>
-          {user.role === 'admin' && (
+          {user.role !== 'employee' && (
             <button
               className="danger"
               onClick={(event) => {

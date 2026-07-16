@@ -1,5 +1,26 @@
 .presence {
   position: relative;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.55rem;
+}
+.presence .avatars {
+  display: flex;
+  gap: 0.35rem;
+}
+.presence .avatars button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  color: white;
+  border: 2px solid color-mix(in srgb, white 70%, transparent);
+}
+.presence .avatars button.present {
+  background: #16a34a;
+}
+.presence .avatars button.absent {
+  background: #2563eb;
 }
 .presence-popover {
   position: absolute;

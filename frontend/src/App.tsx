@@ -43,7 +43,7 @@ export default function App() {
       <Login
         onLogin={(value) => {
           setUser(value);
-          setView(value.role === 'admin' ? 'mode' : 'pos');
+          setView(value.role !== 'employee' ? 'mode' : 'pos');
         }}
       />
     );
@@ -52,7 +52,7 @@ export default function App() {
       user={user}
       title={view === 'pos' ? t('cashier') : t('dashboard')}
       onMode={() =>
-        view === 'pos' && user.role === 'admin' ? setManagerAuth(true) : setView('pos')
+        view === 'pos' && user.role !== 'employee' ? setManagerAuth(true) : setView('pos')
       }
       onLogout={() => setUser(null)}
       theme={theme}
@@ -62,6 +62,7 @@ export default function App() {
         void i18n.changeLanguage(language);
         localStorage.setItem('lang', language);
       }}
+      notify={notify}
     />
   );
   return (

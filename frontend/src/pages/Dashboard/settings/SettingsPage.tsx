@@ -104,9 +104,11 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
         >
           {t('backup')}
         </button>
-        <button className="danger" onClick={reset}>
-          {t('reset')}
-        </button>
+        {user.role === 'owner' && (
+          <button className="danger" onClick={reset}>
+            {t('reset')}
+          </button>
+        )}
         <button className="ghost" onClick={restore}>
           Restaurer une sauvegarde
         </button>

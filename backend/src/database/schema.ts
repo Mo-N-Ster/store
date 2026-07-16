@@ -2,7 +2,7 @@ export const schema = `
 PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, email TEXT UNIQUE,
-  password_hash TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'employee' CHECK(role IN ('admin','employee')),
+  password_hash TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'employee' CHECK(role IN ('owner','manager','employee')),
   first_name TEXT NOT NULL, last_name TEXT NOT NULL, initials TEXT NOT NULL, phone TEXT, hire_date TEXT,
   active INTEGER NOT NULL DEFAULT 1, security_question TEXT, security_answer_hash TEXT,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP

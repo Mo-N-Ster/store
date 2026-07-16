@@ -95,23 +95,30 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                   defaultValue={edit[name] ?? ''}
                   required={
                     ['firstName', 'lastName', 'username'].includes(name) ||
-                    (name === 'email' && edit.role === 'admin')
+                    (name === 'email' && edit.role !== 'employee')
                   }
                 />
               </label>
             ))}
             <label>
               {t('role')}
-              <select
-                name="role"
-                value={edit.role || 'employee'}
-                onChange={(event) => setEdit({ ...edit, role: event.target.value })}
-              >
-                <option value="employee">{t('employee')}</option>
-                <option value="admin">{t('admin')}</option>
-              </select>
+              {edit.role === 'owner' ? (
+                <>
+                  <input value={t('owner')} readOnly />
+                  <input name="role" value="owner" type="hidden" />
+                </>
+              ) : (
+                <select
+                  name="role"
+                  value={edit.role || 'employee'}
+                  onChange={(event) => setEdit({ ...edit, role: event.target.value })}
+                >
+                  <option value="employee">{t('employee')}</option>
+                  <option value="manager">{t('manager')}</option>
+                </select>
+              )}
             </label>
-            {edit.role === 'admin' && (
+            {edit.role !== 'employee' && (
               <>
                 <label>
                   {t('securityQuestion')}

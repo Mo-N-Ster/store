@@ -2,7 +2,7 @@ export interface UserInput {
   username: string;
   email?: string;
   password?: string;
-  role?: 'admin' | 'employee';
+  role?: 'owner' | 'manager' | 'employee';
   firstName: string;
   lastName: string;
   phone?: string;

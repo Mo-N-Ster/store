@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Product, User } from '../../types';
-import { employeeService } from '../../services/employeeService';
 import { saleService } from '../../services/saleService';
 import { todayIso } from '../../utils/formatters';
 import { useCart } from '../../hooks/useCart';
@@ -9,10 +8,8 @@ import { useProducts } from '../../hooks/useProducts';
 import { ProductGrid } from './ProductGrid';
 import { CartPanel } from './CartPanel';
 import { InvoicePreview } from './InvoicePreview';
-import { EmployeePresence } from '../../components/common/EmployeePresence';
 export function CashierPage({ user, notify }: { user: User; notify: (message: string) => void }) {
   const { t } = useTranslation();
-  const [users, setUsers] = useState<User[]>([]);
   const [invoices, setInvoices] = useState<any[]>([]);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
@@ -21,11 +18,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
   const [receipt, setReceipt] = useState<any>(null);
   const { products, loading, reload } = useProducts(search, category);
   const cart = useCart();
-  const loadSide = () =>
-    Promise.all([
-      employeeService.list().then(setUsers),
-      saleService.list({ from: todayIso() }).then(setInvoices),
-    ]);
+  const loadSide = () => saleService.list({ from: todayIso() }).then(setInvoices);
   useEffect(() => {
     void loadSide();
   }, []);
@@ -81,8 +74,6 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
             </button>
           ))}
         </div>
-        <h3>Équipe</h3>
-        <EmployeePresence employees={users} notify={notify} />
       </aside>
       <ProductGrid products={products} loading={loading} onAdd={add} />
       <CartPanel

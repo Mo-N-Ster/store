@@ -18,7 +18,7 @@ export function PasswordResetDialog({
   const [temporary, setTemporary] = useState('');
   const [remaining, setRemaining] = useState(60);
   useEffect(() => {
-    if (user.role === 'admin')
+    if (user.role !== 'employee')
       employeeService
         .securityQuestion(user.id)
         .then(setQuestion)
@@ -57,7 +57,7 @@ export function PasswordResetDialog({
         <h2>
           {t('newPassword')} — {user.username}
         </h2>
-        {user.role === 'admin' ? (
+        {user.role !== 'employee' ? (
           <form onSubmit={submit}>
             <label>
               {t('securityQuestion')}
