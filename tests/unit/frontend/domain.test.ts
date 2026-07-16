@@ -1,0 +1,32 @@
+import { describe, expect, it } from 'vitest';
+import { calculateInvoice, csvEscape, validateStock } from '../../../frontend/src/utils/domain';
+describe('calculateInvoice', () => {
+  it('calcule le sous-total, la remise et le total', () => {
+    expect(
+      calculateInvoice(
+        [
+          { quantity: 2, unitPrice: 3.5 },
+          { quantity: 1, unitPrice: 2 },
+        ],
+        1,
+      ),
+    ).toEqual({ subtotal: 9, discount: 1, total: 8 });
+  });
+  it('plafonne la remise au sous-total', () => {
+    expect(calculateInvoice([{ quantity: 1, unitPrice: 5 }], 99).total).toBe(0);
+  });
+  it('refuse les lignes invalides', () => {
+    expect(() => calculateInvoice([{ quantity: 0, unitPrice: 2 }])).toThrow('INVALID_LINE');
+  });
+});
+describe('stock', () => {
+  it('accepte seulement une quantité entière disponible', () => {
+    expect(validateStock(2, 3)).toBe(true);
+    expect(validateStock(4, 3)).toBe(false);
+    expect(validateStock(1.5, 3)).toBe(false);
+  });
+});
+describe('CSV', () => {
+  it('protège virgules et guillemets', () =>
+    expect(csvEscape('Poivre, "noir"')).toBe('"Poivre, ""noir"""'));
+});

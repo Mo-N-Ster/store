@@ -5,7 +5,7 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['src/**/*.{ts,tsx}', 'tests/**/*.ts'],
+    files: ['frontend/src/**/*.{ts,tsx}', 'backend/src/**/*.ts', 'tests/**/*.ts'],
     languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',

@@ -2,9 +2,9 @@
 
 STORE suit une architecture Electron en trois zones de confiance.
 
-1. Le processus principal, dans `src/main`, possède les accès système et enregistre les handlers IPC.
-2. Le preload, dans `src/preload`, expose uniquement les méthodes listées dans `src/ipc/channels.ts`.
-3. Le renderer React, dans `src/renderer`, ne possède aucun accès direct à Node.js ou SQLite.
+1. Le backend Electron, dans `backend/src`, possède les accès système, SQLite et les handlers IPC.
+2. Le preload, dans `backend/src/preload`, expose uniquement les méthodes listées dans `backend/src/ipc/channels.ts`.
+3. Le frontend React, dans `frontend/src`, ne possède aucun accès direct à Node.js ou SQLite.
 
 ## Renderer
 
@@ -16,10 +16,10 @@ STORE suit une architecture Electron en trois zones de confiance.
 
 ## Base de données
 
-`src/database/storeDatabase.ts` conserve les transactions métier atomiques. Son découpage futur en repositories devra préserver les transactions de vente, de stock et de réinitialisation ; créer un modèle par table sans besoin concret ajouterait une abstraction sans bénéfice.
+`backend/src/database/storeDatabase.ts` conserve les transactions métier atomiques. Les validations et types purs sont rangés dans `backend/src/domain` afin d’être testés sans Electron ni SQLite.
 
 ## Builds
 
-- Renderer : `dist/renderer`.
-- Main/preload/database : `dist/main`.
+- Frontend : `dist/frontend`.
+- Backend/preload/database : `dist/backend`.
 - Installateur : `release/STORE Setup 1.0.0.exe`.

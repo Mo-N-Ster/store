@@ -15,15 +15,15 @@ Au premier lancement, l’assistant demande la création du compte propriétaire
 
 ## Architecture
 
-- `src/main` : démarrage Electron, création des fenêtres et handlers IPC.
-- `src/preload` : pont sécurisé entre Electron et le renderer.
-- `src/database` : schéma SQLite, accès aux données et règles métier.
-- `src/ipc` : liste centralisée et typée des canaux autorisés.
-- `src/renderer/components` : composants UI réutilisables.
-- `src/renderer/pages` : modules Caisse, Dashboard et authentification.
-- `src/renderer/hooks` : panier, produits, thème et notifications.
-- `src/renderer/services` : accès centralisé à l’API Electron.
-- `tests` : tests unitaires et, à terme, tests d’intégration.
+- `backend/src/main` : démarrage Electron, fenêtres et handlers IPC.
+- `backend/src/preload` : pont sécurisé vers le frontend.
+- `backend/src/database` : schéma SQLite et transactions métier.
+- `backend/src/domain` : types et validations testables par fonctionnalité.
+- `frontend/src/components` : composants React réutilisables.
+- `frontend/src/pages` : modules Caisse, Dashboard et authentification.
+- `frontend/src/hooks` : panier, produits, thème et notifications.
+- `frontend/src/services` : services IPC séparés par fonctionnalité.
+- `tests/unit/frontend` et `tests/unit/backend` : tests par couche.
 - Base locale dans le dossier de données de l’application Electron.
 - Sauvegardes quotidiennes avec rétention de sept jours.
 

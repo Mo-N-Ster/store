@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Application de gestion de boutique d’épices et arômes",
   "author": "Mo-N-Ster",
-  "main": "dist/main/main/index.js",
+  "main": "dist/backend/main/index.js",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -k \"vite\" \"tsc -p tsconfig.main.json --watch\" \"wait-on tcp:5173 dist/main/main/index.js && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
+    "dev": "concurrently -k \"vite\" \"tsc -p tsconfig.main.json --watch\" \"wait-on tcp:5173 dist/backend/main/index.js && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 electron .\"",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "start": "electron .",
@@ -16,30 +16,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "package": "npm run build && electron-builder"
-  },
-  "build": {
-    "appId": "com.monster.store",
-    "productName": "STORE",
-    "directories": {
-      "output": "release"
-    },
-    "files": [
-      "dist/**/*",
-      "package.json"
-    ],
-    "asarUnpack": [
-      "node_modules/better-sqlite3/**/*"
-    ],
-    "win": {
-      "target": "nsis"
-    },
-    "mac": {
-      "target": "dmg"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true
-    }
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
