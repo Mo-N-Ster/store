@@ -1,2 +1,38 @@
-import{useEffect,useState}from'react';import{useTranslation}from'react-i18next';import{storeApi}from'../../../services/api';import{formatMoney}from'../../../utils/formatters';
-export function Overview(){const{t}=useTranslation();const[data,setData]=useState<any>({});useEffect(()=>{storeApi.dashboard().then(setData)},[]);const cards=[['📦','products',data.products],['⚠','lowStock',data.lowStock],['🧾','salesToday',data.salesToday],['↗','revenueToday',formatMoney(data.revenueToday)],['◫','revenueMonth',formatMoney(data.revenueMonth)]];return <><div className="page-heading"><div><span className="eyebrow">Vue d’ensemble</span><h1>{t('home')}</h1></div><p>Suivez les indicateurs essentiels de votre boutique en temps réel.</p></div><div className="widgets">{cards.map(([icon,label,value])=><article key={label}><span className="widget-icon">{icon}</span><span>{t(String(label))}</span><b>{value}</b></article>)}</div></>}
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { storeApi } from '../../../services/api';
+import { formatMoney } from '../../../utils/formatters';
+export function Overview() {
+  const { t } = useTranslation();
+  const [data, setData] = useState<any>({});
+  useEffect(() => {
+    storeApi.dashboard().then(setData);
+  }, []);
+  const cards = [
+    ['📦', 'products', data.products],
+    ['⚠', 'lowStock', data.lowStock],
+    ['🧾', 'salesToday', data.salesToday],
+    ['↗', 'revenueToday', formatMoney(data.revenueToday)],
+    ['◫', 'revenueMonth', formatMoney(data.revenueMonth)],
+  ];
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">Vue d’ensemble</span>
+          <h1>{t('home')}</h1>
+        </div>
+        <p>Suivez les indicateurs essentiels de votre boutique en temps réel.</p>
+      </div>
+      <div className="widgets">
+        {cards.map(([icon, label, value]) => (
+          <article key={label}>
+            <span className="widget-icon">{icon}</span>
+            <span>{t(String(label))}</span>
+            <b>{value}</b>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}

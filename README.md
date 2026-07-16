@@ -18,7 +18,7 @@ Au premier lancement, l’assistant demande la création du compte propriétaire
 - `src/main` : démarrage Electron, création des fenêtres et handlers IPC.
 - `src/preload` : pont sécurisé entre Electron et le renderer.
 - `src/database` : schéma SQLite, accès aux données et règles métier.
-- `src/ipc` et `src/shared` : canaux, types et constantes partagés.
+- `src/ipc` : liste centralisée et typée des canaux autorisés.
 - `src/renderer/components` : composants UI réutilisables.
 - `src/renderer/pages` : modules Caisse, Dashboard et authentification.
 - `src/renderer/hooks` : panier, produits, thème et notifications.

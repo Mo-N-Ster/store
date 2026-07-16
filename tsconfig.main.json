@@ -1,7 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2022", "module": "NodeNext", "moduleResolution": "NodeNext", "outDir": "dist/main",
-    "rootDir": "src", "strict": true, "esModuleInterop": true, "skipLibCheck": true, "types": ["node"], "composite": true
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist/main",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "composite": true
   },
-  "include": ["src/main/**/*.ts", "src/preload/**/*.ts", "src/database/**/*.ts", "src/ipc/**/*.ts", "src/config/**/*.ts", "src/shared/**/*.ts"]
+  "include": ["src/main/**/*.ts", "src/preload/**/*.ts", "src/database/**/*.ts", "src/ipc/**/*.ts"]
 }

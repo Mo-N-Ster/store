@@ -1,1 +1,1 @@
-export const storeApi=window.store;
+export const storeApi = window.store;

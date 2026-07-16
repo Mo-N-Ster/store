@@ -21,4 +21,3 @@ Recherchez ou filtrez les produits, cliquez sur une carte pour l’ajouter, ajus
 ## Sécurité et sauvegardes
 
 Les mots de passe sont hashés avec bcrypt. Une sauvegarde quotidienne est créée avec une rétention de sept fichiers. La réinitialisation demande le mot de passe propriétaire, une confirmation explicite et déclenche une sauvegarde préalable.
-
