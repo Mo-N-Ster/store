@@ -8,12 +8,14 @@ import { Login, Mode, Setup } from './pages/auth/AuthPages';
 import { CashierPage } from './pages/Cashier/CashierPage';
 import { DashboardPage } from './pages/Dashboard/DashboardPage';
 import { authService } from './services/authService';
+import { ManagerAuthModal } from './components/UI/ManagerAuthModal';
 type View = 'mode' | 'pos' | 'dashboard';
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
   const [needsSetup, setNeedsSetup] = useState<boolean | null>(null);
   const [view, setView] = useState<View>('mode');
+  const [managerAuth, setManagerAuth] = useState(false);
   const { theme, setTheme } = useTheme();
   const { toast, notify } = useToast();
   useEffect(() => {
@@ -49,7 +51,9 @@ export default function App() {
     <Header
       user={user}
       title={view === 'pos' ? t('cashier') : t('dashboard')}
-      onMode={() => setView(view === 'pos' && user.role === 'admin' ? 'dashboard' : 'pos')}
+      onMode={() =>
+        view === 'pos' && user.role === 'admin' ? setManagerAuth(true) : setView('pos')
+      }
       onLogout={() => setUser(null)}
       theme={theme}
       setTheme={setTheme}
@@ -74,6 +78,16 @@ export default function App() {
             <DashboardPage user={user} notify={notify} />
           )}
         </>
+      )}
+      {managerAuth && (
+        <ManagerAuthModal
+          adminId={user.id}
+          onClose={() => setManagerAuth(false)}
+          onSuccess={() => {
+            setManagerAuth(false);
+            setView('dashboard');
+          }}
+        />
       )}
     </>
   );

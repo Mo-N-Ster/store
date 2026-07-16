@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import type { Product, User } from '../../types';
 import { employeeService } from '../../services/employeeService';
 import { saleService } from '../../services/saleService';
-import { attendanceService } from '../../services/attendanceService';
 import { todayIso } from '../../utils/formatters';
 import { useCart } from '../../hooks/useCart';
 import { useProducts } from '../../hooks/useProducts';
 import { ProductGrid } from './ProductGrid';
 import { CartPanel } from './CartPanel';
 import { InvoicePreview } from './InvoicePreview';
+import { EmployeePresence } from '../../components/common/EmployeePresence';
 export function CashierPage({ user, notify }: { user: User; notify: (message: string) => void }) {
   const { t } = useTranslation();
   const [users, setUsers] = useState<User[]>([]);
@@ -81,24 +81,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
           ))}
         </div>
         <h3>Équipe</h3>
-        <div className="avatars">
-          {users
-            .filter((member) => member.active)
-            .map((member) => (
-              <button
-                title={`${member.firstName || member.first_name}: clic=présent, Maj+clic=absent`}
-                onClick={(event) =>
-                  attendanceService
-                    .toggle(member.id, !event.shiftKey)
-                    .then(() => notify(event.shiftKey ? t('absent') : t('present')))
-                    .catch((error: any) => notify(error.message))
-                }
-                key={member.id}
-              >
-                {member.initials}
-              </button>
-            ))}
-        </div>
+        <EmployeePresence employees={users} notify={notify} />
       </aside>
       <ProductGrid products={products} loading={loading} onAdd={add} />
       <CartPanel
