@@ -3,6 +3,7 @@ dist/
 dist-electron/
 release/
 coverage/
+*.tsbuildinfo
 *.log
 *.db
 *.db-shm
@@ -10,4 +11,3 @@ coverage/
 backups/
 .env
 .DS_Store
-
