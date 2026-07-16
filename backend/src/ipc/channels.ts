@@ -29,5 +29,6 @@ export const IPC_METHODS = [
   'selectFile',
   'importProducts',
   'restoreBackup',
+  'testEmail',
 ] as const;
 export type IpcMethod = (typeof IPC_METHODS)[number];

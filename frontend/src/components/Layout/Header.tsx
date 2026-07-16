@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { User } from '../../types';
 import { dashboardService } from '../../services/dashboardService';
+import { useOnlineStatus } from '../../hooks/useOnlineStatus';
 type Props = {
   user: User;
   title: string;
@@ -14,6 +15,7 @@ type Props = {
 export function Header({ user, title, onMode, onLogout, theme, setTheme, lang, setLang }: Props) {
   const [clock, setClock] = useState(new Date());
   const [alerts, setAlerts] = useState(0);
+  const online = useOnlineStatus();
   useEffect(() => {
     const id = setInterval(() => setClock(new Date()), 1000);
     return () => clearInterval(id);
@@ -36,6 +38,9 @@ export function Header({ user, title, onMode, onLogout, theme, setTheme, lang, s
           ⚠ {alerts}
         </span>
       )}
+      <span className={online ? 'online-status online' : 'online-status'}>
+        {online ? 'En ligne' : 'Hors ligne'}
+      </span>
       {user.role === 'admin' && (
         <button className="ghost" onClick={onMode}>
           ⇄

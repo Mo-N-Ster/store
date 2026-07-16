@@ -9,6 +9,7 @@ import { validateUser } from '../domain/user/user.validators.js';
 import type { ProductInput } from '../domain/product/product.types.js';
 import { validateProduct } from '../domain/product/product.validators.js';
 import type { SaleLineInput } from '../domain/sale/sale.types.js';
+import { sendEmail } from '../services/emailService.js';
 
 let db: Database.Database;
 let databaseFile = '';
@@ -373,6 +374,16 @@ export const api = {
       );
       for (const [k, v] of Object.entries(values)) stmt.run(k, v);
     })(),
+  testEmail: async () => {
+    const settings = settingsObject();
+    await sendEmail(
+      smtpConfig(settings),
+      settings.email,
+      'Test SMTP STORE',
+      'La configuration SMTP de STORE fonctionne correctement.',
+    );
+    return true;
+  },
   backup: () => createBackup(),
   importProducts: (filePath: string) => {
     const rows = fs
@@ -477,10 +488,19 @@ function checkStock(id: number) {
         "SELECT 1 FROM notifications WHERE product_id=? AND type='stock_alert' AND resolved_at IS NULL",
       )
       .get(id);
-    if (!exists)
+    if (!exists) {
       db.prepare(
         "INSERT INTO notifications(type,product_id,message) VALUES('stock_alert',?,?)",
       ).run(id, `${p.name}: stock ${p.stock_quantity}, seuil ${p.min_stock_threshold}`);
+      const settings = settingsObject();
+      if (settings.email && settings.smtpHost)
+        void sendEmail(
+          smtpConfig(settings),
+          settings.email,
+          `Alerte stock: ${p.name}`,
+          `${p.name}: stock actuel ${p.stock_quantity}, seuil ${p.min_stock_threshold}`,
+        ).catch(() => undefined);
+    }
   } else
     db.prepare(
       'UPDATE notifications SET resolved_at=? WHERE product_id=? AND resolved_at IS NULL',
@@ -533,4 +553,21 @@ function parseCsvLine(line: string) {
   }
   values.push(current);
   return values;
+}
+function settingsObject() {
+  return Object.fromEntries(
+    (db.prepare('SELECT key,value FROM settings').all() as { key: string; value: string }[]).map(
+      (item) => [item.key, item.value],
+    ),
+  ) as Record<string, string>;
+}
+function smtpConfig(settings: Record<string, string>) {
+  return {
+    host: settings.smtpHost || '',
+    port: Number(settings.smtpPort || 587),
+    secure: settings.smtpSecure === 'true',
+    user: settings.smtpUser || '',
+    password: settings.smtpPassword || '',
+    from: settings.smtpFrom || settings.smtpUser || '',
+  };
 }

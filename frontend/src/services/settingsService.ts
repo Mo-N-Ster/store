@@ -5,4 +5,5 @@ export const settingsService = {
   backup: () => storeApi.backup(),
   reset: (input: unknown) => storeApi.reset(input),
   restore: (filePath: string) => storeApi.restoreBackup(filePath),
+  testEmail: () => storeApi.testEmail(),
 };
