@@ -21,7 +21,7 @@ export function DashboardPage({ user, notify }: { user: User; notify: (x: string
         ) : section === 'employees' ? (
           <EmployeeList notify={notify} />
         ) : section === 'sales' ? (
-          <SalesHistory />
+          <SalesHistory userId={user.id} />
         ) : section === 'charts' ? (
           <ChartsPage />
         ) : section === 'mailbox' ? (

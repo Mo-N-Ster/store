@@ -22,6 +22,20 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
         : 'Employé enregistré',
     );
   };
+  const toggleActive = async (member: User) => {
+    await employeeService.save({
+      ...member,
+      firstName: member.firstName || member.first_name,
+      lastName: member.lastName || member.last_name,
+      active: !member.active,
+    });
+    await load();
+    notify(member.active ? 'Employé désactivé.' : 'Employé réactivé.');
+  };
+  const resetPassword = async (member: User) => {
+    const password = await employeeService.resetPassword(member.id);
+    notify(`Nouveau mot de passe temporaire: ${password}`);
+  };
   return (
     <>
       <div className="titlebar">
@@ -51,6 +65,12 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                 <td>{member.active ? 'Actif' : 'Inactif'}</td>
                 <td>
                   <button onClick={() => setEdit(member)}>✎</button>
+                  <button className="ghost" onClick={() => toggleActive(member)}>
+                    {member.active ? 'Désactiver' : 'Réactiver'}
+                  </button>
+                  <button className="ghost" onClick={() => resetPassword(member)}>
+                    Mot de passe
+                  </button>
                 </td>
               </tr>
             ))}

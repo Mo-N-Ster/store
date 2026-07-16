@@ -34,6 +34,13 @@ header time {
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
 }
+.alert-badge {
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  background: #d9973220;
+  color: var(--accent);
+  font-weight: 800;
+}
 .eyebrow {
   display: block;
   color: var(--primary);

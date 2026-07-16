@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { User } from '../../types';
+import { dashboardService } from '../../services/dashboardService';
 type Props = {
   user: User;
   title: string;
@@ -12,15 +13,29 @@ type Props = {
 };
 export function Header({ user, title, onMode, onLogout, theme, setTheme, lang, setLang }: Props) {
   const [clock, setClock] = useState(new Date());
+  const [alerts, setAlerts] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setClock(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
+  useEffect(() => {
+    if (user.role === 'admin')
+      dashboardService
+        .notifications()
+        .then((rows: any[]) =>
+          setAlerts(rows.filter((row) => !row.is_read && !row.resolved_at).length),
+        );
+  }, [user.role]);
   return (
     <header>
       <h2>{title}</h2>
       <time>{clock.toLocaleString()}</time>
       <span className="avatar">{user.initials}</span>
+      {user.role === 'admin' && (
+        <span className="alert-badge" title="Alertes de stock">
+          ⚠ {alerts}
+        </span>
+      )}
       {user.role === 'admin' && (
         <button className="ghost" onClick={onMode}>
           ⇄

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { saleService } from '../../../services/saleService';
 import { formatMoney } from '../../../utils/formatters';
 import { InvoicePreview } from '../../Cashier/InvoicePreview';
-export function SalesHistory() {
+export function SalesHistory({ userId }: { userId: number }) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<any[]>([]);
   const [filters, setFilters] = useState({ from: '', to: '', search: '' });
@@ -43,6 +43,22 @@ export function SalesHistory() {
                 <td>{new Date(row.invoiceDate).toLocaleString()}</td>
                 <td>{row.seller}</td>
                 <td>{formatMoney(row.totalAmount)}</td>
+                <td>
+                  <button
+                    className="danger"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      if (confirm('Supprimer définitivement cette facture et restaurer le stock ?'))
+                        saleService
+                          .remove({ id: row.id, userId })
+                          .then(() =>
+                            setRows((current) => current.filter((item) => item.id !== row.id)),
+                          );
+                    }}
+                  >
+                    🗑
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
