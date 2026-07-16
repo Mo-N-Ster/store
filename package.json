@@ -2,6 +2,7 @@
   "name": "store-desktop",
   "version": "1.0.0",
   "description": "Application de gestion de boutique d’épices et arômes",
+  "author": "Mo-N-Ster",
   "main": "dist-electron/main/index.js",
   "type": "module",
   "scripts": {
@@ -57,4 +58,3 @@
     "wait-on": "latest"
   }
 }
-

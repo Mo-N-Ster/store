@@ -111,7 +111,7 @@ export const api = {
 };
 
 function validateUser(x:UserInput, passwordRequired:boolean){if(!x.username?.trim()||!x.email?.includes('@')||!x.firstName?.trim()||!x.lastName?.trim()||(passwordRequired&&(!x.password||x.password.length<8))) throw new Error('INVALID_USER');}
-function stripPassword(u:any){const {password_hash,...safe}=u; return safe;}
+function stripPassword(u:any){const safe={...u};delete safe.password_hash;return safe;}
 function publicUser(id:number){return stripPassword(db.prepare('SELECT * FROM users WHERE id=?').get(id));}
 function enforceSingleAdmin(id:number,role:string){if(role==='admin') db.prepare("UPDATE users SET role='employee' WHERE role='admin' AND id<>?").run(id);}
 function temporaryPassword(){return `Store-${Math.random().toString(36).slice(2,8)}!`;}
@@ -122,4 +122,3 @@ function audit(userId:number,action:string,entity:string,entityId:string){db.pre
 function backupDir(){const d=path.join(app.getPath('userData'),'backups');fs.mkdirSync(d,{recursive:true});return d;}
 function createBackup(){const name=`store-${new Date().toISOString().replace(/[:.]/g,'-')}.db`; const target=path.join(backupDir(),name); db.backup(target); return target;}
 function dailyBackup(){const dir=backupDir();const files=fs.readdirSync(dir).filter(f=>f.endsWith('.db')).sort().reverse();const today=new Date().toISOString().slice(0,10);if(!files.some(f=>f.includes(today)))createBackup();for(const f of files.slice(7))fs.rmSync(path.join(dir,f));}
-

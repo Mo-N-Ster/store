@@ -31,3 +31,4 @@ npm run package
 
 Le packaging produit un installateur Windows NSIS ou une image macOS DMG dans `release/`.
 
+Le guide d’utilisation se trouve dans [`docs/GUIDE_UTILISATEUR.md`](docs/GUIDE_UTILISATEUR.md).
