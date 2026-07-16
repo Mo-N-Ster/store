@@ -8,7 +8,7 @@ export function ProductGrid({
 }: {
   products: Product[];
   loading: boolean;
-  onAdd: (product: Product) => void;
+  onAdd: (product: Product, quantity: number) => void;
 }) {
   if (loading)
     return (

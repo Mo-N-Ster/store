@@ -26,6 +26,8 @@ export function InvoicePreview({ data, close }: { data: any; close: () => void }
             ))}
           </tbody>
         </table>
+        <p>Catégories : {[...new Set(data.lines.map((line: any) => line.category))].join(', ')}</p>
+        <p>Sous-total : {formatMoney(invoice.subtotal)}</p>
         <p>Remise: {formatMoney(invoice.discount)}</p>
         <h2>
           {t('total')}: {formatMoney(invoice.total_amount)}

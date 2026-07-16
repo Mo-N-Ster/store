@@ -1,0 +1,26 @@
+.quantity-picker {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  gap: 0.35rem;
+}
+.quantity-picker button {
+  padding: 0.35rem;
+}
+.quantity-picker input {
+  text-align: center;
+  padding: 0.4rem;
+}
+.select-all {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+.select-all input {
+  width: auto;
+}
+.cart-actions label select {
+  width: auto;
+  margin-left: 0.35rem;
+  padding: 0.35rem;
+}

@@ -17,6 +17,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [discount, setDiscount] = useState(0);
+  const [discountMode, setDiscountMode] = useState<'fixed' | 'percent'>('fixed');
   const [receipt, setReceipt] = useState<any>(null);
   const { products, loading, reload } = useProducts(search, category);
   const cart = useCart();
@@ -28,8 +29,8 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
   useEffect(() => {
     void loadSide();
   }, []);
-  const add = (product: Product) => {
-    cart.add(product);
+  const add = (product: Product, quantity: number) => {
+    cart.add(product, quantity);
     notify(`${product.name} ✓`);
   };
   const validate = async () => {
@@ -37,7 +38,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
       const result = await saleService.create({
         employeeId: user.id,
         lines: cart.lines.map((line) => ({ productId: line.product.id, quantity: line.quantity })),
-        discount,
+        discount: discountMode === 'percent' ? (cart.subtotal * discount) / 100 : discount,
       });
       setReceipt(result);
       cart.clear();
@@ -88,9 +89,12 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
         lines={cart.lines}
         subtotal={cart.subtotal}
         discount={discount}
+        discountMode={discountMode}
+        setDiscountMode={setDiscountMode}
         setDiscount={setDiscount}
         updateQuantity={cart.updateQuantity}
         toggle={cart.toggle}
+        selectAll={cart.selectAll}
         removeSelected={cart.removeSelected}
         validate={validate}
       />

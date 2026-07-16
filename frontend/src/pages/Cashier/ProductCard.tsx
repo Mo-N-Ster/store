@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { Product } from '../../types';
 import { formatMoney } from '../../utils/formatters';
@@ -6,12 +7,13 @@ export function ProductCard({
   onAdd,
 }: {
   product: Product;
-  onAdd: (product: Product) => void;
+  onAdd: (product: Product, quantity: number) => void;
 }) {
   const { t } = useTranslation();
+  const [quantity, setQuantity] = useState(1);
   const low = product.stockQuantity <= product.minStockThreshold;
   return (
-    <article className="product" onClick={() => product.stockQuantity > 0 && onAdd(product)}>
+    <article className="product">
       <span className="tag">{product.category}</span>
       <h3>{product.name}</h3>
       <p>{product.description || product.hashtag || '—'}</p>
@@ -21,7 +23,30 @@ export function ProductCard({
           {t('stock')}: {product.stockQuantity}
         </small>
       </div>
-      <button disabled={!product.stockQuantity}>{t('add')}</button>
+      <div className="quantity-picker">
+        <button className="ghost" onClick={() => setQuantity((value) => Math.max(1, value - 1))}>
+          −
+        </button>
+        <input
+          aria-label={t('quantity')}
+          type="number"
+          min="1"
+          max={product.stockQuantity}
+          value={quantity}
+          onChange={(e) =>
+            setQuantity(Math.max(1, Math.min(product.stockQuantity, Number(e.target.value))))
+          }
+        />
+        <button
+          className="ghost"
+          onClick={() => setQuantity((value) => Math.min(product.stockQuantity, value + 1))}
+        >
+          +
+        </button>
+      </div>
+      <button disabled={!product.stockQuantity} onClick={() => onAdd(product, quantity)}>
+        {t('add')}
+      </button>
     </article>
   );
 }
