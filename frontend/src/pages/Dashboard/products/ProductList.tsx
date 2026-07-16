@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import type { Product } from '../../../types';
 import { productService } from '../../../services/productService';
 import { formatMoney } from '../../../utils/formatters';
+import { csvEscape } from '../../../utils/domain';
+import { selectFile } from '../../../services/api';
 export function ProductList({ notify, userId }: { notify: (x: string) => void; userId: number }) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<Product[]>([]);
@@ -25,6 +27,32 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
     await load();
     notify('Produit enregistré');
   };
+  const exportCsv = () =>
+    productService.exportCsv(
+      [
+        'name,hashtag,category,description,price,stockQuantity,minStockThreshold',
+        ...rows.map((item) =>
+          [
+            item.name,
+            item.hashtag,
+            item.category,
+            item.description,
+            item.price,
+            item.stockQuantity,
+            item.minStockThreshold,
+          ]
+            .map(csvEscape)
+            .join(','),
+        ),
+      ].join('\n'),
+    );
+  const importCsv = async () => {
+    const file = await selectFile([{ name: 'CSV', extensions: ['csv'] }]);
+    if (!file) return;
+    const count = await productService.importCsv(file);
+    await load();
+    notify(`${count} produits importés ou mis à jour.`);
+  };
   return (
     <>
       <div className="titlebar">
@@ -32,7 +60,15 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
           <span className="eyebrow">Inventaire</span>
           <h1>{t('products')}</h1>
         </div>
-        <button onClick={() => setEdit({})}>+ {t('add')}</button>
+        <div>
+          <button className="ghost" onClick={exportCsv}>
+            Exporter CSV
+          </button>
+          <button className="ghost" onClick={importCsv}>
+            Importer CSV
+          </button>
+          <button onClick={() => setEdit({})}>+ {t('add')}</button>
+        </div>
       </div>
       <div className="table-shell">
         <table>

@@ -11,13 +11,15 @@ import { validateProduct } from '../domain/product/product.validators.js';
 import type { SaleLineInput } from '../domain/sale/sale.types.js';
 
 let db: Database.Database;
+let databaseFile = '';
 const now = () => new Date().toISOString();
 const initials = (first: string, last: string) => `${first[0] ?? ''}${last[0] ?? ''}`.toUpperCase();
 
 export function initDatabase() {
   const dir = app.getPath('userData');
   fs.mkdirSync(dir, { recursive: true });
-  db = new Database(path.join(dir, 'store.db'));
+  databaseFile = path.join(dir, 'store.db');
+  db = new Database(databaseFile);
   db.pragma('journal_mode = WAL');
   db.exec(schema);
   dailyBackup();
@@ -372,6 +374,48 @@ export const api = {
       for (const [k, v] of Object.entries(values)) stmt.run(k, v);
     })(),
   backup: () => createBackup(),
+  importProducts: (filePath: string) => {
+    const rows = fs
+      .readFileSync(filePath, 'utf8')
+      .replace(/^\uFEFF/, '')
+      .split(/\r?\n/)
+      .filter(Boolean);
+    if (rows.length < 2) throw new Error('EMPTY_CSV');
+    const headers = parseCsvLine(rows[0]).map((value) => value.trim());
+    const required = ['name', 'category', 'price', 'stockQuantity', 'minStockThreshold'];
+    if (required.some((key) => !headers.includes(key))) throw new Error('INVALID_CSV_HEADERS');
+    return db.transaction(() =>
+      rows.slice(1).reduce((count, row) => {
+        const values = parseCsvLine(row);
+        const item = Object.fromEntries(headers.map((key, index) => [key, values[index] ?? '']));
+        const input = {
+          name: item.name,
+          hashtag: item.hashtag,
+          category: item.category,
+          description: item.description,
+          price: Number(item.price),
+          stockQuantity: Number(item.stockQuantity),
+          minStockThreshold: Number(item.minStockThreshold),
+        };
+        validateProduct(input);
+        const existing = db
+          .prepare('SELECT id FROM products WHERE name=? AND deleted_at IS NULL')
+          .get(input.name) as { id: number } | undefined;
+        api.saveProduct({ ...input, id: existing?.id });
+        return count + 1;
+      }, 0),
+    )();
+  },
+  restoreBackup: (filePath: string) => {
+    if (!/\.(db|sqlite)$/i.test(filePath)) throw new Error('INVALID_BACKUP');
+    createBackup();
+    db.close();
+    fs.copyFileSync(filePath, databaseFile);
+    db = new Database(databaseFile);
+    db.pragma('journal_mode = WAL');
+    db.exec(schema);
+    return true;
+  },
   reset: ({ adminId, password }: { adminId: number; password: string }) => {
     if (!api.verifyAdmin({ id: adminId, password })) throw new Error('INVALID_CREDENTIALS');
     createBackup();
@@ -471,4 +515,22 @@ function dailyBackup() {
   const today = new Date().toISOString().slice(0, 10);
   if (!files.some((f) => f.includes(today))) createBackup();
   for (const f of files.slice(7)) fs.rmSync(path.join(dir, f));
+}
+function parseCsvLine(line: string) {
+  const values: string[] = [];
+  let current = '';
+  let quoted = false;
+  for (let index = 0; index < line.length; index++) {
+    const char = line[index];
+    if (char === '"' && quoted && line[index + 1] === '"') {
+      current += '"';
+      index++;
+    } else if (char === '"') quoted = !quoted;
+    else if (char === ',' && !quoted) {
+      values.push(current);
+      current = '';
+    } else current += char;
+  }
+  values.push(current);
+  return values;
 }

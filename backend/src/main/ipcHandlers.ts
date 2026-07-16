@@ -17,4 +17,11 @@ export function registerIpcHandlers() {
       return result.filePath;
     },
   );
+  ipcMain.handle(
+    `${IPC_PREFIX}selectFile`,
+    async (_event, { filters }: { filters?: Electron.FileFilter[] }) => {
+      const result = await dialog.showOpenDialog({ properties: ['openFile'], filters });
+      return result.canceled ? null : result.filePaths[0];
+    },
+  );
 }

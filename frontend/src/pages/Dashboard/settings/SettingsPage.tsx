@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { settingsService } from '../../../services/settingsService';
+import { selectFile } from '../../../services/api';
 export function SettingsPage({ user, notify }: { user: User; notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [settings, setSettings] = useState<any>({});
@@ -26,6 +27,14 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
     } catch {
       notify('Authentification incorrecte');
     }
+  };
+  const restore = async () => {
+    const file = await selectFile([{ name: 'Sauvegarde SQLite', extensions: ['db', 'sqlite'] }]);
+    if (!file) return;
+    if (!confirm('Restaurer cette sauvegarde remplacera les données actuelles. Continuer ?'))
+      return;
+    await settingsService.restore(file);
+    location.reload();
   };
   return (
     <>
@@ -65,6 +74,9 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
         </button>
         <button className="danger" onClick={reset}>
           {t('reset')}
+        </button>
+        <button className="ghost" onClick={restore}>
+          Restaurer une sauvegarde
         </button>
       </section>
     </>
