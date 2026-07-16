@@ -7,4 +7,3 @@ export function calculateInvoice(lines:PricedLine[],discount=0){
 }
 export function validateStock(requested:number,available:number){return Number.isInteger(requested)&&requested>0&&requested<=available;}
 export function csvEscape(value:unknown){const text=String(value??'');return /[",\n]/.test(text)?`"${text.replace(/"/g,'""')}"`:text;}
-

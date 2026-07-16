@@ -3,4 +3,3 @@ export type Product={id:number;name:string;hashtag:string;category:string;descri
 export type CartLine={product:Product;quantity:number;selected:boolean};
 export type StoreApi={ [key:string]:(...args:any[])=>Promise<any> };
 declare global{interface Window{store:StoreApi}}
-

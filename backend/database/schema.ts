@@ -47,4 +47,3 @@ CREATE INDEX IF NOT EXISTS idx_products_search ON products(name, category, hasht
 CREATE INDEX IF NOT EXISTS idx_invoices_date ON invoices(invoice_date);
 CREATE INDEX IF NOT EXISTS idx_attendances_employee ON attendances(employee_id, start_time);
 `;
-
