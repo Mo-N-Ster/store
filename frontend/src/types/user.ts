@@ -12,4 +12,5 @@ export interface User {
   phone?: string;
   hireDate?: string;
   active: number | boolean;
+  securityQuestion?: string;
 }

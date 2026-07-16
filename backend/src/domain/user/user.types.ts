@@ -1,6 +1,6 @@
 export interface UserInput {
   username: string;
-  email: string;
+  email?: string;
   password?: string;
   role?: 'admin' | 'employee';
   firstName: string;
@@ -8,4 +8,6 @@ export interface UserInput {
   phone?: string;
   hireDate?: string;
   active?: boolean;
+  securityQuestion?: string;
+  securityAnswer?: string;
 }

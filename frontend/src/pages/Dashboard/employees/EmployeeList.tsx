@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { employeeService } from '../../../services/employeeService';
+import { PasswordResetDialog } from './PasswordResetDialog';
 export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<User[]>([]);
   const [edit, setEdit] = useState<any>(null);
+  const [resetTarget, setResetTarget] = useState<User | null>(null);
   const load = () => employeeService.list().then(setRows);
   useEffect(() => {
     void load();
@@ -31,10 +33,6 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
     });
     await load();
     notify(member.active ? 'Employé désactivé.' : 'Employé réactivé.');
-  };
-  const resetPassword = async (member: User) => {
-    const password = await employeeService.resetPassword(member.id);
-    notify(`Nouveau mot de passe temporaire: ${password}`);
   };
   return (
     <>
@@ -68,8 +66,8 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                   <button className="ghost" onClick={() => toggleActive(member)}>
                     {member.active ? 'Désactiver' : 'Réactiver'}
                   </button>
-                  <button className="ghost" onClick={() => resetPassword(member)}>
-                    Mot de passe
+                  <button className="ghost" onClick={() => setResetTarget(member)}>
+                    {t('newPassword')}
                   </button>
                 </td>
               </tr>
@@ -84,7 +82,7 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
             {[
               ['firstName', t('firstName')],
               ['lastName', t('lastName')],
-              ['username', t('username')],
+              ['username', t('usernameOnly')],
               ['email', t('email')],
               ['phone', 'Téléphone'],
               ['hireDate', 'Date d’embauche'],
@@ -95,23 +93,53 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                   name={name}
                   type={name === 'email' ? 'email' : name === 'hireDate' ? 'date' : 'text'}
                   defaultValue={edit[name] ?? ''}
-                  required={['firstName', 'lastName', 'username', 'email'].includes(name)}
+                  required={
+                    ['firstName', 'lastName', 'username'].includes(name) ||
+                    (name === 'email' && edit.role === 'admin')
+                  }
                 />
               </label>
             ))}
             <label>
               {t('role')}
-              <select name="role" defaultValue={edit.role}>
+              <select
+                name="role"
+                value={edit.role || 'employee'}
+                onChange={(event) => setEdit({ ...edit, role: event.target.value })}
+              >
                 <option value="employee">{t('employee')}</option>
                 <option value="admin">{t('admin')}</option>
               </select>
             </label>
+            {edit.role === 'admin' && (
+              <>
+                <label>
+                  {t('securityQuestion')}
+                  <input
+                    name="securityQuestion"
+                    defaultValue={edit.securityQuestion || ''}
+                    required
+                  />
+                </label>
+                <label>
+                  {t('securityAnswer')}
+                  <input name="securityAnswer" required />
+                </label>
+              </>
+            )}
             <button>{t('save')}</button>
             <button type="button" className="ghost" onClick={() => setEdit(null)}>
               {t('close')}
             </button>
           </form>
         </div>
+      )}
+      {resetTarget && (
+        <PasswordResetDialog
+          user={resetTarget}
+          notify={notify}
+          onClose={() => setResetTarget(null)}
+        />
       )}
     </>
   );

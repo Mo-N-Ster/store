@@ -7,6 +7,8 @@ export const IPC_METHODS = [
   'users',
   'saveUser',
   'resetPassword',
+  'securityQuestion',
+  'resetManagerPassword',
   'products',
   'saveProduct',
   'deleteProduct',

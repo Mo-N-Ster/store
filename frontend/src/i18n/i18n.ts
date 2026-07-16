@@ -3,6 +3,10 @@ import { initReactI18next } from 'react-i18next';
 const fr = {
   login: 'Se connecter',
   username: 'Nom d’utilisateur ou email',
+  usernameOnly: 'Nom d’utilisateur',
+  newPassword: 'Nouveau mot de passe',
+  securityQuestion: 'Question de sécurité',
+  securityAnswer: 'Réponse de sécurité',
   password: 'Mot de passe',
   role: 'Rôle',
   admin: 'Propriétaire',
@@ -58,6 +62,10 @@ const fr = {
 const en = {
   login: 'Sign in',
   username: 'Username or email',
+  usernameOnly: 'Username',
+  newPassword: 'New password',
+  securityQuestion: 'Security question',
+  securityAnswer: 'Security answer',
   password: 'Password',
   role: 'Role',
   admin: 'Owner',

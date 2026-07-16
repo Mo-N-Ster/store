@@ -35,16 +35,16 @@ export const api = {
     ).count === 0,
   setupAdmin: (input: UserInput) => {
     if (!api.needsSetup()) throw new Error('SETUP_ALREADY_COMPLETED');
-    validateUser(input, true);
+    validateUser({ ...input, role: 'admin' }, true);
     const hash = bcrypt.hashSync(input.password!, 10);
     const result = db
       .prepare(
-        `INSERT INTO users(username,email,password_hash,role,first_name,last_name,initials,phone,hire_date)
-      VALUES(?,?,?,?,?,?,?,?,?)`,
+        `INSERT INTO users(username,email,password_hash,role,first_name,last_name,initials,phone,hire_date,security_question,security_answer_hash)
+      VALUES(?,?,?,?,?,?,?,?,?,?,?)`,
       )
       .run(
         input.username.trim(),
-        input.email.trim().toLowerCase(),
+        input.email?.trim().toLowerCase() || null,
         hash,
         'admin',
         input.firstName.trim(),
@@ -52,6 +52,10 @@ export const api = {
         initials(input.firstName, input.lastName),
         input.phone ?? '',
         input.hireDate ?? null,
+        input.securityQuestion?.trim() || null,
+        input.securityAnswer
+          ? bcrypt.hashSync(input.securityAnswer.trim().toLowerCase(), 10)
+          : null,
       );
     return publicUser(Number(result.lastInsertRowid));
   },
@@ -80,16 +84,22 @@ export const api = {
   users: () =>
     db
       .prepare(
-        'SELECT id,username,email,role,first_name firstName,last_name lastName,initials,phone,hire_date hireDate,active FROM users ORDER BY active DESC,last_name',
+        'SELECT id,username,email,role,first_name firstName,last_name lastName,initials,phone,hire_date hireDate,active,security_question securityQuestion FROM users ORDER BY active DESC,last_name',
       )
       .all(),
   saveUser: (input: UserInput & { id?: number }) => {
-    validateUser(input, !input.id);
+    validateUser(input, false);
     const role = input.role ?? 'employee';
+    if (
+      !input.id &&
+      role === 'admin' &&
+      (!input.securityQuestion?.trim() || !input.securityAnswer?.trim())
+    )
+      throw new Error('SECURITY_QUESTION_REQUIRED');
     if (input.id) {
       const fields = [
         input.username.trim(),
-        input.email.trim().toLowerCase(),
+        input.email?.trim().toLowerCase() || null,
         role,
         input.firstName.trim(),
         input.lastName.trim(),
@@ -107,17 +117,23 @@ export const api = {
           bcrypt.hashSync(input.password, 10),
           input.id,
         );
+      if (role === 'admin' && input.securityQuestion && input.securityAnswer)
+        db.prepare('UPDATE users SET security_question=?,security_answer_hash=? WHERE id=?').run(
+          input.securityQuestion.trim(),
+          bcrypt.hashSync(input.securityAnswer.trim().toLowerCase(), 10),
+          input.id,
+        );
       enforceSingleAdmin(input.id, role);
       return publicUser(input.id);
     }
     const password = input.password || temporaryPassword();
     const result = db
       .prepare(
-        `INSERT INTO users(username,email,password_hash,role,first_name,last_name,initials,phone,hire_date,active) VALUES(?,?,?,?,?,?,?,?,?,?)`,
+        `INSERT INTO users(username,email,password_hash,role,first_name,last_name,initials,phone,hire_date,active,security_question,security_answer_hash) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
       )
       .run(
         input.username.trim(),
-        input.email.trim().toLowerCase(),
+        input.email?.trim().toLowerCase() || null,
         bcrypt.hashSync(password, 10),
         role,
         input.firstName.trim(),
@@ -126,17 +142,52 @@ export const api = {
         input.phone ?? '',
         input.hireDate ?? null,
         1,
+        role === 'admin' ? input.securityQuestion?.trim() : null,
+        role === 'admin' && input.securityAnswer
+          ? bcrypt.hashSync(input.securityAnswer.trim().toLowerCase(), 10)
+          : null,
       );
     enforceSingleAdmin(Number(result.lastInsertRowid), role);
     return { user: publicUser(Number(result.lastInsertRowid)), temporaryPassword: password };
   },
   resetPassword: (id: number) => {
+    const target = db.prepare('SELECT role FROM users WHERE id=?').get(id) as
+      { role: string } | undefined;
+    if (!target || target.role === 'admin') throw new Error('SECURITY_QUESTION_REQUIRED');
     const password = temporaryPassword();
     db.prepare('UPDATE users SET password_hash=? WHERE id=?').run(
       bcrypt.hashSync(password, 10),
       id,
     );
     return password;
+  },
+  securityQuestion: (id: number) => {
+    const row = db
+      .prepare("SELECT security_question question FROM users WHERE id=? AND role='admin'")
+      .get(id) as { question: string } | undefined;
+    if (!row?.question) throw new Error('QUESTION_NOT_CONFIGURED');
+    return row.question;
+  },
+  resetManagerPassword: ({
+    id,
+    answer,
+    newPassword,
+  }: {
+    id: number;
+    answer: string;
+    newPassword: string;
+  }) => {
+    if (newPassword.length < 8) throw new Error('WEAK_PASSWORD');
+    const row = db
+      .prepare("SELECT security_answer_hash hash FROM users WHERE id=? AND role='admin'")
+      .get(id) as { hash: string } | undefined;
+    if (!row?.hash || !bcrypt.compareSync(answer.trim().toLowerCase(), row.hash))
+      throw new Error('INVALID_SECURITY_ANSWER');
+    db.prepare('UPDATE users SET password_hash=? WHERE id=?').run(
+      bcrypt.hashSync(newPassword, 10),
+      id,
+    );
+    return true;
   },
   products: ({ search = '', category = '' } = {}) =>
     db

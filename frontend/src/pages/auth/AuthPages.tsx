@@ -23,6 +23,8 @@ export function Setup({ onDone }: { onDone: (u: User) => void }) {
         <input name="username" placeholder={t('username')} required />
         <input name="email" type="email" placeholder={t('email')} required />
         <input name="password" type="password" minLength={8} placeholder={t('password')} required />
+        <input name="securityQuestion" placeholder={t('securityQuestion')} required />
+        <input name="securityAnswer" placeholder={t('securityAnswer')} required />
         <button>{t('save')}</button>
       </form>
     </AuthCard>

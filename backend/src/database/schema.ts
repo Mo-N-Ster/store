@@ -1,10 +1,11 @@
 export const schema = `
 PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, email TEXT UNIQUE NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, email TEXT UNIQUE,
   password_hash TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'employee' CHECK(role IN ('admin','employee')),
   first_name TEXT NOT NULL, last_name TEXT NOT NULL, initials TEXT NOT NULL, phone TEXT, hire_date TEXT,
-  active INTEGER NOT NULL DEFAULT 1, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+  active INTEGER NOT NULL DEFAULT 1, security_question TEXT, security_answer_hash TEXT,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS products (
   id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, hashtag TEXT, category TEXT NOT NULL,

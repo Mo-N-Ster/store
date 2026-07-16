@@ -5,6 +5,7 @@ import './styles/index.css';
 import './styles/enhancements.css';
 import './styles/presence.css';
 import './styles/cart-controls.css';
+import './styles/password-reset.css';
 import App from './App';
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
