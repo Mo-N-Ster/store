@@ -36,18 +36,16 @@ export function EmployeePresence({ notify }: { notify: (message: string) => void
   return (
     <div className="presence" aria-label={t('teamPresence')}>
       <div className="avatars">
-        {employees
-          .filter((user) => user.active)
-          .map((user) => (
-            <button
-              key={user.id}
-              className={statuses[user.id] ? 'present' : 'absent'}
-              title={`${user.username} — ${statuses[user.id] ? t('present') : t('absent')}`}
-              onClick={() => setSelected(user)}
-            >
-              {user.initials}
-            </button>
-          ))}
+        {employees.map((user) => (
+          <button
+            key={user.id}
+            className={statuses[user.id] ? 'present' : 'absent'}
+            title={`${user.username} — ${statuses[user.id] ? t('present') : t('absent')}`}
+            onClick={() => setSelected(user)}
+          >
+            {user.initials}
+          </button>
+        ))}
       </div>
       {selected && (
         <div className="presence-popover">

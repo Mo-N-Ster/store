@@ -25,7 +25,7 @@ export default function App() {
     return (
       <div className="splash">
         <div className="logo">S</div>
-        <span>Préparation de votre boutique…</span>
+        <span>{t('preparingStore')}</span>
       </div>
     );
   if (needsSetup)

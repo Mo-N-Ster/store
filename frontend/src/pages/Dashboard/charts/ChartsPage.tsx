@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { dashboardService } from '../../../services/dashboardService';
 import { formatMoney } from '../../../utils/formatters';
+import { useTranslation } from 'react-i18next';
+import { useStorePreferences } from '../../../hooks/useStorePreferences';
 export function ChartsPage() {
+  const { t } = useTranslation();
+  const { currency } = useStorePreferences();
   const [data, setData] = useState<any>({});
   useEffect(() => {
     dashboardService.get().then(setData);
@@ -11,17 +15,17 @@ export function ChartsPage() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Analyses</span>
-          <h1>Graphiques</h1>
+          <span className="eyebrow">{t('analytics')}</span>
+          <h1>{t('charts')}</h1>
         </div>
       </div>
       <section className="chart-card">
-        <h3>Ventes — 30 jours</h3>
+        <h3>{t('salesLast30Days')}</h3>
         <div className="bars">
           {(data.salesChart || []).map((item: any) => (
             <div
               key={item.label}
-              title={`${item.label}: ${formatMoney(item.value)}`}
+              title={`${item.label}: ${formatMoney(item.value, currency)}`}
               style={{ height: `${Math.max(4, (item.value / max) * 100)}%` }}
             >
               <span>{item.label.slice(5)}</span>
@@ -30,7 +34,7 @@ export function ChartsPage() {
         </div>
       </section>
       <section className="chart-card">
-        <h3>Heures travaillées</h3>
+        <h3>{t('hoursWorked')}</h3>
         {(data.attendanceChart || []).map((item: any) => (
           <p key={item.label}>
             {item.label}

@@ -5,8 +5,12 @@ import { productService } from '../../../services/productService';
 import { formatMoney } from '../../../utils/formatters';
 import { csvEscape } from '../../../utils/domain';
 import { selectFile } from '../../../services/api';
+import { useStorePreferences } from '../../../hooks/useStorePreferences';
+import { CriticalDialog } from '../../../components/UI/CriticalDialog';
 export function ProductList({ notify, userId }: { notify: (x: string) => void; userId: number }) {
   const { t } = useTranslation();
+  const { currency } = useStorePreferences();
+  const [criticalMessage, setCriticalMessage] = useState('');
   const [rows, setRows] = useState<Product[]>([]);
   const [edit, setEdit] = useState<any>(null);
   const load = () => productService.list({}).then(setRows);
@@ -16,16 +20,24 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
   const save = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = Object.fromEntries(new FormData(event.currentTarget));
-    await productService.save({
-      ...edit,
-      ...form,
-      price: +form.price,
-      stockQuantity: +form.stockQuantity,
-      minStockThreshold: +form.minStockThreshold,
-    });
-    setEdit(null);
-    await load();
-    notify('Produit enregistré');
+    try {
+      await productService.save({
+        ...edit,
+        ...form,
+        price: +form.price,
+        stockQuantity: +form.stockQuantity,
+        minStockThreshold: +form.minStockThreshold,
+      });
+      setEdit(null);
+      await load();
+      notify(t('productSaved'));
+    } catch (error: any) {
+      setCriticalMessage(
+        error.message?.includes('DUPLICATE_PRODUCT')
+          ? t('productAlreadyExists')
+          : t('operationFailed'),
+      );
+    }
   };
   const exportCsv = () =>
     productService.exportCsv(
@@ -57,15 +69,15 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
     <>
       <div className="titlebar">
         <div>
-          <span className="eyebrow">Inventaire</span>
+          <span className="eyebrow">{t('inventory')}</span>
           <h1>{t('products')}</h1>
         </div>
         <div>
           <button className="ghost" onClick={exportCsv}>
-            Exporter CSV
+            {t('exportCsv')}
           </button>
           <button className="ghost" onClick={importCsv}>
-            Importer CSV
+            {t('importCsv')}
           </button>
           <button onClick={() => setEdit({})}>+ {t('add')}</button>
         </div>
@@ -91,7 +103,7 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
                 <td>
                   <span className="pill">{product.category}</span>
                 </td>
-                <td>{formatMoney(product.price)}</td>
+                <td>{formatMoney(product.price, currency)}</td>
                 <td>
                   <span
                     className={
@@ -108,7 +120,7 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
                   <button
                     className="danger"
                     onClick={() =>
-                      confirm('Supprimer définitivement ce produit ?') &&
+                      confirm(t('confirmProductDeletion')) &&
                       productService.remove({ id: product.id, userId }).then(load)
                     }
                   >
@@ -125,13 +137,13 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
           <form className="form-modal" onSubmit={save}>
             <h2>{t('products')}</h2>
             {[
-              ['name', 'Nom'],
-              ['hashtag', 'Hashtag'],
+              ['name', t('name')],
+              ['hashtag', t('hashtag')],
               ['category', t('category')],
-              ['description', 'Description'],
-              ['price', t('price')],
+              ['description', t('description')],
+              ['price', `${t('price')} (${currency})`],
               ['stockQuantity', t('stock')],
-              ['minStockThreshold', 'Seuil minimum'],
+              ['minStockThreshold', t('minimumThreshold')],
             ].map(([name, label]) => (
               <label key={name}>
                 {label}
@@ -161,6 +173,9 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
             </button>
           </form>
         </div>
+      )}
+      {criticalMessage && (
+        <CriticalDialog message={criticalMessage} onClose={() => setCriticalMessage('')} />
       )}
     </>
   );

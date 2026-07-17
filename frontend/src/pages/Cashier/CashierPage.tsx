@@ -8,8 +8,10 @@ import { useProducts } from '../../hooks/useProducts';
 import { ProductGrid } from './ProductGrid';
 import { CartPanel } from './CartPanel';
 import { InvoicePreview } from './InvoicePreview';
+import { useStorePreferences } from '../../hooks/useStorePreferences';
 export function CashierPage({ user, notify }: { user: User; notify: (message: string) => void }) {
   const { t } = useTranslation();
+  const preferences = useStorePreferences();
   const [invoices, setInvoices] = useState<any[]>([]);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
@@ -31,14 +33,18 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
       const result = await saleService.create({
         employeeId: user.id,
         lines: cart.lines.map((line) => ({ productId: line.product.id, quantity: line.quantity })),
-        discount: discountMode === 'percent' ? (cart.subtotal * discount) / 100 : discount,
+        discount: preferences.discountsEnabled
+          ? discountMode === 'percent'
+            ? (cart.subtotal * discount) / 100
+            : discount
+          : 0,
       });
       setReceipt(result);
       cart.clear();
       setDiscount(0);
       await Promise.all([reload(), loadSide()]);
     } catch (error: any) {
-      notify(error.message?.includes('STOCK') ? 'Stock insuffisant' : 'Vente impossible');
+      notify(error.message?.includes('STOCK') ? t('insufficientStock') : t('saleFailed'));
     }
   };
   const categories = [...new Set(products.map((product) => product.category))];
@@ -47,8 +53,8 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
       <aside className="pos-sidebar">
         <div className="panel-title">
           <div>
-            <span className="eyebrow">Point de vente</span>
-            <h2>Catalogue</h2>
+            <span className="eyebrow">{t('pointOfSale')}</span>
+            <h2>{t('catalog')}</h2>
           </div>
         </div>
         <input
@@ -88,8 +94,17 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
         selectAll={cart.selectAll}
         removeSelected={cart.removeSelected}
         validate={validate}
+        currency={preferences.currency}
+        discountsEnabled={preferences.discountsEnabled}
       />
-      {receipt && <InvoicePreview data={receipt} close={() => setReceipt(null)} />}
+      {receipt && (
+        <InvoicePreview
+          data={receipt}
+          close={() => setReceipt(null)}
+          currency={preferences.currency}
+          discountsEnabled={preferences.discountsEnabled}
+        />
+      )}
     </main>
   );
 }

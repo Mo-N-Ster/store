@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { settingsService } from '../../../services/settingsService';
 import { selectFile } from '../../../services/api';
+import { SETTINGS_UPDATED_EVENT } from '../../../hooks/useStorePreferences';
 export function SettingsPage({ user, notify }: { user: User; notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [settings, setSettings] = useState<any>({});
@@ -11,28 +12,28 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
   }, []);
   const save = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await settingsService.save(Object.fromEntries(new FormData(event.currentTarget)));
-    notify('Paramètres enregistrés');
+    const form = new FormData(event.currentTarget);
+    const values = Object.fromEntries(form) as Record<string, string>;
+    values.discountsEnabled = form.has('discountsEnabled') ? 'true' : 'false';
+    await settingsService.save(values);
+    setSettings((current: any) => ({ ...current, ...values }));
+    window.dispatchEvent(new Event(SETTINGS_UPDATED_EVENT));
+    notify(t('settingsSaved'));
   };
   const reset = async () => {
-    const password = prompt('Mot de passe admin');
-    if (
-      !password ||
-      !confirm('Toutes les données seront définitivement supprimées. Souhaitez-vous continuer ?')
-    )
-      return;
+    const password = prompt(t('ownerPassword'));
+    if (!password || !confirm(t('confirmSystemReset'))) return;
     try {
       await settingsService.reset({ adminId: user.id, password });
       location.reload();
     } catch {
-      notify('Authentification incorrecte');
+      notify(t('authenticationFailed'));
     }
   };
   const restore = async () => {
-    const file = await selectFile([{ name: 'Sauvegarde SQLite', extensions: ['db', 'sqlite'] }]);
+    const file = await selectFile([{ name: t('sqliteBackup'), extensions: ['db', 'sqlite'] }]);
     if (!file) return;
-    if (!confirm('Restaurer cette sauvegarde remplacera les données actuelles. Continuer ?'))
-      return;
+    if (!confirm(t('confirmRestore'))) return;
     await settingsService.restore(file);
     location.reload();
   };
@@ -40,21 +41,21 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Configuration</span>
+          <span className="eyebrow">{t('configuration')}</span>
           <h1>{t('settings')}</h1>
         </div>
       </div>
-      <form className="settings settings-card" onSubmit={save}>
+      <form key={JSON.stringify(settings)} className="settings settings-card" onSubmit={save}>
         <label>
           {t('storeName')}
           <input name="storeName" defaultValue={settings.storeName || 'STORE'} />
         </label>
         <label>
-          Adresse
+          {t('address')}
           <input name="address" defaultValue={settings.address || ''} />
         </label>
         <label>
-          Téléphone
+          {t('phone')}
           <input name="phone" defaultValue={settings.phone || ''} />
         </label>
         <label>
@@ -62,23 +63,57 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
           <input name="email" type="email" defaultValue={settings.email || ''} />
         </label>
         <label>
-          Serveur SMTP
+          {t('currency')}
+          <select name="currency" defaultValue={settings.currency || 'EUR'}>
+            {[
+              'EUR',
+              'XOF',
+              'XAF',
+              'USD',
+              'CAD',
+              'GBP',
+              'CHF',
+              'NGN',
+              'GHS',
+              'MAD',
+              'DZD',
+              'JPY',
+              'CNY',
+              'INR',
+            ].map((code) => (
+              <option key={code} value={code}>
+                {t(`currency${code}`)}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="checkbox-label">
+          <input
+            name="discountsEnabled"
+            type="checkbox"
+            value="true"
+            defaultChecked={settings.discountsEnabled !== 'false'}
+          />
+          {t('enableDiscounts')}
+        </label>
+        <label>
+          {t('smtpServer')}
           <input name="smtpHost" defaultValue={settings.smtpHost || ''} />
         </label>
         <label>
-          Port SMTP
+          {t('smtpPort')}
           <input name="smtpPort" type="number" defaultValue={settings.smtpPort || 587} />
         </label>
         <label>
-          Utilisateur SMTP
+          {t('smtpUser')}
           <input name="smtpUser" defaultValue={settings.smtpUser || ''} />
         </label>
         <label>
-          Mot de passe SMTP
+          {t('smtpPassword')}
           <input name="smtpPassword" type="password" defaultValue={settings.smtpPassword || ''} />
         </label>
         <label>
-          Expéditeur
+          {t('sender')}
           <input name="smtpFrom" type="email" defaultValue={settings.smtpFrom || ''} />
         </label>
         <button>{t('save')}</button>
@@ -88,18 +123,18 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
           onClick={() =>
             settingsService
               .testEmail()
-              .then(() => notify('Email de test envoyé.'))
-              .catch(() => notify('Échec SMTP. Vérifiez la connexion et les paramètres.'))
+              .then(() => notify(t('testEmailSent')))
+              .catch(() => notify(t('smtpFailed')))
           }
         >
-          Tester SMTP
+          {t('testSmtp')}
         </button>
       </form>
       <section className="danger-zone">
-        <h3>Gestion des données</h3>
+        <h3>{t('dataManagement')}</h3>
         <button
           onClick={() =>
-            settingsService.backup().then((path: string) => notify(`Sauvegarde: ${path}`))
+            settingsService.backup().then((path: string) => notify(t('backupCreated', { path })))
           }
         >
           {t('backup')}
@@ -110,7 +145,7 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
           </button>
         )}
         <button className="ghost" onClick={restore}>
-          Restaurer une sauvegarde
+          {t('restoreBackup')}
         </button>
       </section>
     </>

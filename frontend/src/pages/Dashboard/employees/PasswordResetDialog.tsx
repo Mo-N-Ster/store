@@ -81,9 +81,9 @@ export function PasswordResetDialog({
           </form>
         ) : (
           <div className="temporary-password">
-            <p>Copiez ce mot de passe avant la fermeture :</p>
+            <p>{t('copyPasswordBeforeClosing')}</p>
             <strong>{temporary || '…'}</strong>
-            <button onClick={() => navigator.clipboard.writeText(temporary)}>Copier</button>
+            <button onClick={() => navigator.clipboard.writeText(temporary)}>{t('copy')}</button>
             <small>{remaining} s</small>
             <progress value={60 - remaining} max="60" />
           </div>

@@ -17,13 +17,13 @@ export function ManagerAuthModal({
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (await authService.verifyAdmin({ id: adminId, password })) onSuccess();
-    else setError('Mot de passe administrateur incorrect.');
+    else setError(t('managerPasswordIncorrect'));
   };
   return (
     <div className="modal" onMouseDown={onClose}>
       <form className="form-modal" onSubmit={submit} onMouseDown={(e) => e.stopPropagation()}>
-        <h2>Accès Manager</h2>
-        <p>Confirmez votre identité pour ouvrir le Dashboard.</p>
+        <h2>{t('managerAccess')}</h2>
+        <p>{t('confirmDashboardIdentity')}</p>
         <label>
           {t('password')}
           <input

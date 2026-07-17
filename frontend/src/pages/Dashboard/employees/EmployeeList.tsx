@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { employeeService } from '../../../services/employeeService';
 import { PasswordResetDialog } from './PasswordResetDialog';
+import { CriticalDialog } from '../../../components/UI/CriticalDialog';
 export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<User[]>([]);
   const [edit, setEdit] = useState<any>(null);
   const [resetTarget, setResetTarget] = useState<User | null>(null);
+  const [criticalMessage, setCriticalMessage] = useState('');
   const load = () => employeeService.list().then(setRows);
   useEffect(() => {
     void load();
@@ -15,14 +17,20 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const save = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = Object.fromEntries(new FormData(event.currentTarget));
-    const result = await employeeService.save({ ...edit, ...form, active: true });
-    setEdit(null);
-    await load();
-    notify(
-      result.temporaryPassword
-        ? `Mot de passe temporaire: ${result.temporaryPassword}`
-        : 'Employé enregistré',
-    );
+    try {
+      const result = await employeeService.save({ ...edit, ...form, active: true });
+      setEdit(null);
+      await load();
+      notify(
+        result.temporaryPassword
+          ? t('temporaryPasswordMessage', { password: result.temporaryPassword })
+          : t('employeeSaved'),
+      );
+    } catch (error: any) {
+      setCriticalMessage(
+        error.message?.includes('DUPLICATE_USER') ? t('userAlreadyExists') : t('operationFailed'),
+      );
+    }
   };
   const toggleActive = async (member: User) => {
     await employeeService.save({
@@ -32,13 +40,13 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
       active: !member.active,
     });
     await load();
-    notify(member.active ? 'Employé désactivé.' : 'Employé réactivé.');
+    notify(member.active ? t('employeeDisabled') : t('employeeEnabled'));
   };
   return (
     <>
       <div className="titlebar">
         <div>
-          <span className="eyebrow">Votre équipe</span>
+          <span className="eyebrow">{t('yourTeam')}</span>
           <h1>{t('employees')}</h1>
         </div>
         <button onClick={() => setEdit({ role: 'employee' })}>+ {t('add')}</button>
@@ -60,11 +68,11 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                 <td>
                   <span className="pill">{t(member.role)}</span>
                 </td>
-                <td>{member.active ? 'Actif' : 'Inactif'}</td>
+                <td>{member.active ? t('active') : t('inactive')}</td>
                 <td>
                   <button onClick={() => setEdit(member)}>✎</button>
                   <button className="ghost" onClick={() => toggleActive(member)}>
-                    {member.active ? 'Désactiver' : 'Réactiver'}
+                    {member.active ? t('disable') : t('enable')}
                   </button>
                   <button className="ghost" onClick={() => setResetTarget(member)}>
                     {t('newPassword')}
@@ -84,8 +92,8 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
               ['lastName', t('lastName')],
               ['username', t('usernameOnly')],
               ['email', t('email')],
-              ['phone', 'Téléphone'],
-              ['hireDate', 'Date d’embauche'],
+              ['phone', t('phone')],
+              ['hireDate', t('hireDate')],
             ].map(([name, label]) => (
               <label key={name}>
                 {label}
@@ -147,6 +155,9 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
           notify={notify}
           onClose={() => setResetTarget(null)}
         />
+      )}
+      {criticalMessage && (
+        <CriticalDialog message={criticalMessage} onClose={() => setCriticalMessage('')} />
       )}
     </>
   );

@@ -1,6 +1,7 @@
 import type { Product } from '../../types';
 import { Spinner } from '../../components/UI/Spinner';
 import { ProductCard } from './ProductCard';
+import { useTranslation } from 'react-i18next';
 export function ProductGrid({
   products,
   loading,
@@ -10,6 +11,7 @@ export function ProductGrid({
   loading: boolean;
   onAdd: (product: Product, quantity: number) => void;
 }) {
+  const { t } = useTranslation();
   if (loading)
     return (
       <section className="catalog empty-state">
@@ -20,7 +22,7 @@ export function ProductGrid({
     return (
       <section className="catalog empty-state">
         <span>📦</span>
-        <h3>Aucun produit trouvé</h3>
+        <h3>{t('noProductsFound')}</h3>
       </section>
     );
   return (

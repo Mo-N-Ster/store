@@ -13,7 +13,7 @@ export function Setup({ onDone }: { onDone: (u: User) => void }) {
     try {
       onDone(await authService.setupAdmin(Object.fromEntries(f)));
     } catch {
-      alert('Vérifiez les champs (mot de passe: 8 caractères minimum).');
+      alert(t('checkSetupFields'));
     }
   };
   return (

@@ -360,3 +360,26 @@ header time {
     gap: 0.5rem;
   }
 }
+.critical-dialog,
+.critical-popover {
+  border: 2px solid #dc2626 !important;
+  box-shadow: 0 18px 45px color-mix(in srgb, #dc2626 24%, transparent) !important;
+}
+.alerts-control {
+  position: relative;
+}
+.alerts-popover {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.65rem);
+  right: 0;
+  width: min(340px, 80vw);
+  max-height: 320px;
+  overflow: auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--panel);
+}
+.alerts-popover p {
+  margin: 0.65rem 0 0;
+}

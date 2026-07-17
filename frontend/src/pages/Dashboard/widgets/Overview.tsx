@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { dashboardService } from '../../../services/dashboardService';
 import { formatMoney } from '../../../utils/formatters';
+import { useStorePreferences } from '../../../hooks/useStorePreferences';
 export function Overview() {
   const { t } = useTranslation();
+  const { currency } = useStorePreferences();
   const [data, setData] = useState<any>({});
   useEffect(() => {
     dashboardService.get().then(setData);
@@ -12,17 +14,17 @@ export function Overview() {
     ['📦', 'products', data.products],
     ['⚠', 'lowStock', data.lowStock],
     ['🧾', 'salesToday', data.salesToday],
-    ['↗', 'revenueToday', formatMoney(data.revenueToday)],
-    ['◫', 'revenueMonth', formatMoney(data.revenueMonth)],
+    ['↗', 'revenueToday', formatMoney(data.revenueToday, currency)],
+    ['◫', 'revenueMonth', formatMoney(data.revenueMonth, currency)],
   ];
   return (
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Vue d’ensemble</span>
+          <span className="eyebrow">{t('overview')}</span>
           <h1>{t('home')}</h1>
         </div>
-        <p>Suivez les indicateurs essentiels de votre boutique en temps réel.</p>
+        <p>{t('overviewDescription')}</p>
       </div>
       <div className="widgets">
         {cards.map(([icon, label, value]) => (

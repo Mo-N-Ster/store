@@ -13,6 +13,8 @@ type Props = {
   selectAll: (selected: boolean) => void;
   removeSelected: () => void;
   validate: () => void;
+  currency: string;
+  discountsEnabled: boolean;
 };
 export function CartPanel({
   lines,
@@ -26,13 +28,15 @@ export function CartPanel({
   selectAll,
   removeSelected,
   validate,
+  currency,
+  discountsEnabled,
 }: Props) {
   const { t } = useTranslation();
   return (
     <aside className="cart">
       <div className="panel-title">
         <div>
-          <span className="eyebrow">Commande actuelle</span>
+          <span className="eyebrow">{t('currentOrder')}</span>
           <h2>{t('cart')}</h2>
         </div>
         <span className="counter">{lines.length}</span>
@@ -58,7 +62,7 @@ export function CartPanel({
               value={line.quantity}
               onChange={(e) => updateQuantity(line.product.id, Number(e.target.value))}
             />
-            <b>{formatMoney(line.quantity * line.product.price)}</b>
+            <b>{formatMoney(line.quantity * line.product.price, currency)}</b>
           </div>
         ))
       )}
@@ -69,7 +73,7 @@ export function CartPanel({
             checked={lines.every((line) => line.selected)}
             onChange={(e) => selectAll(e.target.checked)}
           />
-          Tout sélectionner
+          {t('selectAll')}
         </label>
       )}
       <div className="cart-actions">
@@ -77,29 +81,31 @@ export function CartPanel({
           className="danger icon-button"
           onClick={() => {
             const count = lines.filter((line) => line.selected).length;
-            if (count > 3 && !confirm(`Supprimer ${count} articles du panier ?`)) return;
+            if (count > 3 && !confirm(t('confirmCartRemoval', { count }))) return;
             removeSelected();
           }}
         >
           🗑
         </button>
-        <label>
-          {t('discount')}{' '}
-          <select
-            value={discountMode}
-            onChange={(e) => setDiscountMode(e.target.value as 'fixed' | 'percent')}
-          >
-            <option value="fixed">€</option>
-            <option value="percent">%</option>
-          </select>
-          <input
-            type="number"
-            min="0"
-            max={discountMode === 'percent' ? 100 : subtotal}
-            value={discount}
-            onChange={(e) => setDiscount(Number(e.target.value))}
-          />
-        </label>
+        {discountsEnabled && (
+          <label>
+            {t('discount')}{' '}
+            <select
+              value={discountMode}
+              onChange={(e) => setDiscountMode(e.target.value as 'fixed' | 'percent')}
+            >
+              <option value="fixed">{currency}</option>
+              <option value="percent">%</option>
+            </select>
+            <input
+              type="number"
+              min="0"
+              max={discountMode === 'percent' ? 100 : subtotal}
+              value={discount}
+              onChange={(e) => setDiscount(Number(e.target.value))}
+            />
+          </label>
+        )}
       </div>
       <div className="cart-total">
         <span>{t('total')}</span>
@@ -107,8 +113,14 @@ export function CartPanel({
           {formatMoney(
             Math.max(
               0,
-              subtotal - (discountMode === 'percent' ? (subtotal * discount) / 100 : discount),
+              subtotal -
+                (discountsEnabled
+                  ? discountMode === 'percent'
+                    ? (subtotal * discount) / 100
+                    : discount
+                  : 0),
             ),
+            currency,
           )}
         </strong>
       </div>

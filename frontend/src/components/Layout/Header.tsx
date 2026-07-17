@@ -28,19 +28,22 @@ export function Header({
 }: Props) {
   const { t } = useTranslation();
   const [clock, setClock] = useState(new Date());
-  const [alerts, setAlerts] = useState(0);
+  const [alerts, setAlerts] = useState<any[]>([]);
+  const [alertsOpen, setAlertsOpen] = useState(false);
   const online = useOnlineStatus();
   useEffect(() => {
     const id = setInterval(() => setClock(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
   useEffect(() => {
-    if (user.role !== 'employee')
+    if (user.role === 'employee') return;
+    const load = () =>
       dashboardService
         .notifications()
-        .then((rows: any[]) =>
-          setAlerts(rows.filter((row) => !row.is_read && !row.resolved_at).length),
-        );
+        .then((rows: any[]) => setAlerts(rows.filter((row) => !row.resolved_at)));
+    void load();
+    const timer = window.setInterval(load, 30000);
+    return () => window.clearInterval(timer);
   }, [user.role]);
   return (
     <header>
@@ -49,9 +52,36 @@ export function Header({
       <EmployeePresence notify={notify} />
       <span className="avatar">{user.initials}</span>
       {user.role !== 'employee' && (
-        <span className="alert-badge" title={t('stockAlerts')}>
-          ⚠ {alerts}
-        </span>
+        <div className="alerts-control">
+          <button
+            className={`alert-badge ${alerts.length ? 'critical' : ''}`}
+            title={t('stockAlerts')}
+            aria-expanded={alertsOpen}
+            onClick={() => setAlertsOpen((open) => !open)}
+          >
+            ⚠ {alerts.length}
+          </button>
+          {alertsOpen && (
+            <section className="alerts-popover critical-popover">
+              <b>{t('stockAlerts')}</b>
+              {alerts.length ? (
+                alerts.map((alert) => (
+                  <p key={alert.id}>
+                    {alert.productName
+                      ? t('stockAlertMessage', {
+                          product: alert.productName,
+                          stock: alert.currentStock,
+                          threshold: alert.threshold,
+                        })
+                      : alert.message}
+                  </p>
+                ))
+              ) : (
+                <p>{t('noStockAlerts')}</p>
+              )}
+            </section>
+          )}
+        </div>
       )}
       <span className={online ? 'online-status online' : 'online-status'}>
         {online ? t('online') : t('offline')}

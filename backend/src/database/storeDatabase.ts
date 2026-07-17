@@ -99,6 +99,17 @@ export const api = {
   saveUser: (input: UserInput & { id?: number }) => {
     validateUser(input, false);
     const role = input.role ?? 'employee';
+    const duplicateUser = db
+      .prepare(
+        `SELECT id FROM users WHERE id<>COALESCE(?,0) AND (lower(username)=lower(?) OR (?<>'' AND lower(COALESCE(email,''))=lower(?)))`,
+      )
+      .get(
+        input.id ?? null,
+        input.username.trim(),
+        input.email?.trim() || '',
+        input.email?.trim() || '',
+      );
+    if (duplicateUser) throw new Error('DUPLICATE_USER');
     if (
       !input.id &&
       role !== 'employee' &&
@@ -230,6 +241,17 @@ export const api = {
       .all(search, `%${search}%`, `%${search}%`, `%${search}%`, category, category),
   saveProduct: (input: ProductInput & { id?: number }) => {
     validateProduct(input);
+    const duplicateProduct = db
+      .prepare(
+        `SELECT id FROM products WHERE deleted_at IS NULL AND id<>COALESCE(?,0) AND (lower(name)=lower(?) OR (?<>'' AND lower(COALESCE(hashtag,''))=lower(?)))`,
+      )
+      .get(
+        input.id ?? null,
+        input.name.trim(),
+        input.hashtag?.trim() || '',
+        input.hashtag?.trim() || '',
+      );
+    if (duplicateProduct) throw new Error('DUPLICATE_PRODUCT');
     if (input.id) {
       const old = db
         .prepare('SELECT stock_quantity stock FROM products WHERE id=?')
@@ -305,7 +327,8 @@ export const api = {
         if (!product || line.quantity <= 0 || product.stock_quantity < line.quantity)
           throw new Error('INSUFFICIENT_STOCK');
       const subtotal = products.reduce((sum, x) => sum + x.line.quantity * x.product.price, 0);
-      const applied = Math.min(discount, subtotal);
+      const discountsEnabled = settingsObject().discountsEnabled !== 'false';
+      const applied = discountsEnabled ? Math.min(discount, subtotal) : 0;
       const total = subtotal - applied;
       const base = invoiceId();
       let id = base;
@@ -411,7 +434,12 @@ export const api = {
   markMessage: ({ id, isRead }: { id: number; isRead: boolean }) =>
     db.prepare('UPDATE messages SET is_read=? WHERE id=?').run(isRead ? 1 : 0, id),
   deleteMessage: (id: number) => db.prepare('DELETE FROM messages WHERE id=?').run(id),
-  notifications: () => db.prepare('SELECT * FROM notifications ORDER BY created_at DESC').all(),
+  notifications: () =>
+    db
+      .prepare(
+        `SELECT n.*,p.name productName,p.stock_quantity currentStock,p.min_stock_threshold threshold FROM notifications n LEFT JOIN products p ON p.id=n.product_id ORDER BY n.created_at DESC`,
+      )
+      .all(),
   dashboard: () => ({
     products: (db.prepare('SELECT COUNT(*) n FROM products WHERE deleted_at IS NULL').get() as any)
       .n,

@@ -3,8 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { saleService } from '../../../services/saleService';
 import { formatMoney } from '../../../utils/formatters';
 import { InvoicePreview } from '../../Cashier/InvoicePreview';
+import { useStorePreferences } from '../../../hooks/useStorePreferences';
 export function SalesHistory({ userId }: { userId: number }) {
   const { t } = useTranslation();
+  const preferences = useStorePreferences();
   const [rows, setRows] = useState<any[]>([]);
   const [filters, setFilters] = useState({ from: '', to: '', search: '' });
   const [detail, setDetail] = useState(null);
@@ -19,7 +21,7 @@ export function SalesHistory({ userId }: { userId: number }) {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">Transactions</span>
+          <span className="eyebrow">{t('transactions')}</span>
           <h1>{t('sales')}</h1>
         </div>
       </div>
@@ -30,7 +32,7 @@ export function SalesHistory({ userId }: { userId: number }) {
           placeholder={t('search')}
           onChange={(e) => setFilters({ ...filters, search: e.target.value })}
         />
-        <button onClick={() => saleService.exportCsv('ventes.csv', csv)}>Exporter CSV</button>
+        <button onClick={() => saleService.exportCsv('ventes.csv', csv)}>{t('exportCsv')}</button>
       </div>
       <div className="table-shell">
         <table>
@@ -42,13 +44,13 @@ export function SalesHistory({ userId }: { userId: number }) {
                 </td>
                 <td>{new Date(row.invoiceDate).toLocaleString()}</td>
                 <td>{row.seller}</td>
-                <td>{formatMoney(row.totalAmount)}</td>
+                <td>{formatMoney(row.totalAmount, preferences.currency)}</td>
                 <td>
                   <button
                     className="danger"
                     onClick={(event) => {
                       event.stopPropagation();
-                      if (confirm('Supprimer définitivement cette facture et restaurer le stock ?'))
+                      if (confirm(t('confirmInvoiceDeletion')))
                         saleService
                           .remove({ id: row.id, userId })
                           .then(() =>
@@ -64,7 +66,14 @@ export function SalesHistory({ userId }: { userId: number }) {
           </tbody>
         </table>
       </div>
-      {detail && <InvoicePreview data={detail} close={() => setDetail(null)} />}
+      {detail && (
+        <InvoicePreview
+          data={detail}
+          close={() => setDetail(null)}
+          currency={preferences.currency}
+          discountsEnabled={preferences.discountsEnabled}
+        />
+      )}
     </>
   );
 }

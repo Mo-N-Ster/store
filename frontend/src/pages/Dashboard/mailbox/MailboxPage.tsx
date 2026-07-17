@@ -20,13 +20,13 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
     });
     setCompose(false);
     await load();
-    notify('Message envoyé');
+    notify(t('messageSent'));
   };
   return (
     <>
       <div className="titlebar">
         <div>
-          <span className="eyebrow">Communication</span>
+          <span className="eyebrow">{t('communication')}</span>
           <h1>{t('mailbox')}</h1>
         </div>
         <button onClick={() => setCompose(true)}>+ {t('newMessage')}</button>
@@ -34,7 +34,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
       {!rows.length && (
         <div className="empty-state">
           <span>✉</span>
-          <p>Aucun message</p>
+          <p>{t('noMessages')}</p>
         </div>
       )}
       {rows.map((message) => (
