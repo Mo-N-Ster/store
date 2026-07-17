@@ -13,6 +13,8 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
   const [criticalMessage, setCriticalMessage] = useState('');
   const [rows, setRows] = useState<Product[]>([]);
   const [edit, setEdit] = useState<any>(null);
+  const [search, setSearch] = useState('');
+  const [category, setCategory] = useState('');
   const load = () => productService.list({}).then(setRows);
   useEffect(() => {
     void load();
@@ -82,6 +84,21 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
           <button onClick={() => setEdit({})}>+ {t('add')}</button>
         </div>
       </div>
+      <div className="filters">
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder={t('searchProducts')}
+        />
+        <select value={category} onChange={(event) => setCategory(event.target.value)}>
+          <option value="">{t('allCategories')}</option>
+          {[...new Set(rows.map((product) => product.category))].map((value) => (
+            <option key={value} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="table-shell">
         <table>
           <thead>
@@ -94,41 +111,51 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
             </tr>
           </thead>
           <tbody>
-            {rows.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <b>{product.name}</b>
-                  <small>{product.hashtag}</small>
-                </td>
-                <td>
-                  <span className="pill">{product.category}</span>
-                </td>
-                <td>{formatMoney(product.price, currency)}</td>
-                <td>
-                  <span
-                    className={
-                      product.stockQuantity <= product.minStockThreshold
-                        ? 'stock-pill low-stock'
-                        : 'stock-pill'
-                    }
-                  >
-                    {product.stockQuantity}
-                  </span>
-                </td>
-                <td>
-                  <button onClick={() => setEdit(product)}>✎</button>
-                  <button
-                    className="danger"
-                    onClick={() =>
-                      confirm(t('confirmProductDeletion')) &&
-                      productService.remove({ id: product.id, userId }).then(load)
-                    }
-                  >
-                    🗑
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {rows
+              .filter(
+                (product) =>
+                  (!category || product.category === category) &&
+                  [product.name, product.category, product.hashtag]
+                    .filter(Boolean)
+                    .join(' ')
+                    .toLowerCase()
+                    .includes(search.trim().toLowerCase()),
+              )
+              .map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <b>{product.name}</b>
+                    <small>{product.hashtag}</small>
+                  </td>
+                  <td>
+                    <span className="pill">{product.category}</span>
+                  </td>
+                  <td>{formatMoney(product.price, currency)}</td>
+                  <td>
+                    <span
+                      className={
+                        product.stockQuantity <= product.minStockThreshold
+                          ? 'stock-pill low-stock'
+                          : 'stock-pill'
+                      }
+                    >
+                      {product.stockQuantity}
+                    </span>
+                  </td>
+                  <td>
+                    <button onClick={() => setEdit(product)}>✎</button>
+                    <button
+                      className="danger"
+                      onClick={() =>
+                        confirm(t('confirmProductDeletion')) &&
+                        productService.remove({ id: product.id, userId }).then(load)
+                      }
+                    >
+                      🗑
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

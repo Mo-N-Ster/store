@@ -11,6 +11,10 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const [resetTarget, setResetTarget] = useState<User | null>(null);
   const [criticalMessage, setCriticalMessage] = useState('');
   const [search, setSearch] = useState('');
+  const [createdEmployeePassword, setCreatedEmployeePassword] = useState<{
+    user: User;
+    password: string;
+  } | null>(null);
   const load = () => employeeService.list().then(setRows);
   useEffect(() => {
     void load();
@@ -22,11 +26,14 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
       const result = await employeeService.save({ ...edit, ...form, active: true });
       setEdit(null);
       await load();
-      notify(
-        result.temporaryPassword
-          ? t('temporaryPasswordMessage', { password: result.temporaryPassword })
-          : t('employeeSaved'),
-      );
+      if (form.role === 'employee' && result.temporaryPassword)
+        setCreatedEmployeePassword({ user: result.user, password: result.temporaryPassword });
+      else
+        notify(
+          result.temporaryPassword
+            ? t('temporaryPasswordMessage', { password: result.temporaryPassword })
+            : t('employeeSaved'),
+        );
     } catch (error: any) {
       setCriticalMessage(
         error.message?.includes('DUPLICATE_USER') ? t('userAlreadyExists') : t('operationFailed'),
@@ -182,6 +189,14 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
       )}
       {criticalMessage && (
         <CriticalDialog message={criticalMessage} onClose={() => setCriticalMessage('')} />
+      )}
+      {createdEmployeePassword && (
+        <PasswordResetDialog
+          user={createdEmployeePassword.user}
+          temporaryPassword={createdEmployeePassword.password}
+          notify={notify}
+          onClose={() => setCreatedEmployeePassword(null)}
+        />
       )}
     </>
   );

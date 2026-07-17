@@ -32,15 +32,18 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
     try {
       const result = await saleService.create({
         employeeId: user.id,
-        lines: cart.lines.map((line) => ({ productId: line.product.id, quantity: line.quantity })),
+        lines: cart.selectedLines.map((line) => ({
+          productId: line.product.id,
+          quantity: line.quantity,
+        })),
         discount: preferences.discountsEnabled
           ? discountMode === 'percent'
-            ? (cart.subtotal * discount) / 100
+            ? (cart.selectedSubtotal * discount) / 100
             : discount
           : 0,
       });
       setReceipt(result);
-      cart.clear();
+      cart.removeSelected();
       setDiscount(0);
       await Promise.all([reload(), loadSide()]);
     } catch (error: any) {
@@ -84,7 +87,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
       <ProductGrid products={products} loading={loading} onAdd={add} />
       <CartPanel
         lines={cart.lines}
-        subtotal={cart.subtotal}
+        subtotal={cart.selectedSubtotal}
         discount={discount}
         discountMode={discountMode}
         setDiscountMode={setDiscountMode}

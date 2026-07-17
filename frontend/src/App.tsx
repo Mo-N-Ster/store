@@ -10,6 +10,7 @@ import { DashboardPage } from './pages/Dashboard/DashboardPage';
 import { authService } from './services/authService';
 import { ManagerAuthModal } from './components/UI/ManagerAuthModal';
 import { MailboxPage } from './pages/Dashboard/mailbox/MailboxPage';
+import { attendanceService } from './services/attendanceService';
 type View = 'mode' | 'pos' | 'dashboard' | 'mailbox';
 export default function App() {
   const { t, i18n } = useTranslation();
@@ -17,6 +18,7 @@ export default function App() {
   const [needsSetup, setNeedsSetup] = useState<boolean | null>(null);
   const [view, setView] = useState<View>('mode');
   const [managerAuth, setManagerAuth] = useState(false);
+  const [mailboxReturnView, setMailboxReturnView] = useState<'pos' | 'dashboard'>('pos');
   const { theme, setTheme } = useTheme();
   const { toast, notify } = useToast();
   useEffect(() => {
@@ -45,6 +47,7 @@ export default function App() {
         onLogin={(value) => {
           setUser(value);
           setView(value.role !== 'employee' ? 'mode' : 'pos');
+          void attendanceService.toggle(value.id, true).catch(() => undefined);
         }}
       />
     );
@@ -52,11 +55,15 @@ export default function App() {
     <Header
       user={user}
       title={view === 'pos' ? t('cashier') : view === 'mailbox' ? t('mailbox') : t('dashboard')}
-      onMode={() =>
-        view === 'pos' && user.role !== 'employee' ? setManagerAuth(true) : setView('pos')
-      }
+      onMode={() => (view === 'pos' ? setManagerAuth(true) : setView('pos'))}
       onLogout={() => setUser(null)}
-      onMailbox={() => setView(view === 'mailbox' ? 'pos' : 'mailbox')}
+      onMailbox={() => {
+        if (view === 'mailbox') setView(mailboxReturnView);
+        else {
+          setMailboxReturnView(view === 'dashboard' ? 'dashboard' : 'pos');
+          setView('mailbox');
+        }
+      }}
       theme={theme}
       setTheme={setTheme}
       lang={i18n.language}
@@ -90,7 +97,7 @@ export default function App() {
       )}
       {managerAuth && (
         <ManagerAuthModal
-          adminId={user.id}
+          currentUser={user}
           onClose={() => setManagerAuth(false)}
           onSuccess={() => {
             setManagerAuth(false);

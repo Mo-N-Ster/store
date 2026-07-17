@@ -124,7 +124,11 @@ export function CartPanel({
           )}
         </strong>
       </div>
-      <button className="validate-button" disabled={!lines.length} onClick={validate}>
+      <button
+        className="validate-button"
+        disabled={!lines.some((line) => line.selected)}
+        onClick={validate}
+      >
         {t('validate')} →
       </button>
     </aside>

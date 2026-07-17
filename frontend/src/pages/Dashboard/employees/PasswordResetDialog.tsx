@@ -6,16 +6,18 @@ export function PasswordResetDialog({
   user,
   onClose,
   notify,
+  temporaryPassword,
 }: {
   user: User;
   onClose: () => void;
   notify: (message: string) => void;
+  temporaryPassword?: string;
 }) {
   const { t } = useTranslation();
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [temporary, setTemporary] = useState('');
+  const [temporary, setTemporary] = useState(temporaryPassword || '');
   const [remaining, setRemaining] = useState(60);
   useEffect(() => {
     if (user.role !== 'employee')
@@ -23,8 +25,8 @@ export function PasswordResetDialog({
         .securityQuestion(user.id)
         .then(setQuestion)
         .catch((error: any) => notify(error.message));
-    else employeeService.resetPassword(user.id).then(setTemporary);
-  }, [user.id, user.role]);
+    else if (!temporaryPassword) employeeService.resetPassword(user.id).then(setTemporary);
+  }, [user.id, user.role, temporaryPassword]);
   useEffect(() => {
     if (!temporary) return;
     const timer = window.setInterval(

@@ -32,5 +32,21 @@ export function useCart() {
     () => lines.reduce((sum, line) => sum + line.quantity * line.product.price, 0),
     [lines],
   );
-  return { lines, add, updateQuantity, toggle, selectAll, removeSelected, clear, subtotal };
+  const selectedLines = useMemo(() => lines.filter((line) => line.selected), [lines]);
+  const selectedSubtotal = useMemo(
+    () => selectedLines.reduce((sum, line) => sum + line.quantity * line.product.price, 0),
+    [selectedLines],
+  );
+  return {
+    lines,
+    selectedLines,
+    add,
+    updateQuantity,
+    toggle,
+    selectAll,
+    removeSelected,
+    clear,
+    subtotal,
+    selectedSubtotal,
+  };
 }

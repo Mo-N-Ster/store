@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { User } from '../../types';
 import { dashboardService } from '../../services/dashboardService';
 import { useOnlineStatus } from '../../hooks/useOnlineStatus';
@@ -32,6 +32,7 @@ export function Header({
   const [clock, setClock] = useState(new Date());
   const [alerts, setAlerts] = useState<any[]>([]);
   const [alertsOpen, setAlertsOpen] = useState(false);
+  const alertsRef = useRef<HTMLDivElement>(null);
   const online = useOnlineStatus();
   useEffect(() => {
     const id = setInterval(() => setClock(new Date()), 1000);
@@ -47,13 +48,19 @@ export function Header({
     const timer = window.setInterval(load, 30000);
     return () => window.clearInterval(timer);
   }, [user.role]);
+  useEffect(() => {
+    if (!alertsOpen) return;
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!alertsRef.current?.contains(event.target as Node)) setAlertsOpen(false);
+    };
+    document.addEventListener('mousedown', closeOnOutsideClick);
+    return () => document.removeEventListener('mousedown', closeOnOutsideClick);
+  }, [alertsOpen]);
   return (
     <header>
-      {user.role !== 'employee' && (
-        <button className="ghost mode-switch" onClick={onMode} title={t('switchWorkspace')}>
-          ⇄
-        </button>
-      )}
+      <button className="ghost mode-switch" onClick={onMode} title={t('switchWorkspace')}>
+        ⇄
+      </button>
       <h2>{title}</h2>
       <time>{clock.toLocaleString()}</time>
       <EmployeePresence notify={notify} />
@@ -62,7 +69,7 @@ export function Header({
         ✉
       </button>
       {user.role !== 'employee' && (
-        <div className="alerts-control">
+        <div ref={alertsRef} className="alerts-control">
           <button
             className={`alert-badge ${alerts.length ? 'critical' : ''}`}
             title={t('stockAlerts')}
