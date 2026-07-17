@@ -101,10 +101,16 @@ export const api = {
     const role = input.role ?? 'employee';
     const duplicateUser = db
       .prepare(
-        `SELECT id FROM users WHERE id<>COALESCE(?,0) AND (lower(username)=lower(?) OR (?<>'' AND lower(COALESCE(email,''))=lower(?)))`,
+        `SELECT id FROM users WHERE id<>COALESCE(?,0) AND (
+          (lower(trim(first_name))=lower(trim(?)) AND lower(trim(last_name))=lower(trim(?)))
+          OR lower(username)=lower(?)
+          OR (?<>'' AND lower(COALESCE(email,''))=lower(?))
+        )`,
       )
       .get(
         input.id ?? null,
+        input.firstName,
+        input.lastName,
         input.username.trim(),
         input.email?.trim() || '',
         input.email?.trim() || '',

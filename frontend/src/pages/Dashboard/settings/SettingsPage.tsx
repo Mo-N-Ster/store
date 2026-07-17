@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { settingsService } from '../../../services/settingsService';
 import { selectFile } from '../../../services/api';
-import { SETTINGS_UPDATED_EVENT } from '../../../hooks/useStorePreferences';
+import { SETTINGS_UPDATED_EVENT, SUPPORTED_CURRENCIES } from '../../../hooks/useStorePreferences';
 export function SettingsPage({ user, notify }: { user: User; notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [settings, setSettings] = useState<any>({});
@@ -64,23 +64,13 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
         </label>
         <label>
           {t('currency')}
-          <select name="currency" defaultValue={settings.currency || 'EUR'}>
-            {[
-              'EUR',
-              'XOF',
-              'XAF',
-              'USD',
-              'CAD',
-              'GBP',
-              'CHF',
-              'NGN',
-              'GHS',
-              'MAD',
-              'DZD',
-              'JPY',
-              'CNY',
-              'INR',
-            ].map((code) => (
+          <select
+            name="currency"
+            defaultValue={
+              SUPPORTED_CURRENCIES.includes(settings.currency) ? settings.currency : 'EUR'
+            }
+          >
+            {SUPPORTED_CURRENCIES.map((code) => (
               <option key={code} value={code}>
                 {t(`currency${code}`)}
               </option>

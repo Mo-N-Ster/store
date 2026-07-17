@@ -89,7 +89,8 @@ const fr = {
   noProductsFound: 'Aucun produit trouvé',
   productSaved: 'Produit enregistré.',
   productAlreadyExists: 'Un produit avec le même nom ou hashtag existe déjà.',
-  userAlreadyExists: 'Un utilisateur avec le même nom d’utilisateur ou email existe déjà.',
+  userAlreadyExists:
+    'Un utilisateur avec le même nom et prénom, nom d’utilisateur ou email existe déjà.',
   employeeSaved: 'Utilisateur enregistré.',
   temporaryPasswordMessage: 'Mot de passe temporaire : {{password}}',
   noStockAlerts: 'Aucune alerte de stock active.',
@@ -253,7 +254,7 @@ const en = {
   noProductsFound: 'No products found',
   productSaved: 'Product saved.',
   productAlreadyExists: 'A product with the same name or hashtag already exists.',
-  userAlreadyExists: 'A user with the same username or email already exists.',
+  userAlreadyExists: 'A user with the same first and last name, username, or email already exists.',
   employeeSaved: 'User saved.',
   temporaryPasswordMessage: 'Temporary password: {{password}}',
   noStockAlerts: 'No active stock alerts.',

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { User } from '../../types';
 import { attendanceService } from '../../services/attendanceService';
@@ -10,6 +10,7 @@ export function EmployeePresence({ notify }: { notify: (message: string) => void
   const [statuses, setStatuses] = useState<Record<number, boolean>>({});
   const [selected, setSelected] = useState<User | null>(null);
   const [busy, setBusy] = useState(false);
+  const presenceRef = useRef<HTMLDivElement>(null);
   const load = async () => {
     const [users, rows] = await Promise.all([employeeService.list(), attendanceService.statuses()]);
     setEmployees(users);
@@ -18,6 +19,14 @@ export function EmployeePresence({ notify }: { notify: (message: string) => void
   useEffect(() => {
     void load();
   }, []);
+  useEffect(() => {
+    if (!selected) return;
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!presenceRef.current?.contains(event.target as Node)) setSelected(null);
+    };
+    document.addEventListener('mousedown', closeOnOutsideClick);
+    return () => document.removeEventListener('mousedown', closeOnOutsideClick);
+  }, [selected]);
   const change = async (present: boolean) => {
     if (!selected) return;
     setBusy(true);
@@ -34,18 +43,20 @@ export function EmployeePresence({ notify }: { notify: (message: string) => void
   };
   const selectedPresent = selected ? Boolean(statuses[selected.id]) : false;
   return (
-    <div className="presence" aria-label={t('teamPresence')}>
+    <div ref={presenceRef} className="presence" aria-label={t('teamPresence')}>
       <div className="avatars">
-        {employees.map((user) => (
-          <button
-            key={user.id}
-            className={statuses[user.id] ? 'present' : 'absent'}
-            title={`${user.username} — ${statuses[user.id] ? t('present') : t('absent')}`}
-            onClick={() => setSelected(user)}
-          >
-            {user.initials}
-          </button>
-        ))}
+        {employees
+          .filter((user) => user.active)
+          .map((user) => (
+            <button
+              key={user.id}
+              className={statuses[user.id] ? 'present' : 'absent'}
+              title={`${user.username} — ${statuses[user.id] ? t('present') : t('absent')}`}
+              onClick={() => setSelected(user)}
+            >
+              {user.initials}
+            </button>
+          ))}
       </div>
       {selected && (
         <div className="presence-popover">
