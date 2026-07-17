@@ -31,6 +31,12 @@ CREATE TABLE IF NOT EXISTS messages (
   recipient_id INTEGER REFERENCES users(id), subject TEXT NOT NULL, content TEXT NOT NULL, type TEXT DEFAULT 'message',
   is_read INTEGER DEFAULT 0, created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE IF NOT EXISTS message_reads (
+  message_id INTEGER NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  read_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(message_id,user_id)
+);
 CREATE TABLE IF NOT EXISTS notifications (
   id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, product_id INTEGER REFERENCES products(id),
   message TEXT NOT NULL, is_read INTEGER DEFAULT 0, resolved_at TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP
@@ -47,4 +53,5 @@ CREATE TABLE IF NOT EXISTS audit_logs (
 CREATE INDEX IF NOT EXISTS idx_products_search ON products(name, category, hashtag);
 CREATE INDEX IF NOT EXISTS idx_invoices_date ON invoices(invoice_date);
 CREATE INDEX IF NOT EXISTS idx_attendances_employee ON attendances(employee_id, start_time);
+CREATE INDEX IF NOT EXISTS idx_message_reads_user ON message_reads(user_id, message_id);
 `;

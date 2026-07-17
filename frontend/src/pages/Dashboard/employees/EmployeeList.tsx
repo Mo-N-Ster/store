@@ -10,6 +10,7 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const [edit, setEdit] = useState<any>(null);
   const [resetTarget, setResetTarget] = useState<User | null>(null);
   const [criticalMessage, setCriticalMessage] = useState('');
+  const [search, setSearch] = useState('');
   const load = () => employeeService.list().then(setRows);
   useEffect(() => {
     void load();
@@ -51,35 +52,58 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
         </div>
         <button onClick={() => setEdit({ role: 'employee' })}>+ {t('add')}</button>
       </div>
+      <div className="filters">
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder={t('searchUsers')}
+        />
+      </div>
       <div className="table-shell">
         <table>
           <tbody>
-            {rows.map((member) => (
-              <tr key={member.id}>
-                <td>
-                  <span className="avatar">{member.initials}</span>
-                </td>
-                <td>
-                  <b>
-                    {member.firstName} {member.lastName}
-                  </b>
-                  <small>{member.email}</small>
-                </td>
-                <td>
-                  <span className="pill">{t(member.role)}</span>
-                </td>
-                <td>{member.active ? t('active') : t('inactive')}</td>
-                <td>
-                  <button onClick={() => setEdit(member)}>✎</button>
-                  <button className="ghost" onClick={() => toggleActive(member)}>
-                    {member.active ? t('disable') : t('enable')}
-                  </button>
-                  <button className="ghost" onClick={() => setResetTarget(member)}>
-                    {t('newPassword')}
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {rows
+              .filter((member) =>
+                [
+                  member.firstName,
+                  member.lastName,
+                  member.first_name,
+                  member.last_name,
+                  member.username,
+                  member.email,
+                  member.role,
+                ]
+                  .filter(Boolean)
+                  .join(' ')
+                  .toLowerCase()
+                  .includes(search.trim().toLowerCase()),
+              )
+              .map((member) => (
+                <tr key={member.id}>
+                  <td>
+                    <span className="avatar">{member.initials}</span>
+                  </td>
+                  <td>
+                    <b>
+                      {member.firstName} {member.lastName}
+                    </b>
+                    <small>{member.email}</small>
+                  </td>
+                  <td>
+                    <span className="pill">{t(member.role)}</span>
+                  </td>
+                  <td>{member.active ? t('active') : t('inactive')}</td>
+                  <td>
+                    <button onClick={() => setEdit(member)}>✎</button>
+                    <button className="ghost" onClick={() => toggleActive(member)}>
+                      {member.active ? t('disable') : t('enable')}
+                    </button>
+                    <button className="ghost" onClick={() => setResetTarget(member)}>
+                      {t('newPassword')}
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

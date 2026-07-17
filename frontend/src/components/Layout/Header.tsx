@@ -9,6 +9,7 @@ type Props = {
   title: string;
   onMode: () => void;
   onLogout: () => void;
+  onMailbox: () => void;
   theme: string;
   setTheme: (v: string) => void;
   lang: string;
@@ -20,6 +21,7 @@ export function Header({
   title,
   onMode,
   onLogout,
+  onMailbox,
   theme,
   setTheme,
   lang,
@@ -47,10 +49,18 @@ export function Header({
   }, [user.role]);
   return (
     <header>
+      {user.role !== 'employee' && (
+        <button className="ghost mode-switch" onClick={onMode} title={t('switchWorkspace')}>
+          ⇄
+        </button>
+      )}
       <h2>{title}</h2>
       <time>{clock.toLocaleString()}</time>
       <EmployeePresence notify={notify} />
       <span className="avatar">{user.initials}</span>
+      <button className="ghost" onClick={onMailbox} title={t('openMailbox')}>
+        ✉
+      </button>
       {user.role !== 'employee' && (
         <div className="alerts-control">
           <button
@@ -86,11 +96,6 @@ export function Header({
       <span className={online ? 'online-status online' : 'online-status'}>
         {online ? t('online') : t('offline')}
       </span>
-      {user.role !== 'employee' && (
-        <button className="ghost" onClick={onMode}>
-          ⇄
-        </button>
-      )}
       <button className="ghost" onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}>
         {lang.toUpperCase()}
       </button>

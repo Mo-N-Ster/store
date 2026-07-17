@@ -413,9 +413,21 @@ export const api = {
   messages: ({ userId, role }: { userId: number; role: string }) =>
     db
       .prepare(
-        `SELECT m.*,u.first_name||' '||u.last_name sender FROM messages m LEFT JOIN users u ON u.id=m.sender_id WHERE (?<>'employee' AND m.recipient_type='admin') OR (?='employee' AND (m.recipient_type='all' OR m.recipient_id=?)) ORDER BY m.created_at DESC`,
+        `SELECT m.*,
+          sender.first_name||' '||sender.last_name sender,
+          recipient.first_name||' '||recipient.last_name recipient,
+          CASE WHEN m.sender_id=? THEN 1 ELSE 0 END sent,
+          CASE WHEN m.sender_id=? OR EXISTS(SELECT 1 FROM message_reads mr WHERE mr.message_id=m.id AND mr.user_id=?) THEN 1 ELSE 0 END is_read
+        FROM messages m
+        LEFT JOIN users sender ON sender.id=m.sender_id
+        LEFT JOIN users recipient ON recipient.id=m.recipient_id
+        WHERE m.sender_id=?
+          OR m.recipient_type='all'
+          OR m.recipient_id=?
+          OR (?<>'employee' AND m.recipient_type='admin')
+        ORDER BY m.created_at DESC`,
       )
-      .all(role, role, userId),
+      .all(userId, userId, userId, userId, userId, role),
   sendMessage: ({
     senderId,
     recipientType,
@@ -430,16 +442,32 @@ export const api = {
     content: string;
   }) => {
     if (!subject.trim() || !content.trim()) throw new Error('INVALID_MESSAGE');
+    if (!['all', 'user'].includes(recipientType)) throw new Error('INVALID_RECIPIENT');
+    if (recipientType === 'user') {
+      const recipient = db.prepare('SELECT 1 FROM users WHERE id=? AND active=1').get(recipientId);
+      if (!recipient) throw new Error('INVALID_RECIPIENT');
+    }
     return db
       .prepare(
         'INSERT INTO messages(sender_id,recipient_type,recipient_id,subject,content) VALUES(?,?,?,?,?)',
       )
-      .run(senderId, recipientType, recipientId ?? null, subject.trim(), content.trim())
-      .lastInsertRowid;
+      .run(
+        senderId,
+        recipientType,
+        recipientType === 'user' ? recipientId : null,
+        subject.trim(),
+        content.trim(),
+      ).lastInsertRowid;
   },
-  markMessage: ({ id, isRead }: { id: number; isRead: boolean }) =>
-    db.prepare('UPDATE messages SET is_read=? WHERE id=?').run(isRead ? 1 : 0, id),
-  deleteMessage: (id: number) => db.prepare('DELETE FROM messages WHERE id=?').run(id),
+  markMessage: ({ id, userId, isRead }: { id: number; userId: number; isRead: boolean }) => {
+    if (isRead)
+      return db
+        .prepare('INSERT OR IGNORE INTO message_reads(message_id,user_id) VALUES(?,?)')
+        .run(id, userId);
+    return db.prepare('DELETE FROM message_reads WHERE message_id=? AND user_id=?').run(id, userId);
+  },
+  deleteMessage: ({ id, userId }: { id: number; userId: number }) =>
+    db.prepare('DELETE FROM messages WHERE id=? AND sender_id=?').run(id, userId),
   notifications: () =>
     db
       .prepare(
@@ -558,6 +586,7 @@ export const api = {
     createBackup();
     db.transaction(() => {
       for (const table of [
+        'message_reads',
         'invoice_lines',
         'invoices',
         'attendances',
@@ -619,10 +648,13 @@ function checkStock(id: number) {
         "INSERT INTO notifications(type,product_id,message) VALUES('stock_alert',?,?)",
       ).run(id, `${p.name}: stock ${p.stock_quantity}, seuil ${p.min_stock_threshold}`);
       const settings = settingsObject();
-      if (settings.email && settings.smtpHost)
+      const owner = db
+        .prepare("SELECT email FROM users WHERE role='owner' AND active=1 LIMIT 1")
+        .get() as { email: string | null } | undefined;
+      if (owner?.email && settings.smtpHost)
         void sendEmail(
           smtpConfig(settings),
-          settings.email,
+          owner.email,
           `Alerte stock: ${p.name}`,
           `${p.name}: stock actuel ${p.stock_quantity}, seuil ${p.min_stock_threshold}`,
         ).catch(() => undefined);

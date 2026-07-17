@@ -219,6 +219,9 @@ header time {
   height: calc(100vh - 76px);
   grid-template-columns: 235px 1fr;
 }
+.dashboard.mailbox-workspace {
+  grid-template-columns: 1fr;
+}
 .dashboard nav {
   padding: 1.2rem;
 }

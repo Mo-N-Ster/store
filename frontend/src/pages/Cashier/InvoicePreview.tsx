@@ -14,8 +14,8 @@ export function InvoicePreview({
   const { t } = useTranslation();
   const invoice = data.invoice;
   return (
-    <div className="modal">
-      <section className="receipt">
+    <div className="modal" onMouseDown={close}>
+      <section className="receipt" onMouseDown={(event) => event.stopPropagation()}>
         <div className="receipt-brand">STORE</div>
         <h2>
           {t('invoice')} {invoice.id}

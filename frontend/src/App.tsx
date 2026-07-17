@@ -9,7 +9,8 @@ import { CashierPage } from './pages/Cashier/CashierPage';
 import { DashboardPage } from './pages/Dashboard/DashboardPage';
 import { authService } from './services/authService';
 import { ManagerAuthModal } from './components/UI/ManagerAuthModal';
-type View = 'mode' | 'pos' | 'dashboard';
+import { MailboxPage } from './pages/Dashboard/mailbox/MailboxPage';
+type View = 'mode' | 'pos' | 'dashboard' | 'mailbox';
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
@@ -50,11 +51,12 @@ export default function App() {
   const header = (
     <Header
       user={user}
-      title={view === 'pos' ? t('cashier') : t('dashboard')}
+      title={view === 'pos' ? t('cashier') : view === 'mailbox' ? t('mailbox') : t('dashboard')}
       onMode={() =>
         view === 'pos' && user.role !== 'employee' ? setManagerAuth(true) : setView('pos')
       }
       onLogout={() => setUser(null)}
+      onMailbox={() => setView(view === 'mailbox' ? 'pos' : 'mailbox')}
       theme={theme}
       setTheme={setTheme}
       lang={i18n.language}
@@ -75,6 +77,12 @@ export default function App() {
           {header}
           {view === 'pos' ? (
             <CashierPage user={user} notify={notify} />
+          ) : view === 'mailbox' ? (
+            <main className="dashboard mailbox-workspace">
+              <section className="workspace">
+                <MailboxPage user={user} notify={notify} />
+              </section>
+            </main>
           ) : (
             <DashboardPage user={user} notify={notify} />
           )}
