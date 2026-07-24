@@ -47,17 +47,27 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
     document.body.classList.add('document-print-mode');
     try {
       await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
-      await reportService.exportPdf('STORE-stocks.pdf');
+      await reportService.exportPdf('STORE-stocks.pdf', {
+        kind: 'stocks',
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        products: rows.map(({ id: _id, ...product }) => product),
+      });
+      notify(t('stockPdfExported'));
     } finally {
       document.body.classList.remove('document-print-mode');
     }
   };
-  const importCsv = async () => {
-    const file = await selectFile([{ name: 'CSV', extensions: ['csv'] }]);
+  const importPdf = async () => {
+    const file = await selectFile([{ name: 'PDF', extensions: ['pdf'] }]);
     if (!file) return;
-    const count = await productService.importCsv(file);
-    await load();
-    notify(`${count} produits importés ou mis à jour.`);
+    try {
+      const count = await productService.importPdf(file);
+      await load();
+      notify(t('stockPdfImported', { count }));
+    } catch {
+      setCriticalMessage(t('invalidStockPdf'));
+    }
   };
   return (
     <>
@@ -70,8 +80,8 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
           <button className="ghost" onClick={exportPdf}>
             {t('exportPdf')}
           </button>
-          <button className="ghost" onClick={importCsv}>
-            {t('importCsv')}
+          <button className="ghost" onClick={importPdf}>
+            {t('importPdf')}
           </button>
           <button onClick={() => setEdit({})}>+ {t('add')}</button>
         </div>

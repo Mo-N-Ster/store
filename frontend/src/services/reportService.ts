@@ -10,7 +10,7 @@ export interface ReportFilters {
 
 export const reportService = {
   get: (filters: ReportFilters) => storeApi.reports(filters),
-  exportPdf: (name: string) => storeApi.exportReportPdf({ name }),
+  exportPdf: (name: string, data?: unknown) => storeApi.exportReportPdf({ name, data }),
   emailPdf: (input: { to: string; subject: string; text: string; filename: string }) =>
     storeApi.emailReportPdf(input),
 };

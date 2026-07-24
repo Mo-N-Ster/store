@@ -10,6 +10,7 @@ import type { ProductInput } from '../domain/product/product.types.js';
 import { validateProduct } from '../domain/product/product.validators.js';
 import type { SaleLineInput } from '../domain/sale/sale.types.js';
 import { sendEmail } from '../services/emailService.js';
+import { readStoreData } from '../services/stockPdfService.js';
 
 let db: Database.Database;
 let databaseFile = '';
@@ -506,13 +507,17 @@ export const api = {
         FROM messages m
         LEFT JOIN users sender ON sender.id=m.sender_id
         LEFT JOIN users recipient ON recipient.id=m.recipient_id
-        WHERE m.sender_id=?
+        WHERE (
+          m.sender_id=?
           OR m.recipient_type='all'
           OR m.recipient_id=?
           OR (?<>'employee' AND m.recipient_type='admin')
+        ) AND NOT EXISTS(
+          SELECT 1 FROM message_deletions md WHERE md.message_id=m.id AND md.user_id=?
+        )
         ORDER BY m.created_at DESC`,
       )
-      .all(userId, userId, userId, userId, userId, role),
+      .all(userId, userId, userId, userId, userId, role, userId),
   sendMessage: ({
     senderId,
     recipientType,
@@ -552,13 +557,29 @@ export const api = {
     return db.prepare('DELETE FROM message_reads WHERE message_id=? AND user_id=?').run(id, userId);
   },
   deleteMessage: ({ id, userId }: { id: number; userId: number }) =>
-    db.prepare('DELETE FROM messages WHERE id=? AND sender_id=?').run(id, userId),
+    db
+      .prepare('INSERT OR IGNORE INTO message_deletions(message_id,user_id) VALUES(?,?)')
+      .run(id, userId),
   notifications: () =>
     db
       .prepare(
         `SELECT n.*,p.name productName,p.stock_quantity currentStock,p.min_stock_threshold threshold FROM notifications n LEFT JOIN products p ON p.id=n.product_id ORDER BY n.created_at DESC`,
       )
       .all(),
+  deleteNotifications: (ids: number[]) => {
+    if (!ids.length) return 0;
+    return db
+      .prepare(`DELETE FROM notifications WHERE id IN (${ids.map(() => '?').join(',')})`)
+      .run(...ids).changes;
+  },
+  emailReportLogs: () =>
+    db.prepare('SELECT * FROM email_report_logs ORDER BY created_at DESC').all(),
+  deleteEmailReportLogs: (ids: number[]) => {
+    if (!ids.length) return 0;
+    return db
+      .prepare(`DELETE FROM email_report_logs WHERE id IN (${ids.map(() => '?').join(',')})`)
+      .run(...ids).changes;
+  },
   dashboard: () => ({
     products: (db.prepare('SELECT COUNT(*) n FROM products WHERE deleted_at IS NULL').get() as any)
       .n,
@@ -662,6 +683,48 @@ export const api = {
       }, 0),
     )();
   },
+  importProductsPdf: async (filePath: string) => {
+    if (!/\.pdf$/i.test(filePath)) throw new Error('INVALID_PDF');
+    const stat = fs.statSync(filePath);
+    if (stat.size > 25_000_000) throw new Error('PDF_TOO_LARGE');
+    let payload: any;
+    try {
+      payload = await readStoreData(fs.readFileSync(filePath));
+    } catch {
+      throw new Error('INVALID_STORE_PDF');
+    }
+    if (
+      payload?.kind !== 'stocks' ||
+      payload?.version !== 1 ||
+      !Array.isArray(payload.products) ||
+      payload.products.length > 10_000
+    )
+      throw new Error('INVALID_STORE_PDF');
+    return db.transaction(() =>
+      payload.products.reduce((count: number, item: unknown) => {
+        if (!item || typeof item !== 'object') throw new Error('INVALID_STORE_PDF');
+        const source = item as Record<string, unknown>;
+        const input = {
+          name: String(source.name || ''),
+          hashtag: String(source.hashtag || ''),
+          category: String(source.category || ''),
+          description: String(source.description || ''),
+          price: Number(source.price),
+          stockQuantity: Number(source.stockQuantity),
+          minStockThreshold: Number(source.minStockThreshold),
+        };
+        validateProduct(input);
+        const existing = db
+          .prepare(
+            `SELECT id FROM products WHERE deleted_at IS NULL
+             AND (lower(name)=lower(?) OR (?<>'' AND lower(hashtag)=lower(?))) LIMIT 1`,
+          )
+          .get(input.name, input.hashtag, input.hashtag) as { id: number } | undefined;
+        api.saveProduct({ ...input, id: existing?.id });
+        return count + 1;
+      }, 0),
+    )();
+  },
   restoreBackup: async (filePath: string) => {
     if (!/\.(db|sqlite)$/i.test(filePath)) throw new Error('INVALID_BACKUP');
     const safetyBackup = await createBackup();
@@ -696,6 +759,7 @@ export const api = {
     db.transaction(() => {
       for (const table of [
         'message_reads',
+        'message_deletions',
         'invoice_lines',
         'invoices',
         'attendances',
@@ -703,6 +767,7 @@ export const api = {
         'notifications',
         'stock_movements',
         'product_price_history',
+        'email_report_logs',
         'products',
         'audit_logs',
         'settings',
@@ -725,6 +790,9 @@ export async function sendReportEmail(input: {
   await sendEmail(smtpConfig(settings), input.to, input.subject, input.text, [
     { filename: input.filename, content: input.pdf, contentType: 'application/pdf' },
   ]);
+  db.prepare(
+    'INSERT INTO email_report_logs(recipient,subject,filename,status) VALUES(?,?,?,?)',
+  ).run(input.to, input.subject, input.filename, 'sent');
   return true;
 }
 

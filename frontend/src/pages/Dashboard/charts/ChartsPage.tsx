@@ -8,6 +8,7 @@ import { useStorePreferences } from '../../../hooks/useStorePreferences';
 import { MovementChart } from './MovementChart';
 import { PriceLineChart } from './PriceLineChart';
 import { RankingChart } from './RankingChart';
+import { SubTabs } from '../../../components/UI/SubTabs';
 
 const iso = (date: Date) => date.toISOString().slice(0, 10);
 const initialFilters = (): ReportFilters => {
@@ -27,6 +28,10 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [emailOpen, setEmailOpen] = useState(false);
+  const [reportTab, setReportTab] = useState('movements');
+  const [selectedReports, setSelectedReports] = useState(
+    new Set(['movements', 'bestSellers', 'prices']),
+  );
   const [email, setEmail] = useState({
     to: '',
     subject: t('reportEmailSubject'),
@@ -100,6 +105,11 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
     [data],
   );
   const filename = `STORE-report-${filters.from}-${filters.to}.pdf`;
+  const reportTabs = [
+    { id: 'movements', label: t('movementReport') },
+    { id: 'bestSellers', label: t('bestSellingReport') },
+    { id: 'prices', label: t('priceEvolutionReport') },
+  ];
 
   const printable = async (operation: () => Promise<unknown>) => {
     document.body.classList.add('report-print-mode');
@@ -237,8 +247,51 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
               <strong>{formatMoney(data.summary.movementValue, currency)}</strong>
             </article>
           </div>
+          <div className="report-selection">
+            <SubTabs
+              tabs={reportTabs}
+              active={reportTab}
+              onChange={setReportTab}
+              ariaLabel={t('reportTypes')}
+            />
+            <label className="select-all">
+              <input
+                type="checkbox"
+                checked={selectedReports.size === reportTabs.length}
+                onChange={() =>
+                  setSelectedReports(
+                    selectedReports.size === reportTabs.length
+                      ? new Set()
+                      : new Set(reportTabs.map((tab) => tab.id)),
+                  )
+                }
+              />
+              {t('selectAll')}
+            </label>
+            <div className="report-checks">
+              {reportTabs.map((tab) => (
+                <label key={tab.id}>
+                  <input
+                    type="checkbox"
+                    checked={selectedReports.has(tab.id)}
+                    onChange={() =>
+                      setSelectedReports((current) => {
+                        const next = new Set(current);
+                        if (next.has(tab.id)) next.delete(tab.id);
+                        else next.add(tab.id);
+                        return next;
+                      })
+                    }
+                  />
+                  {tab.label}
+                </label>
+              ))}
+            </div>
+          </div>
 
-          <section className="report-section">
+          <section
+            className={`report-section report-tab-panel ${reportTab === 'movements' ? 'active' : ''} ${selectedReports.has('movements') ? 'print-selected' : 'print-excluded'}`}
+          >
             <header>
               <span>01</span>
               <div>
@@ -285,7 +338,9 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
             </div>
           </section>
 
-          <section className="report-section">
+          <section
+            className={`report-section report-tab-panel ${reportTab === 'bestSellers' ? 'active' : ''} ${selectedReports.has('bestSellers') ? 'print-selected' : 'print-excluded'}`}
+          >
             <header>
               <span>02</span>
               <div>
@@ -329,7 +384,9 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
             </div>
           </section>
 
-          <section className="report-section">
+          <section
+            className={`report-section report-tab-panel ${reportTab === 'prices' ? 'active' : ''} ${selectedReports.has('prices') ? 'print-selected' : 'print-excluded'}`}
+          >
             <header>
               <span>03</span>
               <div>

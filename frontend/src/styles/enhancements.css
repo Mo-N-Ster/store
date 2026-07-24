@@ -574,6 +574,28 @@ header time {
   box-shadow: var(--shadow-sm);
   break-inside: avoid;
 }
+.report-tab-panel {
+  display: none;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-selection {
+  display: grid;
+  gap: 0.6rem;
+}
+.report-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+}
+.report-checks label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
 .report-section > header {
   display: flex;
   gap: 0.85rem;
@@ -761,7 +783,8 @@ header time {
   body.report-print-mode > #root > header,
   body.report-print-mode .dashboard > nav,
   body.report-print-mode .report-actions,
-  body.report-print-mode .report-filters {
+  body.report-print-mode .report-filters,
+  body.report-print-mode .report-selection {
     display: none !important;
   }
   body.report-print-mode .dashboard {
@@ -786,6 +809,12 @@ header time {
     box-shadow: none;
     margin-bottom: 7mm;
     page-break-inside: avoid;
+  }
+  body.report-print-mode .report-tab-panel.print-selected {
+    display: block;
+  }
+  body.report-print-mode .report-tab-panel.print-excluded {
+    display: none;
   }
   body.report-print-mode .report-section .table-shell {
     max-height: none;
@@ -855,6 +884,26 @@ header time {
   gap: 0.5rem;
   margin: 0.8rem 0;
   font-weight: 700;
+}
+.archive-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.settings-panel {
+  display: none;
+}
+.settings-panel.active {
+  display: grid;
+}
+fieldset.settings-panel {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 .clickable-row:hover td {
   background: color-mix(in srgb, var(--primary) 7%, var(--panel));

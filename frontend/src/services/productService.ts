@@ -4,5 +4,6 @@ export const productService = {
   save: (input: unknown) => storeApi.saveProduct(input),
   remove: (input: unknown) => storeApi.deleteProduct(input),
   importCsv: (filePath: string) => storeApi.importProducts(filePath),
+  importPdf: (filePath: string) => storeApi.importProductsPdf(filePath),
   exportCsv: (content: string) => storeApi.saveExport({ name: 'produits.csv', content }),
 };
