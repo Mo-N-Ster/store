@@ -18,6 +18,8 @@ export const IPC_METHODS = [
   'invoices',
   'invoice',
   'deleteInvoice',
+  'history',
+  'deleteHistory',
   'attendance',
   'attendanceStatuses',
   'messages',

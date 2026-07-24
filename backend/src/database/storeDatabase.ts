@@ -421,6 +421,57 @@ export const api = {
       audit(userId, 'delete', 'invoice', id);
     })();
   },
+  history: ({
+    type,
+    from = '',
+    to = '',
+  }: {
+    type: 'sales' | 'purchases' | 'personnel';
+    from?: string;
+    to?: string;
+  }) => {
+    const args = [from, from, to, to];
+    if (type === 'purchases')
+      return db
+        .prepare(
+          `SELECT sm.id,sm.created_at date,p.name product,p.category,sm.reason,
+            sm.quantity,sm.unit_price unitPrice,ROUND(sm.quantity*sm.unit_price,2) total
+          FROM stock_movements sm JOIN products p ON p.id=sm.product_id
+          WHERE sm.quantity>0 AND (?='' OR date(sm.created_at)>=date(?))
+            AND (?='' OR date(sm.created_at)<=date(?))
+          ORDER BY sm.created_at DESC`,
+        )
+        .all(...args);
+    if (type === 'personnel')
+      return db
+        .prepare(
+          `SELECT a.id,a.start_time startTime,a.end_time endTime,
+            u.first_name||' '||u.last_name employee,u.role,
+            ROUND((julianday(COALESCE(a.end_time,CURRENT_TIMESTAMP))-julianday(a.start_time))*24,2) hours
+          FROM attendances a JOIN users u ON u.id=a.employee_id
+          WHERE (?='' OR date(a.start_time)>=date(?)) AND (?='' OR date(a.start_time)<=date(?))
+          ORDER BY a.start_time DESC`,
+        )
+        .all(...args);
+    return api.invoices({ from, to, search: '' });
+  },
+  deleteHistory: ({
+    type,
+    ids,
+    userId,
+  }: {
+    type: 'purchases' | 'personnel';
+    ids: number[];
+    userId: number;
+  }) =>
+    db.transaction(() => {
+      if (!ids.length) return 0;
+      const placeholders = ids.map(() => '?').join(',');
+      const table = type === 'purchases' ? 'stock_movements' : 'attendances';
+      const result = db.prepare(`DELETE FROM ${table} WHERE id IN (${placeholders})`).run(...ids);
+      audit(userId, 'delete_history', type, ids.join(','));
+      return result.changes;
+    })(),
   attendance: ({ employeeId, present }: { employeeId: number; present: boolean }) => {
     const open = db
       .prepare(

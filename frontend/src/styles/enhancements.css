@@ -842,6 +842,20 @@ header time {
 .clickable-row {
   cursor: pointer;
 }
+.history-toolbar label {
+  display: grid;
+  gap: 0.3rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.select-all {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.8rem 0;
+  font-weight: 700;
+}
 .clickable-row:hover td {
   background: color-mix(in srgb, var(--primary) 7%, var(--panel));
 }

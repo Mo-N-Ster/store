@@ -4,6 +4,7 @@ import type { User } from '../../../types';
 import { employeeService } from '../../../services/employeeService';
 import { PasswordResetDialog } from './PasswordResetDialog';
 import { CriticalDialog } from '../../../components/UI/CriticalDialog';
+import { SubTabs } from '../../../components/UI/SubTabs';
 export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<User[]>([]);
@@ -11,6 +12,7 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
   const [resetTarget, setResetTarget] = useState<User | null>(null);
   const [criticalMessage, setCriticalMessage] = useState('');
   const [search, setSearch] = useState('');
+  const [roleTab, setRoleTab] = useState('employee');
   const [createdEmployeePassword, setCreatedEmployeePassword] = useState<{
     user: User;
     password: string;
@@ -55,7 +57,7 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
       <div className="titlebar">
         <div>
           <span className="eyebrow">{t('yourTeam')}</span>
-          <h1>{t('employees')}</h1>
+          <h1>{t('users')}</h1>
         </div>
         <button onClick={() => setEdit({ role: 'employee' })}>+ {t('add')}</button>
       </div>
@@ -66,24 +68,48 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
           placeholder={t('searchUsers')}
         />
       </div>
+      <SubTabs
+        ariaLabel={t('userRoles')}
+        active={roleTab}
+        onChange={setRoleTab}
+        tabs={[
+          {
+            id: 'employee',
+            label: t('employees'),
+            count: rows.filter((row) => row.role === 'employee').length,
+          },
+          {
+            id: 'manager',
+            label: t('managers'),
+            count: rows.filter((row) => row.role === 'manager').length,
+          },
+          {
+            id: 'owner',
+            label: t('administrator'),
+            count: rows.filter((row) => row.role === 'owner').length,
+          },
+        ]}
+      />
       <div className="table-shell">
         <table>
           <tbody>
             {rows
-              .filter((member) =>
-                [
-                  member.firstName,
-                  member.lastName,
-                  member.first_name,
-                  member.last_name,
-                  member.username,
-                  member.email,
-                  member.role,
-                ]
-                  .filter(Boolean)
-                  .join(' ')
-                  .toLowerCase()
-                  .includes(search.trim().toLowerCase()),
+              .filter(
+                (member) =>
+                  member.role === roleTab &&
+                  [
+                    member.firstName,
+                    member.lastName,
+                    member.first_name,
+                    member.last_name,
+                    member.username,
+                    member.email,
+                    member.role,
+                  ]
+                    .filter(Boolean)
+                    .join(' ')
+                    .toLowerCase()
+                    .includes(search.trim().toLowerCase()),
               )
               .map((member) => (
                 <tr key={member.id}>
