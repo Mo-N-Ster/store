@@ -778,7 +778,13 @@ header time {
   }
   body.report-print-mode {
     background: white;
+    background-image: none;
     color: #17212b;
+  }
+  body.report-print-mode #root,
+  body.report-print-mode .dashboard,
+  body.report-print-mode .reports-page {
+    background: white;
   }
   body.report-print-mode > #root > header,
   body.report-print-mode .dashboard > nav,
@@ -794,6 +800,7 @@ header time {
   body.report-print-mode .workspace {
     padding: 0;
     overflow: visible;
+    background: white;
   }
   body.report-print-mode .reports-page {
     display: block;
@@ -943,6 +950,14 @@ fieldset.settings-panel {
   }
 }
 @media print {
+  body.document-print-mode {
+    background: white;
+    background-image: none;
+  }
+  body.document-print-mode #root,
+  body.document-print-mode .dashboard {
+    background: white;
+  }
   body.document-print-mode > #root > header,
   body.document-print-mode .dashboard > nav,
   body.document-print-mode .titlebar button,
@@ -957,6 +972,7 @@ fieldset.settings-panel {
   body.document-print-mode .workspace {
     overflow: visible;
     padding: 0;
+    background: white;
   }
   body.document-print-mode .table-shell {
     max-height: none;
