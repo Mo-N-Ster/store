@@ -15,7 +15,9 @@
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "package": "npm run build && electron-builder"
+    "package": "npm run build && electron-builder",
+    "package:win:x64": "npm run build && electron-builder --win --x64",
+    "package:win:arm64": "npm run build && electron-builder --win --arm64"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

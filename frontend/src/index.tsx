@@ -7,8 +7,11 @@ import './styles/presence.css';
 import './styles/cart-controls.css';
 import './styles/password-reset.css';
 import App from './App';
+import { AppErrorBoundary } from './components/UI/AppErrorBoundary';
 createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <AppErrorBoundary>
+      <App />
+    </AppErrorBoundary>
   </React.StrictMode>,
 );

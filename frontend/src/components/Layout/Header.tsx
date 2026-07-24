@@ -43,7 +43,8 @@ export function Header({
     const load = () =>
       dashboardService
         .notifications()
-        .then((rows: any[]) => setAlerts(rows.filter((row) => !row.resolved_at)));
+        .then((rows: any[]) => setAlerts(rows.filter((row) => !row.resolved_at)))
+        .catch(() => undefined);
     void load();
     const timer = window.setInterval(load, 30000);
     return () => window.clearInterval(timer);

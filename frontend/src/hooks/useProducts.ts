@@ -13,7 +13,8 @@ export function useProducts(search = '', category = '') {
     }
   }, [search, category]);
   useEffect(() => {
-    void reload();
+    const timer = window.setTimeout(() => void reload(), 200);
+    return () => window.clearTimeout(timer);
   }, [reload]);
   return { products, loading, reload };
 }

@@ -16,14 +16,27 @@ export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState<User | null>(null);
   const [needsSetup, setNeedsSetup] = useState<boolean | null>(null);
+  const [startupFailed, setStartupFailed] = useState(false);
   const [view, setView] = useState<View>('mode');
   const [managerAuth, setManagerAuth] = useState(false);
   const [mailboxReturnView, setMailboxReturnView] = useState<'pos' | 'dashboard'>('pos');
   const { theme, setTheme } = useTheme();
   const { toast, notify } = useToast();
   useEffect(() => {
-    authService.needsSetup().then(setNeedsSetup);
+    authService
+      .needsSetup()
+      .then(setNeedsSetup)
+      .catch(() => setStartupFailed(true));
   }, []);
+  if (startupFailed)
+    return (
+      <main className="fatal-error">
+        <div className="logo">S</div>
+        <h1>{t('startupFailed')}</h1>
+        <p>{t('startupFailedMessage')}</p>
+        <button onClick={() => window.location.reload()}>{t('retry')}</button>
+      </main>
+    );
   if (needsSetup === null)
     return (
       <div className="splash">

@@ -2,10 +2,18 @@ import { dialog, ipcMain } from 'electron';
 import { api } from '../database/storeDatabase.js';
 import { IPC_PREFIX } from '../ipc/channels.js';
 export function registerIpcHandlers() {
+  let databaseQueue: Promise<unknown> = Promise.resolve();
   for (const [name, handler] of Object.entries(api))
-    ipcMain.handle(`${IPC_PREFIX}${name}`, (_event, ...args) =>
-      (handler as (...values: unknown[]) => unknown)(...args),
-    );
+    ipcMain.handle(`${IPC_PREFIX}${name}`, (_event, ...args) => {
+      const execute = () =>
+        Promise.resolve().then(() => (handler as (...values: unknown[]) => unknown)(...args));
+      const result = databaseQueue.then(execute, execute);
+      databaseQueue = result.then(
+        () => undefined,
+        () => undefined,
+      );
+      return result;
+    });
   ipcMain.handle(
     `${IPC_PREFIX}saveExport`,
     async (_event, { name, content }: { name: string; content: string }) => {

@@ -16,14 +16,25 @@ let databaseFile = '';
 const now = () => new Date().toISOString();
 const initials = (first: string, last: string) => `${first[0] ?? ''}${last[0] ?? ''}`.toUpperCase();
 
-export function initDatabase() {
+export async function initDatabase() {
   const dir = app.getPath('userData');
   fs.mkdirSync(dir, { recursive: true });
   databaseFile = path.join(dir, 'store.db');
   db = new Database(databaseFile);
   db.pragma('journal_mode = WAL');
+  db.pragma('busy_timeout = 5000');
+  db.pragma('foreign_keys = ON');
   db.exec(schema);
-  dailyBackup();
+  await dailyBackup();
+}
+
+export function closeDatabase() {
+  if (!db?.open) return;
+  try {
+    db.pragma('wal_checkpoint(TRUNCATE)');
+  } finally {
+    db.close();
+  }
 }
 
 export const api = {
@@ -568,22 +579,36 @@ export const api = {
       }, 0),
     )();
   },
-  restoreBackup: (filePath: string) => {
+  restoreBackup: async (filePath: string) => {
     if (!/\.(db|sqlite)$/i.test(filePath)) throw new Error('INVALID_BACKUP');
-    createBackup();
+    const safetyBackup = await createBackup();
     db.close();
-    fs.copyFileSync(filePath, databaseFile);
-    db = new Database(databaseFile);
-    db.pragma('journal_mode = WAL');
-    db.exec(schema);
+    try {
+      fs.copyFileSync(filePath, databaseFile);
+      db = new Database(databaseFile);
+      db.pragma('journal_mode = WAL');
+      db.pragma('busy_timeout = 5000');
+      db.pragma('foreign_keys = ON');
+      const integrity = db.pragma('integrity_check') as { integrity_check: string }[];
+      if (integrity[0]?.integrity_check !== 'ok') throw new Error('INVALID_BACKUP');
+      db.exec(schema);
+    } catch (error) {
+      if (db?.open) db.close();
+      fs.copyFileSync(safetyBackup, databaseFile);
+      db = new Database(databaseFile);
+      db.pragma('journal_mode = WAL');
+      db.pragma('busy_timeout = 5000');
+      db.pragma('foreign_keys = ON');
+      throw error;
+    }
     return true;
   },
-  reset: ({ adminId, password }: { adminId: number; password: string }) => {
+  reset: async ({ adminId, password }: { adminId: number; password: string }) => {
     const owner = db
       .prepare("SELECT password_hash hash FROM users WHERE id=? AND role='owner'")
       .get(adminId) as { hash: string } | undefined;
     if (!owner || !bcrypt.compareSync(password, owner.hash)) throw new Error('OWNER_REQUIRED');
-    createBackup();
+    await createBackup();
     db.transaction(() => {
       for (const table of [
         'message_reads',
@@ -677,13 +702,13 @@ function backupDir() {
   fs.mkdirSync(d, { recursive: true });
   return d;
 }
-function createBackup() {
+async function createBackup() {
   const name = `store-${new Date().toISOString().replace(/[:.]/g, '-')}.db`;
   const target = path.join(backupDir(), name);
-  db.backup(target);
+  await db.backup(target);
   return target;
 }
-function dailyBackup() {
+async function dailyBackup() {
   const dir = backupDir();
   const files = fs
     .readdirSync(dir)
@@ -691,7 +716,7 @@ function dailyBackup() {
     .sort()
     .reverse();
   const today = new Date().toISOString().slice(0, 10);
-  if (!files.some((f) => f.includes(today))) createBackup();
+  if (!files.some((f) => f.includes(today))) await createBackup();
   for (const f of files.slice(7)) fs.rmSync(path.join(dir, f));
 }
 function parseCsvLine(line: string) {
