@@ -26,6 +26,7 @@ export const IPC_METHODS = [
   'deleteMessage',
   'notifications',
   'dashboard',
+  'reports',
   'settings',
   'saveSettings',
   'backup',
@@ -35,5 +36,7 @@ export const IPC_METHODS = [
   'importProducts',
   'restoreBackup',
   'testEmail',
+  'exportReportPdf',
+  'emailReportPdf',
 ] as const;
 export type IpcMethod = (typeof IPC_METHODS)[number];

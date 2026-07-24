@@ -25,6 +25,7 @@ export async function initDatabase() {
   db.pragma('busy_timeout = 5000');
   db.pragma('foreign_keys = ON');
   db.exec(schema);
+  migrateReportingSchema();
   await dailyBackup();
 }
 
@@ -271,8 +272,8 @@ export const api = {
     if (duplicateProduct) throw new Error('DUPLICATE_PRODUCT');
     if (input.id) {
       const old = db
-        .prepare('SELECT stock_quantity stock FROM products WHERE id=?')
-        .get(input.id) as { stock: number };
+        .prepare('SELECT stock_quantity stock,price FROM products WHERE id=?')
+        .get(input.id) as { stock: number; price: number };
       db.prepare(
         `UPDATE products SET name=?,hashtag=?,category=?,description=?,price=?,stock_quantity=?,min_stock_threshold=?,updated_at=? WHERE id=?`,
       ).run(
@@ -288,10 +289,13 @@ export const api = {
       );
       const delta = input.stockQuantity - old.stock;
       if (delta)
-        db.prepare('INSERT INTO stock_movements(product_id,quantity,reason) VALUES(?,?,?)').run(
+        db.prepare(
+          'INSERT INTO stock_movements(product_id,quantity,reason,unit_price) VALUES(?,?,?,?)',
+        ).run(input.id, delta, 'adjustment', input.price);
+      if (old.price !== input.price)
+        db.prepare('INSERT INTO product_price_history(product_id,price) VALUES(?,?)').run(
           input.id,
-          delta,
-          'adjustment',
+          input.price,
         );
       checkStock(input.id);
       return input.id;
@@ -310,18 +314,30 @@ export const api = {
         input.minStockThreshold,
       );
     const id = Number(r.lastInsertRowid);
+    db.prepare('INSERT INTO product_price_history(product_id,price) VALUES(?,?)').run(
+      id,
+      input.price,
+    );
     if (input.stockQuantity)
-      db.prepare('INSERT INTO stock_movements(product_id,quantity,reason) VALUES(?,?,?)').run(
-        id,
-        input.stockQuantity,
-        'initial',
-      );
+      db.prepare(
+        'INSERT INTO stock_movements(product_id,quantity,reason,unit_price) VALUES(?,?,?,?)',
+      ).run(id, input.stockQuantity, 'initial', input.price);
     checkStock(id);
     return id;
   },
   deleteProduct: ({ id, userId }: { id: number; userId: number }) => {
-    db.prepare('UPDATE products SET deleted_at=?,stock_quantity=0 WHERE id=?').run(now(), id);
-    audit(userId, 'delete', 'product', String(id));
+    db.transaction(() => {
+      const product = db
+        .prepare('SELECT stock_quantity stockQuantity,price FROM products WHERE id=?')
+        .get(id) as { stockQuantity: number; price: number } | undefined;
+      if (!product) return;
+      if (product.stockQuantity > 0)
+        db.prepare(
+          'INSERT INTO stock_movements(product_id,quantity,reason,unit_price) VALUES(?,?,?,?)',
+        ).run(id, -product.stockQuantity, 'product_deletion', product.price);
+      db.prepare('UPDATE products SET deleted_at=?,stock_quantity=0 WHERE id=?').run(now(), id);
+      audit(userId, 'delete', 'product', String(id));
+    })();
   },
   createInvoice: ({
     employeeId,
@@ -370,8 +386,8 @@ export const api = {
           'UPDATE products SET stock_quantity=stock_quantity-?,updated_at=? WHERE id=?',
         ).run(line.quantity, now(), product.id);
         db.prepare(
-          'INSERT INTO stock_movements(product_id,quantity,reason,reference_id) VALUES(?,?,?,?)',
-        ).run(product.id, -line.quantity, 'sale', id);
+          'INSERT INTO stock_movements(product_id,quantity,reason,reference_id,unit_price) VALUES(?,?,?,?,?)',
+        ).run(product.id, -line.quantity, 'sale', id, product.price);
         checkStock(product.id);
       }
       return invoiceDetail(id);
@@ -386,14 +402,21 @@ export const api = {
   deleteInvoice: ({ id, userId }: { id: string; userId: number }) => {
     db.transaction(() => {
       const lines = db
-        .prepare('SELECT product_id productId,quantity FROM invoice_lines WHERE invoice_id=?')
+        .prepare(
+          'SELECT product_id productId,quantity,unit_price unitPrice FROM invoice_lines WHERE invoice_id=?',
+        )
         .all(id) as any[];
-      for (const l of lines)
-        if (l.productId)
+      for (const line of lines)
+        if (line.productId) {
           db.prepare('UPDATE products SET stock_quantity=stock_quantity+? WHERE id=?').run(
-            l.quantity,
-            l.productId,
+            line.quantity,
+            line.productId,
           );
+          db.prepare(
+            'INSERT INTO stock_movements(product_id,quantity,reason,reference_id,unit_price) VALUES(?,?,?,?,?)',
+          ).run(line.productId, line.quantity, 'invoice_reversal', id, line.unitPrice);
+          checkStock(line.productId);
+        }
       db.prepare('DELETE FROM invoices WHERE id=?').run(id);
       audit(userId, 'delete', 'invoice', id);
     })();
@@ -525,6 +548,13 @@ export const api = {
       )
       .all(),
   }),
+  reports: (input: {
+    from?: string;
+    to?: string;
+    grain?: 'day' | 'week' | 'month';
+    productId?: number;
+    category?: string;
+  } = {}) => reportingData(input),
   settings: () =>
     Object.fromEntries(
       (db.prepare('SELECT key,value FROM settings').all() as any[]).map((x) => [x.key, x.value]),
@@ -592,6 +622,7 @@ export const api = {
       const integrity = db.pragma('integrity_check') as { integrity_check: string }[];
       if (integrity[0]?.integrity_check !== 'ok') throw new Error('INVALID_BACKUP');
       db.exec(schema);
+      migrateReportingSchema();
     } catch (error) {
       if (db?.open) db.close();
       fs.copyFileSync(safetyBackup, databaseFile);
@@ -618,6 +649,7 @@ export const api = {
         'messages',
         'notifications',
         'stock_movements',
+        'product_price_history',
         'products',
         'audit_logs',
         'settings',
@@ -628,6 +660,20 @@ export const api = {
     return true;
   },
 };
+
+export async function sendReportEmail(input: {
+  to: string;
+  subject: string;
+  text: string;
+  filename: string;
+  pdf: Buffer;
+}) {
+  const settings = settingsObject();
+  await sendEmail(smtpConfig(settings), input.to, input.subject, input.text, [
+    { filename: input.filename, content: input.pdf, contentType: 'application/pdf' },
+  ]);
+  return true;
+}
 
 function stripPassword(u: any) {
   const safe = { ...u };
@@ -753,4 +799,132 @@ function smtpConfig(settings: Record<string, string>) {
     password: settings.smtpPassword || '',
     from: settings.smtpFrom || settings.smtpUser || '',
   };
+}
+
+function migrateReportingSchema() {
+  const movementColumns = db.pragma('table_info(stock_movements)') as { name: string }[];
+  if (!movementColumns.some((column) => column.name === 'unit_price'))
+    db.exec('ALTER TABLE stock_movements ADD COLUMN unit_price REAL NOT NULL DEFAULT 0');
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS product_price_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      product_id INTEGER NOT NULL REFERENCES products(id),
+      price REAL NOT NULL CHECK(price >= 0),
+      recorded_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+    CREATE INDEX IF NOT EXISTS idx_stock_movements_date ON stock_movements(created_at, product_id);
+    CREATE INDEX IF NOT EXISTS idx_price_history_date ON product_price_history(recorded_at, product_id);
+    UPDATE stock_movements
+      SET unit_price=COALESCE((SELECT price FROM products WHERE products.id=stock_movements.product_id),0)
+      WHERE unit_price=0;
+    INSERT INTO product_price_history(product_id,price,recorded_at)
+      SELECT p.id,p.price,COALESCE(p.created_at,CURRENT_TIMESTAMP)
+      FROM products p
+      WHERE NOT EXISTS (
+        SELECT 1 FROM product_price_history history WHERE history.product_id=p.id
+      );
+  `);
+}
+
+function reportingData({
+  from = '',
+  to = '',
+  grain = 'day',
+  productId = 0,
+  category = '',
+}: {
+  from?: string;
+  to?: string;
+  grain?: 'day' | 'week' | 'month';
+  productId?: number;
+  category?: string;
+}) {
+  const bucket = (field: string) =>
+    grain === 'month'
+      ? `strftime('%Y-%m',${field})`
+      : grain === 'week'
+        ? `strftime('%Y-W%W',${field})`
+        : `date(${field})`;
+  const movementArgs = [from, from, to, to, productId, productId, category, category];
+  const salesArgs = [from, from, to, to, productId, productId, category, category];
+  const priceArgs = [from, from, to, to, productId, productId, category, category];
+
+  const movements = db
+    .prepare(
+      `SELECT ${bucket('sm.created_at')} period,p.id productId,p.name product,p.category,sm.reason,
+        SUM(CASE WHEN sm.quantity>0 THEN sm.quantity ELSE 0 END) entries,
+        SUM(CASE WHEN sm.quantity<0 THEN ABS(sm.quantity) ELSE 0 END) exits,
+        ROUND(AVG(COALESCE(NULLIF(sm.unit_price,0),p.price)),2) unitPrice,
+        ROUND(SUM(ABS(sm.quantity)*COALESCE(NULLIF(sm.unit_price,0),p.price)),2) totalValue,
+        ROUND(SUM(CASE WHEN sm.quantity>0 THEN sm.quantity*COALESCE(NULLIF(sm.unit_price,0),p.price) ELSE 0 END),2) entryValue,
+        ROUND(SUM(CASE WHEN sm.quantity<0 THEN ABS(sm.quantity)*COALESCE(NULLIF(sm.unit_price,0),p.price) ELSE 0 END),2) exitValue
+      FROM stock_movements sm JOIN products p ON p.id=sm.product_id
+      WHERE (?='' OR date(sm.created_at)>=date(?)) AND (?='' OR date(sm.created_at)<=date(?))
+        AND (?=0 OR p.id=?) AND (?='' OR p.category=?)
+      GROUP BY period,p.id,p.name,p.category,sm.reason
+      ORDER BY period DESC,p.name,sm.reason`,
+    )
+    .all(...movementArgs);
+
+  const topProducts = db
+    .prepare(
+      `SELECT p.id productId,il.product_name product,il.category,
+        SUM(il.quantity) quantity,ROUND(SUM(il.total_line),2) revenue
+      FROM invoice_lines il JOIN invoices i ON i.id=il.invoice_id
+      LEFT JOIN products p ON p.id=il.product_id
+      WHERE (?='' OR date(i.invoice_date)>=date(?)) AND (?='' OR date(i.invoice_date)<=date(?))
+        AND (?=0 OR p.id=?) AND (?='' OR il.category=?)
+      GROUP BY p.id,il.product_name,il.category
+      ORDER BY quantity DESC,revenue DESC LIMIT 20`,
+    )
+    .all(...salesArgs);
+
+  const topCategories = db
+    .prepare(
+      `SELECT il.category,SUM(il.quantity) quantity,ROUND(SUM(il.total_line),2) revenue
+      FROM invoice_lines il JOIN invoices i ON i.id=il.invoice_id
+      LEFT JOIN products p ON p.id=il.product_id
+      WHERE (?='' OR date(i.invoice_date)>=date(?)) AND (?='' OR date(i.invoice_date)<=date(?))
+        AND (?=0 OR p.id=?) AND (?='' OR il.category=?)
+      GROUP BY il.category ORDER BY quantity DESC,revenue DESC`,
+    )
+    .all(...salesArgs);
+
+  const priceEvolution = db
+    .prepare(
+      `WITH price_points AS (
+        SELECT history.product_id,history.price,history.recorded_at
+        FROM product_price_history history
+        UNION ALL
+        SELECT il.product_id,il.unit_price,i.invoice_date
+        FROM invoice_lines il JOIN invoices i ON i.id=il.invoice_id
+        WHERE il.product_id IS NOT NULL
+      )
+      SELECT ${bucket('points.recorded_at')} period,p.id productId,p.name product,p.category,
+        ROUND(AVG(points.price),2) averagePrice,
+        ROUND(MIN(points.price),2) minimumPrice,
+        ROUND(MAX(points.price),2) maximumPrice,
+        COUNT(*) observations
+      FROM price_points points JOIN products p ON p.id=points.product_id
+      WHERE (?='' OR date(points.recorded_at)>=date(?)) AND (?='' OR date(points.recorded_at)<=date(?))
+        AND (?=0 OR p.id=?) AND (?='' OR p.category=?)
+      GROUP BY period,p.id,p.name,p.category
+      ORDER BY period,p.name`,
+    )
+    .all(...priceArgs);
+
+  const summary = db
+    .prepare(
+      `SELECT
+        COALESCE(SUM(CASE WHEN sm.quantity>0 THEN sm.quantity ELSE 0 END),0) entries,
+        COALESCE(SUM(CASE WHEN sm.quantity<0 THEN ABS(sm.quantity) ELSE 0 END),0) exits,
+        COUNT(*) movements,
+        ROUND(COALESCE(SUM(ABS(sm.quantity)*COALESCE(NULLIF(sm.unit_price,0),p.price)),0),2) movementValue
+      FROM stock_movements sm JOIN products p ON p.id=sm.product_id
+      WHERE (?='' OR date(sm.created_at)>=date(?)) AND (?='' OR date(sm.created_at)<=date(?))
+        AND (?=0 OR p.id=?) AND (?='' OR p.category=?)`,
+    )
+    .get(...movementArgs);
+
+  return { summary, movements, topProducts, topCategories, priceEvolution };
 }

@@ -43,7 +43,12 @@ CREATE TABLE IF NOT EXISTS notifications (
 );
 CREATE TABLE IF NOT EXISTS stock_movements (
   id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER NOT NULL REFERENCES products(id),
-  quantity INTEGER NOT NULL, reason TEXT NOT NULL, reference_id TEXT, created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  quantity INTEGER NOT NULL, reason TEXT NOT NULL, reference_id TEXT, unit_price REAL NOT NULL DEFAULT 0,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS product_price_history (
+  id INTEGER PRIMARY KEY AUTOINCREMENT, product_id INTEGER NOT NULL REFERENCES products(id),
+  price REAL NOT NULL CHECK(price >= 0), recorded_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS audit_logs (
@@ -54,4 +59,6 @@ CREATE INDEX IF NOT EXISTS idx_products_search ON products(name, category, hasht
 CREATE INDEX IF NOT EXISTS idx_invoices_date ON invoices(invoice_date);
 CREATE INDEX IF NOT EXISTS idx_attendances_employee ON attendances(employee_id, start_time);
 CREATE INDEX IF NOT EXISTS idx_message_reads_user ON message_reads(user_id, message_id);
+CREATE INDEX IF NOT EXISTS idx_stock_movements_date ON stock_movements(created_at, product_id);
+CREATE INDEX IF NOT EXISTS idx_price_history_date ON product_price_history(recorded_at, product_id);
 `;
