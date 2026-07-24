@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import type { Product } from '../../../types';
 import { productService } from '../../../services/productService';
 import { formatMoney } from '../../../utils/formatters';
-import { csvEscape } from '../../../utils/domain';
 import { selectFile } from '../../../services/api';
 import { useStorePreferences } from '../../../hooks/useStorePreferences';
 import { CriticalDialog } from '../../../components/UI/CriticalDialog';
+import { ProductDetailsDialog } from './ProductDetailsDialog';
+import { reportService } from '../../../services/reportService';
 export function ProductList({ notify, userId }: { notify: (x: string) => void; userId: number }) {
   const { t } = useTranslation();
   const { currency } = useStorePreferences();
@@ -15,6 +16,7 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
   const [edit, setEdit] = useState<any>(null);
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
+  const [detail, setDetail] = useState<Product | null>(null);
   const load = () => productService.list({}).then(setRows);
   useEffect(() => {
     void load();
@@ -41,25 +43,15 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
       );
     }
   };
-  const exportCsv = () =>
-    productService.exportCsv(
-      [
-        'name,hashtag,category,description,price,stockQuantity,minStockThreshold',
-        ...rows.map((item) =>
-          [
-            item.name,
-            item.hashtag,
-            item.category,
-            item.description,
-            item.price,
-            item.stockQuantity,
-            item.minStockThreshold,
-          ]
-            .map(csvEscape)
-            .join(','),
-        ),
-      ].join('\n'),
-    );
+  const exportPdf = async () => {
+    document.body.classList.add('document-print-mode');
+    try {
+      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+      await reportService.exportPdf('STORE-stocks.pdf');
+    } finally {
+      document.body.classList.remove('document-print-mode');
+    }
+  };
   const importCsv = async () => {
     const file = await selectFile([{ name: 'CSV', extensions: ['csv'] }]);
     if (!file) return;
@@ -72,11 +64,11 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
       <div className="titlebar">
         <div>
           <span className="eyebrow">{t('inventory')}</span>
-          <h1>{t('products')}</h1>
+          <h1>{t('stocks')}</h1>
         </div>
         <div>
-          <button className="ghost" onClick={exportCsv}>
-            {t('exportCsv')}
+          <button className="ghost" onClick={exportPdf}>
+            {t('exportPdf')}
           </button>
           <button className="ghost" onClick={importCsv}>
             {t('importCsv')}
@@ -121,8 +113,9 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
                     .toLowerCase()
                     .includes(search.trim().toLowerCase()),
               )
+              .sort((a, b) => a.name.localeCompare(b.name))
               .map((product) => (
-                <tr key={product.id}>
+                <tr className="clickable-row" key={product.id} onClick={() => setDetail(product)}>
                   <td>
                     <b>{product.name}</b>
                     <small>{product.hashtag}</small>
@@ -143,13 +136,21 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
                     </span>
                   </td>
                   <td>
-                    <button onClick={() => setEdit(product)}>✎</button>
+                    <button
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setEdit(product);
+                      }}
+                    >
+                      ✎
+                    </button>
                     <button
                       className="danger"
-                      onClick={() =>
-                        confirm(t('confirmProductDeletion')) &&
-                        productService.remove({ id: product.id, userId }).then(load)
-                      }
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (confirm(t('confirmProductDeletion')))
+                          void productService.remove({ id: product.id, userId }).then(load);
+                      }}
                     >
                       🗑
                     </button>
@@ -203,6 +204,13 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
       )}
       {criticalMessage && (
         <CriticalDialog message={criticalMessage} onClose={() => setCriticalMessage('')} />
+      )}
+      {detail && (
+        <ProductDetailsDialog
+          product={detail}
+          currency={currency}
+          onClose={() => setDetail(null)}
+        />
       )}
     </>
   );

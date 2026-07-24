@@ -796,3 +796,107 @@ header time {
     overflow: visible;
   }
 }
+
+.sub-tabs {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--panel) 88%, var(--bg));
+  overflow-x: auto;
+}
+.sub-tabs button {
+  min-width: max-content;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--muted);
+}
+.sub-tabs button.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+.sub-tabs button span {
+  margin-left: 0.45rem;
+  padding: 0.1rem 0.42rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+.overview-widgets button {
+  display: grid;
+  text-align: left;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+.overview-widgets button.active {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 15%, transparent);
+}
+.overview-widgets button small {
+  color: var(--primary);
+  font-weight: 700;
+}
+.clickable-row {
+  cursor: pointer;
+}
+.clickable-row:hover td {
+  background: color-mix(in srgb, var(--primary) 7%, var(--panel));
+}
+.product-details {
+  width: min(620px, 92vw);
+}
+.product-details header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.product-details dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+.product-details dl div {
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+}
+.product-details dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.product-details dd {
+  margin: 0.25rem 0 0;
+  font-weight: 650;
+  white-space: pre-wrap;
+}
+@media (max-width: 620px) {
+  .product-details dl {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  body.document-print-mode > #root > header,
+  body.document-print-mode .dashboard > nav,
+  body.document-print-mode .titlebar button,
+  body.document-print-mode .filters,
+  body.document-print-mode .modal {
+    display: none !important;
+  }
+  body.document-print-mode .dashboard {
+    display: block;
+    height: auto;
+  }
+  body.document-print-mode .workspace {
+    overflow: visible;
+    padding: 0;
+  }
+  body.document-print-mode .table-shell {
+    max-height: none;
+    overflow: visible;
+  }
+}

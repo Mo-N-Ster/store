@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 export type DashboardSection =
   'home' | 'products' | 'employees' | 'sales' | 'charts' | 'mailbox' | 'settings';
-const items: [DashboardSection, string][] = [
+const items: [DashboardSection, string, string?][] = [
   ['home', '⌂'],
-  ['products', '▣'],
-  ['employees', '●'],
-  ['sales', '€'],
+  ['products', '▣', 'stocks'],
+  ['employees', '●', 'users'],
+  ['sales', '€', 'histories'],
   ['charts', '↗'],
   ['mailbox', '✉'],
   ['settings', '⚙'],
@@ -24,10 +24,10 @@ export function Sidebar({
         <span>S</span>
         <b>STORE</b>
       </div>
-      {items.map(([key, icon]) => (
+      {items.map(([key, icon, label]) => (
         <button className={active === key ? 'active' : ''} onClick={() => onChange(key)} key={key}>
           <span>{icon}</span>
-          {t(key)}
+          {t(label || key)}
         </button>
       ))}
     </nav>
