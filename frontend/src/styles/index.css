@@ -397,7 +397,7 @@ progress {
   }
 }
 @media print {
-  body > *:not(.modal) {
+  body.invoice-print-mode > *:not(.modal) {
     display: none;
   }
   .modal {

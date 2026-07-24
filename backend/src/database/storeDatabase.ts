@@ -548,13 +548,15 @@ export const api = {
       )
       .all(),
   }),
-  reports: (input: {
-    from?: string;
-    to?: string;
-    grain?: 'day' | 'week' | 'month';
-    productId?: number;
-    category?: string;
-  } = {}) => reportingData(input),
+  reports: (
+    input: {
+      from?: string;
+      to?: string;
+      grain?: 'day' | 'week' | 'month';
+      productId?: number;
+      category?: string;
+    } = {},
+  ) => reportingData(input),
   settings: () =>
     Object.fromEntries(
       (db.prepare('SELECT key,value FROM settings').all() as any[]).map((x) => [x.key, x.value]),
@@ -868,25 +870,26 @@ function reportingData({
 
   const topProducts = db
     .prepare(
-      `SELECT p.id productId,il.product_name product,il.category,
+      `SELECT ${bucket('i.invoice_date')} period,p.id productId,il.product_name product,il.category,
         SUM(il.quantity) quantity,ROUND(SUM(il.total_line),2) revenue
       FROM invoice_lines il JOIN invoices i ON i.id=il.invoice_id
       LEFT JOIN products p ON p.id=il.product_id
       WHERE (?='' OR date(i.invoice_date)>=date(?)) AND (?='' OR date(i.invoice_date)<=date(?))
         AND (?=0 OR p.id=?) AND (?='' OR il.category=?)
-      GROUP BY p.id,il.product_name,il.category
-      ORDER BY quantity DESC,revenue DESC LIMIT 20`,
+      GROUP BY period,p.id,il.product_name,il.category
+      ORDER BY period DESC,quantity DESC,revenue DESC LIMIT 200`,
     )
     .all(...salesArgs);
 
   const topCategories = db
     .prepare(
-      `SELECT il.category,SUM(il.quantity) quantity,ROUND(SUM(il.total_line),2) revenue
+      `SELECT ${bucket('i.invoice_date')} period,il.category,
+        SUM(il.quantity) quantity,ROUND(SUM(il.total_line),2) revenue
       FROM invoice_lines il JOIN invoices i ON i.id=il.invoice_id
       LEFT JOIN products p ON p.id=il.product_id
       WHERE (?='' OR date(i.invoice_date)>=date(?)) AND (?='' OR date(i.invoice_date)<=date(?))
         AND (?=0 OR p.id=?) AND (?='' OR il.category=?)
-      GROUP BY il.category ORDER BY quantity DESC,revenue DESC`,
+      GROUP BY period,il.category ORDER BY period DESC,quantity DESC,revenue DESC`,
     )
     .all(...salesArgs);
 

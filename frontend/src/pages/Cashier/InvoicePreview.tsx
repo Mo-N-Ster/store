@@ -13,6 +13,13 @@ export function InvoicePreview({
 }) {
   const { t } = useTranslation();
   const invoice = data.invoice;
+  const printInvoice = () => {
+    const cleanup = () => document.body.classList.remove('invoice-print-mode');
+    document.body.classList.add('invoice-print-mode');
+    window.addEventListener('afterprint', cleanup, { once: true });
+    window.print();
+    window.setTimeout(cleanup, 1000);
+  };
   return (
     <div className="modal" onMouseDown={close}>
       <section className="receipt" onMouseDown={(event) => event.stopPropagation()}>
@@ -51,7 +58,7 @@ export function InvoicePreview({
           {t('total')}: {formatMoney(invoice.total_amount, currency)}
         </h2>
         <div>
-          <button onClick={() => window.print()}>{t('print')}</button>
+          <button onClick={printInvoice}>{t('print')}</button>
           <button className="ghost" onClick={close}>
             {t('close')}
           </button>

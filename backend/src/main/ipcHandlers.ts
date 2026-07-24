@@ -26,30 +26,24 @@ export function registerIpcHandlers() {
       return result.filePath;
     },
   );
-  ipcMain.handle(
-    `${IPC_PREFIX}exportReportPdf`,
-    async (event, { name }: { name: string }) => {
-      const pdf = await event.sender.printToPDF({
-        printBackground: true,
-        landscape: true,
-        pageSize: 'A4',
-        margins: { marginType: 'custom', top: 0.3, bottom: 0.3, left: 0.3, right: 0.3 },
-      });
-      const result = await dialog.showSaveDialog({
-        defaultPath: name,
-        filters: [{ name: 'PDF', extensions: ['pdf'] }],
-      });
-      if (result.canceled || !result.filePath) return null;
-      await writeFile(result.filePath, pdf);
-      return result.filePath;
-    },
-  );
+  ipcMain.handle(`${IPC_PREFIX}exportReportPdf`, async (event, { name }: { name: string }) => {
+    const pdf = await event.sender.printToPDF({
+      printBackground: true,
+      landscape: true,
+      pageSize: 'A4',
+      margins: { marginType: 'custom', top: 0.3, bottom: 0.3, left: 0.3, right: 0.3 },
+    });
+    const result = await dialog.showSaveDialog({
+      defaultPath: name,
+      filters: [{ name: 'PDF', extensions: ['pdf'] }],
+    });
+    if (result.canceled || !result.filePath) return null;
+    await writeFile(result.filePath, pdf);
+    return result.filePath;
+  });
   ipcMain.handle(
     `${IPC_PREFIX}emailReportPdf`,
-    async (
-      event,
-      input: { to: string; subject: string; text: string; filename: string },
-    ) => {
+    async (event, input: { to: string; subject: string; text: string; filename: string }) => {
       const pdf = await event.sender.printToPDF({
         printBackground: true,
         landscape: true,
