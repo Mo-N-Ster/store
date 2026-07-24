@@ -791,4 +791,8 @@ header time {
     max-height: none;
     overflow: visible;
   }
+  body.report-print-mode .report-bars,
+  body.report-print-mode .price-chart {
+    overflow: visible;
+  }
 }
