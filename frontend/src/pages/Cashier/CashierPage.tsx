@@ -18,7 +18,7 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
   const [discount, setDiscount] = useState(0);
   const [discountMode, setDiscountMode] = useState<'fixed' | 'percent'>('fixed');
   const [receipt, setReceipt] = useState<any>(null);
-  const { products, loading, reload } = useProducts(search, category);
+  const { products, categories, loading, reload } = useProducts(search, category);
   const cart = useCart();
   const loadSide = () => saleService.list({ from: todayIso() }).then(setInvoices);
   useEffect(() => {
@@ -50,7 +50,6 @@ export function CashierPage({ user, notify }: { user: User; notify: (message: st
       notify(error.message?.includes('STOCK') ? t('insufficientStock') : t('saleFailed'));
     }
   };
-  const categories = [...new Set(products.map((product) => product.category))];
   return (
     <main className="pos">
       <aside className="pos-sidebar">

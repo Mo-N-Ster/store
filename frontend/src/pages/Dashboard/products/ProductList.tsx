@@ -187,6 +187,7 @@ export function ProductList({ notify, userId }: { notify: (x: string) => void; u
                 {label}
                 <input
                   name={name}
+                  placeholder={label}
                   type={
                     ['price', 'stockQuantity', 'minStockThreshold'].includes(name)
                       ? 'number'

@@ -60,6 +60,7 @@ export function SalesHistory({ userId }: { userId: number }) {
           {t('from')}
           <input
             type="date"
+            placeholder={t('startDate')}
             value={filters.from}
             onChange={(event) => setFilters({ ...filters, from: event.target.value })}
           />
@@ -68,6 +69,7 @@ export function SalesHistory({ userId }: { userId: number }) {
           {t('to')}
           <input
             type="date"
+            placeholder={t('endDate')}
             value={filters.to}
             onChange={(event) => setFilters({ ...filters, to: event.target.value })}
           />

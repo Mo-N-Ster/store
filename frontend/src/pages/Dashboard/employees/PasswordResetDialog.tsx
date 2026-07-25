@@ -67,7 +67,12 @@ export function PasswordResetDialog({
             </label>
             <label>
               {t('securityAnswer')}
-              <input value={answer} onChange={(e) => setAnswer(e.target.value)} required />
+              <input
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder={t('securityAnswer')}
+                required
+              />
             </label>
             <label>
               {t('newPassword')}
@@ -75,6 +80,7 @@ export function PasswordResetDialog({
                 type="password"
                 minLength={8}
                 value={newPassword}
+                placeholder={t('newPassword')}
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
               />

@@ -31,6 +31,7 @@ export function ProductCard({
         </button>
         <input
           aria-label={t('quantity')}
+          placeholder={t('quantity')}
           type="number"
           min="1"
           max={product.stockQuantity}

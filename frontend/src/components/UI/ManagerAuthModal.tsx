@@ -39,6 +39,7 @@ export function ManagerAuthModal({
             {t('username')}
             <input
               autoFocus
+              placeholder={t('username')}
               value={identifier}
               onChange={(event) => setIdentifier(event.target.value)}
               required
@@ -49,6 +50,7 @@ export function ManagerAuthModal({
           {t('password')}
           <input
             autoFocus={currentUser.role !== 'employee'}
+            placeholder={t('password')}
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

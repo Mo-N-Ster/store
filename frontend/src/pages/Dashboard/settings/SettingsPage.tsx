@@ -62,19 +62,32 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
         <fieldset className={`settings-panel ${tab === 'store' ? 'active' : ''}`}>
           <label>
             {t('storeName')}
-            <input name="storeName" defaultValue={settings.storeName || 'STORE'} />
+            <input
+              name="storeName"
+              defaultValue={settings.storeName || 'STORE'}
+              placeholder={t('storeName')}
+            />
           </label>
           <label>
             {t('address')}
-            <input name="address" defaultValue={settings.address || ''} />
+            <input
+              name="address"
+              defaultValue={settings.address || ''}
+              placeholder={t('address')}
+            />
           </label>
           <label>
             {t('phone')}
-            <input name="phone" defaultValue={settings.phone || ''} />
+            <input name="phone" defaultValue={settings.phone || ''} placeholder={t('phone')} />
           </label>
           <label>
             Email
-            <input name="email" type="email" defaultValue={settings.email || ''} />
+            <input
+              name="email"
+              type="email"
+              defaultValue={settings.email || ''}
+              placeholder={t('email')}
+            />
           </label>
         </fieldset>
         <fieldset className={`settings-panel ${tab === 'sales' ? 'active' : ''}`}>
@@ -106,23 +119,46 @@ export function SettingsPage({ user, notify }: { user: User; notify: (x: string)
         <fieldset className={`settings-panel ${tab === 'email' ? 'active' : ''}`}>
           <label>
             {t('smtpServer')}
-            <input name="smtpHost" defaultValue={settings.smtpHost || ''} />
+            <input
+              name="smtpHost"
+              defaultValue={settings.smtpHost || ''}
+              placeholder={t('smtpServerPlaceholder')}
+            />
           </label>
           <label>
             {t('smtpPort')}
-            <input name="smtpPort" type="number" defaultValue={settings.smtpPort || 587} />
+            <input
+              name="smtpPort"
+              type="number"
+              defaultValue={settings.smtpPort || 587}
+              placeholder={t('smtpPort')}
+            />
           </label>
           <label>
             {t('smtpUser')}
-            <input name="smtpUser" defaultValue={settings.smtpUser || ''} />
+            <input
+              name="smtpUser"
+              defaultValue={settings.smtpUser || ''}
+              placeholder={t('smtpUser')}
+            />
           </label>
           <label>
             {t('smtpPassword')}
-            <input name="smtpPassword" type="password" defaultValue={settings.smtpPassword || ''} />
+            <input
+              name="smtpPassword"
+              type="password"
+              defaultValue={settings.smtpPassword || ''}
+              placeholder={t('smtpPassword')}
+            />
           </label>
           <label>
             {t('sender')}
-            <input name="smtpFrom" type="email" defaultValue={settings.smtpFrom || ''} />
+            <input
+              name="smtpFrom"
+              type="email"
+              defaultValue={settings.smtpFrom || ''}
+              placeholder={t('sender')}
+            />
           </label>
         </fieldset>
         {tab !== 'data' && <button>{t('save')}</button>}

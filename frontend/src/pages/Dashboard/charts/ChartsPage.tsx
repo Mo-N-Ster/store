@@ -167,6 +167,7 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
           {t('from')}
           <input
             type="date"
+            placeholder={t('startDate')}
             value={filters.from}
             onChange={(event) => setFilters({ ...filters, from: event.target.value })}
           />
@@ -175,6 +176,7 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
           {t('to')}
           <input
             type="date"
+            placeholder={t('endDate')}
             value={filters.to}
             onChange={(event) => setFilters({ ...filters, to: event.target.value })}
           />
@@ -442,6 +444,7 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
               {t('recipientEmail')}
               <input
                 type="email"
+                placeholder={t('recipientEmail')}
                 required
                 value={email.to}
                 onChange={(event) => setEmail({ ...email, to: event.target.value })}
@@ -451,6 +454,7 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
               {t('subject')}
               <input
                 required
+                placeholder={t('subject')}
                 value={email.subject}
                 onChange={(event) => setEmail({ ...email, subject: event.target.value })}
               />
@@ -459,6 +463,7 @@ export function ChartsPage({ notify }: { notify: (message: string) => void }) {
               {t('message')}
               <textarea
                 rows={4}
+                placeholder={t('message')}
                 value={email.text}
                 onChange={(event) => setEmail({ ...email, text: event.target.value })}
               />

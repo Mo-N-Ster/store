@@ -48,6 +48,7 @@ export function ForgotPasswordDialog({ onClose }: { onClose: () => void }) {
               {t('username')}
               <input
                 value={identifier}
+                placeholder={t('username')}
                 onChange={(event) => setIdentifier(event.target.value)}
                 required
               />
@@ -62,15 +63,27 @@ export function ForgotPasswordDialog({ onClose }: { onClose: () => void }) {
             </label>
             <label>
               {t('securityAnswer')}
-              <input name="answer" required autoComplete="off" />
+              <input name="answer" required autoComplete="off" placeholder={t('securityAnswer')} />
             </label>
             <label>
               {t('newPassword')}
-              <input name="newPassword" type="password" minLength={8} required />
+              <input
+                name="newPassword"
+                type="password"
+                minLength={8}
+                required
+                placeholder={t('newPassword')}
+              />
             </label>
             <label>
               {t('confirmPassword')}
-              <input name="confirmPassword" type="password" minLength={8} required />
+              <input
+                name="confirmPassword"
+                type="password"
+                minLength={8}
+                required
+                placeholder={t('confirmPassword')}
+              />
             </label>
             <button>{t('save')}</button>
           </form>

@@ -59,15 +59,20 @@ export function Header({
   }, [alertsOpen]);
   return (
     <header>
-      <button className="ghost mode-switch" onClick={onMode} title={t('switchWorkspace')}>
+      <button
+        className="ghost mode-switch header-icon-button"
+        onClick={onMode}
+        title={t('switchWorkspace')}
+      >
         ⇄
       </button>
       <h2>{title}</h2>
       <time>{clock.toLocaleString()}</time>
       <EmployeePresence notify={notify} />
       <span className="avatar">{user.initials}</span>
-      <button className="ghost" onClick={onMailbox} title={t('openMailbox')}>
-        ✉
+      <button className="ghost header-action" onClick={onMailbox} title={t('openMailbox')}>
+        <span aria-hidden="true">💬</span>
+        <span>{t('chat')}</span>
       </button>
       {user.role !== 'employee' && (
         <div ref={alertsRef} className="alerts-control">
@@ -104,13 +109,21 @@ export function Header({
       <span className={online ? 'online-status online' : 'online-status'}>
         {online ? t('online') : t('offline')}
       </span>
-      <button className="ghost" onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}>
+      <button
+        className="ghost header-icon-button"
+        onClick={() => setLang(lang === 'fr' ? 'en' : 'fr')}
+        title={t('language')}
+      >
         {lang.toUpperCase()}
       </button>
-      <button className="ghost" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+      <button
+        className="ghost header-icon-button"
+        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        title={t('theme')}
+      >
         {theme === 'light' ? '☾' : '☀'}
       </button>
-      <button className="danger ghost" onClick={onLogout}>
+      <button className="danger header-icon-button" onClick={onLogout} title={t('logout')}>
         ⏻
       </button>
     </header>

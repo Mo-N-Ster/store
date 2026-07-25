@@ -59,6 +59,7 @@ export function CartPanel({
               type="number"
               min="1"
               max={line.product.stockQuantity}
+              placeholder={t('quantity')}
               value={line.quantity}
               onChange={(e) => updateQuantity(line.product.id, Number(e.target.value))}
             />
@@ -101,6 +102,7 @@ export function CartPanel({
               type="number"
               min="0"
               max={discountMode === 'percent' ? 100 : subtotal}
+              placeholder={t('discount')}
               value={discount}
               onChange={(e) => setDiscount(Number(e.target.value))}
             />

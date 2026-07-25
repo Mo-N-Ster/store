@@ -67,7 +67,7 @@ export default function App() {
   const header = (
     <Header
       user={user}
-      title={view === 'pos' ? t('cashier') : view === 'mailbox' ? t('mailbox') : t('dashboard')}
+      title={view === 'pos' ? t('cashier') : view === 'mailbox' ? t('chat') : t('dashboard')}
       onMode={() => (view === 'pos' ? setManagerAuth(true) : setView('pos'))}
       onLogout={() => setUser(null)}
       onMailbox={() => {

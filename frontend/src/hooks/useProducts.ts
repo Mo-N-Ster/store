@@ -3,6 +3,7 @@ import type { Product } from '../types';
 import { productService } from '../services/productService';
 export function useProducts(search = '', category = '') {
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const reload = useCallback(async () => {
     setLoading(true);
@@ -16,5 +17,12 @@ export function useProducts(search = '', category = '') {
     const timer = window.setTimeout(() => void reload(), 200);
     return () => window.clearTimeout(timer);
   }, [reload]);
-  return { products, loading, reload };
+  useEffect(() => {
+    void productService
+      .list({})
+      .then((allProducts: Product[]) =>
+        setCategories([...new Set(allProducts.map((product) => product.category))].sort()),
+      );
+  }, []);
+  return { products, categories, loading, reload };
 }

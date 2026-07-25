@@ -156,6 +156,7 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                 {label}
                 <input
                   name={name}
+                  placeholder={label}
                   type={name === 'email' ? 'email' : name === 'hireDate' ? 'date' : 'text'}
                   defaultValue={edit[name] ?? ''}
                   required={
@@ -189,13 +190,14 @@ export function EmployeeList({ notify }: { notify: (x: string) => void }) {
                   {t('securityQuestion')}
                   <input
                     name="securityQuestion"
+                    placeholder={t('securityQuestion')}
                     defaultValue={edit.securityQuestion || ''}
                     required
                   />
                 </label>
                 <label>
                   {t('securityAnswer')}
-                  <input name="securityAnswer" required />
+                  <input name="securityAnswer" placeholder={t('securityAnswer')} required />
                 </label>
               </>
             )}
