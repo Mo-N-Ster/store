@@ -1,8 +1,10 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { PackagePlus } from 'lucide-react';
 import type { Product } from '../../types';
 import { formatMoney } from '../../utils/formatters';
 import { useStorePreferences } from '../../hooks/useStorePreferences';
+import { productStockStatus } from './posModel';
+import { ArticleImage } from '../../components/common/ArticleImage';
 export function ProductCard({
   product,
   onAdd,
@@ -12,43 +14,19 @@ export function ProductCard({
 }) {
   const { t } = useTranslation();
   const { currency } = useStorePreferences();
-  const [quantity, setQuantity] = useState(1);
-  const low = product.stockQuantity <= product.minStockThreshold;
+  const status = productStockStatus(product);
+  const statusLabel = t(status === 'out' ? 'stockOut' : status === 'low' ? 'stockLow' : 'stockAvailable');
   return (
-    <article className="product">
-      <span className="tag">{product.category}</span>
+    <article className={`pos-product pos-product--${status}`} aria-label={`${product.name}, ${formatMoney(product.price, currency)}, ${statusLabel}`}>
+      <ArticleImage imageRef={product.imageRef} alt={t('articleImageAlt', { article: product.name })} className="pos-product__placeholder" />
+      <span className="pos-product__category">{product.category}</span>
       <h3>{product.name}</h3>
-      <p>{product.description || product.hashtag || '—'}</p>
-      <div className="product-meta">
+      <div className="pos-product__meta">
         <strong>{formatMoney(product.price, currency)}</strong>
-        <small className={low ? 'low' : ''}>
-          {t('stock')}: {product.stockQuantity}
-        </small>
+        <span className={`pos-stock pos-stock--${status}`}>{statusLabel} · {product.stockQuantity}</span>
       </div>
-      <div className="quantity-picker">
-        <button className="ghost" onClick={() => setQuantity((value) => Math.max(1, value - 1))}>
-          −
-        </button>
-        <input
-          aria-label={t('quantity')}
-          placeholder={t('quantity')}
-          type="number"
-          min="1"
-          max={product.stockQuantity}
-          value={quantity}
-          onChange={(e) =>
-            setQuantity(Math.max(1, Math.min(product.stockQuantity, Number(e.target.value))))
-          }
-        />
-        <button
-          className="ghost"
-          onClick={() => setQuantity((value) => Math.min(product.stockQuantity, value + 1))}
-        >
-          +
-        </button>
-      </div>
-      <button disabled={!product.stockQuantity} onClick={() => onAdd(product, quantity)}>
-        {t('add')}
+      <button className="pos-product__add" disabled={status === 'out'} onClick={() => onAdd(product, 1)}>
+        <PackagePlus aria-hidden="true" />{status === 'out' ? t('unavailable') : t('addToCart')}
       </button>
     </article>
   );

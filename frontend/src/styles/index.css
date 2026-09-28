@@ -112,12 +112,9 @@ button:disabled {
   width: 68px;
   height: 68px;
   border-radius: 20px;
-  display: grid;
-  place-items: center;
-  background: var(--primary);
-  color: var(--on-primary);
-  font-size: 2rem;
-  font-weight: 900;
+  display: block;
+  object-fit: cover;
+  background: white;
 }
 .auth form,
 .form-modal,
@@ -158,7 +155,7 @@ button:focus-visible {
 .low {
   color: var(--danger);
 }
-header {
+#root > header {
   height: 70px;
   padding: 0 1.5rem;
   display: flex;
@@ -167,10 +164,10 @@ header {
   background: var(--panel);
   border-bottom: 1px solid var(--line);
 }
-header h2 {
+#root > header h2 {
   margin-right: auto;
 }
-header time {
+#root > header time {
   color: var(--muted);
 }
 .avatar {
@@ -446,16 +443,29 @@ progress {
   }
 }
 @media print {
-  body.invoice-print-mode > *:not(.modal) {
-    display: none;
+  body.invoice-print-mode #root * {
+    visibility: hidden;
   }
-  .modal {
-    position: static;
-    background: white;
+  body.invoice-print-mode .receipt,
+  body.invoice-print-mode .receipt * {
+    visibility: visible;
   }
-  .receipt {
+  body.invoice-print-mode .receipt {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+    margin: 0;
+    border: 0;
     box-shadow: none;
+    background: white;
     color: black;
+  }
+  body.invoice-print-mode .receipt button,
+  body.invoice-print-mode .receipt .error {
+    display: none !important;
   }
 }
 input[type='number'] {

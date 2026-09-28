@@ -1,17 +1,29 @@
 appId: com.monster.store
 productName: STORE
+copyright: Copyright © 2026 VIBE
 directories:
   output: release
+  buildResources: build
 files:
   - dist/**/*
   - package.json
+  - '!**/*.map'
+  - '!**/*.db'
+  - '!**/*.sqlite'
+  - '!**/.env*'
 asarUnpack:
   - node_modules/better-sqlite3/**/*
 win:
   target: nsis
+  icon: build/icon.ico
   artifactName: ${productName} Setup ${version}-${arch}.${ext}
 mac:
   target: dmg
+  icon: build/icon.png
 nsis:
+  deleteAppDataOnUninstall: false
   oneClick: false
   allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: STORE

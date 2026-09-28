@@ -5,4 +5,7 @@ export const formatMoney = (value: number, currency = 'EUR', locale?: string) =>
     style: 'currency',
     currency,
   }).format(value || 0);
-export const todayIso = () => new Date().toISOString().slice(0, 10);
+export { todayIso } from './localDate';
+
+export const formatNumber = (value: number, locale?: string, options?: Intl.NumberFormatOptions) =>
+  new Intl.NumberFormat(locale || i18n.resolvedLanguage || i18n.language, options).format(value || 0);

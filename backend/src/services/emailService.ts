@@ -20,6 +20,7 @@ export async function sendEmail(
   attachments: EmailAttachment[] = [],
 ) {
   if (!config.host || !to) throw new Error('SMTP_NOT_CONFIGURED');
+  try {
   const transporter = nodemailer.createTransport({
     host: config.host,
     port: config.port,
@@ -32,5 +33,13 @@ export async function sendEmail(
     subject,
     text,
     attachments,
+    // STORE only supplies in-memory PDF buffers. Keep message rendering unable
+    // to dereference local paths or remote URLs even if future callers regress.
+    disableFileAccess: true,
+    disableUrlAccess: true,
   });
+  } catch {
+    // Never persist or log provider responses containing credentials or message data.
+    throw new Error('SMTP_FAILED');
+  }
 }

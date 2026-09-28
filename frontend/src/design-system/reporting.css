@@ -1,0 +1,40 @@
+.dashboard-home, .report-domain { display: grid; gap: var(--space-5); }
+.dashboard-kpis, .report-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); }
+.dashboard-grid, .report-two-column { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 1fr); gap: var(--space-4); }
+.report-card { min-width: 0; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--elevation-1); }
+.report-card > header { display: flex; align-items: start; justify-content: space-between; gap: var(--space-3); }
+.report-card h2 { margin: 0 0 var(--space-3); font-size: var(--font-size-title); }
+.dashboard-context { display: flex; flex-direction: column; align-items: flex-start; }
+.dashboard-context > strong { font-size: var(--font-size-display); font-variant-numeric: tabular-nums; }
+.dashboard-attention-list, .dashboard-sales-list, .report-attention, .report-accessible-list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.dashboard-attention-list li, .dashboard-sales-list li { display: flex; min-height: var(--touch-target-min); align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+.dashboard-attention-list li > span:first-child, .dashboard-sales-list li > span { display: grid; }
+.dashboard-attention-list small, .dashboard-sales-list small { color: var(--color-text-muted); }
+.dashboard-bars { display: flex; height: 15rem; align-items: end; gap: max(2px, calc(var(--space-2) / 2)); overflow-x: auto; padding-top: var(--space-5); border-bottom: 1px solid var(--color-border); }
+.dashboard-bars > div { position: relative; display: grid; flex: 1 0 1.25rem; height: 100%; min-width: 1.25rem; align-items: end; text-align: center; }
+.dashboard-bars i { display: block; min-height: 3px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--color-primary); }
+.dashboard-bars span { overflow: hidden; font-size: .65rem; color: var(--color-text-muted); text-overflow: clip; }
+.dashboard-bars b { position: absolute; z-index: var(--z-overlay); bottom: calc(100% + var(--space-1)); left: 50%; display: none; padding: var(--space-1) var(--space-2); border-radius: var(--radius-sm); background: var(--color-text); color: var(--color-surface); font-size: var(--font-size-caption); white-space: nowrap; transform: translateX(-50%); }
+.dashboard-bars > div:focus-within b, .dashboard-bars > div:hover b { display: block; }
+.report-filter-bar { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
+.report-filter-bar label { display: grid; gap: var(--space-1); min-width: 9rem; color: var(--color-text-muted); font-size: var(--font-size-caption); }
+.report-filter-bar input, .report-filter-bar select { min-height: var(--touch-target-min); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-surface); color: var(--color-text); }
+.report-loading { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+.report-loading .ds-skeleton { min-height: 8rem; }
+.report-accessible-list { margin-top: var(--space-3); padding-left: var(--space-4); list-style: decimal; }
+.reports-page .ds-tabs__panel, .reports-page [role='tabpanel'] { padding-top: var(--space-4); }
+.reports-page table { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 68rem) {
+  .dashboard-kpis, .report-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-grid, .report-two-column { grid-template-columns: 1fr; }
+}
+@media (max-width: 50rem) {
+  .dashboard-kpis, .report-kpis, .report-loading { grid-template-columns: 1fr; }
+  .report-filter-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .report-filter-bar label { min-width: 0; }
+}
+@media (max-width: 34rem) { .report-filter-bar { grid-template-columns: 1fr; } }
+@media (prefers-contrast: more) { .dashboard-bars i { outline: 2px solid currentColor; } .report-card { border-width: 2px; box-shadow: none; } }
+@media (prefers-reduced-motion: reduce) { .dashboard-bars i { transition: none; } }
+@media print { .report-filter-bar, .report-actions, .store-shell__navigation { display: none !important; } }

@@ -11,5 +11,5 @@
     "types": ["node"],
     "composite": true
   },
-  "include": ["backend/src/**/*.ts"]
+  "include": ["backend/src/**/*.ts", "backend/src/**/*.cts"]
 }

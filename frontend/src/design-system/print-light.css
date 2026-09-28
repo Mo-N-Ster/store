@@ -1,0 +1,56 @@
+/* All native printing, PDF exports and PDF email attachments use this palette.
+   Print media only: never changes the screen theme or its saved preference. */
+@media print {
+  :root, html[data-theme='dark'], body {
+    color-scheme: light !important;
+    --color-background: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-raised: #ffffff;
+    --color-surface-subtle: #f0f3f1;
+    --color-text: #17231b;
+    --color-text-muted: #425449;
+    --color-border: #a4afa8;
+    --color-border-strong: #75877c;
+    --color-primary: #176b43;
+    --color-on-primary: #ffffff;
+    --color-primary-subtle: #e2f2e9;
+    --color-success: #18794e;
+    --color-success-subtle: #e3f3ea;
+    --color-warning: #805000;
+    --color-warning-subtle: #fff1d6;
+    --color-danger: #b4232d;
+    --color-danger-subtle: #fde7e9;
+    --color-info: #1769aa;
+    --color-info-subtle: #e3f0fa;
+    --color-disabled: #66766c;
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --surface: #ffffff;
+    --surface-raised: #ffffff;
+    --surface-subtle: #f0f3f1;
+    --text: #17231b;
+    --muted: #425449;
+    --line: #a4afa8;
+    --border: #a4afa8;
+    --primary: #176b43;
+    --on-primary: #ffffff;
+    --danger: #b4232d;
+    --on-danger: #ffffff;
+    --accent: #805000;
+    --shadow: none;
+    --shadow-sm: none;
+    background: #ffffff !important;
+    color: #17231b !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  :is(.report-card, .ds-kpi-card, .receipt, .ops-list-item, .ds-responsive-table, .table-shell) {
+    background: #ffffff !important;
+    color: #17231b !important;
+    box-shadow: none !important;
+  }
+  table { background: #ffffff !important; color: #17231b !important; }
+  th { background: #edf2ee !important; color: #17231b !important; }
+  td { background: #ffffff !important; color: #17231b !important; }
+  .price-chart svg text { fill: #425449 !important; }
+}

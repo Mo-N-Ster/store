@@ -6,6 +6,9 @@ export interface ReportFilters {
   grain: 'day' | 'week' | 'month';
   productId?: number;
   category?: string;
+  supplierId?: number;
+  employeeId?: number;
+  attendanceState?: string;
 }
 
 export const reportService = {

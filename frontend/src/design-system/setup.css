@@ -1,0 +1,300 @@
+.setup-shell {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      color-mix(in srgb, var(--accent) 12%, transparent),
+      transparent 35%
+    ),
+    var(--bg);
+}
+.setup-wizard {
+  width: min(58rem, 100%);
+  min-height: min(46rem, calc(100dvh - 3rem));
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--space-4);
+  padding: clamp(1.1rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.setup-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.setup-brand img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+.setup-brand div {
+  display: grid;
+}
+.setup-brand span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.setup-progress {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.setup-progress li {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  position: relative;
+  color: var(--muted);
+  text-align: center;
+}
+.setup-progress li::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+.setup-progress li:first-child::before {
+  display: none;
+}
+.setup-progress li > span {
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.setup-progress li.current {
+  color: var(--text);
+}
+.setup-progress li.current > span {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+.setup-progress li.complete > span {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.setup-progress svg {
+  width: 17px;
+}
+.setup-stage {
+  width: min(42rem, 100%);
+  margin: 0 auto;
+  align-self: start;
+}
+.setup-stage h1 {
+  margin: 0.35rem 0 0.5rem;
+  outline: none;
+}
+.setup-lead {
+  margin-top: 0;
+  color: var(--muted);
+  max-width: 42rem;
+}
+.setup-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+.setup-facts article {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.setup-facts svg {
+  color: var(--primary);
+}
+.setup-facts p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.setup-form {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+.setup-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.setup-security-note {
+  padding: var(--space-3);
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.setup-review {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.setup-review section {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.setup-review header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.setup-review h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.setup-review dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem 1.5rem;
+}
+.setup-review dl > div {
+  display: grid;
+  gap: 0.1rem;
+}
+.setup-review dt {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.setup-review dd {
+  margin: 0;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.setup-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+.setup-actions > span {
+  flex: 1;
+}
+.setup-error {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-md);
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 6%, var(--surface));
+}
+.setup-ready {
+  text-align: center;
+  padding: var(--space-5);
+}
+.setup-ready > svg {
+  width: 64px;
+  height: 64px;
+  color: var(--primary);
+}
+.setup-ready ul {
+  display: inline-grid;
+  text-align: left;
+  color: var(--muted);
+}
+.password-visibility {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
+@media (max-width: 700px) {
+  .setup-shell {
+    place-items: start center;
+    padding: 0.65rem;
+  }
+  .setup-wizard {
+    min-height: calc(100dvh - 1.3rem);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+  .setup-progress {
+    display: flex;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.35rem;
+  }
+  .setup-progress li {
+    min-width: 4.6rem;
+  }
+  .setup-progress li::before {
+    display: none;
+  }
+  .setup-progress small {
+    font-size: 0.7rem;
+  }
+  .setup-facts,
+  .setup-form__row,
+  .setup-review dl {
+    grid-template-columns: 1fr;
+  }
+  .setup-stage {
+    padding-bottom: 1rem;
+  }
+  .setup-actions {
+    position: sticky;
+    bottom: 0;
+    background: var(--surface);
+    padding-bottom: max(0.2rem, env(safe-area-inset-bottom));
+  }
+}
+@media (max-height: 650px) and (orientation: landscape) {
+  .setup-shell {
+    place-items: start center;
+  }
+  .setup-wizard {
+    min-height: auto;
+  }
+  .setup-progress small {
+    display: none;
+  }
+  .setup-facts {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--space-3);
+  }
+}
+@media (prefers-contrast: more) {
+  .setup-wizard,
+  .setup-facts article,
+  .setup-review section {
+    border-width: 2px;
+  }
+  .setup-progress li.current > span {
+    outline: 2px solid currentColor;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .setup-shell * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

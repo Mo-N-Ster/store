@@ -7,4 +7,5 @@ export interface Product {
   price: number;
   stockQuantity: number;
   minStockThreshold: number;
+  imageRef?: string | null;
 }

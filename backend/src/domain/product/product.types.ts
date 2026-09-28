@@ -6,4 +6,6 @@ export interface ProductInput {
   price: number;
   stockQuantity: number;
   minStockThreshold: number;
+  imageToken?: string;
+  removeImage?: boolean;
 }

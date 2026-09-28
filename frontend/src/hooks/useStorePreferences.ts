@@ -23,7 +23,7 @@ export function useStorePreferences() {
   const [preferences, setPreferences] = useState(defaults);
   const reload = useCallback(() => {
     void settingsService
-      .get()
+      .preferences()
       .then((settings: Record<string, string>) =>
         setPreferences({
           currency: SUPPORTED_CURRENCIES.includes(

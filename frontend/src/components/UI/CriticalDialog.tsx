@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { ModalBackdrop } from './ModalBackdrop';
 
 export function CriticalDialog({ message, onClose }: { message: string; onClose: () => void }) {
   const { t } = useTranslation();
   return (
-    <div className="modal" onMouseDown={onClose}>
+    <ModalBackdrop onClose={onClose}>
       <section
         className="form-modal critical-dialog"
         onMouseDown={(event) => event.stopPropagation()}
@@ -14,6 +15,6 @@ export function CriticalDialog({ message, onClose }: { message: string; onClose:
           {t('close')}
         </button>
       </section>
-    </div>
+    </ModalBackdrop>
   );
 }

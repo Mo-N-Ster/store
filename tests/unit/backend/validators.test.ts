@@ -56,4 +56,28 @@ describe('product validation', () => {
         minStockThreshold: 2,
       }),
     ).toThrow('INVALID_PRODUCT'));
+  it('rejects prices smaller than the supported cent', () =>
+    expect(() =>
+      validateProduct({
+        name: 'Poivre',
+        category: 'Épices',
+        price: 2.555,
+        stockQuantity: 10,
+        minStockThreshold: 2,
+      }),
+    ).toThrow('INVALID_PRODUCT'));
+  it('rejects fractional and non-finite inventory values', () => {
+    expect(() =>
+      validateProduct({
+        name: 'Poivre', category: 'Épices', price: Number.NaN,
+        stockQuantity: 10, minStockThreshold: 2,
+      }),
+    ).toThrow('INVALID_PRODUCT');
+    expect(() =>
+      validateProduct({
+        name: 'Poivre', category: 'Épices', price: 2.5,
+        stockQuantity: 1.5, minStockThreshold: 2,
+      }),
+    ).toThrow('INVALID_PRODUCT');
+  });
 });

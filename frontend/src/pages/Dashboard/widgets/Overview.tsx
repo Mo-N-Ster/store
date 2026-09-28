@@ -1,223 +1,48 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Alert, Button, EmptyState, ErrorState, KpiCard, Skeleton } from '../../../design-system';
+import { useStorePreferences } from '../../../hooks/useStorePreferences';
 import { dashboardService } from '../../../services/dashboardService';
 import { productService } from '../../../services/productService';
 import { saleService } from '../../../services/saleService';
 import type { Product } from '../../../types';
 import { formatMoney, todayIso } from '../../../utils/formatters';
-import { useStorePreferences } from '../../../hooks/useStorePreferences';
-import { SubTabs } from '../../../components/UI/SubTabs';
-import { ProductDetailsDialog } from '../products/ProductDetailsDialog';
-import { InvoicePreview } from '../../Cashier/InvoicePreview';
+import type { DashboardSection } from '../../../navigation/navigation';
+import { can, type EffectivePermission } from '../../../security/permissions';
+import { PresentEmployees } from './PresentEmployees';
 
-export function Overview() {
+export function Overview({ onNavigate, permissions, onOpenPresence }: { onNavigate: (section: DashboardSection) => void; permissions: EffectivePermission[]; onOpenPresence: (id?: number) => void }) {
   const { t } = useTranslation();
-  const preferences = useStorePreferences();
-  const [summary, setSummary] = useState<any>({});
+  const { currency } = useStorePreferences();
+  const [summary, setSummary] = useState<any>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [alerts, setAlerts] = useState<any[]>([]);
   const [sales, setSales] = useState<any[]>([]);
-  const [active, setActive] = useState('products');
-  const [search, setSearch] = useState('');
-  const [productDetail, setProductDetail] = useState<Product | null>(null);
-  const [invoiceDetail, setInvoiceDetail] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [failed, setFailed] = useState(false);
+  const load = async () => {
+    setLoading(true); setFailed(false);
+    try {
+      const today = todayIso();
+      const [dashboard, productRows, invoiceRows] = await Promise.all([dashboardService.get(), productService.list(), saleService.list({ from: today, to: today, search: '' })]);
+      setSummary(dashboard); setProducts(productRows); setSales(invoiceRows);
+    } catch { setSummary(null); setProducts([]); setSales([]); setFailed(true); }
+    finally { setLoading(false); }
+  };
+  useEffect(() => { void load(); }, []);
+  const lowStock = useMemo(() => products.filter((row) => row.stockQuantity <= row.minStockThreshold).sort((a, b) => a.stockQuantity - b.stockQuantity), [products]);
+  const outOfStock = lowStock.filter((row) => row.stockQuantity === 0);
+  const validatedSales = sales.filter((row) => row.status === 'validated');
+  const averageTicket = summary?.salesToday ? Number(summary.revenueToday || 0) / Number(summary.salesToday) : 0;
+  const trend = summary?.salesChart || [];
+  const trendMax = Math.max(1, ...trend.map((item: any) => Number(item.value)));
 
-  useEffect(() => {
-    const today = todayIso();
-    void Promise.all([
-      dashboardService.get(),
-      productService.list(),
-      dashboardService.notifications(),
-      saleService.list({ from: today, to: today, search: '' }),
-    ]).then(([dashboard, productRows, notificationRows, saleRows]) => {
-      setSummary(dashboard);
-      setProducts((productRows as Product[]).sort((a, b) => a.name.localeCompare(b.name)));
-      setAlerts(notificationRows);
-      setSales(saleRows);
-    });
-  }, []);
-
-  const lowStock = useMemo(
-    () =>
-      products
-        .filter((product) => product.stockQuantity <= product.minStockThreshold)
-        .map((product) => ({
-          ...product,
-          reachedAt: alerts.find(
-            (alert) => alert.product_id === product.id && alert.type === 'stock_alert',
-          )?.created_at,
-        })),
-    [alerts, products],
-  );
-  const visibleProducts = products.filter((product) =>
-    [product.name, product.category, product.hashtag]
-      .filter(Boolean)
-      .join(' ')
-      .toLowerCase()
-      .includes(search.trim().toLowerCase()),
-  );
-  const tabs = [
-    { id: 'products', label: t('products'), count: products.length },
-    { id: 'lowStock', label: t('lowStock'), count: lowStock.length },
-    { id: 'salesToday', label: t('salesToday'), count: sales.length },
-  ];
-
-  return (
-    <>
-      <div className="page-heading">
-        <div>
-          <span className="eyebrow">{t('overview')}</span>
-          <h1>{t('home')}</h1>
-        </div>
-        <p>{t('overviewDescription')}</p>
-      </div>
-      <div className="widgets overview-widgets">
-        <button
-          className={active === 'products' ? 'active' : ''}
-          onClick={() => setActive('products')}
-        >
-          <span className="widget-icon">📦</span>
-          <span>{t('products')}</span>
-          <b>{summary.products || 0}</b>
-        </button>
-        <button
-          className={active === 'lowStock' ? 'active' : ''}
-          onClick={() => setActive('lowStock')}
-        >
-          <span className="widget-icon">⚠</span>
-          <span>{t('lowStock')}</span>
-          <b>{summary.lowStock || 0}</b>
-        </button>
-        <button
-          className={active === 'salesToday' ? 'active' : ''}
-          onClick={() => setActive('salesToday')}
-        >
-          <span className="widget-icon">🧾</span>
-          <span>{t('salesToday')}</span>
-          <b>{summary.salesToday || 0}</b>
-          <small>{formatMoney(summary.revenueToday, preferences.currency)}</small>
-        </button>
-        <article>
-          <span className="widget-icon">◫</span>
-          <span>{t('revenueMonth')}</span>
-          <b>{formatMoney(summary.revenueMonth, preferences.currency)}</b>
-        </article>
-      </div>
-      <SubTabs tabs={tabs} active={active} onChange={setActive} ariaLabel={t('homeSections')} />
-
-      {active === 'products' && (
-        <>
-          <div className="filters">
-            <input
-              value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder={t('searchProducts')}
-            />
-          </div>
-          <div className="table-shell">
-            <table>
-              <thead>
-                <tr>
-                  <th>{t('product')}</th>
-                  <th>{t('category')}</th>
-                  <th>{t('currentStock')}</th>
-                  <th>{t('unitPrice')}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visibleProducts.map((product) => (
-                  <tr
-                    className="clickable-row"
-                    key={product.id}
-                    onClick={() => setProductDetail(product)}
-                  >
-                    <td>
-                      <b>{product.name}</b>
-                      <small>{product.hashtag}</small>
-                    </td>
-                    <td>{product.category}</td>
-                    <td>{product.stockQuantity}</td>
-                    <td>{formatMoney(product.price, preferences.currency)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </>
-      )}
-      {active === 'lowStock' && (
-        <div className="table-shell">
-          <table>
-            <thead>
-              <tr>
-                <th>{t('product')}</th>
-                <th>{t('currentStock')}</th>
-                <th>{t('minimumThreshold')}</th>
-                <th>{t('thresholdReachedAt')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {lowStock.map((product) => (
-                <tr
-                  className="clickable-row"
-                  key={product.id}
-                  onClick={() => setProductDetail(product)}
-                >
-                  <td>{product.name}</td>
-                  <td>
-                    <span className="stock-pill low-stock">{product.stockQuantity}</span>
-                  </td>
-                  <td>{product.minStockThreshold}</td>
-                  <td>{product.reachedAt ? new Date(product.reachedAt).toLocaleString() : '—'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      {active === 'salesToday' && (
-        <div className="table-shell">
-          <table>
-            <thead>
-              <tr>
-                <th>{t('invoice')}</th>
-                <th>{t('date')}</th>
-                <th>{t('seller')}</th>
-                <th>{t('total')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sales.map((sale) => (
-                <tr
-                  className="clickable-row"
-                  key={sale.id}
-                  onClick={() => saleService.detail(sale.id).then(setInvoiceDetail)}
-                >
-                  <td>{sale.id}</td>
-                  <td>{new Date(sale.invoiceDate).toLocaleString()}</td>
-                  <td>{sale.seller}</td>
-                  <td>{formatMoney(sale.totalAmount, preferences.currency)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-      {productDetail && (
-        <ProductDetailsDialog
-          product={productDetail}
-          currency={preferences.currency}
-          onClose={() => setProductDetail(null)}
-        />
-      )}
-      {invoiceDetail && (
-        <InvoicePreview
-          data={invoiceDetail}
-          close={() => setInvoiceDetail(null)}
-          currency={preferences.currency}
-          discountsEnabled={preferences.discountsEnabled}
-        />
-      )}
-    </>
-  );
+  if (loading) return <section className="dashboard-home" aria-label={t('loading')}><div className="report-loading"><Skeleton label={t('loading')} /><Skeleton label={t('loading')} /><Skeleton label={t('loading')} /></div></section>;
+  if (failed || !summary) return <ErrorState title={t('dashboardLoadError')} description={t('retryDashboardHint')} action={<Button onClick={() => void load()}>{t('retry')}</Button>} />;
+  return <section className="dashboard-home" aria-labelledby="dashboard-title"><header className="ops-page__header"><div><span className="eyebrow">{t('operationalOverview')}</span><h1 id="dashboard-title">{t('home')}</h1><p>{t('dashboardTodayHint')}</p></div><span className="ops-status ops-status--active">{t('todayLocal')}</span></header>
+    {(outOfStock.length > 0 || lowStock.length > 0) && <Alert variant={outOfStock.length ? 'danger' : 'warning'} title={t('attentionRequired')} action={<Button size="sm" variant="secondary" onClick={() => onNavigate('products')}>{t('reviewProducts')}</Button>}><span>{t('stockAttentionSummary', { out: outOfStock.length, low: lowStock.length })}</span></Alert>}
+    <div className="dashboard-kpis"><KpiCard label={t('revenueToday')} value={formatMoney(summary.revenueToday, currency)} context={t('validatedSalesOnly')} /><KpiCard label={t('transactions')} value={summary.salesToday || 0} context={t('validatedSalesOnly')} /><KpiCard label={t('averageTicket')} value={formatMoney(averageTicket, currency)} context={t('averageBasketDefinition')} /><KpiCard label={t('outOfStock')} value={outOfStock.length} context={t('currentState')} /></div>
+    <div className="dashboard-grid"><div className="dashboard-main-stack"><section className="report-card dashboard-trend"><header><div><h2>{t('salesLastThirtyDays')}</h2><p>{t('validatedSalesTrendHint')}</p></div><Button size="sm" variant="secondary" onClick={() => onNavigate('charts')}>{t('openReports')}</Button></header>{trend.length ? <div className="dashboard-bars" role="img" aria-label={t('salesTrendAccessible')} style={{ '--bar-count': trend.length } as React.CSSProperties}>{trend.map((row: any) => { const max = trendMax; return <div key={row.label}><i style={{ height: `${Math.max(3, Number(row.value) / max * 100)}%` }} /><span>{String(row.label).slice(5)}</span><b>{formatMoney(row.value, currency)}</b></div>; })}</div> : <EmptyState title={t('noDataForPeriod')} />}</section>
+      <section className="report-card"><h2>{t('todayTransactions')}</h2>{validatedSales.length ? <ul className="dashboard-sales-list" tabIndex={0} aria-label={t('todayTransactions')}>{validatedSales.map((row) => <li key={row.id}><span><strong>{row.id}</strong><small>{row.seller}</small></span><b>{formatMoney(row.totalAmount, currency)}</b></li>)}</ul> : <EmptyState title={t('noSalesToday')} />}</section>
+      </div><div className="dashboard-side-stack"><section className="report-card"><h2>{t('stockAttention')}</h2>{lowStock.length ? <ul className="dashboard-attention-list" tabIndex={0} aria-label={t('stockAttention')}>{lowStock.map((row) => <li key={row.id}><span><strong>{row.name}</strong><small>{row.category}</small></span><b>{row.stockQuantity} / {row.minStockThreshold}</b><span className={`ops-status ops-status--${row.stockQuantity === 0 ? 'out' : 'low'}`}>{t(row.stockQuantity === 0 ? 'stockOut' : 'stockLow')}</span></li>)}</ul> : <EmptyState title={t('noStockAlerts')} description={t('stockHealthyHint')} />}</section>{can(permissions, 'PRESENCE', 'READ') && <PresentEmployees onOpen={onOpenPresence} />}<section className="report-card dashboard-context"><h2>{t('monthContext')}</h2><strong>{formatMoney(summary.revenueMonth, currency)}</strong><p>{t('monthRevenueDefinition')}</p><Button variant="secondary" onClick={() => onNavigate('charts')}>{t('analyzePeriod')}</Button></section></div></div>
+  </section>;
 }

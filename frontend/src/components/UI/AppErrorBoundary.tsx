@@ -18,7 +18,7 @@ export class AppErrorBoundary extends Component<{ children: ReactNode }, State> 
     if (!this.state.failed) return this.props.children;
     return (
       <main className="fatal-error">
-        <div className="logo">S</div>
+        <img className="logo" src="./store-logo.png" alt="STORE" />
         <h1>{i18n.t('appRecoveryTitle')}</h1>
         <p>{i18n.t('appRecoveryMessage')}</p>
         <button onClick={() => window.location.reload()}>{i18n.t('reloadApp')}</button>

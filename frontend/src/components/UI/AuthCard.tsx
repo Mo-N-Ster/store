@@ -3,7 +3,7 @@ export function AuthCard({ title, children }: { title: string; children: ReactNo
   return (
     <main className="auth">
       <section className="auth-card">
-        <div className="logo">S</div>
+        <img className="logo" src="./store-logo.png" alt="STORE" />
         <h1>{title}</h1>
         {children}
       </section>

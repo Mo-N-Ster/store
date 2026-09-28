@@ -1,4 +1,5 @@
 export interface UserInput {
+  photo?: string | null;
   username: string;
   email?: string;
   password?: string;

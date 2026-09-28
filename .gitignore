@@ -11,3 +11,10 @@ coverage/
 backups/
 .env
 .DS_Store
+# Local qualification outputs: evidence, disposable profiles, native caches and binaries.
+artifacts/
+.env.*
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.store-backup

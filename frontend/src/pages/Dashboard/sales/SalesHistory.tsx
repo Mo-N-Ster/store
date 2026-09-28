@@ -25,9 +25,12 @@ export function SalesHistory({ userId }: { userId: number }) {
     [filters, type],
   );
   useEffect(() => void load(), [load]);
+  const selectableRows = type === 'sales' ? rows.filter((row) => row.status !== 'cancelled') : rows;
   const toggleAll = () =>
     setSelected(
-      selected.size === rows.length ? new Set() : new Set(rows.map((row) => String(row.id))),
+      selected.size === selectableRows.length
+        ? new Set()
+        : new Set(selectableRows.map((row) => String(row.id))),
     );
   const exportPdf = async () => {
     document.body.classList.add('document-print-mode');
@@ -41,10 +44,15 @@ export function SalesHistory({ userId }: { userId: number }) {
     }
   };
   const removeSelected = async () => {
-    if (!selected.size || !confirm(t('confirmHistoryDeletion'))) return;
+    if (!selected.size) return;
     if (type === 'sales') {
-      for (const id of selected) await saleService.remove({ id, userId });
-    } else await saleService.deleteHistory({ type, ids: [...selected].map(Number), userId });
+      const reason = prompt(t('cancellationReasonPrompt'))?.trim();
+      if (!reason || reason.length < 3) return;
+      for (const id of selected) await saleService.remove({ id, userId, reason });
+    } else {
+      if (!confirm(t('confirmHistoryDeletion'))) return;
+      await saleService.deleteHistory({ type, ids: [...selected].map(Number), userId });
+    }
     await load();
   };
   return (
@@ -75,9 +83,12 @@ export function SalesHistory({ userId }: { userId: number }) {
           />
         </label>
         <button onClick={exportPdf}>{t('exportPdf')}</button>
-        <button className="danger" disabled={!selected.size} onClick={removeSelected}>
-          {t('deleteSelected')}
-        </button>
+        {(filters.from || filters.to) && <button className="ghost" onClick={() => setFilters({ from: '', to: '' })}>{t('clearFilters')}</button>}
+        {type !== 'personnel' && (
+          <button className="danger" disabled={!selected.size} onClick={removeSelected}>
+            {t('deleteSelected')}
+          </button>
+        )}
       </div>
       <SubTabs
         ariaLabel={t('historyTypes')}
@@ -89,25 +100,28 @@ export function SalesHistory({ userId }: { userId: number }) {
           { id: 'personnel', label: t('personnel') },
         ]}
       />
-      <label className="select-all">
-        <input
-          type="checkbox"
-          checked={rows.length > 0 && selected.size === rows.length}
-          onChange={toggleAll}
-        />
-        {t('selectAll')}
-      </label>
+      {type !== 'personnel' && (
+        <label className="select-all">
+          <input
+            type="checkbox"
+            checked={selectableRows.length > 0 && selected.size === selectableRows.length}
+            onChange={toggleAll}
+          />
+          {t('selectAll')}
+        </label>
+      )}
       <div className="table-shell">
         <table>
           <thead>
             <tr>
-              <th></th>
+              {type !== 'personnel' && <th></th>}
               {type === 'sales' ? (
                 <>
                   <th>{t('invoice')}</th>
                   <th>{t('date')}</th>
                   <th>{t('seller')}</th>
                   <th>{t('total')}</th>
+                  <th>{t('status')}</th>
                 </>
               ) : type === 'purchases' ? (
                 <>
@@ -133,29 +147,47 @@ export function SalesHistory({ userId }: { userId: number }) {
               <tr
                 className={type === 'sales' ? 'clickable-row' : ''}
                 key={row.id}
+                tabIndex={type === 'sales' ? 0 : undefined}
                 onClick={() => type === 'sales' && saleService.detail(row.id).then(setDetail)}
+                onKeyDown={(event) => {
+                  if (
+                    type === 'sales' &&
+                    (event.key === 'Enter' || event.key === ' ')
+                  ) {
+                    event.preventDefault();
+                    void saleService.detail(row.id).then(setDetail);
+                  }
+                }}
               >
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selected.has(String(row.id))}
-                    onClick={(event) => event.stopPropagation()}
-                    onChange={() =>
-                      setSelected((current) => {
-                        const next = new Set(current);
-                        if (next.has(String(row.id))) next.delete(String(row.id));
-                        else next.add(String(row.id));
-                        return next;
-                      })
-                    }
-                  />
-                </td>
+                {type !== 'personnel' && (
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selected.has(String(row.id))}
+                      disabled={type === 'sales' && row.status === 'cancelled'}
+                      onClick={(event) => event.stopPropagation()}
+                      onChange={() =>
+                        setSelected((current) => {
+                          const next = new Set(current);
+                          if (next.has(String(row.id))) next.delete(String(row.id));
+                          else next.add(String(row.id));
+                          return next;
+                        })
+                      }
+                    />
+                  </td>
+                )}
                 {type === 'sales' ? (
                   <>
                     <td>{row.id}</td>
                     <td>{new Date(row.invoiceDate).toLocaleString()}</td>
                     <td>{row.seller}</td>
                     <td>{formatMoney(row.totalAmount, preferences.currency)}</td>
+                    <td>
+                      <span className={`status-pill ${row.status || 'validated'}`}>
+                        {t(statusKey(row.status))}
+                      </span>
+                    </td>
                   </>
                 ) : type === 'purchases' ? (
                   <>
@@ -192,3 +224,4 @@ export function SalesHistory({ userId }: { userId: number }) {
     </>
   );
 }
+import { statusKey } from '../../../utils/entityLabels';

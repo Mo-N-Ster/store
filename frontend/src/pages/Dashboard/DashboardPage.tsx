@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import type { User } from '../../types';
-import { Sidebar, type DashboardSection } from '../../components/Layout/Sidebar';
+import type { DashboardSection } from '../../navigation/navigation';
 import { Overview } from './widgets/Overview';
 import { ProductList } from './products/ProductList';
 import { EmployeeList } from './employees/EmployeeList';
@@ -8,28 +7,44 @@ import { SalesHistory } from './sales/SalesHistory';
 import { ChartsPage } from './charts/ChartsPage';
 import { MailboxPage } from './mailbox/MailboxPage';
 import { SettingsPage } from './settings/SettingsPage';
-export function DashboardPage({ user, notify }: { user: User; notify: (x: string) => void }) {
-  const [section, setSection] = useState<DashboardSection>('home');
+import { HelpPage } from './help/HelpPage';
+import type { EffectivePermission } from '../../security/permissions';
+export function DashboardPage({
+  user,
+  notify,
+  section,
+  onSectionChange,
+  permissions,
+  onOpenPresence,
+  onOpenTeam,
+}: {
+  user: User;
+  notify: (x: string) => void;
+  section: DashboardSection;
+  onSectionChange: (section: DashboardSection) => void;
+  permissions: EffectivePermission[];
+  onOpenPresence: (employeeId?: number) => void;
+  onOpenTeam: () => void;
+}) {
   return (
-    <main className="dashboard">
-      <Sidebar active={section} onChange={setSection} />
-      <section className="workspace">
+      <section className="workspace store-shell__legacy-page">
         {section === 'home' ? (
-          <Overview />
+          <Overview onNavigate={onSectionChange} permissions={permissions} onOpenPresence={onOpenPresence} />
         ) : section === 'products' ? (
-          <ProductList notify={notify} userId={user.id} />
+          <ProductList notify={notify} userId={user.id} permissions={permissions} />
         ) : section === 'employees' ? (
-          <EmployeeList notify={notify} />
+          <EmployeeList notify={notify} permissions={permissions} />
         ) : section === 'sales' ? (
           <SalesHistory userId={user.id} />
         ) : section === 'charts' ? (
-          <ChartsPage notify={notify} />
+          <ChartsPage notify={notify} permissions={permissions} />
         ) : section === 'mailbox' ? (
-          <MailboxPage user={user} notify={notify} />
+          <MailboxPage user={user} notify={notify} variant="management" />
+        ) : section === 'settings' ? (
+          <SettingsPage user={user} notify={notify} permissions={permissions} onOpenTeam={onOpenTeam} />
         ) : (
-          <SettingsPage user={user} notify={notify} />
+          <HelpPage />
         )}
       </section>
-    </main>
   );
 }

@@ -1,5 +1,6 @@
 export type UserRole = 'owner' | 'manager' | 'employee';
 export interface User {
+  photo?: string | null;
   id: number;
   username: string;
   email: string;

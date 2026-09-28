@@ -2,10 +2,20 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { User } from '../../../types';
 import { messageService } from '../../../services/messageService';
-import { employeeService } from '../../../services/employeeService';
 import { dashboardService } from '../../../services/dashboardService';
 import { SubTabs } from '../../../components/UI/SubTabs';
-export function MailboxPage({ user, notify }: { user: User; notify: (x: string) => void }) {
+import { ModalBackdrop } from '../../../components/UI/ModalBackdrop';
+import { Button, IconButton } from '../../../design-system';
+import { Plus, Trash2 } from 'lucide-react';
+export function MailboxPage({
+  user,
+  notify,
+  variant = 'management',
+}: {
+  user: User;
+  notify: (x: string) => void;
+  variant?: 'chat' | 'management';
+}) {
   const { t } = useTranslation();
   const [rows, setRows] = useState<any[]>([]);
   const [compose, setCompose] = useState(false);
@@ -14,6 +24,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
   const [alerts, setAlerts] = useState<any[]>([]);
   const [emailLogs, setEmailLogs] = useState<any[]>([]);
   const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [sending, setSending] = useState(false);
   const load = () => messageService.list({ userId: user.id, role: user.role }).then(setRows);
   const loadArchives = () =>
     Promise.all([dashboardService.notifications(), dashboardService.emailReportLogs()]).then(
@@ -24,28 +35,37 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
     );
   useEffect(() => {
     void load();
-    void loadArchives();
-    void employeeService
-      .list()
+    if (variant === 'management') void loadArchives();
+    void messageService
+      .recipients()
       .then((items) => setUsers(items.filter((item: User) => item.active)));
     const timer = window.setInterval(load, 15000);
     return () => window.clearInterval(timer);
   }, []);
   const send = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (sending) return;
+    setSending(true);
     const form = Object.fromEntries(new FormData(event.currentTarget));
     const destination = String(form.destination);
     const recipientId = destination.startsWith('user:') ? Number(destination.slice(5)) : undefined;
-    await messageService.send({
-      senderId: user.id,
-      recipientType: recipientId ? 'user' : 'all',
-      recipientId,
-      subject: form.subject,
-      content: form.content,
-    });
-    setCompose(false);
-    await load();
-    notify(t('messageSent'));
+    try {
+      await messageService.send({
+        senderId: user.id,
+        recipientType: recipientId ? 'user' : 'all',
+        recipientId,
+        subject: form.subject,
+        content: form.content,
+        requestId: crypto.randomUUID(),
+      });
+      setCompose(false);
+      await load();
+      notify(t('messageSent'));
+    } catch {
+      notify(t('messageSendFailed'));
+    } finally {
+      setSending(false);
+    }
   };
   const archiveRows = tab === 'alerts' ? alerts : emailLogs;
   const deleteArchive = async () => {
@@ -56,15 +76,15 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
     await loadArchives();
   };
   return (
-    <>
+    <section className={variant === 'chat' ? 'quick-chat' : 'mailbox-management'}>
       <div className="titlebar">
         <div>
           <span className="eyebrow">{t('communication')}</span>
-          <h1>{t('mailbox')}</h1>
+          <h1>{variant === 'chat' ? t('chat') : t('mailboxManagement')}</h1>
         </div>
-        {tab === 'mailbox' && <button onClick={() => setCompose(true)}>+ {t('newMessage')}</button>}
+        {variant === 'chat' && tab === 'mailbox' && <Button icon={Plus} onClick={() => setCompose(true)}>{t('newMessage')}</Button>}
       </div>
-      <SubTabs
+      {variant === 'management' && <SubTabs
         ariaLabel={t('mailboxSections')}
         active={tab}
         onChange={(value) => {
@@ -72,23 +92,23 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
           setSelected(new Set());
         }}
         tabs={[
-          { id: 'mailbox', label: t('mailingBox'), count: rows.length },
-          { id: 'alerts', label: t('alerts'), count: alerts.length },
+          { id: 'mailbox', label: t('chatManagement'), count: rows.length },
+          { id: 'alerts', label: t('alertManagement'), count: alerts.length },
           ...(user.role !== 'employee'
-            ? [{ id: 'emailReports', label: t('emailReports'), count: emailLogs.length }]
+            ? [{ id: 'emailReports', label: t('emailManagement'), count: emailLogs.length }]
             : []),
         ]}
-      />
+      />}
       {tab === 'mailbox' && !rows.length && (
         <div className="empty-state">
           <span>✉</span>
           <p>{t('noMessages')}</p>
         </div>
       )}
-      {tab === 'mailbox' &&
-        rows.map((message) => (
+      {tab === 'mailbox' && <div className="chat-conversation" role="log" aria-label={t('chat')}>
+        {rows.map((message) => (
           <article
-            className={`message ${message.is_read ? '' : 'unread'}`}
+            className={`message ${message.sent ? 'message--sent' : 'message--received'} ${message.is_read ? '' : 'unread'}`}
             key={message.id}
             onClick={() =>
               !message.sent && messageService.mark(message.id, user.id, true).then(load)
@@ -103,17 +123,18 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
               {new Date(message.created_at).toLocaleString()}
             </small>
             <p>{message.content}</p>
-            <button
+            {variant === 'management' && <IconButton
               className="danger"
+              icon={Trash2}
+              label={t('deleteMessage')}
               onClick={(event) => {
                 event.stopPropagation();
                 messageService.remove(message.id, user.id).then(load);
               }}
-            >
-              🗑
-            </button>
+            />}
           </article>
         ))}
+      </div>}
       {tab !== 'mailbox' && (
         <>
           <div className="archive-actions">
@@ -134,6 +155,18 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
             <button className="danger" disabled={!selected.size} onClick={deleteArchive}>
               {t('deleteSelected')}
             </button>
+            {tab === 'emailReports' && (
+              <button
+                className="secondary"
+                onClick={async () => {
+                  const result = await dashboardService.retryEmailQueue();
+                  await loadArchives();
+                  notify(String(t('emailRetryResult', result)));
+                }}
+              >
+                {t('retryPendingEmails')}
+              </button>
+            )}
           </div>
           <div className="table-shell">
             <table>
@@ -153,6 +186,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
                       <th>{t('subject')}</th>
                       <th>{t('file')}</th>
                       <th>{t('status')}</th>
+                      <th>{t('attempts')}</th>
                     </>
                   )}
                 </tr>
@@ -186,7 +220,15 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
                         <td>{row.recipient}</td>
                         <td>{row.subject}</td>
                         <td>{row.filename}</td>
-                        <td>{t(row.status)}</td>
+                        <td>
+                          <span className={`status-pill ${row.status}`} title={row.last_error || ''}>
+                            {t(row.status)}
+                          </span>
+                          {row.next_attempt_at && row.status === 'pending' && (
+                            <small>{t('nextAttempt')}: {new Date(row.next_attempt_at).toLocaleString()}</small>
+                          )}
+                        </td>
+                        <td>{row.attempts}</td>
                       </>
                     )}
                   </tr>
@@ -197,7 +239,7 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
         </>
       )}
       {compose && (
-        <div className="modal" onMouseDown={() => setCompose(false)}>
+        <ModalBackdrop className="chat-compose-overlay" dismissible={!sending} onClose={() => setCompose(false)}>
           <form
             className="form-modal"
             onSubmit={send}
@@ -218,15 +260,15 @@ export function MailboxPage({ user, notify }: { user: User; notify: (x: string) 
                   ))}
               </select>
             </label>
-            <input name="subject" placeholder={t('subject')} required />
-            <textarea name="content" placeholder={t('content')} required />
-            <button>{t('send')}</button>
-            <button type="button" className="ghost" onClick={() => setCompose(false)}>
+            <label>{t('subject')}<input name="subject" placeholder={t('subject')} required /></label>
+            <label>{t('content')}<textarea name="content" placeholder={t('content')} required /></label>
+            <Button disabled={sending}>{sending ? t('sending') : t('send')}</Button>
+            <Button type="button" disabled={sending} variant="ghost" onClick={() => setCompose(false)}>
               {t('close')}
-            </button>
+            </Button>
           </form>
-        </div>
+        </ModalBackdrop>
       )}
-    </>
+    </section>
   );
 }
