@@ -1,6 +1,11 @@
 # STORE — Production acceptance checklist
 
-Date : 2026-09-28. Nouvelle RC non générée ; aucun PASS humain présumé.
+Date : 2026-09-28. RC `RC-63b3849-x64`, source `63b3849ee234248a3b07a643e17dd22fb8c7b23d`, version 2.0.1, migration 18.
+Installateur : `artifacts/release-candidate/rc-63b3849/STORE Setup 2.0.1-x64.exe` ; 113587989 octets ; UNSIGNED.
+SHA-256 : `BAF72A92F0E76ABED562B9924996AA5B8DDA3FBBAF77EFEADCD2800876A3FBFC`.
+Statut final : **STORE 2.0.1 — FUNCTIONALLY QUALIFIED, UNSIGNED**. Installation/startup, migration réelle 13→18, lifecycle uninstall/reinstall et acceptation fonctionnelle globale : PASS attestés par l'utilisateur dans la mission de clôture. Signature volontairement hors périmètre, non bloquante. Ces essais n'ont pas été réexécutés pour la clôture documentaire.
+
+Les lignes détaillées NOT TESTED ci-dessous restent non attestées individuellement : l'acceptation globale ne permet pas d'inventer un résultat pour chaque sous-scénario, matériel ou panne. Ancien binaire → nouvel installateur **in-place : NOT TESTED**, distinct de migration DB et réinstallation même RC. Windows x64 SUPPORTED + FUNCTIONALLY QUALIFIED ; Android hors 2.0.1, prévu séparément pour STORE 3.0.
 Statuts permis : PASS / FAIL / NOT TESTED / NOT APPLICABLE (justification obligatoire).
 Exécuter sur VM/profil Windows séparé et données synthétiques, jamais sur profil réel pour restore/reset/upgrade destructif. Le profil de test développement n'est pas un override autorisé du binaire packaged.
 
@@ -8,10 +13,10 @@ Exécuter sur VM/profil Windows séparé et données synthétiques, jamais sur p
 
 | ID | Contrôle | Statut | Observateur / preuve / notes |
 |---|---|---|---|
-| ACCEPT-01 | Fresh installation : installer, setup, restart, login | NOT TESTED | À renseigner |
-| ACCEPT-02 | Upgrade avec profil synthétique pré-18 : users/Owner/login/stock/factures/FK/NULL | NOT TESTED | À renseigner |
-| ACCEPT-03 | Uninstall/reinstall : conservation des données | NOT TESTED | À renseigner |
-| ACCEPT-04 | Restart application packagée sans corruption | NOT TESTED | À renseigner |
+| ACCEPT-01 | Installation Windows x64 et démarrage packagé | PASS | Attestation utilisateur de clôture |
+| ACCEPT-02 | Migration DB historique schéma 13→18, intégrité/FK/données/pré-backup | PASS | Attestation utilisateur ; ce n'est pas un upgrade ancien binaire in-place |
+| ACCEPT-03 | Uninstall/reinstall même RC : conservation des données | PASS | Attestation utilisateur ; DB bit-à-bit après uninstall et avant relaunch |
+| ACCEPT-04 | Reopen/login application packagée sans corruption | PASS | Attestation utilisateur ; seul ajout audit login/session/SUCCESS, 24→25 |
 | ACCEPT-05 | Login : succès, échec, récupération, saisie continue | NOT TESTED | À renseigner |
 | ACCEPT-06 | User switching : caisse ouverte, panier, permissions rafraîchies | NOT TESTED | À renseigner |
 | ACCEPT-07 | Permissions : Owner/Manager/Employee et retraits | NOT TESTED | À renseigner |
@@ -40,4 +45,4 @@ Exécuter sur VM/profil Windows séparé et données synthétiques, jamais sur p
 | ACCEPT-30 | Keyboard navigation : Tab, focus, Escape, password | NOT TESTED | À renseigner |
 | ACCEPT-31 | Touch : cibles, défilement zone/panier | NOT TESTED | À renseigner |
 
-Décision finale : NOT TESTED. Cette checklist préparée ne constitue ni acceptation humaine ni certification.
+Décision finale : **acceptation fonctionnelle humaine globale PASS, attestée par l'utilisateur**. Les résultats détaillés non fournis restent NOT TESTED. Aucun statut de certification externe ; release FUNCTIONALLY QUALIFIED, UNSIGNED. READY TO TAG v2.0.1, sans tag ni push.

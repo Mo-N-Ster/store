@@ -1,5 +1,77 @@
 # STORE — décision de qualification production
 
+## Clôture définitive STORE 2.0.1 — FUNCTIONALLY QUALIFIED, UNSIGNED
+
+Cette clôture documentaire remplace les statuts BLOCKED historiques ci-dessous. Les preuves d'installation, de migration et d'acceptation humaine sont **attestées par l'utilisateur dans la mission « ÉTAPE 1 — CLÔTURE DÉFINITIVE » reçue pour cette intervention** ; elles ne sont pas présentées comme des essais réexécutés par l'agent. Aucun rebuild, test global, accès aux données réelles ou changement fonctionnel effectué pour cette clôture.
+
+### Identité immuable
+
+- STORE by VIBE, 2.0.1 ; Windows x64 ; Electron + React/TypeScript + SQLite local ; migration 18.
+- Frozen functional source : `63b3849ee234248a3b07a643e17dd22fb8c7b23d`, branche main. Vérifié avant clôture ; seules deux documentations modifiées depuis ce commit.
+- RC : `artifacts/release-candidate/rc-63b3849/STORE Setup 2.0.1-x64.exe`.
+- SHA-256 recalculé une fois lors de cette clôture, identique : `BAF72A92F0E76ABED562B9924996AA5B8DDA3FBBAF77EFEADCD2800876A3FBFC`.
+- Authenticode : **UNSIGNED volontairement**, accepté pour cette release, signature hors périmètre et non bloquante. Pas de certification externe revendiquée.
+
+### Preuves retenues
+
+| Contrôle | Résultat | Provenance / périmètre |
+|---|---|---|
+| Tests | 291 PASS, 0 FAIL, 0 SKIP | Gate automatisé du gel, non relancé |
+| RF-004 | CLOSED | Tests/rapport de clôture conservés |
+| Lint/build/diff | PASS | Gates existants ; contrôle documentaire final distinct |
+| Audits production/tooling | 0 / 0 vulnérabilité | Preuves acquises du gel/build, non relancées |
+| Package / SQLite embarqué | PASS | Contrôles techniques RC déjà enregistrés |
+| Installation Windows x64 / démarrage packagé | PASS | Attestation utilisateur de clôture |
+| Migration réelle schéma 13 → 18 par RC | PASS | Attestation utilisateur : integrity_check=ok, FK clean, données métier préservées, pre-migration backup créé |
+| Désinstallation / réinstallation même RC | PASS | Attestation utilisateur : profil conservé, store.db bit-à-bit après uninstall, inchangée avant relaunch, reopen/login et données préservés |
+| Audit après login | Conforme | Attestation utilisateur : audit_logs 24 → 25, unique ajout login/session/SUCCESS ; pas perte/corruption |
+| Acceptation fonctionnelle humaine | PASS | Acceptation globale explicitement fournie par l'utilisateur ; ne fabrique pas de mesures/scénarios détaillés supplémentaires |
+| Ancien binaire installé → nouvel installateur in-place | **NOT TESTED** | Distinct de migration DB et réinstallation du même RC |
+
+### Plateformes et limites
+
+Windows x64 : **SUPPORTED + FUNCTIONALLY QUALIFIED**. Android : **NOT PART OF STORE 2.0.1**, prévu séparément pour STORE 3.0 ; aucun travail Android ici. Windows ARM64/macOS restent configurés mais non qualifiés selon baseline ; iOS/navigateur autonome non supportés ; aucune qualification Linux établie.
+
+Les limites fonctionnelles/deferred encore valides de CURRENT_APPLICATION_BASELINE restent inchangées (local-only, reprise incomplète de brouillons, quantités entières, périmètre non comptable, etc.). Ne plus considérer RF004, le gel, les audits corrigés ou les validations installation/startup/lifecycle ici attestées comme des blocages ouverts. Les scénarios physiques détaillés non individuellement attestés ne deviennent pas des PASS implicites. Upgrade ancien binaire in-place reste NOT TESTED.
+
+### Freeze documentaire final
+
+Functional source unchanged : YES ; version 2.0.1, migration 18, identité RC conservées. Le commit documentaire de clôture est distinct du frozen functional source ; aucun amend/squash, rebuild, tag ou push. SHA documentaire communiqué après commit.
+
+**READY TO TAG v2.0.1** — aucun tag créé dans cette étape. Aucun push/publication/distribution effectué.
+
+---
+
+## RC-63b3849-x64 — 2026-09-28 — BLOCKED
+
+Source commit: `63b3849ee234248a3b07a643e17dd22fb8c7b23d`, main.
+Source clean: confirmé avant build et après packaging ; seules les mises à jour documentaires de qualification suivent, sans commit.
+Version: 2.0.1, produit STORE, éditeur VIBE. Migration: 18, présence vérifiée dans app.asar.
+Environment: Windows 10.0.26200 x64 ; Node 22.17.0 ; npm 11.5.2 ; Electron 43.1.1 ; electron-builder 26.15.3 ; better-sqlite3 12.11.1.
+Tests baseline: 291 PASS / 56 fichiers / 0 FAIL / 0 SKIP, RF004 PASS au gel ; pas de nouvelle suite inutile.
+Production audit: npm audit --omit=dev exécuté avant build, 0 vulnérabilité.
+Tooling audit: preuve du gel 0, aucune dépendance mise à jour ici.
+
+Packaging: PASS, configuration electron-builder.yml existante, Windows x64 NSIS, seule destination de sortie surchargée vers artifacts/release-candidate/rc-63b3849. Dist généré ancien supprimé, caches TypeScript générés supprimés après constat de non-réémission incrémentale ; build complet réussi ensuite. Aucun original/backup/profil supprimé. Ancien installateur conservé.
+Package verification: PASS, scripts/verify-package.mjs sur nouvelle sortie. App.asar : 3765 entrées, aucun chemin détecté de profils/tests/artifacts/backups/logs/.env/DB/archives de backup/clés/source maps. Scan des textes JS/CJS/JSON/HTML/CSS/TXT sans candidat clé privée/token évident ; vérification ciblée, pas certification universelle de secrets.
+Native module: helper existant PASS sous Electron ABI 148 ; contrôle supplémentaire STORE.exe packagé en mode Node/base mémoire distinct du démarrage applicatif.
+Packaged startup: NOT TESTED — aucune session Windows/VM isolée confirmée. STORE_TEST_PROFILE est explicitement refusé en packaged. Aucun contournement du guard, lancement sur profil réel ou changement fonctionnel pour le smoke. Chargement SQLite en mode Node ne prouve ni fenêtre, setup/login ni arrêt normal de l'application.
+
+RC filename: `artifacts/release-candidate/rc-63b3849/STORE Setup 2.0.1-x64.exe`.
+RC size: 113587989 octets.
+Build timestamp (installer LastWriteTimeUtc): 2026-09-28T06:57:17.5472921Z.
+SHA-256: `BAF72A92F0E76ABED562B9924996AA5B8DDA3FBBAF77EFEADCD2800876A3FBFC` (calculé sur ce nouveau fichier).
+Authenticode: UNSIGNED, statut PowerShell NotSigned. Les messages génériques builder « signing with signtool.exe » ne sont pas preuve d'une signature effective.
+
+Fresh install: HUMAN VALIDATION REQUIRED.
+Upgrade: HUMAN VALIDATION REQUIRED ; preuves migration synthétique RF004 réutilisées, pas test installateur.
+Uninstall/reinstall: HUMAN VALIDATION REQUIRED.
+Human acceptance: checklist identifiée avec cette RC/empreinte ; résultats restent NOT TESTED.
+Remaining blockers: démarrage packagé isolé obligatoire non exécuté ; installation/upgrade/conservation et validation humaine encore absents. Un environnement Windows isolé doit montrer fenêtre, SQLite/migration18, setup/login et arrêt propre avant de qualifier le smoke PASS.
+RC status: BLOCKED — artefact construit mais preuve technique obligatoire de démarrage packagé manquante. Aucun statut READY ni certification production. Aucun tag, push, publication ou distribution.
+
+---
+
 ## Reprise tooling / gel — 2026-09-28 — gates logiciels PASS
 
 Cette section remplace l'état de blocage npm ci-dessous ; historique conservé.
