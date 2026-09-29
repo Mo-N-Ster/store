@@ -1,0 +1,8 @@
+.tools/
+.gradle/
+.gradle-home/
+.android-home/
+.kotlin/
+**/build/
+local.properties
+out/

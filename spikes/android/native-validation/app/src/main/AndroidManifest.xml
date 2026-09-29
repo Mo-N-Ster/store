@@ -1,0 +1,6 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Disposable debug harness: adb launches commands; no STORE components/data. -->
+    <application android:allowBackup="false" android:label="STORE isolated spike" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name=".SpikeActivity" android:exported="true" />
+    </application>
+</manifest>

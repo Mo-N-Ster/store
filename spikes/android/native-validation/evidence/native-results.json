@@ -1,0 +1,847 @@
+{
+  "target": "emulator-5554",
+  "api": "36",
+  "abi": "x86_64",
+  "cases": [
+    {
+      "mode": "fault",
+      "point": 1,
+      "killed_pid": 2085,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-1",
+          "pid": 2249,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2249
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-1",
+          "pid": 2357,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2357
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-1",
+          "pid": 2517,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2517
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 2,
+      "killed_pid": 2629,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-2",
+          "pid": 2735,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2735
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-2",
+          "pid": 2796,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2796
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-2",
+          "pid": 2914,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 2914
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 3,
+      "killed_pid": 3008,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-3",
+          "pid": 3110,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3110
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-3",
+          "pid": 3164,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3164
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-3",
+          "pid": 3215,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3215
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 4,
+      "killed_pid": 3274,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-4",
+          "pid": 3335,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3335
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-4",
+          "pid": 3387,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3387
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-4",
+          "pid": 3439,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3439
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 5,
+      "killed_pid": 3498,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-5",
+          "pid": 3564,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3564
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-5",
+          "pid": 3614,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3614
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-5",
+          "pid": 3669,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3669
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 6,
+      "killed_pid": 3728,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-6",
+          "pid": 3790,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3790
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-6",
+          "pid": 3843,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3843
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-6",
+          "pid": 3895,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 3895
+          }
+        }
+      ]
+    },
+    {
+      "mode": "fault",
+      "point": 7,
+      "killed_pid": 3955,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-7",
+          "pid": 4018,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4018
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-7",
+          "pid": 4075,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4075
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-fault-7",
+          "pid": 4125,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4125
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 1,
+      "killed_pid": 4184,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-1",
+          "pid": 4243,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4243
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-1",
+          "pid": 4295,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4295
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-1",
+          "pid": 4346,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4346
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 2,
+      "killed_pid": 4403,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-2",
+          "pid": 4465,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4465
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-2",
+          "pid": 4515,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4515
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-2",
+          "pid": 4567,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4567
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 3,
+      "killed_pid": 4626,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-3",
+          "pid": 4688,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4688
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-3",
+          "pid": 4744,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4744
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-3",
+          "pid": 4793,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4793
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 4,
+      "killed_pid": 4852,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-4",
+          "pid": 4913,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4913
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-4",
+          "pid": 4966,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 4966
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-4",
+          "pid": 5020,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5020
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 5,
+      "killed_pid": 5075,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-5",
+          "pid": 5138,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5138
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-5",
+          "pid": 5191,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5191
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-5",
+          "pid": 5243,
+          "detail": {
+            "generation": "old",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5243
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 6,
+      "killed_pid": 5299,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-6",
+          "pid": 5358,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5358
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-6",
+          "pid": 5414,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5414
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-6",
+          "pid": 5463,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5463
+          }
+        }
+      ]
+    },
+    {
+      "mode": "pause",
+      "point": 7,
+      "killed_pid": 5522,
+      "recoveries": [
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-7",
+          "pid": 5580,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5580
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-7",
+          "pid": 5633,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5633
+          }
+        },
+        {
+          "status": "PASS",
+          "action": "recover",
+          "case": "5ea248d123-pause-7",
+          "pid": 5688,
+          "detail": {
+            "generation": "new",
+            "integrity": "ok",
+            "fk": "ok",
+            "schema": 1,
+            "parents": 1,
+            "media": 2,
+            "sqlite": "3.50.1",
+            "recovery": "idempotent-candidate",
+            "pid": 5688
+          }
+        }
+      ]
+    }
+  ],
+  "pdf": {
+    "status": "PASS",
+    "action": "pdf",
+    "case": "5ea248d123-pdf",
+    "pid": 5740,
+    "detail": {
+      "tests": [
+        "native_persisted_roundtrip_3_records_unicode_money",
+        "canonical_key_order",
+        "malformed_json",
+        "missing_payload",
+        "unsupported_prefix",
+        "unsupported_version",
+        "corrupt_base64",
+        "invalid_negative_price",
+        "invalid_fractional_quantity",
+        "invalid_subcent_price",
+        "truncated_pdf",
+        "synthetic_2_0_1_compatibility",
+        "valid_tampering_not_authenticated_V1"
+      ],
+      "count": 13,
+      "pdf": "android-structured.pdf",
+      "renderer": "android.graphics.pdf.PdfDocument",
+      "codec": "pdfbox-android 2.0.27.0",
+      "authenticity": "untrusted V1; validation, not authentication"
+    }
+  }
+}

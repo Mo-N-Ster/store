@@ -2,7 +2,7 @@
 
 Étape 4 · 28 septembre 2026 · architecture/documentation uniquement.
 
-**STATUS: BLOCKED pour verrouillage complet du contrat d'implémentation.** Architecture cible sélectionnée ci-dessous ; deux mécanismes restent PROVISIONAL : snapshot/recovery sur le driver retenu (SP-01) et PDF STORE structuré (SP-02). Aucun spike n'a été exécuté. Ce document autorise leur spécification à l'étape 5, pas leur exécution ni le développement du produit.
+**STATUS: STEP 4 CLOSED — READY FOR STEP 5 / IMPLEMENTATION CONTRACT.** Mise à jour Step 4.2 du 29 septembre 2026 : SP-01 et SP-02 natifs PASS sur une cible Android API 36 x86_64, avec mort externe réelle du processus. [Preuves et limites](STORE_3_ARCHITECTURE_SPIKES.md). Les 16 décisions sont LOCKED au niveau architecture ; aucun statut production-ready ni autorisation d'implémentation du produit n'en découle.
 
 ## 1. Purpose
 
@@ -15,7 +15,7 @@ Définir couches, responsabilités, technologies et preuves requises pour Androi
 - Source 2.0.1 immuable : `63b3849ee234248a3b07a643e17dd22fb8c7b23d`, FUNCTIONALLY QUALIFIED, UNSIGNED. Aucun statut de qualification transféré à Android.
 - Confirmation ciblée seulement : `backend/src/domain/sale/canonicalSale.ts`, `domain/auth/identity.ts`, `domain/user/user.validators.ts`, branche `createInvoice` de `database/storeDatabase.ts`. Le replay est vérifié **avant** une nouvelle vérification du stock courant : ne pas refuser une facture déjà créée parce que sa vente a consommé le stock.
 
-Références externes officielles/mainteneurs consultées le 28 septembre 2026, citées aux décisions. Les versions finales/transitives seront épinglées dans le futur contrat et vérifiées avant installation ; aucun paquet n'est installé ici.
+Références externes officielles/mainteneurs consultées les 28–29 septembre 2026, citées aux décisions. Les versions finales/transitives seront épinglées et revérifiées dans le futur contrat ; seuls les outils/dépendances du banc isolé Step 4.2 ont été installés, pas ceux d'une application STORE Android de production.
 
 ## 3. Architectural Principles
 
@@ -31,14 +31,14 @@ Priorité : exactitude, sécurité, durabilité, modularité, simplicité, coût
 | UI/navigation | Jetpack Compose, Material 3/adaptive, Navigation Compose à destinations typées | 02 LOCKED |
 | État | ViewModel + StateFlow, état immuable, flux unidirectionnel ; pas store global métier dans UI | 02/08 LOCKED |
 | Domaine/application | Kotlin pur, use cases explicites, ports, composition manuelle des dépendances | 03 LOCKED |
-| DB | Room stable 2.8.x (2.8.5 observé), AndroidX BundledSQLiteDriver, DAO privés | 05 LOCKED ; snapshot 06 PROVISIONAL |
+| DB | Room stable 2.8.x (2.8.5 testé), AndroidX BundledSQLiteDriver, DAO privés | 05/06 LOCKED |
 | Migrations | Migrations Room explicites, schémas exportés/versionnés, aucun fallback destructif | 05 LOCKED |
 | Validation | Fonctions Kotlin pures et commandes typées, contrôle runtime à l'entrée | 03/07 LOCKED |
 | Hash/crypto | bcrypt `at.favre.lib:bcrypt`, paramètres/parité source ; JCA SecureRandom/SHA-256/AES-GCM | 04/09 LOCKED |
 | Secrets | Android Keystore pour clés AES ; ciphertext privé, pas de clé en DB | 09 LOCKED |
 | Fichiers/médias | Stockage interne privé, ContentResolver + Storage Access Framework (SAF), AtomicFile pour petits marqueurs | 14 LOCKED |
-| Backup/recovery | Snapshot quiescent, bundle ZIP borné en streaming, générations + pointeur durable | 06 PROVISIONAL |
-| PDF | Modèle documentaire natif + PdfDocument ; codec metadata PDF STORE via PDFBox-Android candidat | 10 PROVISIONAL pour codec |
+| Backup/recovery | Snapshot quiescent, bundle ZIP borné en streaming, générations + pointeur durable | 06 LOCKED ; protocole natif SP-01 validé |
+| PDF | Modèle documentaire natif + PdfDocument ; codec metadata PDF STORE via PDFBox-Android | 10 LOCKED ; codec natif SP-02 validé |
 | Print/share | PrintManager/PrintDocumentAdapter ; FileProvider + ACTION_SEND | 11 LOCKED |
 | E-mail | SMTP direct Eclipse Angus Mail/Activation + partage complémentaire | 12 LOCKED |
 | Graphes/rapports | Modèles Kotlin, requêtes bornées, Compose Canvas + tableaux accessibles | 02/07 LOCKED |
@@ -216,7 +216,7 @@ Désactiver backup système cloud et transfert implicite des données métier/se
 
 ## 16. Backup / Restore / Reset
 
-**Protocole retenu, adaptateur PROVISIONAL SP-01.** Pas de copie naïve d'une DB active, pas dépendance à fermeture normale.
+**Protocole retenu, sélection LOCKED par SP-01 natif.** Pas de copie naïve d'une DB active, pas dépendance à fermeture normale. Room 2.8.5/BundledSQLiteDriver 2.7.1, AtomicFile, 7 frontières × 2 niveaux d'interruption et 42 reprises PASS. Cela valide le mécanisme, pas une implémentation complète de backup/reset STORE.
 
 Backup : maintenance exclusive → drainer lectures/écritures/Workers → checkpoint WAL vérifié réussi → fermer toutes connexions → copier DB stable et médias référencés vers snapshot privé → rouvrir génération active → contrôler copie/intégrité/FK/références → ZIP en streaming avec manifeste version mobile/schema/app/tailles/SHA-256 → flush/sync et publication interne → rétention 7 automatiques. Aucune suppression des manuelles/pré-opération. Échec checkpoint/close/copie : abort sans effacer WAL. Manifestes prouvent intégrité accidentelle, pas authenticité face à un attaquant.
 
@@ -240,15 +240,15 @@ flowchart TD
 
 Reset : Owner + password propre + confirmation + safety backup, nouvelle génération vide avec schéma valide ; même protocole de bascule. Avant bascule, ancien métier reste autoritaire ; après bascule durable, finaliser reset et cleanup sans retour silencieux des anciens comptes. Journaux distinguent RESTORE/RESET et décision de bascule ; backups hors génération non supprimés. Aucun nettoyage avant certitude de l'état. Reprise sans session autorisée seulement pour achever/récupérer l'opération préalablement autorisée enregistrée, jamais créer un nouveau reset.
 
-**SP-01 minimal (bloquant, à autoriser séparément)** : petit banc Android isolé Room/driver/version cible, DB synthétique + deux médias ; transaction vente/RF004 ; checkpoint/quiescence ; snapshot ; génération/pointeur/journal. Tuer processus à chaque point avant/après flush/bascule, injecter espace faible et corruption candidate, redémarrer. Vérifier invariant old complet OU new complet, FK/intégrité, absence double effet, pragmas sur connexions, reprise Workers ; test min API et appareil arm64 à pages 16 Kio. Aucune donnée réelle. Si primitives ne suffisent pas : décision DB/recovery à réouvrir, pas bricolage de suppression WAL.
+**SP-01 sélection native PASS selon le périmètre Step 4.2** : petit banc Room/driver, transaction synthétique avec rollback FK, checkpoint/fermeture, snapshot, générations/journal/pointeur, mort externe et reprises répétées ; old OU new complet, intégrité/FK/médias valides. Qualification produit encore obligatoire : RF004 intégré, concurrence/Workers, faible espace, corruption candidate native, coupure physique, min API/ARM64/pages 16 Kio et reset complet. Ces essais plus larges ne sont pas prétendus exécutés par le spike à cible unique. Si les primitives échouent à ces gates futurs : rouvrir la décision, jamais supprimer WAL pour contourner l'erreur.
 
 ## 17. PDF / Print / Share / Email
 
 PDF facture/rapport : snapshot métier autorisé immuable → DocumentModel (titres, période/filtres, date/heure, colonnes, montants, graphe) → pagination native → PdfDocument sur fond blanc/texte contrasté. Même modèle pour aperçu/document, pas screenshot du thème actif. Polices/glyphes FR/EN/FCFA, coupures de tableaux, pages et tailles bornées à tester. Contenu déterministe pour même snapshot, pas obligation d'octets identiques avec metadata temporelle. API native offline documentée. [PdfDocument](https://developer.android.com/reference/android/graphics/pdf/PdfDocument).
 
-Catalogue PDF STORE structuré : capacité Step 2 H obligatoire, distincte d'un rapport lisible. PdfDocument seul ne lit pas la metadata importée. **PDFBox-Android candidat pour lecture/écriture du Subject STORE_DATA_V1 uniquement**, derrière port StructuredCatalogCodec ; pas parser maison ni suppression de la fonction. Le mainteneur documente Android/API19 et Apache-2.0, mais README fondé sur PDFBox 2.0.27 ne suffit pas à établir maintenance/correctifs et sûreté du parser pour ce contrat. [Projet mainteneur](https://github.com/TomRoush/PdfBox-Android).
+Catalogue PDF STORE structuré : capacité Step 2 H obligatoire, distincte d'un rapport lisible. PdfDocument seul ne lit pas la metadata importée. **PDFBox-Android retenu pour lecture/écriture du Subject STORE_DATA_V1 uniquement**, derrière port StructuredCatalogCodec ; pas parser maison ni suppression de la fonction. Version 2.0.27.0 exécutée avec PdfDocument sur Android dans SP-02. Le mainteneur documente Android/API19 et Apache-2.0 ; ce résultat fonctionnel ne certifie pas la maintenance ni la sûreté générale du parser. [Projet mainteneur](https://github.com/TomRoush/PdfBox-Android).
 
-**SP-02 minimal (bloquant, à autoriser séparément)** : vérifier release/maintenance/advisories et dépendances du codec ; corpus synthétique STORE export→import et fichiers inconnus/chiffrés/tronqués/metadata excessive ; lecture bornée, délais/mémoire, zéro accès DB/réseau depuis parser, aucun import partiel ; API minimum/arm64/release minifiée. Évaluer confinement parsing en service isolé avec descripteur readonly et interruption contrôlée. Validation inclut compatibilité de la convention catalogue conservée, pas DB Desktop. Si maintenance insuffisante ou bornes impossibles : ne pas accepter le paquet ; réouvrir ADR10 pour autre codec maintenu. Aucun spike exécuté maintenant.
+**SP-02 sélection native PASS selon Step 4.2** : 13 groupes d'assertions, PDF Android persisté/lisible, aller-retour canonique Unicode/montants, rejets malformé/absent/version/corruption et fixture synthétique catalogue 2.0.1. Politique A : V1 non authentifié, données non fiables validées avant toute persistance ; altération restant valide non détectable. Qualification produit encore obligatoire : maintenance/advisories/transitives, fichiers chiffrés/metadata excessive, délais/mémoire et confinement en service isolé avec descripteur readonly, min API/ARM64/release minifiée. Zéro mutation DB dans le parser du banc. Si maintenance insuffisante ou bornes impossibles aux gates produit : ne pas livrer le paquet, rouvrir ADR10 ; pas de remplacement silencieux. Compatibilité catalogue conservée, pas DB Desktop.
 
 Impression : PrintManager + PrintDocumentAdapter servant PDF autorisé ; annulation/périphérique absent visibles, jamais nouvelle vente. Partage : FileProvider non exporté, URI temporaire read-only, ACTION_SEND/chooser, nettoyage différé hors usage ; pas chemin brut. [Impression](https://developer.android.com/training/printing/custom-docs), [partage sûr](https://developer.android.com/training/secure-file-sharing/share-file).
 
@@ -326,12 +326,12 @@ Séparation en modules de compilation pour interdire dépendance presentation→
 | A identité, B rôles, C session | IdentityAccess + SessionManager + bcrypt/Room | 3 |
 | D accueil | DashboardQuery + Compose | 1 |
 | E caisse, F vente, G facture | Cash/Sale/Invoice + UnitOfWork + documents | 3 |
-| H articles, I médias, J stock, K mouvements, L inventaires | Catalog/Stock/Inventory + MediaStore | 5 ; H codec PROVISIONAL |
+| H articles, I médias, J stock, K mouvements, L inventaires | Catalog/Stock/Inventory + MediaStore | 5 ; H codec LOCKED SP-02 |
 | M achats, N fournisseurs | Purchase/Supplier + Room | 2 |
 | O équipe, P présence | Team/Attendance + validation personnelle | 2 |
 | Q rapports, R messagerie, S e-mail | Reporting/Messaging/Delivery + document/SMTP | 3 |
 | T paramètres, U audit | Settings/Audit + SecretStore | 2 |
-| V backup, W restore, X reset, Y diagnostics | Maintenance + RecoveryCoordinator | 4 ; V/W/X adaptateur PROVISIONAL |
+| V backup, W restore, X reset, Y diagnostics | Maintenance + RecoveryCoordinator | 4 ; mécanisme V/W/X LOCKED SP-01 |
 | Z locale, AA accessibilité, AE aide/navigation | Presentation + ressources + Help/document | 3 |
 | AB frontière, AC persistance, AD recovery | Application/Infrastructure transverses | 3 |
 
@@ -348,11 +348,11 @@ Total **31/31 adressés architecturalement**, pas 31 validés en exécution.
 | C15 UI, C16 permissions, C17 diagnostics | Compose adaptive, permissions minimales/URI grants, service santé local |
 | C18 packaging, C19 partage | Gradle/APK signé, FileProvider/chooser |
 
-Total **19/19 adressées**, C10 et composante structurée C11 non verrouillées.
+Total **19/19 adressées**, C10 et composante structurée C11 verrouillées au niveau architecture par Step 4.2.
 
 ## 24. Technology ADRs
 
-Une décision par ligne : **14 LOCKED, 2 PROVISIONAL**. Les détails des sections référencées font partie de la décision, pas des options supplémentaires implicites.
+Une décision par ligne : **16 LOCKED, 0 PROVISIONAL**. Les détails et gates produit résiduels des sections référencées font partie de la décision, pas des options supplémentaires implicites.
 
 | ADR / Decision | Chosen option | Alternatives considered | Why chosen / trade-offs | Risks addressed | Lock status |
 |---|---|---|---|---|---|
@@ -361,11 +361,11 @@ Une décision par ligne : **14 LOCKED, 2 PROVISIONAL**. Les détails des section
 | 03 Layers/trust | Use cases typés, ports, modules | DAO UI / SQL générique | Autorité centralisée ; séparation logique non sandbox intra-processus | R02 | LOCKED |
 | 04 Auth | bcrypt favre + session mémoire | bcrypt JS embarqué ; cloud auth | Android documenté, aucune élévation ; parité encodage/latence requise | R02/R06/R07 | LOCKED |
 | 05 Persistence | Room/BundledSQLite, migrations explicites | SQLite plateforme brut ; driver JS | Moteur contrôlé/DAO/migrations ; taille binaire et adaptation | R01/R03 | LOCKED |
-| 06 Maintenance | Snapshot quiescent + générations/journal + ZIP stream | Copie DB ouverte ; remplacement in-place | Moins d'états mixtes ; checkpoint/flush/reopen à prouver SP-01 | R03/R04/R05/R08 | PROVISIONAL |
+| 06 Maintenance | Snapshot quiescent + générations/journal + ZIP stream | Copie DB ouverte ; remplacement in-place | Mécanisme natif checkpoint/AtomicFile/reprise PASS SP-01 ; qualification produit restante | R03/R04/R05/R08 | LOCKED |
 | 07 Transactions/parité | UnitOfWork, canonicalisation versionnée | Calcul UI autoritaire ; nouvelle clé au retry | RF004 exact, audit limité source ; fixtures de parité nécessaires | R01/R12 | LOCKED |
 | 08 Lifecycle | Session volatile, état distinct, journal commande soumise | Persist session/password ; timer permanent | Mort processus traitée ; resaisie panier possible | R07 | LOCKED |
 | 09 Secrets | Keystore AES-GCM + privé | Plaintext ; clé incluse backup | Pas clé exportée ; reconfiguration SMTP après perte clé | R06 | LOCKED |
-| 10 Documents | PdfDocument + candidat PDFBox-Android pour codec | Screenshot UI ; suppression import ; parser maison | Offline et modèle déterministe ; maintenance/parser à prouver SP-02 | R08/R10 | PROVISIONAL |
+| 10 Documents | PdfDocument + PDFBox-Android pour codec | Screenshot UI ; suppression import ; parser maison | Codec natif/compatibilité PASS SP-02 ; maintenance et confinement gates produit | R08/R10 | LOCKED |
 | 11 Print/share | PrintManager + FileProvider/intent | Impression Desktop ; chemins publics | APIs Android, pas accusé livraison garanti | R05/R10 | LOCKED |
 | 12 Email | Angus SMTP + partage complémentaire | Share seulement ; serveur STORE | Préserve queue réelle ; TLS/configuration et doublons externes gérés | R06/R11 | LOCKED |
 | 13 Background | WorkManager + rattrapage | Service toujours actif ; timers | Scheduling système ; aucune deadline garantie | R07/R11 | LOCKED |
@@ -383,36 +383,36 @@ RESOLVED = décision définie, encore soumise aux tests normaux futurs ; BLOCKS 
 | OQ-02 stockage/RF004 | RESOLVED | §9–11 Room/transactions/commande ; recovery spécialisé reste OQ-05 |
 | OQ-03 lifecycle/session | RESOLVED | §12–13 mémoire/session et état durable distincts |
 | OQ-04 médias | RESOLVED | §14 RF001/references/copie privée, sécurité publication testée via SP-01 |
-| OQ-05 backup/restore | BLOCKS IMPLEMENTATION CONTRACT | Protocole §16 retenu, adaptateur snapshot/recovery SP-01 non prouvé |
+| OQ-05 backup/restore | RESOLVED | Protocole §16, preuve native SP-01 : 42 reprises cohérentes, mort externe réelle |
 | OQ-06 background | RESOLVED | §20 WorkManager/rattrapage, pas timers garantis |
-| OQ-07 PDF/print | BLOCKS IMPLEMENTATION CONTRACT | Print/share décidés ; codec PDF STORE requis SP-02 non verrouillé |
+| OQ-07 PDF/print | RESOLVED | Print/share décidés ; SP-02 natif PASS, V1 non authentifié et validé, compatibilité catalogue |
 | OQ-08 secrets | RESOLVED | §15 Keystore/ciphertext/reconfiguration sans clé |
 | OQ-09 UI | RESOLVED | §18 native adaptive, pas écrans Desktop réduits |
 | OQ-10 qualification | RESOLVED | §21–22 scénarios/versionnement/données/uninstall explicites |
 
-**8/10 resolved ; 2 blocking.** Pas approbation de réduire le périmètre pour contourner ces deux blocs.
+**10/10 resolved ; 0 blocking au niveau sélection d'architecture.** Aucune réduction de la baseline métier ; gates de qualification produit conservés.
 
 ## 26. Step-3 Risk Resolution
 
-Mitigated signifie stratégie crédible et propriétaire explicite, **pas risque éliminé par des essais**. R03/R04/R05/R08 gardent une preuve bloquante SP-01/02 ; pas de risque high sans stratégie.
+Mitigated signifie stratégie crédible et propriétaire explicite, **pas risque éliminé par des essais**. Preuves de sélection SP-01/02 acquises dans le périmètre Step 4.2 ; qualification produit restante, pas de risque high sans stratégie.
 
 | Risk | Mitigation | Architectural owner | Residual risk / gate |
 |---|---|---|---|
 | R01 critical transaction | UnitOfWork + écrivain sérialisé + replay transactionnel | Application/DB | Driver réel, concurrence et coupures à tester |
 | R02 critical autorité | API native restreinte, droits courants, DTO, modules | IdentityAccess | Même processus/OS compromis hors garantie ; tests directs |
-| R03 critical migration/durabilité | Moteur embarqué, migrations non destructives, FULL/FK contrôlés | DatabaseOwner | SP-01 et update réels bloquants avant verrouillage recovery |
-| R04 critical recovery | Générations + journal/pointeur, ancien état conservé | RecoveryCoordinator | SP-01 : preuve crash/flush requise |
-| R05 high fichiers | SAF/privé, préparation RF001, publication contrôlée | MediaStore/Recovery | Fournisseur externe non atomique ; SP-01 |
+| R03 critical migration/durabilité | Moteur embarqué, migrations non destructives, FULL/FK contrôlés | DatabaseOwner | SP-01 natif PASS ; migrations/update/coupure physique à qualifier |
+| R04 critical recovery | Générations + journal/pointeur, ancien état conservé | RecoveryCoordinator | SP-01 mort externe PASS ; recovery produit complet à qualifier |
+| R05 high fichiers | SAF/privé, préparation RF001, publication contrôlée | MediaStore/Recovery | SP-01 médias PASS ; fournisseur externe non atomique |
 | R06 high secrets | Keystore/GCM/DTO minimal/TLS, pas fallback plaintext | SecretStore/Identity | Perte clé/OS non corrigé ; reconfiguration et tests |
 | R07 high interruption POS | Session mémoire, journal soumis, aucune auto-vente | Session/SaleCoordinator | Saisie volatile perdue, résultat ambigu résolu explicitement |
-| R08 high mémoire/espace | Streaming/quotas/pagination/staging contrôlé | Maintenance/Documents | SP-01/02 bornes et appareil faible |
+| R08 high mémoire/espace | Streaming/quotas/pagination/staging contrôlé | Maintenance/Documents | Stress/quotas/confinement parser/appareil faible restent gates produit |
 | R09 high téléphone | Compose adaptive, IME, cibles tactiles/retour | Presentation | Qualification humaine/device encore nécessaire |
-| R10 medium documents | Modèle clair natif/print système/codec contrôlé | Documents | SP-02 + imprimantes/pagination |
+| R10 medium documents | Modèle clair natif/print système/codec contrôlé | Documents | SP-02 natif PASS ; imprimantes/pagination restent à qualifier |
 | R11 medium SMTP/timers | Angus/WorkManager, queue durable/rattrapage | Delivery | Délai OS, duplication SMTP déclarée |
 | R12 medium nombres/dates | Fonctions de compatibilité et fixtures | Domain/Reporting | Aucune réinterprétation silencieuse des calendriers source |
 | R13 medium accessibilité | Sémantique Compose/TalkBack/tableaux | Presentation | Tests tactile/lecteur/contraste |
 
-Critical/high avec mitigation : **9/9** ; sans mitigation crédible : **0**. Cela ne lève pas le STOP relatif aux preuves de sélection manquantes.
+Critical/high avec mitigation : **9/9** ; sans mitigation crédible : **0**. Les deux preuves de sélection Step 4.2 sont acquises ; ces risques ne sont pas déclarés éliminés en production.
 
 ## 27. Cost / Licensing & Evidence Limits
 
@@ -425,11 +425,11 @@ Pas coût récurrent d'infrastructure STORE, pas technologie payante obligatoire
 | SQLite embarqué | Domaine public | Non ; SQL/schema à maintenir. [SQLite copyright](https://sqlite.org/copyright.html) |
 | Gradle / JUnit 4 | Apache-2.0 / EPL-1.0, outillage de build/test | Pas paiement requis ; notices et transitives à inventorier. [Gradle licence](https://github.com/gradle/gradle/blob/master/LICENSE), [JUnit licence](https://github.com/junit-team/junit4/blob/main/LICENSE-junit.txt) |
 | bcrypt favre | Apache-2.0 | Non ; vérifier maintenance/version avant gel. [Licence mainteneur](https://github.com/patrickfav/bcrypt) |
-| PDFBox-Android candidat | Apache-2.0, dépendances/notices à vérifier | Non selon licence, choix non acquis : SP-02 |
+| PDFBox-Android | Apache-2.0, dépendances/notices à vérifier au gel produit | Non selon licence ; codec natif SP-02 validé |
 | Angus Mail | EPL-2.0, obligations/notices/source concernée à respecter ; licences API/Activation aussi à inventorier | Pas redevance obligatoire ; dépendance Jakarta Mail, pas serveur propriétaire. [Licence Angus](https://github.com/eclipse-ee4j/angus-mail/blob/master/LICENSE.md) |
 | APIs Android / SDK / outillage | APIs plateforme sans redevance d'exécution ; conditions SDK et notices des outils applicables | Pas service payant requis ; lock-in Android assumé. [Licences AOSP](https://source.android.com/docs/setup/contribute/licenses) |
 
-Room a des releases/correctifs récents vérifiables ; Angus documente explicitement Android ; Capacitor maintient documentation v8 ; ces preuves ne sont pas un audit de sécurité transitif. Le statut de maintenance suffisante du codec PDF reste inconnu et motive BLOCKED, non une accusation de vulnérabilité confirmée. Futur gel : SBOM/licences/advisories/exact versions obligatoires, sans les fabriquer aujourd'hui.
+Room a des releases/correctifs récents vérifiables ; Angus documente explicitement Android ; Capacitor maintient documentation v8 ; ces preuves ne sont pas un audit de sécurité transitif. Step 4.2 prouve la compatibilité fonctionnelle native du codec, pas sa maintenance suffisante pour livraison. Futur gel produit : SBOM/licences/advisories/exact versions et qualification du confinement obligatoires ; refus de livraison/réouverture ADR10 si non satisfaits. Aucune vulnérabilité confirmée inventée.
 
 ## 28. Non-Goals
 
@@ -437,9 +437,9 @@ Cloud/backend distant, sync PC/mobile ou inter-mobile, DB partagée, microservic
 
 ## 29. Step-5 Readiness Gate
 
-**BLOCKED — SP-01 et SP-02 requis avant verrouillage complet du contrat d'implémentation.** Les fonctions sont toutes attribuées (31/31), capacités adressées (19/19), mitigations high/critical explicites (9/9), mais deux choix d'adaptateurs nécessitent un spike selon la condition STOP du contrat.
+**READY FOR STEP 5 — IMPLEMENTATION CONTRACT.** SP-01 natif PASS, SP-02 natif PASS, mort externe Android exercée ; fonctions attribuées 31/31, capacités adressées 19/19, questions résolues 10/10, décisions LOCKED 16/16, mitigations high/critical 9/9. Preuves et limitations dans [le rapport](STORE_3_ARCHITECTURE_SPIKES.md).
 
-Prochaine autorisation limitée proposée : contrat des deux validations isolées décrit §16/§17, avec versions et critères de PASS/FAIL. Aucune exécution automatique de ces spikes, aucune création projet/Gradle/manifest/dépendance maintenant. Pas PASS de convenance ; si échec, rouvrir l'ADR concerné sans modifier 2.0.1 ni supprimer la fonction.
+Prochaine étape : définir le contrat d'implémentation, avec parité baseline et gates produit restants explicitement repris. Le projet Gradle/manifest existant est uniquement le banc jetable autorisé Step 4.2 ; aucune implémentation STORE 3.0 n'est commencée. Aucun transfert de qualification STORE 2.0.1 ni déclaration production-ready.
 
 ## 30. Implementation Constraints
 
