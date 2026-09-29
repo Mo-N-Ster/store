@@ -1,0 +1,30 @@
+{
+  "serial": "emulator-5554",
+  "api": "36",
+  "runs": [
+    {
+      "width": "COMPACT",
+      "pixels": "800x1800",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "width": "MEDIUM",
+      "pixels": "1400x2000",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "width": "EXPANDED",
+      "pixels": "2000x1600",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0
+    }
+  ]
+}

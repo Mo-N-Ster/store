@@ -1,0 +1,12 @@
+<resources>
+    <string name="brand">STORE · 57€|2£!/v9</string>
+    <string name="foundation_title">Native foundation</string>
+    <string name="foundation_notice">Development foundation only. No business feature is available.</string>
+    <string name="layout_label">Window layout</string>
+    <string name="storage_label">Storage wiring</string>
+    <string name="no_database">No database created or opened.</string>
+    <string name="about_title">About this foundation</string>
+    <string name="about_action">About the foundation</string>
+    <string name="about_detail">Kotlin, adaptive Compose and typed navigation. No account, sale or personal data.</string>
+    <string name="back">Back</string>
+</resources>

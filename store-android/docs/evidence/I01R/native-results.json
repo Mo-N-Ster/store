@@ -1,0 +1,45 @@
+{
+  "serial": "emulator-5554",
+  "api": "36",
+  "runs": [
+    {
+      "width": "COMPACT",
+      "pixels": "800x1800",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0,
+      "theme": "light",
+      "animator_scale": 1,
+      "anr": false,
+      "app_focused": true,
+      "visual_review": "required"
+    },
+    {
+      "width": "MEDIUM",
+      "pixels": "1280x1800",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0,
+      "theme": "dark",
+      "animator_scale": 1,
+      "anr": false,
+      "app_focused": true,
+      "visual_review": "required"
+    },
+    {
+      "width": "EXPANDED",
+      "pixels": "1800x1400",
+      "density": 320,
+      "tests": 3,
+      "fail": 0,
+      "skip": 0,
+      "theme": "light",
+      "animator_scale": 0,
+      "anr": false,
+      "app_focused": true,
+      "visual_review": "required"
+    }
+  ]
+}
