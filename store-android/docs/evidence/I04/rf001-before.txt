@@ -1,0 +1,59 @@
+RF001 BEFORE_REFERENCE — evidence-only review 2026-10-01
+Baseline: fb4237bcb8e1a36d8504e4f069494bec881ad9ea
+Device: emulator-5554
+Package: com.vibe.store.infrastructure.test
+Existing run: before-213551; boundary: before
+
+VERIFIED FACT — persisted fixture inspection
+PowerShell setup actually used:
+$adb=Join-Path $env:LOCALAPPDATA 'store-i03-sdk/platform-tools/adb.exe'
+Command:
+& $adb -s emulator-5554 shell run-as com.vibe.store.infrastructure.test ls -l no_backup/i04-restart-before-213551-before
+Output excerpt:
+drwx------ 2 u0_a151 u0_a151 4096 2026-09-30 19:36 database
+drwx------ 2 u0_a151 u0_a151 4096 2026-09-30 19:36 media
+-rw------- 1 u0_a151 u0_a151    4 2026-09-30 19:36 ready
+Command:
+& $adb -s emulator-5554 shell run-as com.vibe.store.infrastructure.test cat no_backup/i04-restart-before-213551-before/ready
+Output: 4760
+
+PREVIOUS VERIFIED HISTORY SUPPLIED BY USER
+Prepare PID=4760; marker observed before real external adb force-stop; prior verify OK (1 test).
+Existing preparation artifact:
+C:\Users\sterl\AppData\Local\Temp\store-i03-qual\i04-before-before-213551.log
+Observed ending:
+INSTRUMENTATION_RESULT: shortMsg=Process crashed.
+INSTRUMENTATION_CODE: 0
+This ending is consistent with termination; it is not by itself a recovery PASS or independent proof of the external command.
+
+VERIFIED FACT — actual fresh VERIFY-only command
+& $adb -s emulator-5554 shell am instrument -w -r -e class 'com.vibe.store.infrastructure.persistence.CatalogRestartTest#realInterruptionPreservesMediaReferences' -e catalogPhase verify -e catalogBoundary before -e catalogRun before-213551 com.vibe.store.infrastructure.test/androidx.test.runner.AndroidJUnitRunner
+Actual output:
+INSTRUMENTATION_STATUS: class=com.vibe.store.infrastructure.persistence.CatalogRestartTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.vibe.store.infrastructure.persistence.CatalogRestartTest:
+INSTRUMENTATION_STATUS: test=realInterruptionPreservesMediaReferences
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.vibe.store.infrastructure.persistence.CatalogRestartTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realInterruptionPreservesMediaReferences
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 2.164
+
+OK (1 test)
+
+INSTRUMENTATION_CODE: -1
+Host command exit: 0
+
+EXPECTED/CONTRACT INVARIANT: interruption before reference commit must leave no committed product/movement and no missing referenced image; an orphan is permitted.
+VERIFIED FACT: passing source assertions establish zero products, zero movements, one orphan, missing=0, current PID different from 4760, initially unauthenticated session, SQLite quick/full/FK checks true.
+Current numeric verification PID was not printed; no value is invented.
+No prepare, force-stop, fixture deletion or reset executed during this evidence mission.

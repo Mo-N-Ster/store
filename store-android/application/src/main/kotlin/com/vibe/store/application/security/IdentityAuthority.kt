@@ -16,6 +16,14 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     private class Session(val accountId: Long, val generation: GenerationId, val nonce: UUID = UUID.randomUUID())
     private var session: Session? = null
     private val gate = Mutex()
+    // Trusted application composition only. Same session mutex and transaction-
+    // local authorization as I03; never call current() and trust a UI snapshot.
+    internal suspend fun <T> authorizedRead(right: String, block: suspend ReadRepositories.(Long) -> T): T = gate.withLock {
+        owner.read { val actor = requireRight(right); block(actor.id) }
+    }
+    internal suspend fun <T> authorizedWrite(right: String, block: suspend TransactionRepositories.(Long) -> T): T = gate.withLock {
+        commands.execute { val actor = requireRight(right); block(actor.id) }
+    }
     private fun fail(code: SecurityError): Nothing = throw SecurityFailure(code)
     private fun stamp(): String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(clock()))
     private suspend fun hash(value: String) = withContext(Dispatchers.Default) { hasher.hash(value) }

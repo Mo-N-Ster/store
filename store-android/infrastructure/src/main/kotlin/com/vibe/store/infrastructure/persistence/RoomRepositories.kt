@@ -19,9 +19,7 @@ internal class RoomRepositories(internal val dao: StoreDao, private val job: Job
     override val cash = object : CashRepository {
         override suspend fun session(id: Long): CashRecord? { check(); return dao.session(id)?.let { CashRecord(it.id, it.userId, it.status, MoneyValue(it.openingAmount)) } }
     }
-    override val catalog = object : CatalogRepository {
-        override suspend fun product(id: Long): ProductRecord? { check(); return dao.findProduct(id)?.let { ProductRecord(it.id, it.name, MoneyValue(it.price), Quantity(it.stock)) } }
-    }
+    override val catalog: CatalogRepository = RoomCatalogRepository(dao, ::check)
     override val sales = object : SalesRepository {
         override suspend fun invoice(id: String): InvoiceRecord? { check(); return dao.findInvoice(id)?.let { InvoiceRecord(it.id, it.userId, it.cashId, MoneyValue(it.totalAmount), it.status) } }
     }

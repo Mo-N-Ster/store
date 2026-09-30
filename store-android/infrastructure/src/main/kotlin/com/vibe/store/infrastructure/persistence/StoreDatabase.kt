@@ -6,6 +6,19 @@ import androidx.sqlite.execSQL
 
 @Dao
 internal interface StoreDao {
+    @Query("SELECT * FROM products WHERE ((:archived=0 AND deletedAt IS NULL) OR (:archived=1 AND deletedAt IS NOT NULL)) AND (:category='' OR category=:category) AND (:search='' OR instr(lower(name || ' ' || category || ' ' || COALESCE(hashtag,'')),lower(:search))>0) AND (:stock='all' OR (:stock='low' AND stock<=minimumStock) OR (:stock='out' AND stock=0)) ORDER BY name COLLATE NOCASE,id LIMIT :limit OFFSET :offset")
+    suspend fun catalogPage(search: String, category: String, archived: Boolean, stock: String, limit: Int, offset: Int): List<ProductEntity>
+    @Query("SELECT EXISTS(SELECT 1 FROM products WHERE deletedAt IS NULL AND id!=COALESCE(:exceptId,0) AND (lower(trim(name))=lower(:name) OR (:hashtag!='' AND lower(COALESCE(hashtag,''))=lower(:hashtag))))")
+    suspend fun duplicateProduct(name: String, hashtag: String, exceptId: Long?): Boolean
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM products") suspend fun nextProductId(): Long
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM stock_movements") suspend fun nextMovementId(): Long
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM product_price_history") suspend fun nextPriceId(): Long
+    @Upsert suspend fun putProduct(value: ProductEntity)
+    @Query("SELECT * FROM stock_movements WHERE (:from='' OR substr(createdAt,1,10)>=:from) AND (:to='' OR substr(createdAt,1,10)<=:to) AND (:productId IS NULL OR productId=:productId) AND (:category='' OR productId IN (SELECT id FROM products WHERE category=:category)) AND (:type='' OR reason=:type OR (:type='adjustment' AND reason LIKE 'adjustment:%')) ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
+    suspend fun movementPage(from: String, to: String, productId: Long?, category: String, type: String, limit: Int, offset: Int): List<MovementEntity>
+    @Query("SELECT * FROM product_price_history WHERE productId=:id ORDER BY recordedAt DESC,id DESC LIMIT 200") suspend fun productPrices(id: Long): List<PriceEntity>
+    @Query("DELETE FROM stock_movements WHERE id IN (:ids)") suspend fun deleteMovements(ids: List<Long>): Int
+    @Query("SELECT DISTINCT imageRef FROM products WHERE imageRef IS NOT NULL") suspend fun productImageReferences(): List<String>
     @Query("SELECT * FROM users ORDER BY id") suspend fun accounts(): List<UserEntity>
     @Update suspend fun updateUser(value: UserEntity)
     @Query("SELECT status FROM employees WHERE userId=:id") suspend fun employment(id: Long): String?

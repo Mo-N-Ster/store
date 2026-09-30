@@ -31,7 +31,8 @@ import kotlinx.coroutines.launch
 
 /** Navigation renders authority responses. No role supplied here can grant rights. */
 @Composable
-fun SecurityApp(service: IdentityService, back: () -> Unit) {
+fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
+    pickImage: ((SelectedImage?) -> Unit) -> Unit = { it(null) }, back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
     var prefs by remember { mutableStateOf(DisplayPreferences()) }
@@ -39,6 +40,8 @@ fun SecurityApp(service: IdentityService, back: () -> Unit) {
     var error by remember { mutableStateOf<SecurityError?>(null) }
     var question by remember { mutableStateOf<RecoveryQuestion?>(null) }
     var config by remember { mutableStateOf(FoundationSettings()) }
+    var catalogState by remember { mutableStateOf(CatalogScreenState()) }
+    var catalogActor by remember { mutableStateOf<Long?>(null) }
     val scope = rememberCoroutineScope()
     val fr = prefs.language == "fr"
     fun text(french: String, english: String) = if (fr) french else english
@@ -54,7 +57,9 @@ fun SecurityApp(service: IdentityService, back: () -> Unit) {
     }
     suspend fun refresh() {
         prefs = service.preferences(); identity = service.current()
-        page = if (identity != null) "home" else if (service.needsOwner()) "bootstrap" else "login"
+        val sameCatalogActor = identity?.id != null && identity?.id == catalogActor
+        if (!sameCatalogActor) { catalogState = CatalogScreenState(); catalogActor = identity?.id }
+        page = if (identity != null) { if (page == "catalog" && sameCatalogActor) "catalog" else "home" } else if (service.needsOwner()) "bootstrap" else "login"
     }
     LaunchedEffect(service) { run { refresh() } }
     val lifecycle = LocalLifecycleOwner.current.lifecycle
@@ -71,6 +76,11 @@ fun SecurityApp(service: IdentityService, back: () -> Unit) {
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
     SpatialTheme(dark) {
         Surface(Modifier.fillMaxSize()) {
+            if (page == "catalog" && catalog != null) {
+                identity?.let { user ->
+                    CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
+                }
+            } else {
             Column(Modifier.safeDrawingPadding().fillMaxSize().verticalScroll(rememberScrollState())
                 .padding(if (widthLabel == "COMPACT") SpatialTokens.compactInset else SpatialTokens.wideInset),
                 horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -142,6 +152,9 @@ fun SecurityApp(service: IdentityService, back: () -> Unit) {
                                 Text("${user.firstName} ${user.lastName}", Modifier.testTag("authenticated-name"), style = MaterialTheme.typography.headlineSmall)
                                 Text(text("Session locale authentifiée", "Authenticated local session"))
                                 Text(text("Aucune présence n’est signée par la connexion.", "Signing in does not record attendance."))
+                                if (catalog != null && "PRODUCTS:READ" in user.permissions) Button(enabled = !busy, onClick = {
+                                    catalogActor = user.id; catalogState = CatalogScreenState(); page = "catalog"
+                                }) { Text(text("Catalogue et stock", "Catalog and stock")) }
                                 Button(enabled = !busy, onClick = { page = "switch" }) { Text(text("Changer d’utilisateur", "Switch user")) }
                                 if ("SETTINGS:READ" in user.permissions) Button(enabled = !busy, onClick = { run { config = service.settings(); page = "settings" } }) { Text(text("Configurer la boutique", "Configure shop")) }
                                 OutlinedButton(enabled = !busy, onClick = { run { service.logout(); identity = null; page = "login" } }) { Text(text("Déconnexion", "Sign out")) }
@@ -161,6 +174,7 @@ fun SecurityApp(service: IdentityService, back: () -> Unit) {
                         }
                     }
                 }
+            }
             }
         }
     }

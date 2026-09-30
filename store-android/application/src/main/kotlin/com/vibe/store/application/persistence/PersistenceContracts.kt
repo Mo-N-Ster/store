@@ -12,7 +12,7 @@ import kotlin.coroutines.CoroutineContext
 // Trusted application ports, deliberately absent from application-api/UI DTOs.
 interface IdentityRepository { suspend fun account(id: Long): AccountRecord? }
 interface CashRepository { suspend fun session(id: Long): CashRecord? }
-interface CatalogRepository { suspend fun product(id: Long): ProductRecord? }
+interface CatalogRepository : com.vibe.store.application.catalog.CatalogRecords { suspend fun product(id: Long): ProductRecord? }
 interface SalesRepository { suspend fun invoice(id: String): InvoiceRecord? }
 interface PurchaseRepository { suspend fun purchase(id: Long): PurchaseRecord? }
 interface InventoryRepository { suspend fun inventory(id: Long): InventoryRecord? }

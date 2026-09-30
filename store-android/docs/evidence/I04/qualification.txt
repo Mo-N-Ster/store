@@ -1,0 +1,169 @@
+I04 EVIDENCE QUALIFICATION — 2026-10-01
+
+ORIGINAL EVIDENCE COLLECTION SNAPSHOT
+The following original observations predate the adaptive-only closure appended below.
+Historical APK sizes and supplied UI 2/2 results are retained as historical facts, not current artifact claims.
+
+VERIFIED FACT — safety precheck
+Command: git rev-parse HEAD
+Output: fb4237bcb8e1a36d8504e4f069494bec881ad9ea
+Command: git branch --show-current
+Output: main
+Command: git status --short
+Observed: seven tracked modified Android source files and ten untracked Android source entries (one entry is a directory containing two files); no path outside store-android/.
+Command: git diff --check
+Output: empty; exit 0.
+
+VERIFIED FACT — qualification source correspondence
+Compared all changed/untracked /src/ files with corresponding files in:
+C:\Users\sterl\AppData\Local\Temp\store-i03-qual
+Observed source mismatches: none.
+No implementation or test file was copied or modified during this evidence mission.
+
+VERIFIED FACT — existing JUnit report
+Artifact: testing/build/test-results/test/TEST-com.vibe.store.testing.CatalogPolicyTest.xml (qualification copy)
+tests=4; skipped=0; failures=0; errors=0
+timestamp=2026-09-30T18:04:54.173Z
+Cases: integerNonNegativeQuantitiesOnly; strictHistoryDiscriminatorAndJustification;
+pricesAreValidatedNeverRounded; signaturesAndPrivateReferencePolicy.
+
+VERIFIED FACT — existing lint reports
+Command: Get-Content <qualification>/<module>/build/reports/lint-results-debug.txt -Tail 3
+app: 0 errors, 16 warnings
+infrastructure: No issues found.
+presentation: No issues found.
+No lint rerun during this mission.
+
+VERIFIED FACT — build artifact presence (not a substitute for a build transcript)
+app/build/outputs/apk/debug/app-debug.apk: 16693009 bytes
+app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk: 1040859 bytes
+infrastructure/build/outputs/apk/androidTest/debug/infrastructure-debug-androidTest.apk: 8331699 bytes
+
+PREVIOUS VERIFIED RESULTS SUPPLIED BY USER — not independently rerun here
+Architecture allowlist: PASS
+App build: PASS
+Android test APK build: PASS
+CatalogNativeTest: PASS 5/5
+CatalogUiTest: PASS 2/2
+These are historical qualification results, not expected outcomes represented as new executions.
+Standalone native/UI success transcripts were not found in the inspected qualification report/output directories.
+Existing connected-test HTML reports concern Identity tests and are not used as Catalog evidence.
+
+VERIFIED FACT — current narrow review
+Public catalog DTO, CatalogAuthority, media adapter, IdentityAuthority diff and native/restart assertions inspected.
+Narrow sensitive-field scan over CatalogService.kt, application/catalog and infrastructure/media: no matches (rg exit 1).
+Architecture declaration unchanged: seven modules and existing explicit dependency allowlist.
+No schema/runtime, permissions-policy or dependency build-file change in current Git inventory.
+
+REQUIREMENT TO TEST SOURCE MAPPING — presence/assertions, not extra executions
+CRUD/archive/duplicates/search/price history: CatalogNativeTest.catalogCrudFiltersDuplicatesPriceAndArchiveHistory
+Integer/negative quantity and price validation: CatalogPolicyTest; CatalogNativeTest.invalidStockHistoryAndEmployeeRequestsHaveZeroMutation
+Stock + movement atomic rollback: CatalogNativeTest.stockAndMovementRollbackTogetherOnPersistenceFailure
+Employee refusal, Owner behavior, strict history/attendance protection: CatalogNativeTest.invalidStockHistoryAndEmployeeRequestsHaveZeroMutation
+Media pre-reference rollback/postcommit cleanup: CatalogNativeTest.rollbackBeforeReferenceAndPostCommitCleanupAreSafe
+JPEG/PNG/WebP, invalid/oversized input, cancellation, revoked URI, partial copy, synthetic insufficient space, profile limit: CatalogNativeTest.mediaFormatsCancellationInvalidOversizedRevokedAndPartialCopy
+Real process interruption and recovery: CatalogRestartTest.realInterruptionPreservesMediaReferences; fresh VERIFY results in companion files
+FR entry/cancelled picker and EN read-only navigation: CatalogUiTest (two methods)
+
+EXPECTED/CONTRACT INVARIANTS
+No negative stock; no missing referenced image; refusal without forbidden mutation;
+preserved application authority, permissions and transaction coordinator/UoW.
+These invariants are not independently universal proofs beyond the tests/review identified above.
+
+Changed source files (all relative to store-android/; pre-existing I04 work):
+app/src/main/kotlin/com/vibe/store/MainActivity.kt
+app/src/main/kotlin/com/vibe/store/StoreApplication.kt
+app/src/androidTest/kotlin/com/vibe/store/CatalogUiTest.kt
+application-api/src/main/kotlin/com/vibe/store/api/CatalogService.kt
+application/src/main/kotlin/com/vibe/store/application/persistence/PersistenceContracts.kt
+application/src/main/kotlin/com/vibe/store/application/security/IdentityAuthority.kt
+application/src/main/kotlin/com/vibe/store/application/catalog/CatalogPorts.kt
+application/src/main/kotlin/com/vibe/store/application/catalog/CatalogAuthority.kt
+domain/src/main/kotlin/com/vibe/store/domain/CatalogPolicy.kt
+infrastructure/src/main/kotlin/com/vibe/store/infrastructure/persistence/RoomRepositories.kt
+infrastructure/src/main/kotlin/com/vibe/store/infrastructure/persistence/StoreDatabase.kt
+infrastructure/src/main/kotlin/com/vibe/store/infrastructure/persistence/RoomCatalogRepository.kt
+infrastructure/src/main/kotlin/com/vibe/store/infrastructure/media/AndroidProductMedia.kt
+infrastructure/src/androidTest/kotlin/com/vibe/store/infrastructure/persistence/CatalogNativeTest.kt
+infrastructure/src/androidTest/kotlin/com/vibe/store/infrastructure/persistence/CatalogRestartTest.kt
+presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt
+presentation/src/main/kotlin/com/vibe/store/presentation/CatalogScreen.kt
+testing/src/test/kotlin/com/vibe/store/testing/CatalogPolicyTest.kt
+
+Evidence-only additions:
+docs/evidence/I04/summary.md
+docs/evidence/I04/qualification.txt
+docs/evidence/I04/rf001-before.txt
+docs/evidence/I04/rf001-after.txt
+
+No staging, commit, push, tag, prepare, reset or broad/full suite performed.
+
+ADAPTIVE-ONLY CLOSURE — VERIFIED FACT — 2026-10-01
+Authorized changes: CatalogScreen.kt, CatalogUiTest.kt, summary.md, qualification.txt only.
+Implementation: use LocalWindowInfo.current.containerSize.width converted with current density;
+classify before margins/insets. Existing column-based composition preserved.
+Observability: catalog-layout-COMPACT/MEDIUM/EXPANDED and catalog-row-<first product id> tags.
+Existing two FR/EN test bodies unchanged; one deterministic adaptive instrumentation test added.
+No business, auth, persistence, media, stock or dependency changes.
+
+Targeted packaging command (PowerShell; qualification copy):
+$q=Join-Path $env:TEMP 'store-i03-qual'
+$env:JAVA_HOME='C:\Program Files\Java\jdk-21'
+$env:GRADLE_USER_HOME=Join-Path $q '.gradle-home'
+$env:ANDROID_HOME=Join-Path $env:LOCALAPPDATA 'store-i03-sdk'
+$env:ANDROID_SDK_ROOT=$env:ANDROID_HOME
+& "$q/gradlew.bat" -p $q :app:assembleDebug :app:assembleDebugAndroidTest --offline --no-daemon --max-workers=1 --console=plain
+Observed: BUILD SUCCESSFUL in 2m 3s; 116 actionable tasks: 12 executed, 104 up-to-date.
+Only the two changed source/test files were synchronized into the existing qualification copy.
+
+Actual installation and test commands:
+$adb=Join-Path $env:LOCALAPPDATA 'store-i03-sdk/platform-tools/adb.exe'
+& $adb -s emulator-5554 install -r "$q/app/build/outputs/apk/debug/app-debug.apk"
+& $adb -s emulator-5554 install -r "$q/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk"
+Both installations: Success (no data clearing).
+& $adb -s emulator-5554 shell am instrument -w -r -e class com.vibe.store.CatalogUiTest com.vibe.store.debug.test/androidx.test.runner.AndroidJUnitRunner
+Observed methods, each INSTRUMENTATION_STATUS_CODE: 0:
+englishReadOnlyCatalogSearchDetailAndReturn
+adaptiveWindowThresholdsRecomputeAndKeepCatalogUsable
+frenchContinuousEntryAndCancelledPickerPreserveForm
+INSTRUMENTATION_RESULT: stream=
+Time: 44.724
+OK (3 tests)
+INSTRUMENTATION_CODE: -1
+Host command exit: 0
+
+Actual adaptive commands executed inside instrumentation through UiAutomation:
+wm size
+wm size 599x1100
+wm size 600x1100
+wm size 839x1100
+wm size 840x1100
+wm size 599x1100
+wm size reset (finally: no override existed originally)
+wm size (assert original setting restored)
+No density modification. Widths are real window measurements, not mocked parameters.
+Android WindowMetrics width/density is asserted within 0.1 dp of each requested width.
+First-row membership asserts 1/2/3 actual product cards according to class.
+Search, name/category/hashtag/description/price/stock/threshold and edit form reachability are checked at every width.
+Activity recreation, if any, reattaches the same synthetic fixture; Android window data remains real.
+
+Command: & $adb -s emulator-5554 logcat -d -s I04_ADAPTIVE:I '*:S'
+Actual marker output (device timestamps):
+09-30 23:38:21.617  5103  5117 I I04_ADAPTIVE: window=599dp class=COMPACT columns=1 search/detail/form=PASS
+09-30 23:38:26.779  5103  5117 I I04_ADAPTIVE: window=600dp class=MEDIUM columns=2 search/detail/form=PASS
+09-30 23:38:30.274  5103  5117 I I04_ADAPTIVE: window=839dp class=MEDIUM columns=2 search/detail/form=PASS
+09-30 23:38:33.821  5103  5117 I I04_ADAPTIVE: window=840dp class=EXPANDED columns=3 search/detail/form=PASS
+09-30 23:38:37.338  5103  5117 I I04_ADAPTIVE: window=599dp class=COMPACT columns=1 search/detail/form=PASS
+
+Post-test commands:
+& $adb -s emulator-5554 shell wm size
+Physical size: 320x640
+& $adb -s emulator-5554 shell wm density
+Physical density: 160
+No override remains.
+
+RESULT: COMPACT PASS; MEDIUM PASS at both boundaries; EXPANDED PASS at 840 dp;
+recomputation back to COMPACT PASS. These are tested representative/boundary widths,
+not a claim to have exhaustively executed every possible width.
+No RF001/native/policy/lint/full suite rerun during adaptive closure.
+No staging, commit, push or tag.
