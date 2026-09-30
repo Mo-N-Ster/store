@@ -6,6 +6,17 @@ import androidx.sqlite.execSQL
 
 @Dao
 internal interface StoreDao {
+    @Query("SELECT * FROM users ORDER BY id") suspend fun accounts(): List<UserEntity>
+    @Update suspend fun updateUser(value: UserEntity)
+    @Query("SELECT status FROM employees WHERE userId=:id") suspend fun employment(id: Long): String?
+    @Query("SELECT * FROM roles") suspend fun roles(): List<RoleEntity>
+    @Query("SELECT * FROM permissions") suspend fun permissions(): List<PermissionEntity>
+    @Query("SELECT p.module || ':' || p.action FROM user_roles ur JOIN role_permissions rp ON rp.roleId=ur.roleId JOIN permissions p ON p.id=rp.permissionId WHERE ur.userId=:id ORDER BY p.module,p.action") suspend fun inherited(id: Long): List<String>
+    @Query("SELECT p.module || ':' || p.action FROM user_permission_denials d JOIN permissions p ON p.id=d.permissionId WHERE d.userId=:id ORDER BY p.module,p.action") suspend fun denied(id: Long): List<String>
+    @Query("DELETE FROM user_permission_denials WHERE userId=:id") suspend fun deleteDenials(id: Long)
+    @Query("SELECT * FROM cash_sessions WHERE userId=:id AND status='OPEN' ORDER BY id DESC LIMIT 1") suspend fun openCash(id: Long): CashEntity?
+    @Query("SELECT COALESCE(SUM(amount),0) FROM payments WHERE cashId=:id AND status='CAPTURED'") suspend fun capturedPayments(id: Long): Double
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM audit_logs") suspend fun nextAuditId(): Long
     @Insert suspend fun user(value: UserEntity)
     @Insert suspend fun role(value: RoleEntity)
     @Insert suspend fun permission(value: PermissionEntity)

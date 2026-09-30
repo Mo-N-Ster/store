@@ -32,4 +32,5 @@ dependencies {
     androidTestImplementation(libs.compose.test); androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.test.junit); androidTestImplementation(libs.test.core)
     androidTestImplementation(libs.espresso)
+    androidTestImplementation(libs.coroutines)
 }

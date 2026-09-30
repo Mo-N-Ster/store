@@ -4,9 +4,9 @@
     <string name="foundation_notice">Socle de développement uniquement. Aucune fonction métier disponible.</string>
     <string name="layout_label">Disposition de la fenêtre</string>
     <string name="storage_label">Raccordement du stockage</string>
-    <string name="no_database">Aucune base de données créée ou ouverte.</string>
+    <string name="no_database">Cet écran d’information n’ouvre pas la base. L’accès à STORE initialise le stockage privé.</string>
     <string name="about_title">À propos du socle</string>
     <string name="about_action">À propos du socle</string>
-    <string name="about_detail">Kotlin, Compose adaptatif et navigation typée. Aucun compte, vente ou donnée personnelle.</string>
+    <string name="about_detail">Kotlin, Compose adaptatif et navigation typée. Socle identité et configuration ; aucun parcours de vente.</string>
     <string name="back">Retour</string>
 </resources>

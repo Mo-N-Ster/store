@@ -44,7 +44,7 @@ private class FoundationFactory(private val service: FoundationService) : ViewMo
 }
 
 @Composable
-fun FoundationApp(service: FoundationService) {
+fun FoundationApp(service: FoundationService, access: (() -> Unit)? = null) {
     val model: FoundationViewModel = viewModel(factory = remember(service) { FoundationFactory(service) })
     val state by model.state.collectAsStateWithLifecycle()
     val nav = rememberNavController()
@@ -64,7 +64,7 @@ fun FoundationApp(service: FoundationService) {
                 popExitTransition = { fadeOut(tween(SpatialTokens.transitionMillis)) }
             ) {
                 composable<Foundation> {
-                    SmokeContent(state, widthLabel, false) { nav.navigate(About) { launchSingleTop = true } }
+                    SmokeContent(state, widthLabel, false, access) { nav.navigate(About) { launchSingleTop = true } }
                 }
                 composable<About> { SmokeContent(state, widthLabel, true) { nav.popBackStack() } }
             }
@@ -73,7 +73,7 @@ fun FoundationApp(service: FoundationService) {
 }
 
 @Composable
-private fun SmokeContent(state: FoundationSnapshot, width: String, about: Boolean, navigate: () -> Unit) {
+private fun SmokeContent(state: FoundationSnapshot, width: String, about: Boolean, access: (() -> Unit)? = null, navigate: () -> Unit) {
     Box(Modifier.fillMaxSize().safeDrawingPadding(), contentAlignment = Alignment.TopCenter) {
         Column(
             Modifier.widthIn(max = if (width == "EXPANDED") 1120.dp else 760.dp)
@@ -96,6 +96,9 @@ private fun SmokeContent(state: FoundationSnapshot, width: String, about: Boolea
                 StoragePanel(state, Modifier.fillMaxWidth())
             }
             if (about) Text(stringResource(R.string.about_detail))
+            if (!about && access != null) Button(onClick = access, modifier = Modifier.testTag("access-store")) {
+                Text(if (java.util.Locale.getDefault().language == "fr") "Accéder à STORE" else "Open STORE")
+            }
             // Material buttons retain standard focus, ripple, pressed and disabled states.
             Button(onClick = navigate, modifier = Modifier.heightIn(min = SpatialTokens.touchTarget).testTag(if (about) "back" else "about")) {
                 Text(stringResource(if (about) R.string.back else R.string.about_action))

@@ -12,6 +12,8 @@ dependencies {
     implementation(project(":application")); implementation(project(":domain"))
     implementation(libs.room.runtime); implementation(libs.sqlite.bundled)
     implementation(libs.coroutines)
+    implementation(libs.bcrypt)
+    testImplementation(libs.junit)
     ksp(libs.room.compiler)
     androidTestImplementation(libs.test.runner); androidTestImplementation(libs.test.junit)
     androidTestImplementation(libs.test.core)

@@ -41,9 +41,9 @@ private val Dark = darkColorScheme(
 )
 
 @Composable
-fun SpatialTheme(content: @Composable () -> Unit) {
+fun SpatialTheme(dark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = if (isSystemInDarkTheme()) Dark else Light,
+        colorScheme = if (dark) Dark else Light,
         shapes = Shapes(
             small = RoundedCornerShape(12.dp), medium = RoundedCornerShape(20.dp),
             large = RoundedCornerShape(SpatialTokens.panelRadius)

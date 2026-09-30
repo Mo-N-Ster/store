@@ -6,5 +6,6 @@ dependencies {
     testImplementation(project(":application-api"))
     testImplementation(project(":application"))
     testImplementation(libs.junit)
+    testImplementation(libs.coroutines)
 }
 tasks.test { useJUnit() }

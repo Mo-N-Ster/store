@@ -23,6 +23,7 @@ interface SettingsReader { suspend fun value(key: String): String? }
 interface SettingsWriter : SettingsReader { suspend fun put(key: String, value: String) }
 
 interface ReadRepositories {
+    val security: com.vibe.store.application.security.SecurityRepository
     val identity: IdentityRepository; val cash: CashRepository; val catalog: CatalogRepository
     val sales: SalesRepository; val purchases: PurchaseRepository; val inventories: InventoryRepository
     val attendance: AttendanceRepository; val messaging: MessagingRepository; val audit: AuditRepository
