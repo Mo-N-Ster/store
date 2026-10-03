@@ -7,12 +7,44 @@ class AuthAccount(val id: Long, val username: String, val email: String?, val fi
     val failures: Int, val lockedUntil: Long?, val recoveryFailures: Int, val recoveryLockedUntil: Long?)
 class NewOwner(val username: String, val email: String, val firstName: String, val lastName: String,
     val verifier: String, val question: String, val recoveryVerifier: String, val stamp: String)
+class NewManagedAccount(
+    val username: String,
+    val email: String?,
+    val firstName: String,
+    val lastName: String,
+    val initials: String,
+    val role: String,
+    val verifier: String,
+    val phone: String?,
+    val hireDate: String?,
+    val active: Boolean,
+    val photo: String?,
+    val stamp: String,
+)
+
+class ManagedAccountChange(
+    val accountId: Long,
+    val username: String,
+    val email: String?,
+    val firstName: String,
+    val lastName: String,
+    val initials: String,
+    val role: String,
+    val phone: String?,
+    val hireDate: String?,
+    val active: Boolean,
+    val photo: String?,
+    val stamp: String,
+)
+
 data class SecurityAudit(val actorId: Long?, val responsibleId: Long?, val action: String,
     val entity: String, val reference: String, val success: Boolean, val stamp: String)
 interface SecurityRepository {
     suspend fun accounts(): List<AuthAccount>
     suspend fun account(id: Long): AuthAccount?
     suspend fun createOwner(input: NewOwner): Long
+    suspend fun createManaged(input: NewManagedAccount): Long
+    suspend fun updateManaged(input: ManagedAccountChange)
     suspend fun inherited(id: Long): Set<String>
     suspend fun denied(id: Long): Set<String>
     suspend fun replaceDenials(id: Long, codes: Set<String>)

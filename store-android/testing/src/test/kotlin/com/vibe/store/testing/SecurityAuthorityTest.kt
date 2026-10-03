@@ -29,6 +29,9 @@ class SecurityAuthorityTest {
         override val sales: SalesRepository get() = error("unused")
         override val purchases: PurchaseRepository get() = error("unused")
         override val inventories: InventoryRepository get() = error("unused")
+        // I05 adds these ports to the shared transaction contract. The I03
+        // fixture intentionally exercises only identity/security operations.
+        override val employees: EmployeeRepository get() = error("unused")
         override val attendance: AttendanceRepository get() = error("unused")
         override val messaging: MessagingRepository get() = error("unused")
         override val audit: AuditRepository get() = error("unused")
@@ -45,6 +48,8 @@ class SecurityAuthorityTest {
             val id = (users.keys.maxOrNull() ?: 0) + 1
             users[id] = Account(id, input.username, "owner", input.firstName, input.lastName, verifier = input.verifier, recovery = input.recoveryVerifier); return id
         }
+        override suspend fun createManaged(input: NewManagedAccount): Long = error("unused")
+        override suspend fun updateManaged(input: ManagedAccountChange): Unit = error("unused")
         override suspend fun inherited(id: Long) = RolePolicy.inherited(users.getValue(id).role)
         override suspend fun denied(id: Long) = denials[id] ?: emptySet()
         override suspend fun replaceDenials(id: Long, codes: Set<String>) { denials[id] = codes }

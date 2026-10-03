@@ -28,6 +28,84 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     private fun stamp(): String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(clock()))
     private suspend fun hash(value: String) = withContext(Dispatchers.Default) { hasher.hash(value) }
     private suspend fun verify(value: String, verifier: String) = withContext(Dispatchers.Default) { hasher.verifies(value, verifier) }
+    // Trusted composition only. These helpers never create/switch a session and
+    // never expose a verifier through application-api.
+    internal suspend fun hashManagedSecret(value: String): String = hash(value)
+    /*
+     * Personal proof for attendance.
+     * Does not create/switch a STORE session and does not update lastLoginAt.
+     * Failed attempts reuse the existing persisted lock policy.
+     */
+    internal suspend fun verifyPresenceSecret(
+        repositories: TransactionRepositories,
+        accountId: Long,
+        password: String,
+        responsibleId: Long,
+    ): Boolean {
+        val account = repositories.security.account(accountId)
+
+        // Keep password work non-trivial even for a missing account.
+        val matched = if (account == null) {
+            hash(password)
+            false
+        } else {
+            verify(password, account.verifier)
+        }
+
+        val now = clock()
+        val locked = (account?.lockedUntil ?: Long.MIN_VALUE) > now
+
+        if (
+            account == null ||
+            !valid(account) ||
+            locked ||
+            !matched
+        ) {
+            if (account != null && !locked) {
+                val next = with(repositories) {
+                    policy().next(account.failures, now)
+                }
+
+                repositories.security.loginResult(
+                    account.id,
+                    next.first,
+                    next.second,
+                    null,
+                )
+            }
+
+            repositories.security.appendAudit(
+                SecurityAudit(
+                    actorId = responsibleId,
+                    responsibleId = responsibleId,
+                    action = if (locked) {
+                        "attendance_proof_locked"
+                    } else {
+                        "attendance_proof_failed"
+                    },
+                    entity = "attendance",
+                    reference = accountId.toString(),
+                    success = false,
+                    stamp = stamp(),
+                ),
+            )
+
+            return false
+        }
+
+        // Successful attendance proof clears failed credential attempts but
+        // deliberately does not mark this as an application login.
+        repositories.security.loginResult(
+            account.id,
+            0,
+            null,
+            null,
+        )
+
+        return true
+    }
+
+
     private fun valid(account: AuthAccount) = account.active && (account.employment == null || account.employment in setOf("ACTIVE", "ABSENT"))
     private suspend fun ReadRepositories.actor(): AuthAccount {
         val held = session ?: fail(SecurityError.FORBIDDEN)

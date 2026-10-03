@@ -32,7 +32,10 @@ import kotlinx.coroutines.launch
 /** Navigation renders authority responses. No role supplied here can grant rights. */
 @Composable
 fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
-    pickImage: ((SelectedImage?) -> Unit) -> Unit = { it(null) }, back: () -> Unit) {
+    pickImage: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
+    team: TeamService? = null,
+    pickProfilePhoto: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
+    back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
     var prefs by remember { mutableStateOf(DisplayPreferences()) }
@@ -42,6 +45,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     var config by remember { mutableStateOf(FoundationSettings()) }
     var catalogState by remember { mutableStateOf(CatalogScreenState()) }
     var catalogActor by remember { mutableStateOf<Long?>(null) }
+    var teamNavigationLocked by remember { mutableStateOf(false) }
+    var settingsDirty by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val fr = prefs.language == "fr"
     fun text(french: String, english: String) = if (fr) french else english
@@ -59,7 +64,11 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
         prefs = service.preferences(); identity = service.current()
         val sameCatalogActor = identity?.id != null && identity?.id == catalogActor
         if (!sameCatalogActor) { catalogState = CatalogScreenState(); catalogActor = identity?.id }
-        page = if (identity != null) { if (page == "catalog" && sameCatalogActor) "catalog" else "home" } else if (service.needsOwner()) "bootstrap" else "login"
+        page = if (identity != null) {
+            // Only a non-sensitive catalog list may survive an Android resume.
+            if (page == "catalog" && sameCatalogActor && "PRODUCTS:READ" in identity!!.permissions &&
+                catalogState.selected == null && !catalogState.editing) "catalog" else "home"
+        } else if (service.needsOwner()) "bootstrap" else "login"
     }
     LaunchedEffect(service) { run { refresh() } }
     val lifecycle = LocalLifecycleOwner.current.lifecycle
@@ -74,25 +83,70 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val width = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass
     val widthLabel = when (width) { WindowWidthSizeClass.COMPACT -> "COMPACT"; WindowWidthSizeClass.MEDIUM -> "MEDIUM"; else -> "EXPANDED" }
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
+    val shellUser = identity
+    val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings")
+    // Settings has an unsaved form. Catalog detail/edit and Team mutations must not be interrupted by navigation.
+    val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked &&
+        (page != "catalog" || (catalogState.selected == null && !catalogState.editing))
+    fun navigate(destination: String) {
+        val user = identity ?: return
+        if (!navigationEnabled || destination == page) return
+        val permitted = when (destination) {
+            "home" -> true
+            "catalog" -> catalog != null && "PRODUCTS:READ" in user.permissions
+            "employees" -> team != null && "EMPLOYEES:READ" in user.permissions
+            "today" -> team != null && "PRESENCE:READ" in user.permissions
+            "settings" -> "SETTINGS:READ" in user.permissions
+            else -> false
+        }
+        if (!permitted) return
+        error = null
+        when (destination) {
+            "catalog" -> {
+                // Preserve this account's filters and scroll while changing safe tabs.
+                catalogActor = user.id
+                page = "catalog"
+            }
+            "settings" -> run { config = service.settings(); settingsDirty = false; page = "settings" }
+            else -> { teamNavigationLocked = false; page = destination }
+        }
+    }
     SpatialTheme(dark) {
         Surface(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
+                Row(Modifier.weight(1f)) {
+                    if (shellVisible && widthLabel != "COMPACT") {
+                        StoreNavigationRail(page, shellUser!!.permissions, catalog != null, team != null,
+                            fr, navigationEnabled, ::navigate)
+                    }
+                    Box(Modifier.weight(1f)) {
             if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
+                }
+            } else if ((page == "employees" || page == "today") && team != null) {
+                identity?.let { user ->
+                    TeamScreen(team, user.permissions, user.id, user.role, fr,
+                        if (page == "employees") "employees" else "today", pickProfilePhoto,
+                        navigationLock = { teamNavigationLocked = it }) {
+                        teamNavigationLocked = false; page = "home"
+                    }
                 }
             } else {
             Column(Modifier.safeDrawingPadding().fillMaxSize().verticalScroll(rememberScrollState())
                 .padding(if (widthLabel == "COMPACT") SpatialTokens.compactInset else SpatialTokens.wideInset),
                 horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                Text("STORE · 57€|2£!/v9", Modifier.testTag("security-brand"), style = MaterialTheme.typography.titleLarge)
-                Text(widthLabel, Modifier.testTag("security-width"), style = MaterialTheme.typography.labelMedium)
+                if (page != "home") Text("STORE", Modifier.testTag("security-brand"), style = MaterialTheme.typography.titleLarge)
+                if (!shellVisible) Text(widthLabel, Modifier.testTag("security-width"),
+                    style = MaterialTheme.typography.labelMedium)
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     TextButton(enabled = !busy, onClick = { run { val next = prefs.copy(language = if (fr) "en" else "fr"); service.preferences(next); prefs = next } }) { Text(if (fr) "EN" else "FR") }
                     TextButton(enabled = !busy, onClick = { run { val next = prefs.copy(theme = if (dark) "light" else "dark"); service.preferences(next); prefs = next } }) { Text(text("Thème", "Theme")) }
-                    TextButton(enabled = !busy, onClick = back) { Text(text("Fondation", "Foundation")) }
+                    if (!shellVisible) TextButton(enabled = !busy, onClick = back) { Text(text("Fondation", "Foundation")) }
                 }
-                if (widthLabel == "EXPANDED") Text(text("Identité locale · données privées · accès contrôlé", "Local identity · private data · controlled access"), style = MaterialTheme.typography.headlineSmall)
-                SpatialPanel(Modifier.widthIn(max = if (widthLabel == "COMPACT") 480.dp else 640.dp).fillMaxWidth()) {
+                if (widthLabel == "EXPANDED" && !shellVisible) Text(text("Identité locale · données privées · accès contrôlé", "Local identity · private data · controlled access"), style = MaterialTheme.typography.headlineSmall)
+                SpatialPanel(Modifier.widthIn(max = if (page == "home") 1040.dp
+                    else if (widthLabel == "COMPACT") 480.dp else 640.dp).fillMaxWidth()) {
                     if (busy) LinearProgressIndicator(Modifier.fillMaxWidth())
                     error?.let {
                         Text(when (it) {
@@ -129,7 +183,10 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 Field(text("Identifiant, email ou nom complet", "Username, email or full name"), identifier, "identifier", busy) { identifier = it }
                                 PasswordField(text("Mot de passe", "Password"), password, busy, fr) { password = it }
                                 Button(modifier = Modifier.testTag("login-submit"), enabled = !busy, onClick = { run {
-                                    identity = if (switching) service.switchUser(Credentials(identifier, password)) else service.login(Credentials(identifier, password)); page = "home"
+                                    val next = if (switching) service.switchUser(Credentials(identifier, password))
+                                        else service.login(Credentials(identifier, password))
+                                    identity = next; catalogState = CatalogScreenState(); catalogActor = next.id
+                                    settingsDirty = false; teamNavigationLocked = false; page = "home"
                                 } }) { Text(text("Continuer", "Continue")) }
                                 TextButton(enabled = !busy, onClick = { error = null; page = if (switching) "home" else "recovery" }) { Text(if (switching) text("Annuler", "Cancel") else text("Mot de passe oublié", "Forgot password")) }
                             }
@@ -149,33 +206,41 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 TextButton(enabled = !busy, onClick = { question = null; page = "login"; error = null }) { Text(text("Annuler", "Cancel")) }
                             }
                             "home" -> identity?.let { user ->
-                                Text("${user.firstName} ${user.lastName}", Modifier.testTag("authenticated-name"), style = MaterialTheme.typography.headlineSmall)
-                                Text(text("Session locale authentifiée", "Authenticated local session"))
-                                Text(text("Aucune présence n’est signée par la connexion.", "Signing in does not record attendance."))
-                                if (catalog != null && "PRODUCTS:READ" in user.permissions) Button(enabled = !busy, onClick = {
-                                    catalogActor = user.id; catalogState = CatalogScreenState(); page = "catalog"
-                                }) { Text(text("Catalogue et stock", "Catalog and stock")) }
-                                Button(enabled = !busy, onClick = { page = "switch" }) { Text(text("Changer d’utilisateur", "Switch user")) }
-                                if ("SETTINGS:READ" in user.permissions) Button(enabled = !busy, onClick = { run { config = service.settings(); page = "settings" } }) { Text(text("Configurer la boutique", "Configure shop")) }
-                                OutlinedButton(enabled = !busy, onClick = { run { service.logout(); identity = null; page = "login" } }) { Text(text("Déconnexion", "Sign out")) }
+                                StoreHome(user, config.storeName, fr, !busy, catalog != null,
+                                    team != null, ::navigate, onSwitch = { page = "switch" },
+                                    onLogout = { run {
+                                        service.logout(); identity = null
+                                        catalogState = CatalogScreenState(); catalogActor = null
+                                        settingsDirty = false; teamNavigationLocked = false; page = "login"
+                                    } })
                             }
                             "settings" -> {
                                 var draft by remember { mutableStateOf(config) }
+                                fun edit(next: FoundationSettings) { draft = next; settingsDirty = next != config }
                                 Text(text("Configuration de la boutique", "Shop configuration"), style = MaterialTheme.typography.headlineSmall)
-                                Field(text("Nom boutique", "Shop name"), draft.storeName, "store-name", busy) { draft = draft.copy(storeName = it) }
-                                Field(text("Adresse", "Address"), draft.address, "address", busy) { draft = draft.copy(address = it) }
-                                Field(text("Téléphone", "Phone"), draft.phone, "phone", busy) { draft = draft.copy(phone = it) }
-                                Field("Email", draft.email, "shop-email", busy) { draft = draft.copy(email = it) }
-                                Field(text("Devise : EUR/XOF/XAF/CAD/GBP/CHF/NGN/GHS", "Currency: EUR/XOF/XAF/CAD/GBP/CHF/NGN/GHS"), draft.currency, "currency", busy) { draft = draft.copy(currency = it) }
-                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = draft.discountsEnabled, enabled = !busy, onCheckedChange = { draft = draft.copy(discountsEnabled = it) }); Text(text("Autoriser les remises", "Enable discounts")) }
-                                Button(enabled = !busy, onClick = { run { service.configure(draft); page = "home" } }) { Text(text("Enregistrer", "Save")) }
-                                TextButton(enabled = !busy, onClick = { page = "home" }) { Text(text("Retour", "Back")) }
+                                if (settingsDirty) Text(text("Modifications non enregistrées", "Unsaved changes"),
+                                    Modifier.testTag("settings-unsaved"), color = MaterialTheme.colorScheme.error)
+                                Field(text("Nom boutique", "Shop name"), draft.storeName, "store-name", busy) { edit(draft.copy(storeName = it)) }
+                                Field(text("Adresse", "Address"), draft.address, "address", busy) { edit(draft.copy(address = it)) }
+                                Field(text("Téléphone", "Phone"), draft.phone, "phone", busy) { edit(draft.copy(phone = it)) }
+                                Field("Email", draft.email, "shop-email", busy) { edit(draft.copy(email = it)) }
+                                Field(text("Devise : EUR/XOF/XAF/CAD/GBP/CHF/NGN/GHS", "Currency: EUR/XOF/XAF/CAD/GBP/CHF/NGN/GHS"), draft.currency, "currency", busy) { edit(draft.copy(currency = it)) }
+                                Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = draft.discountsEnabled, enabled = !busy, onCheckedChange = { edit(draft.copy(discountsEnabled = it)) }); Text(text("Autoriser les remises", "Enable discounts")) }
+                                Button(enabled = !busy, onClick = { run { service.configure(draft); config = draft; settingsDirty = false; page = "home" } }) { Text(text("Enregistrer", "Save")) }
+                                TextButton(enabled = !busy, onClick = { settingsDirty = false; page = "home" }) { Text(text("Retour", "Back")) }
                             }
                         }
                     }
                 }
             }
-            }
+            } // existing page content
+                    } // route content
+                } // navigation/content row
+                if (shellVisible && widthLabel == "COMPACT") {
+                    StoreNavigationBar(page, shellUser!!.permissions, catalog != null, team != null,
+                        fr, navigationEnabled, ::navigate)
+                }
+            } // adaptive shell
         }
     }
 }

@@ -47,6 +47,7 @@ class CatalogUiTest {
         compose.onNodeWithTag("product-price").performScrollTo().performTextInput("12,34")
         compose.onNodeWithText("Choisir une image").performScrollTo().performClick()
         compose.onNodeWithText("Aucune image").assertExists()
+        compose.onNodeWithTag("catalog-list").performScrollToNode(hasTestTag("product-save"))
         compose.onNodeWithTag("product-save").performScrollTo().performClick()
         compose.waitUntil { service.saved != null }
         assertEquals("Riz local", service.saved!!.name)
@@ -65,7 +66,7 @@ class CatalogUiTest {
         compose.onNodeWithText("Edit").assertDoesNotExist()
         compose.onNodeWithText("Adjust stock").assertDoesNotExist()
         compose.onNodeWithText("Archive").assertDoesNotExist()
-        compose.onNodeWithText("Back").performScrollTo().performClick()
+        compose.onNodeWithTag("catalog-back").performScrollTo().performClick()
         compose.onNodeWithTag("catalog-search").performScrollTo().performTextInput("missing")
         compose.onNodeWithText("No products").assertExists()
     }
@@ -140,8 +141,8 @@ class CatalogUiTest {
                     compose.onNodeWithTag(tag).performScrollTo().assertIsDisplayed().assertTextContains(value)
                 }
                 compose.onNodeWithTag("product-save").performScrollTo().assertIsEnabled()
-                compose.onNodeWithText("Back").performScrollTo().performClick()
-                compose.onNodeWithText("Back").performScrollTo().performClick()
+                compose.onNodeWithTag("catalog-back").performScrollTo().performClick()
+                compose.onNodeWithTag("catalog-back").performScrollTo().performClick()
                 android.util.Log.i("I04_ADAPTIVE", "window=${dp}dp class=$layout columns=$columns search/detail/form=PASS")
             }
         } finally {

@@ -7,6 +7,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import com.vibe.store.api.SelectedImage
 import com.vibe.store.infrastructure.media.AndroidProductMedia
+import com.vibe.store.infrastructure.media.AndroidProfilePhotoMedia
 import com.vibe.store.application.FoundationServiceImpl
 import com.vibe.store.infrastructure.RoomDriverWiring
 import com.vibe.store.presentation.FoundationApp
@@ -27,9 +28,16 @@ class MainActivity : ComponentActivity() {
                 val callback = selectionResult; selectionResult = null
                 callback?.invoke(uri?.let(AndroidProductMedia::selection))
             }
+            var profileSelectionResult by remember { mutableStateOf<((SelectedImage?) -> Unit)?>(null) }
+            val profilePicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+                val callback = profileSelectionResult; profileSelectionResult = null
+                callback?.invoke(uri?.let(AndroidProfilePhotoMedia::selection))
+            }
             val store = application as StoreApplication
-            if (access) SecurityApp(store.identity, store.catalog, { callback ->
+            if (access) SecurityApp(store.identity, store.catalog, pickImage = { callback ->
                 selectionResult = callback; picker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
+            }, team = store.team, pickProfilePhoto = { callback ->
+                profileSelectionResult = callback; profilePicker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }) { access = false }
             else FoundationApp(service) { access = true }
         }

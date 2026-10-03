@@ -1,6 +1,7 @@
 package com.vibe.store.application.persistence
 
 import com.vibe.store.domain.*
+import com.vibe.store.application.team.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.withContext
@@ -16,7 +17,8 @@ interface CatalogRepository : com.vibe.store.application.catalog.CatalogRecords 
 interface SalesRepository { suspend fun invoice(id: String): InvoiceRecord? }
 interface PurchaseRepository { suspend fun purchase(id: Long): PurchaseRecord? }
 interface InventoryRepository { suspend fun inventory(id: Long): InventoryRecord? }
-interface AttendanceRepository { suspend fun attendance(id: Long): AttendanceRecord? }
+interface EmployeeRepository : EmployeeRecords
+interface AttendanceRepository : PresenceRecords { suspend fun attendance(id: Long): AttendanceRecord? }
 interface MessagingRepository { suspend fun message(id: Long): MessageRecord? }
 interface AuditRepository { suspend fun audit(id: Long): AuditRecord? }
 interface SettingsReader { suspend fun value(key: String): String? }
@@ -26,7 +28,8 @@ interface ReadRepositories {
     val security: com.vibe.store.application.security.SecurityRepository
     val identity: IdentityRepository; val cash: CashRepository; val catalog: CatalogRepository
     val sales: SalesRepository; val purchases: PurchaseRepository; val inventories: InventoryRepository
-    val attendance: AttendanceRepository; val messaging: MessagingRepository; val audit: AuditRepository
+    val employees: EmployeeRepository; val attendance: AttendanceRepository
+    val messaging: MessagingRepository; val audit: AuditRepository
     val settings: SettingsReader
 }
 interface TransactionRepositories : ReadRepositories { override val settings: SettingsWriter }

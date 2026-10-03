@@ -36,6 +36,72 @@ internal class RoomSecurityRepository(private val dao: StoreDao, private val che
         dao.userRole(UserRoleEntity(id, roles.single { it.code == "owner" }.id, input.stamp))
         return id
     }
+    override suspend fun createManaged(input: NewManagedAccount): Long {
+        check(true)
+        require(input.role in setOf("manager", "employee"))
+
+        val existing = dao.accounts()
+        val role = checkNotNull(dao.roles().singleOrNull { it.code == input.role })
+        val id = (existing.maxOfOrNull { it.id } ?: 0) + 1
+
+        dao.user(
+            UserEntity(
+                id = id,
+                username = input.username,
+                passwordHash = input.verifier,
+                role = input.role,
+                firstName = input.firstName,
+                lastName = input.lastName,
+                initials = input.initials,
+                createdAt = input.stamp,
+                email = input.email,
+                phone = input.phone,
+                hireDate = input.hireDate,
+                active = input.active,
+                photo = input.photo,
+            ),
+        )
+
+        dao.putUserRole(UserRoleEntity(id, role.id, input.stamp))
+        return id
+    }
+
+    override suspend fun updateManaged(input: ManagedAccountChange) {
+        check(true)
+
+        val current = checkNotNull(dao.account(input.accountId))
+
+        if (current.role == "owner") {
+            require(input.role == "owner" && input.active)
+        } else {
+            require(input.role in setOf("manager", "employee"))
+        }
+
+        val role = checkNotNull(dao.roles().singleOrNull { it.code == input.role })
+
+        dao.updateUser(
+            current.copy(
+                username = input.username,
+                email = input.email,
+                firstName = input.firstName,
+                lastName = input.lastName,
+                initials = input.initials,
+                role = input.role,
+                phone = input.phone,
+                hireDate = input.hireDate,
+                active = input.active,
+                photo = input.photo,
+            ),
+        )
+
+        dao.putUserRole(
+            UserRoleEntity(
+                userId = current.id,
+                roleId = role.id,
+                assignedAt = input.stamp,
+            ),
+        )
+    }
     override suspend fun inherited(id: Long): Set<String> { check(false); return dao.inherited(id).toSet() }
     override suspend fun denied(id: Long): Set<String> { check(false); return dao.denied(id).toSet() }
     override suspend fun replaceDenials(id: Long, codes: Set<String>) {

@@ -20,7 +20,13 @@ internal interface StoreDao {
     @Query("DELETE FROM stock_movements WHERE id IN (:ids)") suspend fun deleteMovements(ids: List<Long>): Int
     @Query("SELECT DISTINCT imageRef FROM products WHERE imageRef IS NOT NULL") suspend fun productImageReferences(): List<String>
     @Query("SELECT * FROM users ORDER BY id") suspend fun accounts(): List<UserEntity>
+    @Query("SELECT * FROM employees ORDER BY id") suspend fun employees(): List<EmployeeEntity>
+    @Query("SELECT * FROM employees WHERE userId=:id LIMIT 1") suspend fun employeeForUser(id: Long): EmployeeEntity?
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM employees") suspend fun nextEmployeeId(): Long
+    @Query("SELECT EXISTS(SELECT 1 FROM employees WHERE lower(trim(code))=lower(trim(:code)) AND id!=COALESCE(:exceptId,0))")
+    suspend fun duplicateEmployeeCode(code: String, exceptId: Long?): Boolean
     @Update suspend fun updateUser(value: UserEntity)
+    @Update suspend fun updateEmployee(value: EmployeeEntity)
     @Query("SELECT status FROM employees WHERE userId=:id") suspend fun employment(id: Long): String?
     @Query("SELECT * FROM roles") suspend fun roles(): List<RoleEntity>
     @Query("SELECT * FROM permissions") suspend fun permissions(): List<PermissionEntity>
@@ -35,6 +41,7 @@ internal interface StoreDao {
     @Insert suspend fun permission(value: PermissionEntity)
     @Insert suspend fun rolePermission(value: RolePermissionEntity)
     @Insert suspend fun userRole(value: UserRoleEntity)
+    @Upsert suspend fun putUserRole(value: UserRoleEntity)
     @Insert suspend fun denial(value: DenialEntity)
     @Insert suspend fun employee(value: EmployeeEntity)
     @Insert suspend fun cash(value: CashEntity)
@@ -66,6 +73,12 @@ internal interface StoreDao {
     @Query("SELECT * FROM purchases WHERE id=:id") suspend fun findPurchase(id: Long): PurchaseEntity?
     @Query("SELECT * FROM inventory_counts WHERE id=:id") suspend fun findInventory(id: Long): InventoryEntity?
     @Query("SELECT * FROM attendances WHERE id=:id") suspend fun findAttendance(id: Long): AttendanceEntity?
+    @Query("SELECT a.* FROM attendances a JOIN users u ON u.id=a.userId WHERE (:fromInclusive='' OR a.startTime>=:fromInclusive) AND (:toExclusive='' OR a.startTime<:toExclusive) AND (:userId IS NULL OR a.userId=:userId) AND (:role='' OR u.role=:role) AND (:status='' OR a.status=:status) ORDER BY a.startTime DESC,a.id DESC LIMIT :limit OFFSET :offset")
+    suspend fun attendancePage(fromInclusive: String, toExclusive: String, userId: Long?, role: String, status: String, limit: Int, offset: Int): List<AttendanceEntity>
+    @Query("SELECT * FROM attendances WHERE userId=:userId AND endTime IS NULL ORDER BY startTime DESC,id DESC LIMIT 1")
+    suspend fun openAttendance(userId: Long): AttendanceEntity?
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM attendances") suspend fun nextAttendanceId(): Long
+    @Update suspend fun updateAttendance(value: AttendanceEntity)
     @Query("SELECT * FROM messages WHERE id=:id") suspend fun findMessage(id: Long): MessageEntity?
     @Query("SELECT * FROM audit_logs WHERE id=:id") suspend fun findAudit(id: Long): AuditEntity?
     @Query("SELECT value FROM settings WHERE `key`=:key") suspend fun settingValue(key: String): String?

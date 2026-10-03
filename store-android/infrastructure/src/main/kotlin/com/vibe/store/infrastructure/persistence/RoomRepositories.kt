@@ -29,9 +29,8 @@ internal class RoomRepositories(internal val dao: StoreDao, private val job: Job
     override val inventories = object : InventoryRepository {
         override suspend fun inventory(id: Long): InventoryRecord? { check(); return dao.findInventory(id)?.let { InventoryRecord(it.id, it.status) } }
     }
-    override val attendance = object : AttendanceRepository {
-        override suspend fun attendance(id: Long): AttendanceRecord? { check(); return dao.findAttendance(id)?.let { AttendanceRecord(it.id, it.userId, it.startTime, it.endTime, it.status) } }
-    }
+    override val employees: EmployeeRepository = RoomEmployeeRepository(dao, ::check)
+    override val attendance: AttendanceRepository = RoomAttendanceRepository(dao, ::check)
     override val messaging = object : MessagingRepository {
         override suspend fun message(id: Long): MessageRecord? { check(); return dao.findMessage(id)?.let { MessageRecord(it.id, it.subject, it.content) } }
     }
