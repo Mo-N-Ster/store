@@ -17,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 /** Composition only. This public launcher accepts no privileged command or data. */
 class MainActivity : ComponentActivity() {
+    private val posState by lazy { androidx.lifecycle.ViewModelProvider(this)[com.vibe.store.presentation.PosState::class.java] }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,9 +35,10 @@ class MainActivity : ComponentActivity() {
                 callback?.invoke(uri?.let(AndroidProfilePhotoMedia::selection))
             }
             val store = application as StoreApplication
+            SideEffect { store.unsavedSale = posState.dirty }
             if (access) SecurityApp(store.identity, store.catalog, pickImage = { callback ->
                 selectionResult = callback; picker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
-            }, team = store.team, pickProfilePhoto = { callback ->
+            }, team = store.team, sales = store.sales, posState = posState, pickProfilePhoto = { callback ->
                 profileSelectionResult = callback; profilePicker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }) { access = false }
             else FoundationApp(service) { access = true }

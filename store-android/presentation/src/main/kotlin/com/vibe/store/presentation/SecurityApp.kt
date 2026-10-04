@@ -35,6 +35,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     pickImage: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
     team: TeamService? = null,
     pickProfilePhoto: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
+    sales: SaleService? = null,
+    posState: PosState? = null,
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
@@ -66,7 +68,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
         if (!sameCatalogActor) { catalogState = CatalogScreenState(); catalogActor = identity?.id }
         page = if (identity != null) {
             // Only a non-sensitive catalog list may survive an Android resume.
-            if (page == "catalog" && sameCatalogActor && "PRODUCTS:READ" in identity!!.permissions &&
+            if (page == "pos" && sameCatalogActor && "POS:READ" in identity!!.permissions) "pos"
+            else if (page == "catalog" && sameCatalogActor && "PRODUCTS:READ" in identity!!.permissions &&
                 catalogState.selected == null && !catalogState.editing) "catalog" else "home"
         } else if (service.needsOwner()) "bootstrap" else "login"
     }
@@ -120,7 +123,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                             fr, navigationEnabled, ::navigate)
                     }
                     Box(Modifier.weight(1f)) {
-            if (page == "catalog" && catalog != null) {
+            if (page == "pos" && catalog != null && sales != null && posState != null) {
+                identity?.let { user -> PosScreen(sales, catalog, user, fr, posState) { page = "home" } }
+            } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
                 }
@@ -206,6 +211,10 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 TextButton(enabled = !busy, onClick = { question = null; page = "login"; error = null }) { Text(text("Annuler", "Cancel")) }
                             }
                             "home" -> identity?.let { user ->
+                                if (sales != null && posState != null && "POS:READ" in user.permissions) {
+                                    Button(modifier = Modifier.testTag("open-pos"), enabled = !busy,
+                                        onClick = { posState.bind(user.id); page = "pos" }) { Text(text("Caisse et ventes", "Cash and sales")) }
+                                }
                                 StoreHome(user, config.storeName, fr, !busy, catalog != null,
                                     team != null, ::navigate, onSwitch = { page = "switch" },
                                     onLogout = { run {

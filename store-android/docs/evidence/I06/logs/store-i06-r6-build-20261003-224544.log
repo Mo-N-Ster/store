@@ -1,0 +1,54 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :verifyArchitecture
+ARCHITECTURE_PASS: seven modules, explicit dependency allowlist
+
+> Task :application:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:compileKotlin
+> Task :application-api:compileJava NO-SOURCE
+> Task :application-api:processResources NO-SOURCE
+> Task :application-api:classes UP-TO-DATE
+> Task :application-api:jar
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:compileKotlin
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:processResources NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar
+> Task :application:compileKotlin
+> Task :application:compileJava NO-SOURCE
+> Task :application:processResources NO-SOURCE
+> Task :application:classes UP-TO-DATE
+> Task :application:jar
+> Task :infrastructure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :infrastructure:preBuild
+> Task :infrastructure:preDebugBuild
+> Task :infrastructure:generateDebugResValues
+> Task :infrastructure:generateDebugResources
+> Task :infrastructure:packageDebugResources
+> Task :infrastructure:processDebugNavigationResources
+> Task :infrastructure:parseDebugLocalResources
+> Task :infrastructure:generateDebugRFile
+> Task :infrastructure:kspDebugKotlin
+> Task :infrastructure:compileDebugKotlin
+> Task :infrastructure:javaPreCompileDebug
+> Task :infrastructure:compileDebugJavaWithJavac NO-SOURCE
+> Task :infrastructure:bundleLibCompileToJarDebug
+
+[Incubating] Problems report is available at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 21s
+17 actionable tasks: 17 executed

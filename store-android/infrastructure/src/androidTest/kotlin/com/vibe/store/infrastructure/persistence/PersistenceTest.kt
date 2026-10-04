@@ -159,6 +159,7 @@ class PersistenceTest {
             f.commands.execute { settings.put("before", "yes") }
             // Explicit adversarial connection, TEST ONLY, never a repository.
             BundledSQLiteDriver().open(f.owner.file.path).use { adversary ->
+                adversary.execSQL("PRAGMA busy_timeout=750")
                 adversary.execSQL("BEGIN IMMEDIATE")
                 try {
                     val elapsed = measureTimeMillis { rejected { f.commands.execute { settings.put("blocked", "bad") } } }

@@ -25,6 +25,8 @@ interface SettingsReader { suspend fun value(key: String): String? }
 interface SettingsWriter : SettingsReader { suspend fun put(key: String, value: String) }
 
 interface ReadRepositories {
+    val cashOperations: com.vibe.store.application.sales.CashOperations get() = error("Cash operations unavailable")
+    val saleOperations: com.vibe.store.application.sales.SaleOperations get() = error("Sale operations unavailable")
     val security: com.vibe.store.application.security.SecurityRepository
     val identity: IdentityRepository; val cash: CashRepository; val catalog: CatalogRepository
     val sales: SalesRepository; val purchases: PurchaseRepository; val inventories: InventoryRepository

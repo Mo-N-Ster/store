@@ -1,0 +1,200 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :verifyArchitecture
+ARCHITECTURE_PASS: seven modules, explicit dependency allowlist
+
+> Task :application:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:compileKotlin UP-TO-DATE
+> Task :application-api:compileJava NO-SOURCE
+> Task :application-api:processResources NO-SOURCE
+> Task :application-api:classes UP-TO-DATE
+> Task :application-api:jar UP-TO-DATE
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:compileKotlin UP-TO-DATE
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:processResources NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar UP-TO-DATE
+> Task :application:compileKotlin UP-TO-DATE
+> Task :application:compileJava NO-SOURCE
+> Task :application:processResources NO-SOURCE
+> Task :application:classes UP-TO-DATE
+> Task :application:jar UP-TO-DATE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :infrastructure:preBuild
+> Task :infrastructure:preDebugBuild
+> Task :infrastructure:writeDebugAarMetadata UP-TO-DATE
+> Task :presentation:preBuild
+> Task :presentation:preDebugBuild
+> Task :presentation:writeDebugAarMetadata UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :infrastructure:processDebugNavigationResources UP-TO-DATE
+> Task :presentation:processDebugNavigationResources UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :infrastructure:generateDebugResValues UP-TO-DATE
+> Task :infrastructure:generateDebugResources UP-TO-DATE
+> Task :infrastructure:packageDebugResources UP-TO-DATE
+> Task :presentation:generateDebugResValues UP-TO-DATE
+> Task :presentation:generateDebugResources UP-TO-DATE
+> Task :presentation:packageDebugResources UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :infrastructure:extractDeepLinksDebug UP-TO-DATE
+> Task :infrastructure:processDebugManifest UP-TO-DATE
+> Task :presentation:extractDeepLinksDebug UP-TO-DATE
+> Task :presentation:processDebugManifest UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :infrastructure:compileDebugLibraryResources UP-TO-DATE
+> Task :infrastructure:parseDebugLocalResources UP-TO-DATE
+> Task :infrastructure:generateDebugRFile UP-TO-DATE
+> Task :presentation:compileDebugLibraryResources UP-TO-DATE
+> Task :presentation:parseDebugLocalResources UP-TO-DATE
+> Task :presentation:generateDebugRFile UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :infrastructure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :infrastructure:kspDebugKotlin UP-TO-DATE
+> Task :infrastructure:compileDebugKotlin UP-TO-DATE
+> Task :infrastructure:javaPreCompileDebug UP-TO-DATE
+> Task :infrastructure:compileDebugJavaWithJavac NO-SOURCE
+> Task :infrastructure:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :presentation:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :presentation:compileDebugKotlin UP-TO-DATE
+> Task :presentation:javaPreCompileDebug UP-TO-DATE
+> Task :presentation:compileDebugJavaWithJavac NO-SOURCE
+> Task :presentation:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:processDebugAndroidTestManifest UP-TO-DATE
+> Task :app:generateDebugAndroidTestBuildConfig UP-TO-DATE
+> Task :app:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :app:processDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:compileDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :app:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugAndroidTestResources UP-TO-DATE
+> Task :app:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :app:processDebugAndroidTestResources UP-TO-DATE
+> Task :app:compileDebugAndroidTestKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebugAndroidTest
+> Task :app:compileDebugAndroidTestJavaWithJavac
+> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugShaders UP-TO-DATE
+> Task :infrastructure:compileDebugShaders NO-SOURCE
+> Task :infrastructure:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugAssets UP-TO-DATE
+> Task :presentation:mergeDebugShaders UP-TO-DATE
+> Task :presentation:compileDebugShaders NO-SOURCE
+> Task :presentation:generateDebugAssets UP-TO-DATE
+> Task :presentation:mergeDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets UP-TO-DATE
+> Task :app:compressDebugAssets UP-TO-DATE
+> Task :presentation:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :infrastructure:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+> Task :app:dexBuilderDebug UP-TO-DATE
+> Task :app:mergeDebugGlobalSynthetics UP-TO-DATE
+> Task :app:processDebugJavaRes UP-TO-DATE
+> Task :infrastructure:processDebugJavaRes UP-TO-DATE
+> Task :presentation:processDebugJavaRes UP-TO-DATE
+> Task :app:mergeDebugJavaResource UP-TO-DATE
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+> Task :app:mergeExtDexDebug UP-TO-DATE
+> Task :app:mergeLibDexDebug UP-TO-DATE
+> Task :app:mergeProjectDexDebug UP-TO-DATE
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+> Task :infrastructure:mergeDebugJniLibFolders UP-TO-DATE
+> Task :infrastructure:mergeDebugNativeLibs NO-SOURCE
+> Task :infrastructure:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :presentation:mergeDebugJniLibFolders UP-TO-DATE
+> Task :presentation:mergeDebugNativeLibs NO-SOURCE
+> Task :presentation:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+> Task :app:validateSigningDebug UP-TO-DATE
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+> Task :app:packageDebug UP-TO-DATE
+> Task :app:createDebugApkListingFileRedirect UP-TO-DATE
+> Task :app:mergeDebugAndroidTestShaders
+> Task :app:compileDebugAndroidTestShaders NO-SOURCE
+> Task :app:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :app:mergeDebugAndroidTestAssets
+> Task :app:compressDebugAndroidTestAssets
+> Task :app:desugarDebugAndroidTestFileDependencies
+> Task :app:dexBuilderDebugAndroidTest
+> Task :app:mergeDebugAndroidTestGlobalSynthetics
+> Task :app:processDebugAndroidTestJavaRes
+> Task :app:mergeDebugAndroidTestJavaResource
+> Task :app:checkDebugAndroidTestDuplicateClasses
+> Task :app:mergeExtDexDebugAndroidTest
+> Task :app:mergeLibDexDebugAndroidTest
+> Task :app:mergeProjectDexDebugAndroidTest
+> Task :app:mergeDebugAndroidTestJniLibFolders
+> Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
+> Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebugAndroidTest
+> Task :app:writeDebugAndroidTestSigningConfigVersions
+> Task :app:packageDebugAndroidTest
+> Task :app:createDebugAndroidTestApkListingFileRedirect
+> Task :app:connectedDebugAndroidTest
+Starting 3 tests on STORE_I03_API36(AVD) - 16
+
+com.vibe.store.PosUiTest > actualWindowClassAndIndependentPanels[STORE_I03_API36(AVD) - 16] [31mFAILED [0m
+	java.lang.IllegalStateException: Required value was null.
+	at com.vibe.store.PosUiTest.actualWindowClassAndIndependentPanels(PosUiTest.kt:110)
+
+STORE_I03_API36(AVD) - 16 Tests 1/3 completed. (0 skipped) (1 failed)
+STORE_I03_API36(AVD) - 16 Tests 2/3 completed. (0 skipped) (1 failed)
+Finished 3 tests on STORE_I03_API36(AVD) - 16
+
+> Task :app:connectedDebugAndroidTest
+Tests on STORE_I03_API36(AVD) - 16 failed: There was 1 failure(s).
+
+> Task :app:connectedDebugAndroidTest FAILED
+
+[Incubating] Problems report is available at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:connectedDebugAndroidTest'.
+> There were failing tests. See the report at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/app/build/reports/androidTests/connected/debug/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 48s
+117 actionable tasks: 21 executed, 96 up-to-date

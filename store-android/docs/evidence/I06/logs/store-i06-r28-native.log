@@ -1,0 +1,108 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :verifyArchitecture
+ARCHITECTURE_PASS: seven modules, explicit dependency allowlist
+
+> Task :application:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:compileKotlin UP-TO-DATE
+> Task :application-api:compileJava NO-SOURCE
+> Task :application-api:processResources NO-SOURCE
+> Task :application-api:classes UP-TO-DATE
+> Task :application-api:jar UP-TO-DATE
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:compileKotlin UP-TO-DATE
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:processResources NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar UP-TO-DATE
+> Task :application:compileKotlin UP-TO-DATE
+> Task :application:compileJava NO-SOURCE
+> Task :application:processResources NO-SOURCE
+> Task :application:classes UP-TO-DATE
+> Task :application:jar UP-TO-DATE
+> Task :infrastructure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :infrastructure:preBuild
+> Task :infrastructure:preDebugBuild
+> Task :infrastructure:generateDebugResValues UP-TO-DATE
+> Task :infrastructure:generateDebugResources UP-TO-DATE
+> Task :infrastructure:packageDebugResources UP-TO-DATE
+> Task :infrastructure:processDebugNavigationResources UP-TO-DATE
+> Task :infrastructure:parseDebugLocalResources UP-TO-DATE
+> Task :infrastructure:generateDebugRFile UP-TO-DATE
+> Task :infrastructure:kspDebugKotlin UP-TO-DATE
+> Task :infrastructure:compileDebugKotlin UP-TO-DATE
+> Task :infrastructure:javaPreCompileDebug UP-TO-DATE
+> Task :infrastructure:compileDebugJavaWithJavac NO-SOURCE
+> Task :infrastructure:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :infrastructure:preDebugAndroidTestBuild
+> Task :infrastructure:writeDebugAarMetadata UP-TO-DATE
+> Task :infrastructure:checkDebugAndroidTestAarMetadata UP-TO-DATE
+> Task :infrastructure:processDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :infrastructure:compileDebugAndroidTestNavigationResources UP-TO-DATE
+> Task :infrastructure:compileDebugLibraryResources UP-TO-DATE
+> Task :infrastructure:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :infrastructure:mapDebugAndroidTestSourceSetPaths UP-TO-DATE
+> Task :infrastructure:generateDebugAndroidTestResources UP-TO-DATE
+> Task :infrastructure:mergeDebugAndroidTestResources UP-TO-DATE
+> Task :infrastructure:extractDeepLinksDebug UP-TO-DATE
+> Task :infrastructure:processDebugManifest UP-TO-DATE
+> Task :infrastructure:processDebugAndroidTestManifest UP-TO-DATE
+> Task :infrastructure:processDebugAndroidTestResources UP-TO-DATE
+> Task :infrastructure:kspDebugAndroidTestKotlin
+> Task :infrastructure:compileDebugAndroidTestKotlin
+> Task :infrastructure:javaPreCompileDebugAndroidTest UP-TO-DATE
+> Task :infrastructure:compileDebugAndroidTestJavaWithJavac NO-SOURCE
+> Task :infrastructure:mergeDebugAndroidTestShaders UP-TO-DATE
+> Task :infrastructure:compileDebugAndroidTestShaders NO-SOURCE
+> Task :infrastructure:generateDebugAndroidTestAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugShaders UP-TO-DATE
+> Task :infrastructure:compileDebugShaders NO-SOURCE
+> Task :infrastructure:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugAndroidTestAssets UP-TO-DATE
+> Task :infrastructure:compressDebugAndroidTestAssets UP-TO-DATE
+> Task :infrastructure:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :infrastructure:desugarDebugAndroidTestFileDependencies UP-TO-DATE
+> Task :infrastructure:dexBuilderDebugAndroidTest
+> Task :infrastructure:mergeDebugAndroidTestGlobalSynthetics UP-TO-DATE
+> Task :infrastructure:processDebugAndroidTestJavaRes UP-TO-DATE
+> Task :infrastructure:processDebugJavaRes UP-TO-DATE
+> Task :infrastructure:mergeDebugAndroidTestJavaResource UP-TO-DATE
+> Task :infrastructure:checkDebugAndroidTestDuplicateClasses UP-TO-DATE
+> Task :infrastructure:mergeExtDexDebugAndroidTest UP-TO-DATE
+> Task :infrastructure:mergeLibDexDebugAndroidTest UP-TO-DATE
+> Task :infrastructure:mergeProjectDexDebugAndroidTest
+> Task :infrastructure:mergeDebugJniLibFolders UP-TO-DATE
+> Task :infrastructure:mergeDebugNativeLibs NO-SOURCE
+> Task :infrastructure:copyDebugJniLibsProjectOnly UP-TO-DATE
+> Task :infrastructure:mergeDebugAndroidTestJniLibFolders UP-TO-DATE
+> Task :infrastructure:mergeDebugAndroidTestNativeLibs UP-TO-DATE
+> Task :infrastructure:stripDebugAndroidTestDebugSymbols UP-TO-DATE
+> Task :infrastructure:validateSigningDebugAndroidTest UP-TO-DATE
+> Task :infrastructure:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
+> Task :infrastructure:packageDebugAndroidTest
+> Task :infrastructure:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
+
+> Task :infrastructure:connectedDebugAndroidTest
+Starting 15 tests on STORE_I03_API36(AVD) - 16
+
+STORE_I03_API36(AVD) - 16 Tests 11/15 completed. (0 skipped) (0 failed)
+Finished 15 tests on STORE_I03_API36(AVD) - 16
+
+[Incubating] Problems report is available at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 7s
+59 actionable tasks: 7 executed, 52 up-to-date

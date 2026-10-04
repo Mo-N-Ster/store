@@ -1,0 +1,4 @@
+I06_ACCEPTANCE_REPORT.md -text
+I06_EVIDENCE_INDEX.txt -text
+i06-*.png -text
+logs/*.log -text

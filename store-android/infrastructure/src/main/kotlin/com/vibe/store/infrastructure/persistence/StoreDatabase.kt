@@ -6,6 +6,23 @@ import androidx.sqlite.execSQL
 
 @Dao
 internal interface StoreDao {
+    @Query("SELECT * FROM cash_sessions WHERE userId=:actor ORDER BY id DESC LIMIT 40 OFFSET :offset") suspend fun cashPage(actor: Long, offset: Int): List<CashEntity>
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM cash_sessions") suspend fun nextCashId(): Long
+    @Update suspend fun updateCash(value: CashEntity)
+    @Query("SELECT * FROM invoices WHERE idempotencyKey=:key") suspend fun invoiceByKey(key: String): InvoiceEntity?
+    @Query("SELECT * FROM invoice_lines WHERE invoiceId=:id ORDER BY id") suspend fun invoiceLines(id: String): List<InvoiceLineEntity>
+    @Query("SELECT * FROM payments WHERE invoiceId=:id") suspend fun invoicePayment(id: String): PaymentEntity?
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM invoice_lines") suspend fun nextInvoiceLineId(): Long
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM payments") suspend fun nextPaymentId(): Long
+    @Query("SELECT * FROM invoices i WHERE (:search='' OR instr(i.id,:search)>0) AND (:from='' OR substr(i.invoiceDate,1,10)>=:from) AND (:to='' OR substr(i.invoiceDate,1,10)<=:to) AND (:product IS NULL OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=i.id AND l.productId=:product)) AND (:category='' OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=i.id AND l.category=:category)) ORDER BY i.invoiceDate DESC,i.id DESC LIMIT :limit OFFSET :offset")
+    suspend fun salePage(search: String, from: String, to: String, product: Long?, category: String, limit: Int, offset: Int): List<InvoiceEntity>
+    @Update suspend fun updateInvoice(value: InvoiceEntity)
+    @Query("UPDATE payments SET status='REFUNDED' WHERE invoiceId=:id AND status='CAPTURED'") suspend fun refund(id: String)
+    @Query("SELECT unitPrice FROM stock_movements WHERE productId=:id AND quantity>0 AND unitPrice>=0 AND reason IN ('purchase','initial') ORDER BY createdAt DESC,id DESC LIMIT 1") suspend fun latestCost(id: Long): Double?
+    @Query("SELECT * FROM pending_commands WHERE commandKey=:key") suspend fun pendingByKey(key: String): PendingCommandEntity?
+    @Query("SELECT * FROM pending_commands WHERE actorId=:actor AND state='SUBMITTED' ORDER BY createdAt DESC LIMIT 100") suspend fun pendingFor(actor: Long): List<PendingCommandEntity>
+    @Query("UPDATE pending_commands SET state='ACKNOWLEDGED' WHERE commandKey=:key") suspend fun acknowledgeCommand(key: String)
+    @Query("UPDATE pending_commands SET state='DISCARDED' WHERE commandKey=:key") suspend fun abandonCommand(key: String)
     @Query("SELECT * FROM products WHERE ((:archived=0 AND deletedAt IS NULL) OR (:archived=1 AND deletedAt IS NOT NULL)) AND (:category='' OR category=:category) AND (:search='' OR instr(lower(name || ' ' || category || ' ' || COALESCE(hashtag,'')),lower(:search))>0) AND (:stock='all' OR (:stock='low' AND stock<=minimumStock) OR (:stock='out' AND stock=0)) ORDER BY name COLLATE NOCASE,id LIMIT :limit OFFSET :offset")
     suspend fun catalogPage(search: String, category: String, archived: Boolean, stock: String, limit: Int, offset: Int): List<ProductEntity>
     @Query("SELECT EXISTS(SELECT 1 FROM products WHERE deletedAt IS NULL AND id!=COALESCE(:exceptId,0) AND (lower(trim(name))=lower(:name) OR (:hashtag!='' AND lower(COALESCE(hashtag,''))=lower(:hashtag))))")

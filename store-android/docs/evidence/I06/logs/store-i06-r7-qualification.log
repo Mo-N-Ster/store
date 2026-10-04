@@ -1,0 +1,192 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :verifyArchitecture
+ARCHITECTURE_PASS: seven modules, explicit dependency allowlist
+
+> Task :testing:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :testing:compileKotlin NO-SOURCE
+> Task :testing:compileJava NO-SOURCE
+> Task :testing:processResources NO-SOURCE
+> Task :testing:classes UP-TO-DATE
+> Task :testing:jar
+> Task :application:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:compileKotlin UP-TO-DATE
+> Task :application-api:compileJava NO-SOURCE
+> Task :application-api:processResources NO-SOURCE
+> Task :application-api:classes UP-TO-DATE
+> Task :application-api:jar UP-TO-DATE
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:compileKotlin UP-TO-DATE
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:processResources NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar UP-TO-DATE
+> Task :application:compileKotlin UP-TO-DATE
+> Task :application:compileJava NO-SOURCE
+> Task :application:processResources NO-SOURCE
+> Task :application:classes UP-TO-DATE
+> Task :application:jar UP-TO-DATE
+> Task :testing:compileTestKotlin
+> Task :testing:compileTestJava NO-SOURCE
+> Task :testing:processTestResources NO-SOURCE
+> Task :testing:testClasses UP-TO-DATE
+> Task :testing:test
+> Task :infrastructure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :infrastructure:preBuild
+> Task :infrastructure:preDebugBuild
+> Task :infrastructure:generateDebugResValues UP-TO-DATE
+> Task :infrastructure:generateDebugResources UP-TO-DATE
+> Task :infrastructure:packageDebugResources UP-TO-DATE
+> Task :infrastructure:processDebugNavigationResources UP-TO-DATE
+> Task :infrastructure:parseDebugLocalResources UP-TO-DATE
+> Task :infrastructure:generateDebugRFile UP-TO-DATE
+> Task :infrastructure:kspDebugKotlin UP-TO-DATE
+> Task :infrastructure:compileDebugKotlin UP-TO-DATE
+> Task :infrastructure:javaPreCompileDebug UP-TO-DATE
+> Task :infrastructure:compileDebugJavaWithJavac NO-SOURCE
+> Task :infrastructure:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :infrastructure:preDebugAndroidTestBuild
+> Task :infrastructure:writeDebugAarMetadata
+> Task :infrastructure:checkDebugAndroidTestAarMetadata
+> Task :infrastructure:processDebugAndroidTestNavigationResources
+> Task :infrastructure:compileDebugAndroidTestNavigationResources
+> Task :infrastructure:compileDebugLibraryResources
+> Task :infrastructure:generateDebugAndroidTestResValues
+> Task :infrastructure:mapDebugAndroidTestSourceSetPaths
+> Task :infrastructure:generateDebugAndroidTestResources
+> Task :infrastructure:mergeDebugAndroidTestResources
+> Task :infrastructure:extractDeepLinksDebug
+> Task :infrastructure:processDebugManifest
+> Task :infrastructure:processDebugAndroidTestManifest
+> Task :infrastructure:processDebugAndroidTestResources
+> Task :infrastructure:kspDebugAndroidTestKotlin
+> Task :infrastructure:compileDebugAndroidTestKotlin
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:generateDebugBuildConfig
+> Task :presentation:preBuild
+> Task :presentation:preDebugBuild
+> Task :presentation:writeDebugAarMetadata
+> Task :app:checkDebugAarMetadata
+> Task :presentation:processDebugNavigationResources
+> Task :app:processDebugNavigationResources
+> Task :app:compileDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :presentation:generateDebugResValues
+> Task :presentation:generateDebugResources
+> Task :presentation:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:mergeDebugResources
+> Task :app:packageDebugResources
+> Task :app:parseDebugLocalResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :presentation:extractDeepLinksDebug
+> Task :presentation:processDebugManifest
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :presentation:compileDebugLibraryResources
+> Task :presentation:parseDebugLocalResources
+> Task :presentation:generateDebugRFile
+> Task :app:processDebugResources
+> Task :presentation:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :presentation:compileDebugKotlin
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:24:8 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:51:61 'val windowWidthSizeClass: WindowWidthSizeClass' is deprecated. Use either isWidthAtLeastBreakpoint or isAtLeastBreakpoint to check matching bounds.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:53:9 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:53:30 'val COMPACT: WindowWidthSizeClass' is deprecated. WindowWidthSizeClass not be developed further.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:54:9 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/FoundationScreen.kt:54:30 'val MEDIUM: WindowWidthSizeClass' is deprecated. WindowWidthSizeClass not be developed further.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:27:8 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:86:61 'val windowWidthSizeClass: WindowWidthSizeClass' is deprecated. Use either isWidthAtLeastBreakpoint or isAtLeastBreakpoint to check matching bounds.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:87:37 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:87:58 'val COMPACT: WindowWidthSizeClass' is deprecated. WindowWidthSizeClass not be developed further.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:87:80 'class WindowWidthSizeClass : Any' is deprecated. WindowWidthSizeClass will not be developed further, use WindowSizeClass instead.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/SecurityApp.kt:87:101 'val MEDIUM: WindowWidthSizeClass' is deprecated. WindowWidthSizeClass not be developed further.
+w: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/presentation/src/main/kotlin/com/vibe/store/presentation/TeamScreen.kt:171:44 'fun TabRow(selectedTabIndex: Int, modifier: Modifier = ..., containerColor: Color = ..., contentColor: Color = ..., indicator: ComposableFunction1<List<TabPosition>, Unit> = ..., divider: ComposableFunction0<Unit> = ..., tabs: ComposableFunction0<Unit>): Unit' is deprecated. Replaced with PrimaryTabRow and SecondaryTabRow.
+
+> Task :presentation:javaPreCompileDebug
+> Task :presentation:compileDebugJavaWithJavac NO-SOURCE
+> Task :presentation:bundleLibCompileToJarDebug
+> Task :app:compileDebugKotlin
+> Task :app:javaPreCompileDebug
+> Task :app:compileDebugJavaWithJavac
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:processDebugAndroidTestManifest
+> Task :app:generateDebugAndroidTestBuildConfig
+> Task :app:checkDebugAndroidTestAarMetadata
+> Task :app:processDebugAndroidTestNavigationResources
+> Task :app:compileDebugAndroidTestNavigationResources
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:mapDebugAndroidTestSourceSetPaths
+> Task :app:generateDebugAndroidTestResources
+> Task :app:mergeDebugAndroidTestResources
+> Task :app:processDebugAndroidTestResources
+> Task :app:compileDebugAndroidTestKotlin
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugShaders
+> Task :infrastructure:compileDebugShaders NO-SOURCE
+> Task :infrastructure:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugAssets
+> Task :presentation:mergeDebugShaders
+> Task :presentation:compileDebugShaders NO-SOURCE
+> Task :presentation:generateDebugAssets UP-TO-DATE
+> Task :presentation:mergeDebugAssets
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :presentation:bundleLibRuntimeToJarDebug
+> Task :infrastructure:bundleLibRuntimeToJarDebug
+> Task :app:desugarDebugFileDependencies
+> Task :app:dexBuilderDebug
+> Task :app:mergeDebugGlobalSynthetics
+> Task :app:processDebugJavaRes
+> Task :infrastructure:processDebugJavaRes
+> Task :presentation:processDebugJavaRes
+> Task :app:mergeDebugJavaResource
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeExtDexDebug
+> Task :app:mergeLibDexDebug
+> Task :app:mergeProjectDexDebug
+> Task :app:mergeDebugJniLibFolders
+> Task :infrastructure:mergeDebugJniLibFolders
+> Task :infrastructure:mergeDebugNativeLibs NO-SOURCE
+> Task :infrastructure:copyDebugJniLibsProjectOnly
+> Task :presentation:mergeDebugJniLibFolders
+> Task :presentation:mergeDebugNativeLibs NO-SOURCE
+> Task :presentation:copyDebugJniLibsProjectOnly
+> Task :app:mergeDebugNativeLibs
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libandroidx.graphics.path.so, libsqliteJni.so. Run with --info option to learn more.
+
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+
+[Incubating] Problems report is available at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 4m 57s
+111 actionable tasks: 95 executed, 16 up-to-date

@@ -1,0 +1,180 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at different times.
+
+> Task :verifyArchitecture
+ARCHITECTURE_PASS: seven modules, explicit dependency allowlist
+
+> Task :infrastructure:preBuild
+> Task :infrastructure:preDebugBuild
+> Task :infrastructure:checkDebugAarMetadata
+> Task :infrastructure:mergeDebugJniLibFolders UP-TO-DATE
+> Task :infrastructure:mergeDebugNativeLibs NO-SOURCE
+> Task :infrastructure:stripDebugDebugSymbols NO-SOURCE
+> Task :infrastructure:copyDebugJniLibsProjectAndLocalJars
+> Task :application:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :application-api:compileKotlin UP-TO-DATE
+> Task :application-api:compileJava NO-SOURCE
+> Task :application-api:processResources NO-SOURCE
+> Task :application-api:classes UP-TO-DATE
+> Task :application-api:jar UP-TO-DATE
+> Task :domain:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :domain:compileKotlin UP-TO-DATE
+> Task :domain:compileJava NO-SOURCE
+> Task :domain:processResources NO-SOURCE
+> Task :domain:classes UP-TO-DATE
+> Task :domain:jar UP-TO-DATE
+> Task :application:compileKotlin UP-TO-DATE
+> Task :application:compileJava NO-SOURCE
+> Task :application:processResources NO-SOURCE
+> Task :application:classes UP-TO-DATE
+> Task :application:jar UP-TO-DATE
+> Task :infrastructure:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :infrastructure:generateDebugResValues UP-TO-DATE
+> Task :infrastructure:generateDebugResources UP-TO-DATE
+> Task :infrastructure:packageDebugResources UP-TO-DATE
+> Task :infrastructure:processDebugNavigationResources UP-TO-DATE
+> Task :infrastructure:parseDebugLocalResources UP-TO-DATE
+> Task :infrastructure:generateDebugRFile UP-TO-DATE
+> Task :infrastructure:kspDebugKotlin UP-TO-DATE
+> Task :infrastructure:compileDebugKotlin UP-TO-DATE
+> Task :infrastructure:extractDebugAnnotations
+> Task :infrastructure:extractDeepLinksForAarDebug
+> Task :infrastructure:mergeDebugShaders UP-TO-DATE
+> Task :infrastructure:compileDebugShaders NO-SOURCE
+> Task :infrastructure:generateDebugAssets UP-TO-DATE
+> Task :infrastructure:mergeDebugAssets UP-TO-DATE
+> Task :infrastructure:javaPreCompileDebug UP-TO-DATE
+> Task :infrastructure:compileDebugJavaWithJavac NO-SOURCE
+> Task :infrastructure:mergeDebugGeneratedProguardFiles
+> Task :infrastructure:mergeDebugConsumerProguardFiles
+> Task :infrastructure:prepareDebugArtProfile
+> Task :infrastructure:prepareLintJarForPublish
+> Task :infrastructure:processDebugManifest UP-TO-DATE
+> Task :infrastructure:processDebugJavaRes UP-TO-DATE
+> Task :infrastructure:mergeDebugJavaResource
+> Task :infrastructure:syncDebugLibJars
+> Task :infrastructure:writeDebugAarMetadata UP-TO-DATE
+> Task :infrastructure:bundleDebugLocalLintAar
+> Task :infrastructure:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :infrastructure:createFullJarDebug
+> Task :infrastructure:preDebugAndroidTestBuild
+> Task :infrastructure:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :infrastructure:writeDebugLintModelMetadata
+> Task :infrastructure:generateDebugAndroidTestLintModel
+> Task :infrastructure:extractProguardFiles
+> Task :infrastructure:generateDebugLintReportModel
+> Task :infrastructure:preDebugUnitTestBuild
+> Task :infrastructure:generateDebugUnitTestLintModel
+> Task :infrastructure:lintAnalyzeDebug
+> Task :infrastructure:lintAnalyzeDebugAndroidTest
+> Task :infrastructure:lintAnalyzeDebugUnitTest
+> Task :infrastructure:lintReportDebug
+> Task :infrastructure:lintDebug
+> Task :presentation:preBuild
+> Task :presentation:preDebugBuild
+> Task :presentation:checkDebugAarMetadata
+> Task :presentation:mergeDebugJniLibFolders UP-TO-DATE
+> Task :presentation:mergeDebugNativeLibs NO-SOURCE
+> Task :presentation:stripDebugDebugSymbols NO-SOURCE
+> Task :presentation:copyDebugJniLibsProjectAndLocalJars
+> Task :presentation:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :presentation:generateDebugResValues UP-TO-DATE
+> Task :presentation:generateDebugResources UP-TO-DATE
+> Task :presentation:packageDebugResources UP-TO-DATE
+> Task :presentation:processDebugNavigationResources UP-TO-DATE
+> Task :presentation:parseDebugLocalResources UP-TO-DATE
+> Task :presentation:generateDebugRFile UP-TO-DATE
+> Task :presentation:compileDebugKotlin UP-TO-DATE
+> Task :presentation:extractDebugAnnotations
+> Task :presentation:extractDeepLinksForAarDebug
+> Task :presentation:mergeDebugShaders UP-TO-DATE
+> Task :presentation:compileDebugShaders NO-SOURCE
+> Task :presentation:generateDebugAssets UP-TO-DATE
+> Task :presentation:mergeDebugAssets UP-TO-DATE
+> Task :presentation:javaPreCompileDebug UP-TO-DATE
+> Task :presentation:compileDebugJavaWithJavac NO-SOURCE
+> Task :presentation:mergeDebugGeneratedProguardFiles
+> Task :presentation:mergeDebugConsumerProguardFiles
+> Task :presentation:prepareDebugArtProfile
+> Task :presentation:prepareLintJarForPublish
+> Task :presentation:processDebugManifest UP-TO-DATE
+> Task :presentation:processDebugJavaRes UP-TO-DATE
+> Task :presentation:mergeDebugJavaResource
+> Task :presentation:syncDebugLibJars
+> Task :presentation:writeDebugAarMetadata UP-TO-DATE
+> Task :presentation:bundleDebugLocalLintAar
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:preBuild
+> Task :app:preDebugBuild
+> Task :app:generateDebugBuildConfig UP-TO-DATE
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+> Task :app:processDebugNavigationResources UP-TO-DATE
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+> Task :app:generateDebugResValues UP-TO-DATE
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+> Task :app:generateDebugResources UP-TO-DATE
+> Task :app:mergeDebugResources UP-TO-DATE
+> Task :app:packageDebugResources UP-TO-DATE
+> Task :app:parseDebugLocalResources UP-TO-DATE
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+> Task :infrastructure:extractDeepLinksDebug UP-TO-DATE
+> Task :presentation:extractDeepLinksDebug UP-TO-DATE
+> Task :app:processDebugMainManifest UP-TO-DATE
+> Task :app:processDebugManifest UP-TO-DATE
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+> Task :infrastructure:compileDebugLibraryResources UP-TO-DATE
+> Task :presentation:compileDebugLibraryResources UP-TO-DATE
+> Task :app:processDebugResources UP-TO-DATE
+> Task :infrastructure:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :presentation:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :app:compileDebugKotlin UP-TO-DATE
+> Task :app:javaPreCompileDebug UP-TO-DATE
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
+> Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues UP-TO-DATE
+> Task :presentation:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :presentation:createFullJarDebug
+> Task :presentation:writeDebugLintModelMetadata
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:extractProguardFiles
+> Task :infrastructure:generateDebugLintModel
+> Task :presentation:extractProguardFiles
+> Task :presentation:generateDebugLintModel
+> Task :app:generateDebugLintReportModel
+> Task :app:preDebugUnitTestBuild
+> Task :app:generateDebugUnitTestLintModel
+> Task :presentation:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :presentation:preDebugAndroidTestBuild
+> Task :presentation:generateDebugAndroidTestResValues
+> Task :presentation:generateDebugAndroidTestLintModel
+> Task :presentation:preDebugUnitTestBuild
+> Task :presentation:generateDebugUnitTestLintModel
+> Task :presentation:lintAnalyzeDebugAndroidTest
+> Task :presentation:lintAnalyzeDebugUnitTest
+
+> Task :app:lintReportDebug
+Wrote HTML report to file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/app/build/reports/lint-results-debug.html
+
+> Task :app:lintDebug
+
+[Incubating] Problems report is available at: file:///C:/Users/sterl/AppData/Local/Temp/store-i06-qual-r6-20261003-224544/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 18s
+119 actionable tasks: 54 executed, 65 up-to-date
