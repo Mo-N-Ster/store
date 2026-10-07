@@ -37,6 +37,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     pickProfilePhoto: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
     sales: SaleService? = null,
     posState: PosState? = null,
+    suppliers: SupplierService? = null,
+    purchases: PurchaseService? = null,
+    inventories: InventoryService? = null,
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
@@ -87,16 +90,25 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val widthLabel = when (width) { WindowWidthSizeClass.COMPACT -> "COMPACT"; WindowWidthSizeClass.MEDIUM -> "MEDIUM"; else -> "EXPANDED" }
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
     val shellUser = identity
-    val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings")
+    val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings",
+        "operations", "suppliers", "purchases", "inventories")
     // Settings has an unsaved form. Catalog detail/edit and Team mutations must not be interrupted by navigation.
     val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked &&
-        (page != "catalog" || (catalogState.selected == null && !catalogState.editing))
+        (page != "catalog" || (catalogState.selected == null && !catalogState.editing)) &&
+        page !in setOf("suppliers", "purchases", "inventories")
     fun navigate(destination: String) {
         val user = identity ?: return
         if (!navigationEnabled || destination == page) return
         val permitted = when (destination) {
             "home" -> true
             "catalog" -> catalog != null && "PRODUCTS:READ" in user.permissions
+            "operations" -> user.role in setOf("owner", "manager") &&
+                (purchases != null && "PURCHASES:READ" in user.permissions ||
+                    inventories != null && "STOCKS:READ" in user.permissions)
+            "suppliers" -> user.role in setOf("owner", "manager") && suppliers != null && "PURCHASES:READ" in user.permissions
+            "purchases" -> user.role in setOf("owner", "manager") && purchases != null &&
+                suppliers != null && catalog != null && "PURCHASES:READ" in user.permissions
+            "inventories" -> user.role in setOf("owner", "manager") && inventories != null && "STOCKS:READ" in user.permissions
             "employees" -> team != null && "EMPLOYEES:READ" in user.permissions
             "today" -> team != null && "PRESENCE:READ" in user.permissions
             "settings" -> "SETTINGS:READ" in user.permissions
@@ -120,11 +132,18 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 Row(Modifier.weight(1f)) {
                     if (shellVisible && widthLabel != "COMPACT") {
                         StoreNavigationRail(page, shellUser!!.permissions, catalog != null, team != null,
-                            fr, navigationEnabled, ::navigate)
+                            fr, navigationEnabled, hasWorkflows = shellUser?.role in setOf("owner", "manager") &&
+                                (purchases != null || inventories != null), onNavigate = ::navigate)
                     }
                     Box(Modifier.weight(1f)) {
             if (page == "pos" && catalog != null && sales != null && posState != null) {
                 identity?.let { user -> PosScreen(sales, catalog, user, fr, posState) { page = "home" } }
+            } else if (page == "suppliers" && suppliers != null) {
+                identity?.let { user -> SupplierScreen(suppliers, user.permissions, fr) { page = "operations" } }
+            } else if (page == "purchases" && purchases != null && suppliers != null && catalog != null) {
+                identity?.let { user -> PurchaseScreen(purchases, suppliers, catalog, user.permissions, fr) { page = "operations" } }
+            } else if (page == "inventories" && inventories != null) {
+                identity?.let { user -> InventoryScreen(inventories, user.permissions, fr) { page = "operations" } }
             } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
@@ -210,6 +229,22 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 Button(enabled = !busy, onClick = { run { service.recover(RecoveryProof(question!!.accountId, answer, password)); question = null; page = "login" } }) { Text(text("Modifier", "Update")) }
                                 TextButton(enabled = !busy, onClick = { question = null; page = "login"; error = null }) { Text(text("Annuler", "Cancel")) }
                             }
+                            "operations" -> identity?.let { user ->
+                                Text(text("Gestion des stocks", "Stock management"),
+                                    style = MaterialTheme.typography.headlineSmall)
+                                if (user.role in setOf("owner", "manager")) {
+                                    if (purchases != null && suppliers != null && catalog != null && "PURCHASES:READ" in user.permissions) {
+                                        Button(enabled = !busy, modifier = Modifier.testTag("open-purchases"),
+                                            onClick = { navigate("purchases") }) { Text(text("Achats et réceptions", "Purchases and receiving")) }
+                                        Button(enabled = !busy, modifier = Modifier.testTag("open-suppliers"),
+                                            onClick = { navigate("suppliers") }) { Text(text("Fournisseurs", "Suppliers")) }
+                                    }
+                                    if (inventories != null && "STOCKS:READ" in user.permissions)
+                                        Button(enabled = !busy, modifier = Modifier.testTag("open-inventories"),
+                                            onClick = { navigate("inventories") }) { Text(text("Inventaires", "Inventories")) }
+                                }
+                                TextButton(enabled = !busy, onClick = { page = "home" }) { Text(text("Retour", "Back")) }
+                            }
                             "home" -> identity?.let { user ->
                                 if (sales != null && posState != null && "POS:READ" in user.permissions) {
                                     Button(modifier = Modifier.testTag("open-pos"), enabled = !busy,
@@ -221,7 +256,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                         service.logout(); identity = null
                                         catalogState = CatalogScreenState(); catalogActor = null
                                         settingsDirty = false; teamNavigationLocked = false; page = "login"
-                                    } })
+                                    } }, hasPurchases = purchases != null && suppliers != null && catalog != null,
+                                    hasInventories = inventories != null)
                             }
                             "settings" -> {
                                 var draft by remember { mutableStateOf(config) }
@@ -247,7 +283,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 } // navigation/content row
                 if (shellVisible && widthLabel == "COMPACT") {
                     StoreNavigationBar(page, shellUser!!.permissions, catalog != null, team != null,
-                        fr, navigationEnabled, ::navigate)
+                        fr, navigationEnabled, hasWorkflows = shellUser?.role in setOf("owner", "manager") &&
+                            (purchases != null || inventories != null), onNavigate = ::navigate)
                 }
             } // adaptive shell
         }

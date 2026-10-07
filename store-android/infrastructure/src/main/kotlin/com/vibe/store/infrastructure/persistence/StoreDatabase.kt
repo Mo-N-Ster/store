@@ -6,6 +6,34 @@ import androidx.sqlite.execSQL
 
 @Dao
 internal interface StoreDao {
+    @Query("SELECT * FROM suppliers WHERE id=:id") suspend fun findSupplier(id: Long): SupplierEntity?
+    @Query("SELECT * FROM suppliers WHERE (:active IS NULL OR active=:active) AND (:search='' OR instr(lower(name || ' ' || COALESCE(phone,'') || ' ' || COALESCE(email,'') || ' ' || COALESCE(address,'')),lower(:search))>0) ORDER BY name COLLATE NOCASE,id LIMIT :limit OFFSET :offset")
+    suspend fun supplierPage(search: String, active: Boolean?, limit: Int, offset: Int): List<SupplierEntity>
+    @Query("SELECT EXISTS(SELECT 1 FROM suppliers WHERE name=:name AND id!=COALESCE(:exceptId,0))") suspend fun supplierNameExists(name: String, exceptId: Long?): Boolean
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM suppliers") suspend fun nextSupplierId(): Long
+    @Query("UPDATE suppliers SET name=:name,phone=:phone,email=:email,address=:address,active=:active,updatedAt=:stamp WHERE id=:id AND updatedAt=:expected")
+    suspend fun editSupplier(id: Long, name: String, phone: String, email: String, address: String, active: Boolean, stamp: String, expected: String): Int
+    @Query("SELECT EXISTS(SELECT 1 FROM purchases WHERE idempotencyKey=:key)") suspend fun purchaseKeyExists(key: String): Boolean
+    @Query("SELECT * FROM purchases p WHERE (:status IS NULL OR p.status=:status) AND (:supplier IS NULL OR p.supplierId=:supplier) AND (:product IS NULL OR EXISTS(SELECT 1 FROM purchase_items l WHERE l.purchaseId=p.id AND l.productId=:product)) AND (:from='' OR substr(p.createdAt,1,10)>=:from) AND (:to='' OR substr(p.createdAt,1,10)<=:to) ORDER BY p.createdAt DESC,p.id DESC LIMIT :limit OFFSET :offset")
+    suspend fun purchasePage(status: String?, supplier: Long?, product: Long?, from: String, to: String, limit: Int, offset: Int): List<PurchaseEntity>
+    @Query("SELECT * FROM purchase_items WHERE purchaseId=:id ORDER BY id LIMIT :limit OFFSET :offset") suspend fun purchaseLines(id: Long, limit: Int, offset: Int): List<PurchaseLineEntity>
+    @Query("SELECT * FROM purchase_items WHERE purchaseId=:id AND productId=:product") suspend fun purchaseItem(id: Long, product: Long): PurchaseLineEntity?
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM purchases") suspend fun nextPurchaseId(): Long
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM purchase_items") suspend fun nextPurchaseLineId(): Long
+    @Query("UPDATE purchase_items SET quantity=:quantity,unitCost=:cost,totalLine=:total WHERE id=:line AND purchaseId=:id AND productId=:product AND quantity=:oldQuantity AND unitCost=:oldCost AND totalLine=:oldTotal AND EXISTS(SELECT 1 FROM purchases WHERE id=:id AND status='DRAFT')")
+    suspend fun editPurchaseItem(id: Long, line: Long, product: Long, quantity: Long, cost: Double, total: Double, oldQuantity: Long, oldCost: Double, oldTotal: Double): Int
+    @Query("UPDATE purchases SET totalAmount=:total WHERE id=:id AND status='DRAFT'") suspend fun draftPurchaseTotal(id: Long, total: Double): Int
+    @Query("UPDATE purchases SET status=:status,validatedBy=:validator,validatedAt=:validated,cancelledBy=:canceller,cancelledAt=:cancelled,cancellationReason=:reason WHERE id=:id AND status=:expected")
+    suspend fun purchaseTransition(id: Long, expected: String, status: String, validator: Long?, validated: String?, canceller: Long?, cancelled: String?, reason: String?): Int
+    @Query("SELECT * FROM inventory_counts WHERE (:status IS NULL OR status=:status) AND (:from='' OR substr(createdAt,1,10)>=:from) AND (:to='' OR substr(createdAt,1,10)<=:to) ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
+    suspend fun inventoryPage(status: String?, from: String, to: String, limit: Int, offset: Int): List<InventoryEntity>
+    @Query("SELECT * FROM inventory_count_lines WHERE inventoryId=:id ORDER BY id LIMIT :limit OFFSET :offset") suspend fun inventoryLines(id: Long, limit: Int, offset: Int): List<InventoryLineEntity>
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM inventory_counts") suspend fun nextInventoryId(): Long
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM inventory_count_lines") suspend fun nextInventoryLineId(): Long
+    @Query("UPDATE inventory_count_lines SET countedQuantity=:count WHERE id=:line AND inventoryId=:id AND productId=:product AND countedQuantity=:expected AND EXISTS(SELECT 1 FROM inventory_counts WHERE id=:id AND status='DRAFT')")
+    suspend fun editInventoryCount(id: Long, line: Long, product: Long, count: Long, expected: Long): Int
+    @Query("UPDATE inventory_counts SET status='VALIDATED',validatedBy=:actor,validatedAt=:stamp WHERE id=:id AND status='DRAFT'")
+    suspend fun inventoryValidated(id: Long, actor: Long, stamp: String): Int
     @Query("SELECT * FROM cash_sessions WHERE userId=:actor ORDER BY id DESC LIMIT 40 OFFSET :offset") suspend fun cashPage(actor: Long, offset: Int): List<CashEntity>
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM cash_sessions") suspend fun nextCashId(): Long
     @Update suspend fun updateCash(value: CashEntity)

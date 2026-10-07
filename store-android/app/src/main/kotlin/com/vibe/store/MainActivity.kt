@@ -38,7 +38,8 @@ class MainActivity : ComponentActivity() {
             SideEffect { store.unsavedSale = posState.dirty }
             if (access) SecurityApp(store.identity, store.catalog, pickImage = { callback ->
                 selectionResult = callback; picker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
-            }, team = store.team, sales = store.sales, posState = posState, pickProfilePhoto = { callback ->
+            }, team = store.team, sales = store.sales, posState = posState, suppliers = store.suppliers,
+                purchases = store.purchases, inventories = store.inventories, pickProfilePhoto = { callback ->
                 profileSelectionResult = callback; profilePicker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }) { access = false }
             else FoundationApp(service) { access = true }

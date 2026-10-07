@@ -17,7 +17,7 @@ private data class HomeAction(val route: String, val french: String, val english
 @Composable
 fun StoreHome(identity: PublicIdentity, shopName: String, french: Boolean, enabled: Boolean,
     hasCatalog: Boolean, hasTeam: Boolean, onNavigate: (String) -> Unit,
-    onSwitch: () -> Unit, onLogout: () -> Unit) {
+    onSwitch: () -> Unit, onLogout: () -> Unit, hasPurchases: Boolean = false, hasInventories: Boolean = false) {
     fun label(fr: String, en: String) = if (french) fr else en
     val actions = buildList {
         if (hasCatalog && "PRODUCTS:READ" in identity.permissions)
@@ -29,6 +29,12 @@ fun StoreHome(identity: PublicIdentity, shopName: String, french: Boolean, enabl
         if (hasTeam && "PRESENCE:READ" in identity.permissions)
             add(HomeAction("today", "Présences", "Attendance",
                 "Pointage du jour et historique", "Today's attendance and history", "P"))
+        if (identity.role in setOf("owner", "manager") && hasPurchases && "PURCHASES:READ" in identity.permissions) {
+            add(HomeAction("purchases", "Achats", "Purchases", "Brouillons, réceptions et annulations", "Drafts, receiving and cancellations", "A"))
+            add(HomeAction("suppliers", "Fournisseurs", "Suppliers", "Partenaires et coordonnées", "Partners and contact details", "F"))
+        }
+        if (identity.role in setOf("owner", "manager") && hasInventories && "STOCKS:READ" in identity.permissions)
+            add(HomeAction("inventories", "Inventaires", "Inventories", "Comptages et rapprochements", "Counts and reconciliation", "I"))
         if ("SETTINGS:READ" in identity.permissions)
             add(HomeAction("settings", "Réglages", "Settings",
                 "Informations de la boutique", "Shop information", "R"))

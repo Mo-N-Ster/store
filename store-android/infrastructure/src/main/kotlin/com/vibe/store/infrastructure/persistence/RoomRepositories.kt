@@ -6,6 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.currentCoroutineContext
 
 internal class RoomRepositories(internal val dao: StoreDao, private val job: Job?, private val writable: Boolean) : TransactionRepositories {
+    override val suppliers = RoomSupplierRepository(dao, ::check)
     override val cashOperations = RoomCashOperations(dao, ::check)
     override val saleOperations = RoomSaleOperations(dao, ::check)
     override val security: com.vibe.store.application.security.SecurityRepository = RoomSecurityRepository(dao, ::check)
@@ -25,12 +26,8 @@ internal class RoomRepositories(internal val dao: StoreDao, private val job: Job
     override val sales = object : SalesRepository {
         override suspend fun invoice(id: String): InvoiceRecord? { check(); return dao.findInvoice(id)?.let { InvoiceRecord(it.id, it.userId, it.cashId, MoneyValue(it.totalAmount), it.status) } }
     }
-    override val purchases = object : PurchaseRepository {
-        override suspend fun purchase(id: Long): PurchaseRecord? { check(); return dao.findPurchase(id)?.let { PurchaseRecord(it.id, it.supplierId, it.status, MoneyValue(it.totalAmount)) } }
-    }
-    override val inventories = object : InventoryRepository {
-        override suspend fun inventory(id: Long): InventoryRecord? { check(); return dao.findInventory(id)?.let { InventoryRecord(it.id, it.status) } }
-    }
+    override val purchases = RoomPurchaseRepository(dao, ::check)
+    override val inventories = RoomInventoryRepository(dao, ::check)
     override val employees: EmployeeRepository = RoomEmployeeRepository(dao, ::check)
     override val attendance: AttendanceRepository = RoomAttendanceRepository(dao, ::check)
     override val messaging = object : MessagingRepository {

@@ -24,6 +24,34 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     internal suspend fun <T> authorizedWrite(right: String, block: suspend TransactionRepositories.(Long) -> T): T = gate.withLock {
         commands.execute { val actor = requireRight(right); block(actor.id) }
     }
+    /** Inventory-only trusted session binding. The same identity gate protects
+     * issuance/lookup of volatile review tokens against login and user switching.
+     * No session nonce is exposed through application-api. */
+    internal suspend fun <T> authorizedReadWithSession(
+        right: String,
+        block: suspend ReadRepositories.(actor: Long, nonce: String, generation: String) -> T,
+    ): T = gate.withLock {
+        owner.read {
+            val actor = requireRight(right)
+            block(actor.id, checkNotNull(session).nonce.toString(), owner.generation.value)
+        }
+    }
+
+    /** afterCommit runs only after a successful UoW, while the identity gate is
+     * still held. This makes review invalidation atomic with respect to issuing
+     * another review; it does not persist a confirmation in Room. */
+    internal suspend fun <T> authorizedWriteWithSession(
+        right: String,
+        afterCommit: () -> Unit = {},
+        block: suspend TransactionRepositories.(actor: Long, nonce: String, generation: String) -> T,
+    ): T = gate.withLock {
+        val result = commands.execute {
+            val actor = requireRight(right)
+            block(actor.id, checkNotNull(session).nonce.toString(), owner.generation.value)
+        }
+        afterCommit()
+        result
+    }
     private fun fail(code: SecurityError): Nothing = throw SecurityFailure(code)
     private fun stamp(): String = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(clock()))
     private suspend fun hash(value: String) = withContext(Dispatchers.Default) { hasher.hash(value) }
