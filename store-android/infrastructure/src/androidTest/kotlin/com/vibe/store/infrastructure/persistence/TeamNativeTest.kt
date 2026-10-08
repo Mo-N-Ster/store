@@ -1,5 +1,7 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
+
 import android.content.Context
 import android.net.Uri
 import androidx.test.core.app.ApplicationProvider
@@ -195,7 +197,7 @@ class TeamNativeTest {
         f.staff("manager", "MGR-003", "manager", manual = "Manager-Password-123")
         f.commands.execute {
             (this as RoomRepositories).dao.cash(CashEntity(
-                1, "I05-SYN-CASH", employee.accountId, "OPEN", 20.0, stamp(f.now),
+                1, "I05-SYN-CASH", employee.accountId, "OPEN", BigDecimal("20.0"), stamp(f.now),
             ))
         }
         val original = f.team.employee(employee.accountId)

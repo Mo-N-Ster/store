@@ -1,11 +1,13 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
+import com.vibe.store.domain.ExactMoney
 import com.vibe.store.application.sales.*
 
 internal class RoomCashOperations(private val dao: StoreDao, private val check: suspend (Boolean) -> Unit) : CashOperations {
     private suspend fun CashEntity.view() = CashView(id, reference, userId, status, openingAmount,
-        if (status == "OPEN") openingAmount + dao.capturedPayments(id) else checkNotNull(expectedAmount),
+        if (status == "OPEN") ExactMoney.add(openingAmount, dao.capturedPayments(id)) else checkNotNull(expectedAmount),
         openedAt, closedAt, closingAmount, difference, closedBy)
     override suspend fun current(actorId: Long): CashView? { check(false); return dao.openCash(actorId)?.view() }
     override suspend fun page(actorId: Long, offset: Int): List<CashView> { check(false); return dao.cashPage(actorId, offset).map { it.view() } }
@@ -55,7 +57,7 @@ internal class RoomSaleOperations(private val dao: StoreDao, private val check: 
             cancelledAt = value.cancelledAt, cancellationReason = value.cancellationReason))
         dao.refund(value.id)
     }
-    override suspend fun cost(productId: Long): Double? { check(false); return dao.latestCost(productId) }
+    override suspend fun cost(productId: Long): BigDecimal? { check(false); return dao.latestCost(productId) }
     private fun PendingCommandEntity.value() = SubmittedSale(commandKey, actorId, cashId, canonicalVersion, canonicalRequest, state, createdAt)
     override suspend fun submitted(key: String): SubmittedSale? { check(false); return dao.pendingByKey(key)?.value() }
     override suspend fun pending(actorId: Long): List<SubmittedSale> { check(false); return dao.pendingFor(actorId).map { it.value() } }

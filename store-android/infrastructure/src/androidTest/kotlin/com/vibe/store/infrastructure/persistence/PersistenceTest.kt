@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import androidx.room.*
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
@@ -7,7 +8,7 @@ import androidx.sqlite.execSQL
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import com.vibe.store.application.persistence.*
-import com.vibe.store.domain.SourceMoneyParity
+import com.vibe.store.domain.ExactMoney
 import kotlinx.coroutines.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -40,7 +41,7 @@ class PersistenceTest {
         throw AssertionError("Operation unexpectedly accepted")
     }
 
-    @Test fun effectiveConnectionsAndFreshV1() = runBlocking {
+    @Test fun effectiveConnectionsAndFreshV2() = runBlocking {
         val f = Fixture(context, directory())
         try {
             assertTrue(f.counts().values.all { it == 0L })
@@ -87,9 +88,9 @@ class PersistenceTest {
         val f = Fixture(context, directory())
         try {
             f.seed()
-            rejected { f.commands.execute { (this as RoomRepositories).dao.cash(CashEntity(2, "OTHER", 1, "OPEN", 0.0, STAMP)) } }
-            rejected { f.commands.execute { (this as RoomRepositories).dao.payment(PaymentEntity(2, "SYN-INV", 1, "CASH", 25.0, 30.0, 5.0, "CAPTURED", STAMP)) } }
-            rejected { f.commands.execute { (this as RoomRepositories).dao.invoice(InvoiceEntity("OTHER", 1, 1, STAMP, 25.0, 25.0, 0.0, "validated", "SYN-KEY")) } }
+            rejected { f.commands.execute { (this as RoomRepositories).dao.cash(CashEntity(2, "OTHER", 1, "OPEN", BigDecimal("0.0"), STAMP)) } }
+            rejected { f.commands.execute { (this as RoomRepositories).dao.payment(PaymentEntity(2, "SYN-INV", 1, "CASH", BigDecimal("25.0"), BigDecimal("30.0"), BigDecimal("5.0"), "CAPTURED", STAMP)) } }
+            rejected { f.commands.execute { (this as RoomRepositories).dao.invoice(InvoiceEntity("OTHER", 1, 1, STAMP, BigDecimal("25.0"), BigDecimal("25.0"), BigDecimal("0.0"), "validated", "SYN-KEY")) } }
             rejected { f.commands.execute { (this as RoomRepositories).dao.inventoryLine(InventoryLineEntity(2, 1, 1, 0, 0)) } }
             for (sql in listOf("UPDATE products SET stock=-1", "UPDATE products SET stock=1.5", "UPDATE invoice_lines SET quantity=0",
                 "UPDATE purchases SET status='UNKNOWN'", "UPDATE cash_sessions SET openingAmount=-1", "UPDATE attendances SET status='UNKNOWN'",
@@ -97,8 +98,8 @@ class PersistenceTest {
             f.sql("UPDATE products SET name='Changed', price=99")
             f.sql("UPDATE users SET firstName='Changed'")
             f.owner.read { f.db.useReaderConnection { c ->
-                c.usePrepared("SELECT productName, unitPrice, unitCost FROM invoice_lines") { assertTrue(it.step()); assertEquals("Historical product", it.getText(0)); assertEquals(12.5, it.getDouble(1), 0.0); assertEquals(9.0, it.getDouble(2), 0.0) }
-                c.usePrepared("SELECT responsibleName,cashAmount FROM audit_logs") { assertTrue(it.step()); assertEquals("Historical responsible", it.getText(0)); assertEquals(45.0, it.getDouble(1), 0.0) }
+                c.usePrepared("SELECT productName, unitPrice, unitCost FROM invoice_lines") { assertTrue(it.step()); assertEquals("Historical product", it.getText(0)); assertEquals("12.5", it.getText(1)); assertEquals("9", it.getText(2)) }
+                c.usePrepared("SELECT responsibleName,cashAmount FROM audit_logs") { assertTrue(it.step()); assertEquals("Historical responsible", it.getText(0)); assertEquals("45", it.getText(1)) }
             } }
         } finally { f.owner.close() }
     }
@@ -172,8 +173,7 @@ class PersistenceTest {
     }
 
     @Test fun migrationSnapshotRestartAndFutureRefusal() = runBlocking {
-        val root = directory(); val original = Fixture(context, root)
-        original.seed(); original.owner.close()
+        val root = directory(); legacyV1(root)
         val before = sha256(File(root, "store.db"))
         var migrated = RoomDatabaseOwner(context, root, 2, ::syntheticV2)
         try { assertEquals(IntegrityResult(true, true, true), migrated.verifyIntegrity()) } finally { migrated.close() }
@@ -182,13 +182,13 @@ class PersistenceTest {
         try { assertEquals("v1", migrated.read { settings.value("synthetic") }) } finally { migrated.close() }
         val futureHash = sha256(File(root, "store.db"))
         var opened = false
-        val older = RoomDatabaseOwner(context, root, factory = { c, file -> opened = true; buildStore(c, file) })
+        val older = RoomDatabaseOwner(context, root, 1, factory = { c, file -> opened = true; buildStore(c, file) })
         try { rejected { older.read { settings.value("synthetic") } }; assertFalse(opened) } finally { older.close() }
         assertEquals(futureHash, sha256(File(root, "store.db")))
     }
 
     @Test fun corruptRecoverySnapshotRefusesBeforeRoomOpen() = runBlocking {
-        val root = directory(); val f = Fixture(context, root); f.seed(); f.owner.close()
+        val root = directory(); legacyV1(root)
         val upgraded = RoomDatabaseOwner(context, root, 2, ::syntheticV2)
         try { upgraded.verifyIntegrity() } finally { upgraded.close() }
         File(context.noBackupFilesDir, "maintenance/${root.name}/pre-migration.db").appendText("corruption")
@@ -198,9 +198,8 @@ class PersistenceTest {
     }
 
     @Test fun sourceMoneyAndCalendarParity() {
-        assertEquals(1.0, SourceMoneyParity.roundTwo(1.005), 0.0)
-        assertEquals(2.68, SourceMoneyParity.roundTwo(2.675), 0.0)
-        assertEquals(-1.12, SourceMoneyParity.roundTwo(-1.125), 0.0)
+        assertEquals(BigDecimal("1.005"), ExactMoney.normalize(BigDecimal("1.005")))
+        assertEquals(BigDecimal("2.675"), ExactMoney.normalize(BigDecimal("2.675")))
         val calendar = SourceCalendar { TimeZone.getTimeZone("GMT-02:00") }
         assertEquals("1970-01-01", calendar.day(0, true))
         assertEquals("1969-12-31", calendar.day(0, false))

@@ -126,7 +126,7 @@ internal class RoomSecurityRepository(private val dao: StoreDao, private val che
         dao.audit(AuditEntity(dao.nextAuditId(), event.actorId, event.action, event.entity, event.reference, null,
             if (event.success) "SUCCESS" else "FAILURE", event.stamp, responsible?.id,
             responsible?.let { "${it.firstName} ${it.lastName}" }, cash?.reference,
-            cash?.let { it.openingAmount + dao.capturedPayments(it.id) },
+            cash?.let { com.vibe.store.domain.ExactMoney.add(it.openingAmount, dao.capturedPayments(it.id)) },
             cash?.let { dao.settingValue("currency") ?: "EUR" }))
     }
 }

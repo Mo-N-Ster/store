@@ -1,5 +1,7 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
+
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import android.content.Context
@@ -31,7 +33,7 @@ class IdentityNativeTest {
             val roles = dao.roles().associateBy { it.code }
             dao.userRole(UserRoleEntity(2, roles.getValue("manager").id, STAMP)); dao.userRole(UserRoleEntity(3, roles.getValue("employee").id, STAMP))
         }
-        suspend fun cash(id: Long) = commands.execute { (this as RoomRepositories).dao.cash(CashEntity(id, "I03-CASH-$id", id, "OPEN", 25.0, STAMP)) }
+        suspend fun cash(id: Long) = commands.execute { (this as RoomRepositories).dao.cash(CashEntity(id, "I03-CASH-$id", id, "OPEN", BigDecimal("25.0"), STAMP)) }
     }
     private suspend fun fixture(block: suspend (Fixture) -> Unit) {
         val f = Fixture(context, File(context.noBackupFilesDir, "i03/${UUID.randomUUID()}"))
@@ -82,7 +84,7 @@ class IdentityNativeTest {
         f.bootstrap(); f.seedStaff(); f.login(); f.cash(1)
         f.authority.definePassword(PasswordDefinition(3, "Replacement-123"))
         val record = f.owner.read { audit.audit(2) }!!
-        assertEquals("Synthetic Owner", record.responsibleName); assertEquals(25.0, record.cashAmount!!.value, 0.0)
+        assertEquals("Synthetic Owner", record.responsibleName); assertTrue(java.math.BigDecimal("25").compareTo(record.cashAmount!!.value) == 0)
         assertNull(f.owner.read { attendance.attendance(1) })
     } }
     @Test fun keystoreLossTamperAndReconfiguration() {

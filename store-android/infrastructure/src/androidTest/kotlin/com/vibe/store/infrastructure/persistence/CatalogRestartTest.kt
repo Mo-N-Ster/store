@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import android.net.Uri
 import android.os.Process
@@ -46,7 +47,7 @@ class CatalogRestartTest {
                         awaitCancellation() // external adb force-stop, not a simulated exception
                     }
                 })
-                authority.save(ProductDraft(name = "Restart product", category = "Synthetic", price = 1.0, initialStock = 3.0),
+                authority.save(ProductDraft(name = "Restart product", category = "Synthetic", price = BigDecimal("1.0"), initialStock = 3.0),
                     ImageEdit.Replace(AndroidProductMedia.selection(Uri.parse("content://synthetic/restart"))))
                 fail("Expected external process termination")
             } else {

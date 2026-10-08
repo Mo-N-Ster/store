@@ -164,4 +164,4 @@ internal fun WorkflowPageFrame(
 
 internal fun positiveLong(text: String): Long? = text.trim().toLongOrNull()?.takeIf { it in 1..9_007_199_254_740_991L }
 internal fun countLong(text: String): Long? = text.trim().toLongOrNull()?.takeIf { it in 0..9_007_199_254_740_991L }
-internal fun nonnegativeCost(text: String): Double? = text.trim().replace(',', '.').toDoubleOrNull()?.takeIf { it.isFinite() && it >= 0.0 }
+internal fun nonnegativeCost(text: String): java.math.BigDecimal? = DecimalInput.nonnegative(text)

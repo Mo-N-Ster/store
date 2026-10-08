@@ -1,5 +1,6 @@
 package com.vibe.store.application.purchases
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 import com.vibe.store.application.persistence.ReadRepositories
 import com.vibe.store.application.security.IdentityAuthority
@@ -63,6 +64,10 @@ class PurchaseAuthority(
             if (page.size < size) return result
         }
     }
+    private fun sameLine(a: PurchaseLineView?, b: PurchaseLineView?): Boolean =
+        if (a == null || b == null) a == b else
+            a.id == b.id && a.productId == b.productId && a.quantity == b.quantity &&
+                ExactMoney.same(a.unitCost, b.unitCost) && ExactMoney.same(a.total, b.total)
     private fun details(value: StoredPurchase): PurchaseDetail = value.detail
 
     override suspend fun list(filter: PurchaseFilter): WorkflowPage<PurchaseSummary> {
@@ -109,7 +114,7 @@ class PurchaseAuthority(
             val now = stamp()
             val id = checked { WorkflowRules.id(purchaseRecords.nextId()) }
             val summary = PurchaseSummary(id, "ACHAT-${UUID.randomUUID()}", command.supplierId,
-                PurchaseStatus.DRAFT, 0.0, actor, now)
+                PurchaseStatus.DRAFT, BigDecimal.ZERO, actor, now)
             val value = StoredPurchase(PurchaseDetail(summary, invoice, note, null, null, null, null, null), key)
             purchaseRecords.insert(value)
             probe.reached(PurchaseBoundary.DRAFT)
@@ -126,7 +131,7 @@ class PurchaseAuthority(
             command.expectedLine?.let { old ->
                 WorkflowRules.id(old.id)
                 WorkflowRules.check(old.productId == command.productId &&
-                    old.total == PurchasePolicy.lineTotal(old.quantity, old.unitCost))
+                    ExactMoney.same(old.total, PurchasePolicy.lineTotal(old.quantity, old.unitCost)))
             }
         }
         return mutation { identity.authorizedWrite("PURCHASES:UPDATE") { actor ->
@@ -137,10 +142,10 @@ class PurchaseAuthority(
                 fail(WorkflowError.INADMISSIBLE_TARGET)
             val before = allLines(command.purchaseId)
             val previous = before.singleOrNull { it.productId == command.productId }
-            if (previous != command.expectedLine) fail(WorkflowError.CONFLICT)
+            if (!sameLine(previous, command.expectedLine)) fail(WorkflowError.CONFLICT)
             if (previous == null && before.size >= WorkflowRules.MAX_LINES) fail(WorkflowError.INVALID_INPUT)
             val updated = PurchaseLineView(previous?.id ?: purchaseRecords.nextLineId(), command.productId,
-                command.quantity, command.unitCost, checked { PurchasePolicy.lineTotal(command.quantity, command.unitCost) })
+                command.quantity, ExactMoney.normalize(command.unitCost), checked { PurchasePolicy.lineTotal(command.quantity, command.unitCost) })
             val changed = before.filterNot { it.productId == command.productId } + updated
             val total = checked { PurchasePolicy.total(changed.sortedBy { it.id }.map { PurchasePolicy.Line(it.productId, it.quantity, it.unitCost) }) }
             if (!purchaseRecords.replaceDraftLine(command.purchaseId, updated, previous)) fail(WorkflowError.CONFLICT)
@@ -172,7 +177,7 @@ class PurchaseAuthority(
                     lines.map { PurchasePolicy.Line(it.productId, it.quantity, it.unitCost) },
                     records.map { (line, product) -> PurchasePolicy.Article(line.productId, product != null, product?.deletedAt != null) })
             }
-            if (current.summary.total != checked { PurchasePolicy.total(lines.map { PurchasePolicy.Line(it.productId, it.quantity, it.unitCost) }) })
+            if (!ExactMoney.same(current.summary.total, checked { PurchasePolicy.total(lines.map { PurchasePolicy.Line(it.productId, it.quantity, it.unitCost) }) }))
                 fail(WorkflowError.CONFLICT)
             // Preflight EVERY product before the first durable mutation.
             val changed = records.map { (line, product) ->

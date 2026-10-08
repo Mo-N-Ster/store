@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.vibe.store.api.*
@@ -29,11 +30,11 @@ class SaleNativeTest {
             identity.bootstrap(OwnerRegistration("owner", "owner@example.invalid", "Synthetic", "Owner", "Password-123", "Question", "Answer"))
             identity.login(Credentials("owner", "Password-123"))
             commands.execute {
-                (this as RoomRepositories).dao.product(ProductEntity(1, "Rice", "Food", 10.0, 20, 1, "2026-10-03", "2026-10-03"))
+                (this as RoomRepositories).dao.product(ProductEntity(1, "Rice", "Food", BigDecimal("10.0"), 20, 1, "2026-10-03", "2026-10-03"))
             }
-            cashId = sales.openCash(5.0).id
+            cashId = sales.openCash(BigDecimal("5.0")).id
         }
-        fun command(key: String = "synthetic-key", qty: Long = 2) = SaleCommand(key, cashId, listOf(SaleLine(1, qty)), received = 25.0)
+        fun command(key: String = "synthetic-key", qty: Long = 2) = SaleCommand(key, cashId, listOf(SaleLine(1, qty)), received = BigDecimal("25.0"))
         suspend fun snapshot(): List<Any> = owner.read {
             val dao = (this as RoomRepositories).dao
             listOf(dao.findProduct(1)!!.stock,
@@ -74,12 +75,12 @@ class SaleNativeTest {
         val receipt = f.sales.sell(command)
         val snapshot = f.snapshot()
         for (other in listOf(
-            SaleCommand(command.key, f.cashId, listOf(SaleLine(1, 1)), received = 25.0),
-            SaleCommand(command.key, f.cashId, command.lines, 0.001, 25.0),
+            SaleCommand(command.key, f.cashId, listOf(SaleLine(1, 1)), received = BigDecimal("25.0")),
+            SaleCommand(command.key, f.cashId, command.lines, BigDecimal("0.001"), BigDecimal("25.0")),
             SaleCommand(command.key, f.cashId, command.lines, received = null),
-            SaleCommand(command.key, f.cashId, listOf(SaleLine(1, 1), SaleLine(1, 1)), received = 25.0),
-            SaleCommand(command.key, f.cashId + 1, command.lines, received = 25.0),
-            SaleCommand(command.key, f.cashId, command.lines, received = 26.0),
+            SaleCommand(command.key, f.cashId, listOf(SaleLine(1, 1), SaleLine(1, 1)), received = BigDecimal("25.0")),
+            SaleCommand(command.key, f.cashId + 1, command.lines, received = BigDecimal("25.0")),
+            SaleCommand(command.key, f.cashId, command.lines, received = BigDecimal("26.0")),
         )) { denied { f.sales.sell(other) }; assertEquals(snapshot, f.snapshot()) }
         f.commands.execute { val dao = (this as RoomRepositories).dao
             dao.updateInvoice(dao.findInvoice(receipt.id)!!.copy(canonicalVersion = null, canonicalRequest = null)) }
@@ -96,7 +97,7 @@ class SaleNativeTest {
         assertEquals(2, receipt.lines.size)
         assertEquals(receipt, f.sales.sell(SaleCommand("multi", f.cashId, lines.reversed())))
         val snapshot = f.snapshot()
-        denied { f.sales.sell(SaleCommand("multi", f.cashId, lines, received = 30.0)) }
+        denied { f.sales.sell(SaleCommand("multi", f.cashId, lines, received = BigDecimal("30.0"))) }
         assertEquals(snapshot, f.snapshot())
         denied { f.sales.sell(SaleCommand("oversell", f.cashId, listOf(SaleLine(1, 10), SaleLine(1, 10)))) }
         assertEquals(snapshot, f.snapshot())
@@ -105,11 +106,11 @@ class SaleNativeTest {
         f.employee()
         val receipt = f.sales.sell(f.command())
         val before = f.snapshot()
-        f.sales.closeCash(f.cashId, 25.0)
+        f.sales.closeCash(f.cashId, BigDecimal("25.0"))
         denied { f.sales.sell(f.command()) }; assertEquals(before, f.snapshot())
         f.identity.switchUser(Credentials("employee", "Password-123"))
-        val employeeCash = f.sales.openCash(0.0)
-        denied { f.sales.sell(SaleCommand("synthetic-key", employeeCash.id, listOf(SaleLine(1, 2)), received = 25.0)) }
+        val employeeCash = f.sales.openCash(BigDecimal("0.0"))
+        denied { f.sales.sell(SaleCommand("synthetic-key", employeeCash.id, listOf(SaleLine(1, 2)), received = BigDecimal("25.0"))) }
         denied { f.sales.cancel(receipt.id, "Forbidden") }
         f.commands.execute { security.replaceDenials(2, setOf("POS:VALIDATE")) }
         denied { f.sales.sell(SaleCommand("denied", employeeCash.id, listOf(SaleLine(1, 1)))) }
@@ -133,7 +134,7 @@ class SaleNativeTest {
     } }
     @Test fun cancellationIsAtomicOnceAndDoesNotRewriteClosedCashSnapshot() = runBlocking { fixture { f ->
         val receipt = f.sales.sell(f.command())
-        val closed = f.sales.closeCash(f.cashId, 25.0)
+        val closed = f.sales.closeCash(f.cashId, BigDecimal("25.0"))
         f.failAt = SaleBoundary.MOVEMENT
         val before = f.snapshot()
         try { f.sales.cancel(receipt.id, "Synthetic correction"); fail("Expected rollback") }
@@ -151,11 +152,11 @@ class SaleNativeTest {
     } }
     @Test fun openIsIdempotentSwitchIsGuardedAndNoImplicitAttendance() = runBlocking { fixture { f ->
         f.employee()
-        assertEquals(f.cashId, f.sales.openCash(50.0).id)
+        assertEquals(f.cashId, f.sales.openCash(BigDecimal("50.0")).id)
         denied { f.identity.switchUser(Credentials("employee", "Password-123")) }
         denied { f.identity.logout() }
         assertNull(f.owner.read { attendance.attendance(1) })
-        f.sales.closeCash(f.cashId, 5.0)
+        f.sales.closeCash(f.cashId, BigDecimal("5.0"))
         f.identity.switchUser(Credentials("employee", "Password-123"))
         assertNull(f.sales.currentCash())
         assertNull(f.owner.read { attendance.attendance(1) })
@@ -163,8 +164,8 @@ class SaleNativeTest {
 
     @Test fun closingDifferenceInvalidReasonsAndAuditAreDurable() = runBlocking { fixture { f ->
         val opened = f.sales.currentCash()!!
-        assertEquals(5.0, opened.opening, 0.0)
-        assertEquals(5.0, opened.expected, 0.0)
+        assertTrue(BigDecimal("5.0").compareTo(opened.opening) == 0)
+        assertTrue(BigDecimal("5.0").compareTo(opened.expected) == 0)
 
         val openedAudit = f.owner.read {
             val dao = (this as RoomRepositories).dao
@@ -173,10 +174,10 @@ class SaleNativeTest {
         assertEquals("cash_session_opened", openedAudit.action)
 
         val receipt = f.sales.sell(f.command("cash-audit-check"))
-        assertEquals(20.0, receipt.total, 0.0)
+        assertTrue(BigDecimal("20.0").compareTo(receipt.total) == 0)
 
         val beforeClose = f.sales.currentCash()!!
-        assertEquals(25.0, beforeClose.expected, 0.0)
+        assertTrue(BigDecimal("25.0").compareTo(beforeClose.expected) == 0)
 
         val beforeInvalid = f.snapshot()
 
@@ -185,11 +186,11 @@ class SaleNativeTest {
             assertEquals(beforeInvalid, f.snapshot())
         }
 
-        val closed = f.sales.closeCash(f.cashId, 23.0)
+        val closed = f.sales.closeCash(f.cashId, BigDecimal("23.0"))
         assertEquals("CLOSED", closed.status)
-        assertEquals(25.0, closed.expected, 0.0)
-        assertEquals(23.0, closed.counted!!, 0.0)
-        assertEquals(-2.0, closed.difference!!, 0.0)
+        assertTrue(BigDecimal("25.0").compareTo(closed.expected) == 0)
+        assertTrue(BigDecimal("23.0").compareTo(closed.counted!!) == 0)
+        assertTrue(BigDecimal("-2").compareTo(closed.difference!!) == 0)
         assertEquals(closed, f.sales.cashHistory().single())
 
         val closingAudit = f.owner.read {
@@ -220,16 +221,16 @@ class SaleNativeTest {
 
     @Test fun revokedOrDisabledActorCannotReplayOwnSale() = runBlocking { fixture { f ->
         f.employee()
-        f.sales.closeCash(f.cashId, 5.0)
+        f.sales.closeCash(f.cashId, BigDecimal("5.0"))
         f.identity.switchUser(Credentials("employee", "Password-123"))
 
         val actor = f.identity.current()!!.id
-        val cash = f.sales.openCash(0.0)
+        val cash = f.sales.openCash(BigDecimal("0.0"))
         val command = SaleCommand(
             "actor-revocation",
             cash.id,
             listOf(SaleLine(1, 2)),
-            received = 25.0
+            received = BigDecimal("25.0")
         )
 
         // The actor must first create a genuinely authorized sale.

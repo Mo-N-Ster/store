@@ -1,5 +1,6 @@
 package com.vibe.store.application.catalog
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 import com.vibe.store.domain.*
 
@@ -9,8 +10,8 @@ interface CatalogRecords {
     suspend fun duplicate(name: String, hashtag: String, exceptId: Long?): Boolean
     suspend fun nextProductId(): Long
     suspend fun write(product: CatalogRecord)
-    suspend fun movement(productId: Long, delta: Long, reason: String, price: Double, stamp: String, reference: String?)
-    suspend fun price(productId: Long, price: Double, stamp: String)
+    suspend fun movement(productId: Long, delta: Long, reason: String, price: BigDecimal, stamp: String, reference: String?)
+    suspend fun price(productId: Long, price: BigDecimal, stamp: String)
     suspend fun movements(filter: MovementFilter): List<Pair<StockTrace, CatalogRecord>>
     suspend fun prices(productId: Long): List<PriceTrace>
     suspend fun deleteMovements(ids: List<Long>): Int

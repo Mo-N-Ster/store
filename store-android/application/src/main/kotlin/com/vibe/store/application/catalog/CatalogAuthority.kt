@@ -32,7 +32,7 @@ class CatalogAuthority(private val identity: IdentityAuthority, private val medi
     }
     override suspend fun save(draft: ProductDraft, image: ImageEdit): CatalogWrite = mediaGate.withLock {
         valid(draft.name.trim().isNotEmpty() && draft.category.trim().isNotEmpty() && (draft.id?.let { it > 0 } != false))
-        val price = validated { CatalogPolicy.price(draft.price) }
+        val price = validated { ExactMoney.normalize(CatalogPolicy.price(draft.price)) }
         val initial = validated { CatalogPolicy.quantity(draft.initialStock) }
         val threshold = validated { CatalogPolicy.quantity(draft.minimumStock) }
         // Source policy is PRODUCTS:UPDATE for both create and edit.
@@ -55,7 +55,7 @@ class CatalogAuthority(private val identity: IdentityAuthority, private val medi
                 prepared?.reference ?: if (image is ImageEdit.Remove) null else old?.imageRef)
             catalog.write(record)
             if (old == null && initial > 0) catalog.movement(record.id, initial, "initial", price, now, null)
-            if (old == null || old.price != price) catalog.price(record.id, price, now)
+            if (old == null || !ExactMoney.same(old.price, price)) catalog.price(record.id, price, now)
             obsolete = old?.imageRef?.takeIf { it != record.imageRef }
             record.view()
         }

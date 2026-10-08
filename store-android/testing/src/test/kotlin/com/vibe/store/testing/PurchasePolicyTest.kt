@@ -4,6 +4,7 @@ import com.vibe.store.domain.*
 import com.vibe.store.api.*
 import org.junit.Assert.*
 import org.junit.Test
+import java.math.BigDecimal
 
 class PurchasePolicyTest {
     private fun refused(code: WorkflowRuleError? = null, block: () -> Unit) {
@@ -18,18 +19,18 @@ class PurchasePolicyTest {
         assertEquals(WorkflowRules.MAX_QUANTITY, WorkflowRules.quantity(WorkflowRules.MAX_QUANTITY, true))
         refused { WorkflowRules.id(0) }; refused { WorkflowRules.id(Long.MAX_VALUE) }
     }
-    @Test fun costsAndTotalsPreserveSourcePrecisionNotPosRounding() {
-        assertEquals(3 * 0.333, PurchasePolicy.lineTotal(3, 0.333), 0.0)
-        assertEquals(0.0, PurchasePolicy.total(emptyList()), 0.0)
-        assertEquals(0.1 + 0.2, PurchasePolicy.total(listOf(
-            PurchasePolicy.Line(1, 1, 0.1), PurchasePolicy.Line(2, 1, 0.2))), 0.0)
-        for (bad in listOf(Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, -0.01))
-            refused { PurchasePolicy.lineTotal(1, bad) }
-        refused { PurchasePolicy.lineTotal(2, Double.MAX_VALUE) }
-        refused { PurchasePolicy.total(listOf(PurchasePolicy.Line(1, 1, Double.MAX_VALUE), PurchasePolicy.Line(2, 1, Double.MAX_VALUE))) }
+    @Test fun costsAndTotalsPreserveExactPrecision() {
+        assertEquals(BigDecimal("3.70370367"), PurchasePolicy.lineTotal(3, BigDecimal("1.23456789")))
+        assertEquals(BigDecimal.ZERO, PurchasePolicy.total(emptyList()))
+        assertEquals(BigDecimal("0.3"), PurchasePolicy.total(listOf(
+            PurchasePolicy.Line(1, 1, BigDecimal("0.1")), PurchasePolicy.Line(2, 1, BigDecimal("0.2")))))
+        assertEquals(BigDecimal("0.999"), PurchasePolicy.total(listOf(PurchasePolicy.Line(1, 3, BigDecimal("0.333")))))
+        refused { PurchasePolicy.lineTotal(1, BigDecimal("-0.01")) }
+        val huge = BigDecimal("1e400")
+        assertTrue(ExactMoney.same(huge.multiply(BigDecimal("2")), PurchasePolicy.lineTotal(2, huge)))
     }
     @Test fun lineUniquenessAndBoundedBodyAreRequired() {
-        val line = PurchasePolicy.Line(1, 1, 1.0)
+        val line = PurchasePolicy.Line(1, 1, BigDecimal.ONE)
         refused { PurchasePolicy.total(listOf(line, line)) }
         refused { PurchasePolicy.total(List(WorkflowRules.MAX_LINES + 1) { line.copy(productId = it + 1L) }) }
         refused { PurchasePolicy.total(listOf(line.copy(productId = -1))) }
@@ -54,7 +55,7 @@ class PurchasePolicyTest {
         refused(WorkflowRuleError.CONFLICT) { PurchasePolicy.creationKeyAvailable(true) }
     }
     @Test fun d4NewReceptionRequiresSelectedActiveSupplierAndAdmissibleArticles() {
-        val lines = listOf(PurchasePolicy.Line(1, 2, 0.333))
+        val lines = listOf(PurchasePolicy.Line(1, 2, BigDecimal("0.333")))
         val articles = listOf(PurchasePolicy.Article(1, true, false))
         PurchasePolicy.receptionTargets(null, false, false, lines, articles)
         PurchasePolicy.receptionTargets(1, true, true, lines, articles)

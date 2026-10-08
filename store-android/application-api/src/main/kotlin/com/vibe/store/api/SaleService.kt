@@ -1,18 +1,20 @@
 package com.vibe.store.api
 
+import java.math.BigDecimal
+
 data class SaleLine(val productId: Long, val quantity: Long)
 class SaleCommand(val key: String, val cashId: Long, lines: List<SaleLine>,
-    val discount: Double = 0.0, val received: Double? = null) {
+    val discount: BigDecimal = BigDecimal.ZERO, val received: BigDecimal? = null) {
     val lines: List<SaleLine> = java.util.Collections.unmodifiableList(ArrayList(lines))
 }
 data class CashView(val id: Long, val reference: String, val actorId: Long, val status: String,
-    val opening: Double, val expected: Double, val openedAt: String, val closedAt: String? = null,
-    val counted: Double? = null, val difference: Double? = null, val closedBy: Long? = null)
+    val opening: BigDecimal, val expected: BigDecimal, val openedAt: String, val closedAt: String? = null,
+    val counted: BigDecimal? = null, val difference: BigDecimal? = null, val closedBy: Long? = null)
 data class ReceiptLine(val productId: Long?, val name: String, val category: String,
-    val quantity: Long, val unitPrice: Double, val total: Double, val unitCost: Double?)
+    val quantity: Long, val unitPrice: BigDecimal, val total: BigDecimal, val unitCost: BigDecimal?)
 data class Receipt(val id: String, val actorId: Long, val cashId: Long?, val date: String,
-    val status: String, val subtotal: Double, val discount: Double, val total: Double,
-    val received: Double, val change: Double, val paymentStatus: String,
+    val status: String, val subtotal: BigDecimal, val discount: BigDecimal, val total: BigDecimal,
+    val received: BigDecimal, val change: BigDecimal, val paymentStatus: String,
     val storeName: String, val address: String, val phone: String, val email: String,
     val currency: String, val lines: List<ReceiptLine>, val cancelledBy: Long? = null,
     val cancelledAt: String? = null, val cancellationReason: String? = null)
@@ -24,8 +26,8 @@ enum class SaleError { INVALID_INPUT, CASH_REQUIRED, CONFLICT, NOT_FOUND, INSUFF
 class SaleFailure(val code: SaleError) : Exception(code.name)
 interface SaleService {
     suspend fun currentCash(): CashView?
-    suspend fun openCash(opening: Double): CashView
-    suspend fun closeCash(cashId: Long, counted: Double): CashView
+    suspend fun openCash(opening: BigDecimal): CashView
+    suspend fun closeCash(cashId: Long, counted: BigDecimal): CashView
     suspend fun cashHistory(offset: Int = 0): List<CashView>
     suspend fun sell(command: SaleCommand): Receipt
     suspend fun pending(): List<PendingSale>

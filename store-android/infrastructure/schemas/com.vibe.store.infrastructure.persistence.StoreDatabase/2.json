@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "e9ee64e617c9b863b8a91d576755963d",
+    "identityHash": "e365a7091c4ffac1381ced5de941ccdf",
     "entities": [
       {
         "tableName": "users",
@@ -2608,29 +2608,11 @@
             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_pending_commands_commandKey` ON `${TABLE_NAME}` (`commandKey`)"
           }
         ]
-      },
-      {
-        "tableName": "synthetic_migration_marker",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": false,
-          "columnNames": [
-            "id"
-          ]
-        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9ee64e617c9b863b8a91d576755963d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e365a7091c4ffac1381ced5de941ccdf')"
     ]
   }
 }

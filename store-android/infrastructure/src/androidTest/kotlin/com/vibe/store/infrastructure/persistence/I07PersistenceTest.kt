@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.vibe.store.api.*
@@ -37,7 +38,7 @@ class I07PersistenceTest {
             dao.user(UserEntity(id, role, passwords.hash("Password-123"), role, "Synthetic", role, "S", "2026-10-04"))
             dao.userRole(UserRoleEntity(id, dao.roles().single { it.code == role }.id, "2026-10-04"))
         }
-        suspend fun product() = catalog.save(ProductDraft(name = "Synthetic article", category = "Test", price = 3.0, initialStock = 5.0)).product
+        suspend fun product() = catalog.save(ProductDraft(name = "Synthetic article", category = "Test", price = BigDecimal("3.0"), initialStock = 5.0)).product
     }
     private suspend fun fixture(block: suspend (Fixture) -> Unit) {
         val f = Fixture(); try { f.initialize(); block(f) } finally { f.owner.close() }
@@ -54,7 +55,7 @@ class I07PersistenceTest {
         assertTrue("Expected persistence refusal", failed)
     }
     private fun purchase(id: Long = 1, supplier: Long? = null, key: String? = "p2-key") = StoredPurchase(
-        PurchaseDetail(PurchaseSummary(id, "P2-$id", supplier, PurchaseStatus.DRAFT, 0.0, 1, "2026-10-04T10:00:00Z"), "Supplier invoice", "Note", null, null, null, null, null), key)
+        PurchaseDetail(PurchaseSummary(id, "P2-$id", supplier, PurchaseStatus.DRAFT, BigDecimal("0.0"), 1, "2026-10-04T10:00:00Z"), "Supplier invoice", "Note", null, null, null, null, null), key)
     private fun inventory(id: Long = 1) = InventoryView(id, "INV-$id", InventoryStatus.DRAFT, "Count", 1, "2026-10-04T10:00:00Z", null, null)
 
     @Test fun suppliersCrudBoundedSearchContactsUniquenessAndInactiveHistory() = runBlocking { fixture { f ->
@@ -102,8 +103,8 @@ class I07PersistenceTest {
         val p = f.product(); val movements = f.catalog.movements(); val supplier = f.suppliers.save(SaveSupplier(name = "History"))
         f.commands.execute {
             purchaseRecords.insert(purchase(supplier = supplier.id)); inventoryRecords.insert(inventory())
-            assertTrue(purchaseRecords.replaceDraftLine(1, PurchaseLineView(1, p.id, 3, 0.333, 3 * 0.333), null))
-            assertTrue(purchaseRecords.updateDraftTotal(1, 3 * 0.333))
+            assertTrue(purchaseRecords.replaceDraftLine(1, PurchaseLineView(1, p.id, 3, BigDecimal("0.333"), BigDecimal("0.999")), null))
+            assertTrue(purchaseRecords.updateDraftTotal(1, BigDecimal("0.999")))
             inventoryRecords.insertLine(1, StoredInventoryLine(1, p.id, 5, 5))
             assertTrue(inventoryRecords.recordDraftCount(1, 1, p.id, 7, 5))
             assertFalse(inventoryRecords.recordDraftCount(1, 1, p.id, 8, 5))
@@ -130,7 +131,7 @@ class I07PersistenceTest {
         catch (e: WorkflowViolation) { assertEquals(WorkflowRuleError.CONFLICT, e.code) }
         rejected { f.commands.execute {
             purchaseRecords.insert(purchase(3, key = "other"))
-            purchaseRecords.replaceDraftLine(3, PurchaseLineView(1, 999, 1, 1.0, 1.0), null)
+            purchaseRecords.replaceDraftLine(3, PurchaseLineView(1, 999, 1, BigDecimal("1.0"), BigDecimal("1.0")), null)
         } }
         rejected { f.commands.execute {
             inventoryRecords.recordDraftCount(1, 1, p.id, 0, 5)
@@ -148,14 +149,14 @@ class I07PersistenceTest {
         val p = f.product(); val before = f.catalog.movements()
         f.commands.execute {
             purchaseRecords.insert(purchase()); inventoryRecords.insert(inventory())
-            val line = PurchaseLineView(1, p.id, 1, 2.0, 2.0)
+            val line = PurchaseLineView(1, p.id, 1, BigDecimal("2.0"), BigDecimal("2.0"))
             assertTrue(purchaseRecords.replaceDraftLine(1, line, null))
-            assertFalse(purchaseRecords.replaceDraftLine(1, line.copy(quantity = 2, total = 4.0), null))
+            assertFalse(purchaseRecords.replaceDraftLine(1, line.copy(quantity = 2, total = BigDecimal("4")), null))
             inventoryRecords.insertLine(1, StoredInventoryLine(1, p.id, 5, 5))
             val cancelled = purchase().copy(detail = purchase().detail.copy(summary = purchase().detail.summary.copy(status = PurchaseStatus.CANCELLED), cancelledBy = 1, cancelledAt = "2026-10-04", cancellationReason = "Synthetic cancellation"))
             assertTrue(purchaseRecords.transition(cancelled, PurchaseStatus.DRAFT))
             assertFalse(purchaseRecords.transition(cancelled, PurchaseStatus.DRAFT))
-            assertFalse(purchaseRecords.replaceDraftLine(1, line, line)); assertFalse(purchaseRecords.updateDraftTotal(1, 0.0))
+            assertFalse(purchaseRecords.replaceDraftLine(1, line, line)); assertFalse(purchaseRecords.updateDraftTotal(1, BigDecimal.ZERO))
             val validated = inventory().copy(status = InventoryStatus.VALIDATED, validatedBy = 1, validatedAt = "2026-10-04")
             assertTrue(inventoryRecords.markValidated(validated)); assertFalse(inventoryRecords.markValidated(validated))
             assertFalse(inventoryRecords.recordDraftCount(1, 1, p.id, 0, 5))
@@ -187,8 +188,8 @@ class I07PersistenceTest {
         f.commands.execute {
             purchaseRecords.insert(purchase(supplier = supplier.id))
             inventoryRecords.insert(inventory())
-            purchaseRecords.replaceDraftLine(1, PurchaseLineView(1, p.id, 2, 1.0, 2.0), null)
-            purchaseRecords.updateDraftTotal(1, 2.0)
+            purchaseRecords.replaceDraftLine(1, PurchaseLineView(1, p.id, 2, BigDecimal("1.0"), BigDecimal("2.0")), null)
+            purchaseRecords.updateDraftTotal(1, BigDecimal("2"))
             inventoryRecords.insertLine(1, StoredInventoryLine(1, p.id, 5, 6))
         }
         f.owner.close()
@@ -199,7 +200,7 @@ class I07PersistenceTest {
             assertNull(identity.current()); security { service.detail(supplier.id) }
             identity.login(Credentials("owner", "Password-123")); assertEquals(supplier, service.detail(supplier.id))
             reopened.read {
-                assertEquals(2.0, purchaseRecords.find(1)!!.detail.summary.total, 0.0)
+                assertTrue(BigDecimal("2.0").compareTo(purchaseRecords.find(1)!!.detail.summary.total) == 0)
                 assertEquals(2L, purchaseRecords.lines(1, WorkflowPageRequest()).single().quantity)
                 assertEquals(6L, inventoryRecords.lines(1, WorkflowPageRequest()).single().countedQuantity)
                 assertEquals(5L, catalog.product(p.id)!!.stock.value)

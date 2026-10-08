@@ -1,10 +1,11 @@
 package com.vibe.store.application.sales
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 import com.vibe.store.application.security.IdentityAuthority
 import com.vibe.store.application.security.SecurityAudit
 import com.vibe.store.domain.SalePolicy
-import com.vibe.store.domain.SourceMoneyParity
+import com.vibe.store.domain.ExactMoney
 import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,7 +34,7 @@ class SaleAuthority(private val identity: IdentityAuthority,
         validate { require(offset >= 0) }
         return identity.authorizedRead("CASH:READ") { actor -> cashOperations.page(actor, offset) }
     }
-    override suspend fun openCash(opening: Double): CashView {
+    override suspend fun openCash(opening: BigDecimal): CashView {
         val amount = validate { SalePolicy.amount(opening) }
         return mutation { identity.authorizedWrite("CASH:CREATE") { actor ->
             cashOperations.current(actor)?.let { return@authorizedWrite it }
@@ -44,13 +45,13 @@ class SaleAuthority(private val identity: IdentityAuthority,
             value
         } }
     }
-    override suspend fun closeCash(cashId: Long, counted: Double): CashView {
+    override suspend fun closeCash(cashId: Long, counted: BigDecimal): CashView {
         val amount = validate { require(cashId > 0); SalePolicy.amount(counted) }
         return mutation { identity.authorizedWrite("CASH:VALIDATE") { actor ->
             val cash = cashOperations.current(actor)?.takeIf { it.id == cashId } ?: fail(SaleError.CASH_REQUIRED)
             val now = stamp()
             val closed = cash.copy(status = "CLOSED", closedAt = now, counted = amount,
-                difference = SourceMoneyParity.roundTwo(amount - cash.expected), closedBy = actor)
+                difference = ExactMoney.subtract(amount, cash.expected), closedBy = actor)
             security.appendAudit(SecurityAudit(actor, actor, "cash_session_closed", "cash_session", cash.id.toString(), true, now))
             cashOperations.close(closed)
             closed
@@ -104,7 +105,7 @@ class SaleAuthority(private val identity: IdentityAuthority,
             val now = stamp()
             val lines = intent.lines.map { (id, qty) ->
                 val product = products.getValue(id)
-                ReceiptLine(id, product.name, product.category, qty, product.price, product.price * qty,
+                ReceiptLine(id, product.name, product.category, qty, product.price, ExactMoney.multiply(product.price, qty),
                     saleOperations.cost(id) ?: product.price)
             }
             val receipt = Receipt("VENTE-${UUID.randomUUID()}", actor, cash.id, now, "validated",

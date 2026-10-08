@@ -1,5 +1,6 @@
 package com.vibe.store
 
+import java.math.BigDecimal
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -19,11 +20,11 @@ class CatalogPresentationUiTest {
         @Volatile var pricesQueried = false
         @Volatile var movementsQueried = false
         private val products = listOf(
-            ProductView(1, "Synthetic rice", "Food", "rice", "Test article", 12.34, 10, 2,
+            ProductView(1, "Synthetic rice", "Food", "rice", "Test article", BigDecimal("12.34"), 10, 2,
                 false, false, "2026-10-01T09:00:00.000Z"),
-            ProductView(2, "Synthetic pasta", "Food", "pasta", "", 4.50, 1, 2,
+            ProductView(2, "Synthetic pasta", "Food", "pasta", "", BigDecimal("4.50"), 1, 2,
                 false, false, "2026-10-01T09:00:00.000Z"),
-            ProductView(3, "Synthetic oil", "Food", "oil", "", 9.90, 0, 0,
+            ProductView(3, "Synthetic oil", "Food", "oil", "", BigDecimal("9.90"), 0, 0,
                 false, false, "2026-10-01T09:00:00.000Z"),
         )
         override suspend fun list(filter: CatalogFilter): CatalogPage {
@@ -40,12 +41,12 @@ class CatalogPresentationUiTest {
             expectedStock: Long): ProductView = error("Synthetic read-only test")
         override suspend fun movements(filter: MovementFilter): List<MovementView> {
             movementsQueried = true
-            return listOf(MovementView(4, 1, "Synthetic rice", "Food", -2, "sale", 12.34,
+            return listOf(MovementView(4, 1, "Synthetic rice", "Food", -2, "sale", BigDecimal("12.34"),
                 "2026-10-01T09:00:00.000Z", "SYNTHETIC-4"))
         }
         override suspend fun prices(id: Long): List<PriceView> {
             pricesQueried = true
-            return listOf(PriceView(5, 12.34, "2026-10-01T09:00:00.000Z"))
+            return listOf(PriceView(5, BigDecimal("12.34"), "2026-10-01T09:00:00.000Z"))
         }
         override suspend fun image(id: Long): ProductImage? = null
         override suspend fun deleteHistory(type: String?, ids: List<Long>): Int =

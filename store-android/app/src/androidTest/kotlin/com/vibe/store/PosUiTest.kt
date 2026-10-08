@@ -1,5 +1,6 @@
 package com.vibe.store
 
+import java.math.BigDecimal
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
@@ -18,7 +19,7 @@ import java.io.File
 class PosUiTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
     private val state = PosState()
-    private val product = ProductView(1, "Synthetic rice", "Food", "rice", "", 10.0, 5, 0, false, false, "2026-10-03")
+    private val product = ProductView(1, "Synthetic rice", "Food", "rice", "", BigDecimal("10.0"), 5, 0, false, false, "2026-10-03")
     private val catalog = object : CatalogService {
         override suspend fun list(filter: CatalogFilter) = CatalogPage(listOf(product, product.copy(id = 2, name = "Synthetic tea")), false)
         override suspend fun detail(id: Long) = product.copy(id = id)
@@ -33,17 +34,17 @@ class PosUiTest {
     private val sent = mutableListOf<SaleCommand>()
     private var failOnce = false
     private val service = object : SaleService {
-        val cash = CashView(1, "SYNTHETIC-CASH", 1, "OPEN", 0.0, 0.0, "2026-10-03")
+        val cash = CashView(1, "SYNTHETIC-CASH", 1, "OPEN", BigDecimal("0.0"), BigDecimal("0.0"), "2026-10-03")
         override suspend fun currentCash() = cash
-        override suspend fun openCash(opening: Double) = cash
-        override suspend fun closeCash(cashId: Long, counted: Double) = cash.copy(status = "CLOSED")
+        override suspend fun openCash(opening: BigDecimal) = cash
+        override suspend fun closeCash(cashId: Long, counted: BigDecimal) = cash.copy(status = "CLOSED")
         override suspend fun cashHistory(offset: Int) = listOf(cash)
         override suspend fun sell(command: SaleCommand): Receipt {
             sent += command
             if (failOnce) { failOnce = false; throw SaleFailure(SaleError.UNAVAILABLE) }
-            return Receipt("SYNTHETIC-RECEIPT", 1, 1, "2026-10-03T12:00:00Z", "validated", 10.0, 0.0,
-                10.0, command.received ?: 10.0, 0.0, "CAPTURED", "Synthetic STORE", "", "", "", "EUR",
-                listOf(ReceiptLine(1, product.name, "Food", 1, 10.0, 10.0, 10.0)))
+            return Receipt("SYNTHETIC-RECEIPT", 1, 1, "2026-10-03T12:00:00Z", "validated", BigDecimal("10.0"), BigDecimal("0.0"),
+                BigDecimal("10.0"), command.received ?: BigDecimal("10.0"), BigDecimal("0.0"), "CAPTURED", "Synthetic STORE", "", "", "", "EUR",
+                listOf(ReceiptLine(1, product.name, "Food", 1, BigDecimal("10.0"), BigDecimal("10.0"), BigDecimal("10.0"))))
         }
         override suspend fun pending() = emptyList<PendingSale>()
         override suspend fun resolve(key: String): Receipt = error("not requested")
@@ -88,7 +89,7 @@ class PosUiTest {
         compose.onNodeWithTag("pos-submit").performScrollTo().performClick()
         compose.waitUntil { sent.isNotEmpty() }
         assertEquals(listOf(SaleLine(1, 1)), sent.single().lines)
-        assertEquals(25.5, sent.single().received!!, 0.0)
+        assertTrue(BigDecimal("25.5").compareTo(sent.single().received!!) == 0)
         compose.onNodeWithTag("pos-receipt").assertIsDisplayed()
     }
     @Test fun retryRetainsKeyAndActivityRecreationRetainsOnlyEphemeralCart() {
@@ -108,8 +109,11 @@ class PosUiTest {
     @Test fun actualWindowClassAndIndependentPanels() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val expected = checkNotNull(InstrumentationRegistry.getArguments().getString("posWidth")).toInt()
-        val actual = compose.activity.windowManager.currentWindowMetrics.bounds.width() / compose.activity.resources.displayMetrics.density
-        assertEquals(expected.toFloat(), actual, 0.1f)
+        val density = compose.activity.resources.displayMetrics.density
+        val expectedPixels = Math.round(expected * density)
+        val actualPixels = compose.activity.windowManager.currentWindowMetrics.bounds.width()
+        assertEquals(expectedPixels, actualPixels)
+        val actual = actualPixels / density
         val mode = if (actual < 600) "COMPACT" else if (actual < 840) "MEDIUM" else "EXPANDED"
         compose.onNodeWithTag("pos-layout-$mode").assertIsDisplayed()
         compose.onNodeWithTag("pos-products").assertIsDisplayed()

@@ -1,5 +1,6 @@
 package com.vibe.store.application.purchases
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 import com.vibe.store.application.persistence.PurchaseRepository
 
@@ -23,7 +24,7 @@ interface PurchaseRecords : PurchaseRepository {
     suspend fun nextLineId(): Long
     suspend fun insert(value: StoredPurchase)
     suspend fun replaceDraftLine(id: Long, line: PurchaseLineView, expected: PurchaseLineView?): Boolean
-    suspend fun updateDraftTotal(id: Long, total: Double): Boolean
+    suspend fun updateDraftTotal(id: Long, total: BigDecimal): Boolean
     suspend fun transition(value: StoredPurchase, expectedStatus: PurchaseStatus): Boolean
 }
 // All writes require the existing authorized UnitOfWork. Stock/movements/audit use

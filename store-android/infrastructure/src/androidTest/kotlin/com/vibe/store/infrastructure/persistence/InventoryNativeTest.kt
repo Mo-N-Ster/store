@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.vibe.store.api.*
@@ -32,7 +33,7 @@ class InventoryNativeTest {
             identity.login(Credentials("owner", "Password-123"))
         }
         suspend fun product(name: String, stock: Double = 5.0) = catalog.save(
-            ProductDraft(name = name, category = "Test", price = 3.0, initialStock = stock)).product
+            ProductDraft(name = name, category = "Test", price = BigDecimal("3.0"), initialStock = stock)).product
         suspend fun user(id: Long, role: String) = commands.execute {
             val dao = (this as RoomRepositories).dao
             dao.user(UserEntity(id, role, passwords.hash("Password-123"), role, "Synthetic", role, "S", "2026-10-04"))

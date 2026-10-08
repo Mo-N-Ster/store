@@ -53,7 +53,7 @@ class CatalogScreenState {
         selected = product; editing = true
         name = product?.name ?: ""; category = product?.category ?: ""
         hashtag = product?.hashtag ?: ""; description = product?.description ?: ""
-        price = product?.price?.toString() ?: ""; stock = "0"; minimum = product?.minimumStock?.toString() ?: "0"
+        price = product?.price?.let { DecimalInput.display(it) } ?: ""; stock = "0"; minimum = product?.minimumStock?.toString() ?: "0"
         image = ImageEdit.Keep
         initialForm = formValues()
     }
@@ -91,7 +91,7 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
                 error = when (failure.code) {
                     CatalogError.DUPLICATE -> t("Nom ou hashtag déjà utilisé.", "Name or hashtag already in use.")
                     CatalogError.CONFLICT -> t("L’article a changé. Rechargez sa fiche.", "The product changed. Reload its details.")
-                    CatalogError.INVALID_INPUT -> t("Vérifiez les champs : quantités entières, prix à deux décimales, motif requis.", "Check fields: integer quantities, two-decimal price, required reason.")
+                    CatalogError.INVALID_INPUT -> t("Vérifiez les champs : quantités entières, prix décimal valide, motif requis.", "Check fields: integer quantities, valid decimal price, required reason.")
                     CatalogError.MEDIA_TOO_LARGE -> t("Image trop volumineuse (5 Mio maximum).", "Image too large (maximum 5 MiB).")
                     else -> t("Opération impossible. Vérifiez l’image et le stockage, puis réessayez.", "Operation unavailable. Check image and storage, then retry.")
                 }
@@ -182,7 +182,7 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
                     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Button(modifier = Modifier.testTag("product-save"), enabled = !busy, onClick = { run {
                             val result = service.save(ProductDraft(product?.id, state.name, state.category, state.hashtag, state.description,
-                                state.price.replace(',', '.').toDoubleOrNull() ?: Double.NaN,
+                                DecimalInput.nonnegative(state.price) ?: throw CatalogFailure(CatalogError.INVALID_INPUT),
                                 state.stock.toDoubleOrNull() ?: Double.NaN, state.minimum.toDoubleOrNull() ?: Double.NaN, product?.updatedAt), state.image)
                             state.selected = result.product; state.editing = false; state.image = ImageEdit.Keep; revision++
                             if (result.cleanupDeferred) error = t("Article enregistré. Nettoyage de l’ancienne image différé.", "Product saved. Old image cleanup deferred.")
@@ -208,8 +208,8 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
                                 Modifier.weight(1f))
                         }
                         // Retain the exact legacy summary for existing I04 UI assertions.
-                        Text(t("Prix : ${product.price} · Stock : ${product.stock}",
-                            "Price: ${product.price} · Stock: ${product.stock}"),
+                        Text(t("Prix : ${catalogAmount(product.price, french)} · Stock : ${product.stock}",
+                            "Price: ${catalogAmount(product.price, french)} · Stock: ${product.stock}"),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant)
                         Text(t("Seuil : ${product.minimumStock}", "Threshold: ${product.minimumStock}"),
@@ -347,8 +347,8 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
 
 
 /** UI-only formatting. No shop currency is assumed until configuration exposes it. */
-private fun catalogAmount(price: Double, french: Boolean): String =
-    String.format(if (french) Locale.FRANCE else Locale.US, "%.2f", price)
+private fun catalogAmount(price: java.math.BigDecimal, french: Boolean): String =
+    DecimalInput.display(price, french)
 
 /** UTC is retained in persistence; legacy/unparseable timestamps remain visible. */
 private fun catalogLocalTime(raw: String, french: Boolean): String = runCatching {

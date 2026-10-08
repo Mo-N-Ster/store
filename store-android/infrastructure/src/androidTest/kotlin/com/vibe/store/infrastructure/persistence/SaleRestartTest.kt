@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import android.os.Process
 import androidx.test.core.app.ApplicationProvider
@@ -40,8 +41,8 @@ class SaleRestartTest {
             if (phase == "prepare") {
                 identity.bootstrap(OwnerRegistration("owner", "owner@example.invalid", "Synthetic", "Owner", "Password-123", "Question", "Answer"))
                 identity.login(Credentials("owner", "Password-123"))
-                commands.execute { (this as RoomRepositories).dao.product(ProductEntity(1, "Synthetic", "Food", 10.0, 2, 0, "2026-10-03", "2026-10-03")) }
-                val cash = sales.openCash(0.0)
+                commands.execute { (this as RoomRepositories).dao.product(ProductEntity(1, "Synthetic", "Food", BigDecimal("10.0"), 2, 0, "2026-10-03", "2026-10-03")) }
+                val cash = sales.openCash(BigDecimal("0.0"))
                 sales.sell(SaleCommand("kill-$run", cash.id, listOf(SaleLine(1, 2))))
                 fail("External process death required")
             } else {

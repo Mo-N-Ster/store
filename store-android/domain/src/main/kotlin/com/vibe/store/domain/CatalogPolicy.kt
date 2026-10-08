@@ -1,6 +1,6 @@
 package com.vibe.store.domain
 
-import kotlin.math.abs
+import java.math.BigDecimal
 import kotlin.math.floor
 
 object CatalogPolicy {
@@ -8,8 +8,8 @@ object CatalogPolicy {
         require(value.isFinite() && value >= 0 && value <= 9_007_199_254_740_991.0 && value == floor(value))
         return value.toLong()
     }
-    fun price(value: Double): Double {
-        require(value.isFinite() && value >= 0 && abs(value * 100 - floor(value * 100 + 0.5)) <= 1e-8)
+    fun price(value: BigDecimal): BigDecimal {
+        require(value.signum() >= 0)
         return value // validation only, no new rounding
     }
     /** Source SQLite lower() folds ASCII; do not silently change accent semantics. */
@@ -32,8 +32,8 @@ object MediaSignature {
     fun validReference(value: String) = Regex("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\\.(jpg|png|webp)").matches(value)
 }
 data class CatalogRecord(val id: Long, val name: String, val category: String, val hashtag: String,
-    val description: String, val price: Double, val stock: Long, val minimumStock: Long,
+    val description: String, val price: BigDecimal, val stock: Long, val minimumStock: Long,
     val createdAt: String, val updatedAt: String, val deletedAt: String?, val imageRef: String?)
 data class StockTrace(val id: Long, val productId: Long, val quantity: Long, val reason: String,
-    val unitPrice: Double, val createdAt: String, val reference: String?)
-data class PriceTrace(val id: Long, val productId: Long, val price: Double, val recordedAt: String)
+    val unitPrice: BigDecimal, val createdAt: String, val reference: String?)
+data class PriceTrace(val id: Long, val productId: Long, val price: BigDecimal, val recordedAt: String)

@@ -1,5 +1,6 @@
 package com.vibe.store
 
+import java.math.BigDecimal
 import androidx.activity.compose.setContent
 import android.app.Activity
 import android.app.Application
@@ -22,7 +23,7 @@ class CatalogUiTest {
     private class Service : CatalogService {
         var saved: ProductDraft? = null
         var imageEdit: ImageEdit? = null
-        val product = ProductView(1, "Synthetic rice", "Food", "rice", "", 12.34, 10, 2, false, false, "2026-09-30")
+        val product = ProductView(1, "Synthetic rice", "Food", "rice", "", BigDecimal("12.34"), 10, 2, false, false, "2026-09-30")
         override suspend fun list(filter: CatalogFilter) = CatalogPage(if (filter.search.isEmpty() || product.name.contains(filter.search)) listOf(product) else emptyList(), false)
         override suspend fun detail(id: Long) = product
         override suspend fun save(draft: ProductDraft, image: ImageEdit): CatalogWrite { saved = draft; imageEdit = image; return CatalogWrite(product.copy(name = draft.name)) }
@@ -51,7 +52,7 @@ class CatalogUiTest {
         compose.onNodeWithTag("product-save").performScrollTo().performClick()
         compose.waitUntil { service.saved != null }
         assertEquals("Riz local", service.saved!!.name)
-        assertEquals(12.34, service.saved!!.price, 0.0)
+        assertTrue(BigDecimal("12.34").compareTo(service.saved!!.price) == 0)
         assertSame(ImageEdit.Keep, service.imageEdit)
     }
     @Test fun englishReadOnlyCatalogSearchDetailAndReturn() {
@@ -118,8 +119,8 @@ class CatalogUiTest {
                 compose.waitUntil(timeoutMillis = 10_000) {
                     var observed = false
                     compose.activityRule.scenario.onActivity { activity ->
-                        val actual = activity.windowManager.currentWindowMetrics.bounds.width() / activity.resources.displayMetrics.density
-                        observed = kotlin.math.abs(actual - dp) < 0.1f
+                        val actualPixels = activity.windowManager.currentWindowMetrics.bounds.width()
+                        observed = actualPixels == pixels
                     }
                     observed && compose.onAllNodesWithTag("catalog-layout-$layout").fetchSemanticsNodes().size == 1
                 }

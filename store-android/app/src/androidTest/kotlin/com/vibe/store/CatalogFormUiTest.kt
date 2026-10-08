@@ -1,5 +1,6 @@
 package com.vibe.store
 
+import java.math.BigDecimal
 import androidx.activity.compose.setContent
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -17,7 +18,7 @@ import org.junit.Test
 class CatalogFormUiTest {
     @get:Rule val compose = createAndroidComposeRule<MainActivity>()
     private class Service : CatalogService {
-        val product = ProductView(1, "Synthetic rice", "Food", "rice", "Description", 12.34, 10, 2, false, true, "2026-10-02")
+        val product = ProductView(1, "Synthetic rice", "Food", "rice", "Description", BigDecimal("12.34"), 10, 2, false, true, "2026-10-02")
         @Volatile var saves = 0
         var draft: ProductDraft? = null
         var imageEdit: ImageEdit? = null
@@ -77,7 +78,7 @@ class CatalogFormUiTest {
         compose.runOnIdle { assertTrue(state.editing); assertEquals(1, service.saves); service.release!!.complete(Unit) }
         compose.waitUntil { !state.editing }
         assertEquals(1, service.saves); assertEquals("Riz local", service.draft!!.name)
-        assertEquals(12.34, service.draft!!.price, 0.0); assertSame(ImageEdit.Keep, service.imageEdit)
+        assertTrue(BigDecimal("12.34").compareTo(service.draft!!.price) == 0); assertSame(ImageEdit.Keep, service.imageEdit)
     }
     @Test fun editingKeepsInitialValuesAndSavesExistingIdentity() {
         val service = Service(); val state = CatalogScreenState().apply { edit(service.product) }; show(service, state)
@@ -87,7 +88,7 @@ class CatalogFormUiTest {
         replace("product-price", "15.00"); field("product-save").performClick()
         compose.waitUntil { !state.editing }
         assertEquals(1L, service.draft!!.id); assertEquals(service.product.updatedAt, service.draft!!.expectedUpdatedAt)
-        assertEquals(15.0, service.draft!!.price, 0.0); assertEquals(1, service.saves)
+        assertTrue(BigDecimal("15.0").compareTo(service.draft!!.price) == 0); assertEquals(1, service.saves)
     }
     @Test fun cancelDiscardKeepsFieldsAndReplacementImage() {
         val service = Service(); val state = newState(); val selected = object : SelectedImage {}

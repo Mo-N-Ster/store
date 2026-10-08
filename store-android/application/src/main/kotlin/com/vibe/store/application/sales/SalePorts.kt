@@ -1,5 +1,6 @@
 package com.vibe.store.application.sales
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 
 data class StoredSale(val receipt: Receipt, val key: String?, val version: Int?, val canonical: String?)
@@ -20,7 +21,7 @@ interface SaleOperations {
     suspend fun insertLine(invoiceId: String, value: ReceiptLine)
     suspend fun capture(value: Receipt)
     suspend fun reverse(value: Receipt)
-    suspend fun cost(productId: Long): Double?
+    suspend fun cost(productId: Long): BigDecimal?
     suspend fun submitted(key: String): SubmittedSale?
     suspend fun pending(actorId: Long): List<SubmittedSale>
     suspend fun submit(value: SubmittedSale)

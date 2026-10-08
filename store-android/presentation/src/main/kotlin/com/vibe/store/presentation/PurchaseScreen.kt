@@ -114,7 +114,7 @@ fun PurchaseScreen(service: PurchaseService, suppliers: SupplierService, catalog
                 history.items.forEach { item ->
                     ElevatedCard(Modifier.fillMaxWidth()) {
                         Column(Modifier.padding(12.dp)) {
-                            Text("${item.reference} · ${item.status} · ${item.total}")
+                            Text("${item.reference} · ${item.status} · ${DecimalInput.display(item.total, french)}")
                             Text(item.createdAt)
                             TextButton(enabled = !busy, modifier = Modifier.testTag("purchase-detail-${item.id}"),
                                 onClick = { selectedId = item.id; lineOffset = 0; productId = null }) {
@@ -187,11 +187,11 @@ fun PurchaseScreen(service: PurchaseService, suppliers: SupplierService, catalog
                 if (detail == null) Text(t("Chargement du détail…", "Loading details…"))
                 else {
                     val summary = detail.summary
-                    Text("${summary.reference} · ${summary.status} · ${summary.total}", style = MaterialTheme.typography.titleMedium)
+                    Text("${summary.reference} · ${summary.status} · ${DecimalInput.display(summary.total, french)}", style = MaterialTheme.typography.titleMedium)
                     Text("${t("Facture", "Invoice")}: ${detail.supplierInvoice} · ${detail.note}")
                     if (detail.cancellationReason != null) Text("${t("Motif", "Reason")}: ${detail.cancellationReason}")
                     lines.items.forEach { line ->
-                        Text("#${line.productId} · ${t("Qté", "Qty")}: ${line.quantity} × ${line.unitCost} = ${line.total}")
+                        Text("#${line.productId} · ${t("Qté", "Qty")}: ${line.quantity} × ${DecimalInput.display(line.unitCost, french)} = ${DecimalInput.display(line.total, french)}")
                     }
                     if (lines.hasMore || lineOffset > 0) Row {
                         TextButton(enabled = !busy && lineOffset > 0, onClick = { lineOffset -= 40 }) { Text(t("Précédent", "Previous")) }
@@ -207,7 +207,7 @@ fun PurchaseScreen(service: PurchaseService, suppliers: SupplierService, catalog
                                     Text(product.name, Modifier.weight(1f))
                                     TextButton(enabled = !busy, modifier = Modifier.testTag("purchase-product-${product.id}"),
                                         onClick = { productId = product.id; val old = lines.items.firstOrNull { it.productId == product.id }
-                                            quantity = old?.quantity?.toString() ?: "1"; cost = old?.unitCost?.toString() ?: "0"
+                                            quantity = old?.quantity?.toString() ?: "1"; cost = old?.unitCost?.let { DecimalInput.display(it) } ?: "0"
                                         }) { Text(t("Choisir", "Select")) }
                                 }
                             }

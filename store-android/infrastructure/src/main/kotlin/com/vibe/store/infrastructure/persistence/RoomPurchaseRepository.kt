@@ -1,10 +1,15 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import com.vibe.store.api.*
 import com.vibe.store.application.purchases.*
 import com.vibe.store.domain.*
 
 internal class RoomPurchaseRepository(private val dao: StoreDao, private val check: suspend (Boolean) -> Unit) : PurchaseRecords {
+    private fun sameLine(a: PurchaseLineView?, b: PurchaseLineView?): Boolean =
+        if (a == null || b == null) a == b else
+            a.id == b.id && a.productId == b.productId && a.quantity == b.quantity &&
+                ExactMoney.same(a.unitCost, b.unitCost) && ExactMoney.same(a.total, b.total)
     private fun PurchaseEntity.record() = StoredPurchase(PurchaseDetail(PurchaseSummary(id, reference, supplierId,
         PurchaseStatus.valueOf(status), totalAmount, createdBy, createdAt), supplierInvoice.orEmpty(), note.orEmpty(),
         validatedBy, validatedAt, cancelledBy, cancelledAt, cancellationReason), idempotencyKey)
@@ -27,20 +32,20 @@ internal class RoomPurchaseRepository(private val dao: StoreDao, private val che
         WorkflowRules.id(s.id); WorkflowRules.id(s.createdBy); PurchasePolicy.header(s.supplierId, d.supplierInvoice, d.note)
         PurchasePolicy.key(value.creationKey)
         value.creationKey?.let { PurchasePolicy.creationKeyAvailable(dao.purchaseKeyExists(it)) }
-        WorkflowRules.check(s.status == PurchaseStatus.DRAFT && s.total == 0.0 && d.validatedBy == null && d.validatedAt == null && d.cancelledBy == null && d.cancelledAt == null && d.cancellationReason == null)
+        WorkflowRules.check(s.status == PurchaseStatus.DRAFT && s.total.signum() == 0 && d.validatedBy == null && d.validatedAt == null && d.cancelledBy == null && d.cancelledAt == null && d.cancellationReason == null)
         dao.purchase(PurchaseEntity(s.id, s.reference, s.supplierId, s.status.name, s.total, s.createdBy, s.createdAt, value.creationKey, d.supplierInvoice, d.note))
     }
     override suspend fun replaceDraftLine(id: Long, line: PurchaseLineView, expected: PurchaseLineView?): Boolean {
         check(true); WorkflowRules.id(id); WorkflowRules.id(line.id); WorkflowRules.id(line.productId)
-        WorkflowRules.check(line.total == PurchasePolicy.lineTotal(line.quantity, line.unitCost))
+        WorkflowRules.check(ExactMoney.same(line.total, PurchasePolicy.lineTotal(line.quantity, line.unitCost)))
         if (dao.findPurchase(id)?.status != "DRAFT") return false
         val old = dao.purchaseItem(id, line.productId)?.view()
-        if (old != expected || (old != null && old.id != line.id)) return false
+        if (!sameLine(old, expected) || (old != null && old.id != line.id)) return false
         if (old == null) dao.purchaseLine(PurchaseLineEntity(line.id, id, line.productId, line.quantity, line.unitCost, line.total))
         else return dao.editPurchaseItem(id, line.id, line.productId, line.quantity, line.unitCost, line.total, old.quantity, old.unitCost, old.total) == 1
         return true
     }
-    override suspend fun updateDraftTotal(id: Long, total: Double): Boolean {
+    override suspend fun updateDraftTotal(id: Long, total: BigDecimal): Boolean {
         check(true); WorkflowRules.id(id); PurchasePolicy.cost(total)
         return dao.draftPurchaseTotal(id, total) == 1
     }
@@ -49,7 +54,7 @@ internal class RoomPurchaseRepository(private val dao: StoreDao, private val che
         check(true); val d = value.detail; val s = d.summary
         val old = dao.findPurchase(s.id)?.record() ?: return false
         if (old.detail.summary.status != expectedStatus) return false
-        WorkflowRules.check(s.copy(status = expectedStatus) == old.detail.summary && value.creationKey == old.creationKey &&
+        WorkflowRules.check(s.copy(status = expectedStatus, total = old.detail.summary.total) == old.detail.summary && ExactMoney.same(s.total, old.detail.summary.total) && value.creationKey == old.creationKey &&
             d.note == old.detail.note && d.supplierInvoice == old.detail.supplierInvoice)
         WorkflowRules.check((expectedStatus == PurchaseStatus.DRAFT && s.status in setOf(PurchaseStatus.VALIDATED, PurchaseStatus.CANCELLED)) ||
             (expectedStatus == PurchaseStatus.VALIDATED && s.status == PurchaseStatus.CANCELLED))

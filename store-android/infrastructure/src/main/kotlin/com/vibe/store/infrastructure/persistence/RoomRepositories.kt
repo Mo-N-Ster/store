@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import com.vibe.store.application.persistence.*
 import com.vibe.store.domain.*
 import kotlinx.coroutines.Job
@@ -34,7 +35,7 @@ internal class RoomRepositories(internal val dao: StoreDao, private val job: Job
         override suspend fun message(id: Long): MessageRecord? { check(); return dao.findMessage(id)?.let { MessageRecord(it.id, it.subject, it.content) } }
     }
     override val audit = object : AuditRepository {
-        override suspend fun audit(id: Long): AuditRecord? { check(); return dao.findAudit(id)?.let { AuditRecord(it.id, it.action, it.responsibleName, it.cashAmount?.let(::MoneyValue)) } }
+        override suspend fun audit(id: Long): AuditRecord? { check(); return dao.findAudit(id)?.let { AuditRecord(it.id, it.action, it.responsibleName, it.cashAmount?.let { value -> MoneyValue(value) }) } }
     }
     override val settings = object : SettingsWriter {
         override suspend fun value(key: String): String? { check(); return dao.settingValue(key) }

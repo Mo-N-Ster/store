@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import androidx.room.*
 import androidx.sqlite.SQLiteConnection
 import androidx.sqlite.execSQL
@@ -21,8 +22,8 @@ internal interface StoreDao {
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM purchases") suspend fun nextPurchaseId(): Long
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM purchase_items") suspend fun nextPurchaseLineId(): Long
     @Query("UPDATE purchase_items SET quantity=:quantity,unitCost=:cost,totalLine=:total WHERE id=:line AND purchaseId=:id AND productId=:product AND quantity=:oldQuantity AND unitCost=:oldCost AND totalLine=:oldTotal AND EXISTS(SELECT 1 FROM purchases WHERE id=:id AND status='DRAFT')")
-    suspend fun editPurchaseItem(id: Long, line: Long, product: Long, quantity: Long, cost: Double, total: Double, oldQuantity: Long, oldCost: Double, oldTotal: Double): Int
-    @Query("UPDATE purchases SET totalAmount=:total WHERE id=:id AND status='DRAFT'") suspend fun draftPurchaseTotal(id: Long, total: Double): Int
+    suspend fun editPurchaseItem(id: Long, line: Long, product: Long, quantity: Long, cost: BigDecimal, total: BigDecimal, oldQuantity: Long, oldCost: BigDecimal, oldTotal: BigDecimal): Int
+    @Query("UPDATE purchases SET totalAmount=:total WHERE id=:id AND status='DRAFT'") suspend fun draftPurchaseTotal(id: Long, total: BigDecimal): Int
     @Query("UPDATE purchases SET status=:status,validatedBy=:validator,validatedAt=:validated,cancelledBy=:canceller,cancelledAt=:cancelled,cancellationReason=:reason WHERE id=:id AND status=:expected")
     suspend fun purchaseTransition(id: Long, expected: String, status: String, validator: Long?, validated: String?, canceller: Long?, cancelled: String?, reason: String?): Int
     @Query("SELECT * FROM inventory_counts WHERE (:status IS NULL OR status=:status) AND (:from='' OR substr(createdAt,1,10)>=:from) AND (:to='' OR substr(createdAt,1,10)<=:to) ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
@@ -46,7 +47,7 @@ internal interface StoreDao {
     suspend fun salePage(search: String, from: String, to: String, product: Long?, category: String, limit: Int, offset: Int): List<InvoiceEntity>
     @Update suspend fun updateInvoice(value: InvoiceEntity)
     @Query("UPDATE payments SET status='REFUNDED' WHERE invoiceId=:id AND status='CAPTURED'") suspend fun refund(id: String)
-    @Query("SELECT unitPrice FROM stock_movements WHERE productId=:id AND quantity>0 AND unitPrice>=0 AND reason IN ('purchase','initial') ORDER BY createdAt DESC,id DESC LIMIT 1") suspend fun latestCost(id: Long): Double?
+    @Query("SELECT unitPrice FROM stock_movements WHERE productId=:id AND quantity>0 AND reason IN ('purchase','initial') ORDER BY createdAt DESC,id DESC LIMIT 1") suspend fun latestCost(id: Long): BigDecimal?
     @Query("SELECT * FROM pending_commands WHERE commandKey=:key") suspend fun pendingByKey(key: String): PendingCommandEntity?
     @Query("SELECT * FROM pending_commands WHERE actorId=:actor AND state='SUBMITTED' ORDER BY createdAt DESC LIMIT 100") suspend fun pendingFor(actor: Long): List<PendingCommandEntity>
     @Query("UPDATE pending_commands SET state='ACKNOWLEDGED' WHERE commandKey=:key") suspend fun acknowledgeCommand(key: String)
@@ -79,7 +80,20 @@ internal interface StoreDao {
     @Query("SELECT p.module || ':' || p.action FROM user_permission_denials d JOIN permissions p ON p.id=d.permissionId WHERE d.userId=:id ORDER BY p.module,p.action") suspend fun denied(id: Long): List<String>
     @Query("DELETE FROM user_permission_denials WHERE userId=:id") suspend fun deleteDenials(id: Long)
     @Query("SELECT * FROM cash_sessions WHERE userId=:id AND status='OPEN' ORDER BY id DESC LIMIT 1") suspend fun openCash(id: Long): CashEntity?
-    @Query("SELECT COALESCE(SUM(amount),0) FROM payments WHERE cashId=:id AND status='CAPTURED'") suspend fun capturedPayments(id: Long): Double
+    @Query("SELECT * FROM payments WHERE cashId=:id AND status='CAPTURED' AND (:after IS NULL OR id>:after) ORDER BY id LIMIT 256")
+    suspend fun capturedPaymentPage(id: Long, after: Long?): List<PaymentEntity>
+
+    // Invoked only through repositories on their existing confined reader/writer lease.
+    suspend fun capturedPayments(id: Long): BigDecimal {
+        var total = BigDecimal.ZERO
+        var after: Long? = null
+        while (true) {
+            val page = capturedPaymentPage(id, after)
+            for (payment in page) total = total.add(payment.amount)
+            if (page.size < 256) return total
+            after = page.last().id
+        }
+    }
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM audit_logs") suspend fun nextAuditId(): Long
     @Insert suspend fun user(value: UserEntity)
     @Insert suspend fun role(value: RoleEntity)
@@ -137,7 +151,8 @@ internal interface StoreDao {
     PurchaseEntity::class, PurchaseLineEntity::class, InventoryEntity::class, InventoryLineEntity::class,
     AttendanceEntity::class, MessageEntity::class, MessageReadEntity::class, MessageDeletionEntity::class,
     NotificationEntity::class, EmailEntity::class, SettingEntity::class, AuditEntity::class,
-    GenerationEntity::class, PendingCommandEntity::class], version = 1, exportSchema = true)
+    GenerationEntity::class, PendingCommandEntity::class], version = 2, exportSchema = true)
+@TypeConverters(MoneyText::class)
 internal abstract class StoreDatabase : RoomDatabase() { abstract fun records(): StoreDao }
 
 internal object StoreConstraints {
@@ -147,21 +162,26 @@ internal object StoreConstraints {
         "users" to "NEW.role IN ('owner','manager','employee') AND NEW.active IN (0,1)",
         "roles" to "NEW.isSystem IN (0,1)",
         "employees" to "NEW.status IN ('ACTIVE','ABSENT','SUSPENDED','RESIGNED','ARCHIVED')",
-        "cash_sessions" to "NEW.status IN ('OPEN','CLOSED') AND NEW.openingAmount>=0 AND (NEW.closingAmount IS NULL OR NEW.closingAmount>=0)",
-        "products" to "NEW.price>=0 AND typeof(NEW.stock)='integer' AND NEW.stock BETWEEN 0 AND 9007199254740991 AND NEW.minimumStock>=0",
-        "product_price_history" to "NEW.price>=0",
+        "cash_sessions" to "NEW.status IN ('OPEN','CLOSED')",
+        "products" to "typeof(NEW.stock)='integer' AND NEW.stock BETWEEN 0 AND 9007199254740991 AND NEW.minimumStock>=0",
+        "product_price_history" to "1",
         "inventory_counts" to "NEW.status IN ('DRAFT','VALIDATED','CANCELLED')",
         "inventory_count_lines" to "typeof(NEW.expectedQuantity)='integer' AND typeof(NEW.countedQuantity)='integer' AND NEW.expectedQuantity>=0 AND NEW.countedQuantity>=0",
         "suppliers" to "NEW.active IN (0,1)",
-        "purchases" to "NEW.status IN ('DRAFT','VALIDATED','CANCELLED') AND NEW.totalAmount>=0",
-        "purchase_items" to "typeof(NEW.quantity)='integer' AND NEW.quantity BETWEEN 1 AND 9007199254740991 AND NEW.unitCost>=0 AND NEW.totalLine>=0",
+        "purchases" to "NEW.status IN ('DRAFT','VALIDATED','CANCELLED')",
+        "purchase_items" to "typeof(NEW.quantity)='integer' AND NEW.quantity BETWEEN 1 AND 9007199254740991",
         "invoices" to "NEW.status IN ('validated','cancelled') AND ((NEW.canonicalRequest IS NULL AND NEW.canonicalVersion IS NULL) OR (NEW.canonicalRequest IS NOT NULL AND NEW.canonicalVersion IS NOT NULL AND NEW.canonicalVersion>0))",
         "invoice_lines" to "typeof(NEW.quantity)='integer' AND NEW.quantity BETWEEN 1 AND 9007199254740991",
-        "payments" to "NEW.method='CASH' AND NEW.amount>=0 AND NEW.received>=0 AND NEW.change>=0 AND NEW.status IN ('CAPTURED','REFUNDED')",
+        "payments" to "NEW.method='CASH' AND NEW.status IN ('CAPTURED','REFUNDED')",
         "attendances" to "NEW.status IN ('VALID','CORRECTED','INTERRUPTED')"
     )
     fun create(connection: SQLiteConnection) {
-        checks.forEach { (table, condition) ->
+        val combined = checks.toMutableMap()
+        MoneyColumns.tables.forEach { (table, columns) ->
+            val moneyChecks = columns.joinToString(" AND ") { column -> MoneyText.sqlCheck("NEW.`$column`", MoneyColumns.signed(table, column)) }
+            combined[table] = "(${combined[table] ?: "1"}) AND ($moneyChecks)"
+        }
+        combined.forEach { (table, condition) ->
             for (operation in listOf("INSERT", "UPDATE")) connection.execSQL(
                 "CREATE TRIGGER check_${table}_${operation} BEFORE $operation ON `$table` WHEN NOT ($condition) BEGIN SELECT RAISE(ABORT, 'constraint violation'); END")
         }

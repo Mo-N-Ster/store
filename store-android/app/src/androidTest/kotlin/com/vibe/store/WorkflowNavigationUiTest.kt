@@ -1,5 +1,6 @@
 package com.vibe.store
 
+import java.math.BigDecimal
 import android.graphics.Bitmap
 import android.os.ParcelFileDescriptor
 import android.view.WindowInsets
@@ -577,7 +578,7 @@ class WorkflowNavigationUiTest {
                 "PUR-SYNTHETIC-1",
                 null,
                 PurchaseStatus.DRAFT,
-                0.0,
+                BigDecimal("0.0"),
                 1L,
                 "2026-10-07T00:00:00Z",
             ),
@@ -590,7 +591,7 @@ class WorkflowNavigationUiTest {
             null,
         )
 
-        val capturedPrices = mutableListOf<Double>()
+        val capturedPrices = mutableListOf<java.math.BigDecimal>()
 
         val purchaseService = object : PurchaseService {
             override suspend fun list(filter: PurchaseFilter) =
@@ -741,11 +742,7 @@ class WorkflowNavigationUiTest {
             capturedPrices.size == 1
         }
 
-        assertEquals(
-            12.5,
-            capturedPrices[0],
-            0.000001,
-        )
+        assertEquals(0, capturedPrices[0].compareTo(java.math.BigDecimal("12.5")))
 
         price.performScrollTo()
             .performClick()
@@ -761,11 +758,7 @@ class WorkflowNavigationUiTest {
             capturedPrices.size == 2
         }
 
-        assertEquals(
-            13.25,
-            capturedPrices[1],
-            0.000001,
-        )
+        assertEquals(0, capturedPrices[1].compareTo(java.math.BigDecimal("13.25")))
 
         println(
             "I07_UI_IME_DECIMAL_PASS " +

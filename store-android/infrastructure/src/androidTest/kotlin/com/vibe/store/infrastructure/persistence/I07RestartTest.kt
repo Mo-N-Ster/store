@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import android.os.Process
 import android.util.Log
@@ -173,7 +174,7 @@ class I07RestartTest {
                     ProductDraft(
                         name = "I07 P6 $operation",
                         category = "Synthetic",
-                        price = 3.0,
+                        price = BigDecimal("3.0"),
                         initialStock = 5.0,
                     )
                 ).product
@@ -190,7 +191,7 @@ class I07RestartTest {
                                 purchaseId = draft.summary.id,
                                 productId = product.id,
                                 quantity = 3,
-                                unitCost = 2.0,
+                                unitCost = BigDecimal("2.0"),
                             )
                         )
 
@@ -208,7 +209,7 @@ class I07RestartTest {
                                 purchaseId = draft.summary.id,
                                 productId = product.id,
                                 quantity = 3,
-                                unitCost = 2.0,
+                                unitCost = BigDecimal("2.0"),
                             )
                         )
                         purchases.validate(ValidatePurchase(draft.summary.id))

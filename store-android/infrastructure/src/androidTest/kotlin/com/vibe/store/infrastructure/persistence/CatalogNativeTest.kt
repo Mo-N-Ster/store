@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import android.content.Context
 import android.net.Uri
 import androidx.test.core.app.ApplicationProvider
@@ -36,7 +37,7 @@ class CatalogNativeTest {
             identity.bootstrap(OwnerRegistration("owner", "owner@example.invalid", "Synthetic", "Owner", "Password-123", "Question", "Answer"))
             identity.login(Credentials("owner", "Password-123"))
         }
-        fun draft(name: String = "Article", stock: Double = 5.0) = ProductDraft(name = name, category = "Food", price = 12.34, initialStock = stock)
+        fun draft(name: String = "Article", stock: Double = 5.0) = ProductDraft(name = name, category = "Food", price = BigDecimal("12.34"), initialStock = stock)
     }
     private suspend fun fixture(block: suspend (Fixture) -> Unit) {
         val f = Fixture()
@@ -53,7 +54,7 @@ class CatalogNativeTest {
         denied(CatalogError.DUPLICATE) { f.catalog.save(f.draft("article")) }
         assertEquals(initial.id, f.catalog.list(CatalogFilter(search = "art", category = "Food")).items.single().id)
         assertTrue(f.catalog.list(CatalogFilter(category = "Other")).items.isEmpty())
-        val edited = f.catalog.save(f.draft().copy(id = initial.id, price = 15.0, expectedUpdatedAt = initial.updatedAt)).product
+        val edited = f.catalog.save(f.draft().copy(id = initial.id, price = BigDecimal("15"), expectedUpdatedAt = initial.updatedAt)).product
         assertEquals(2, f.catalog.prices(initial.id).size)
         assertEquals(5L, edited.stock)
         val adjusted = f.catalog.adjustStock(initial.id, 7.0, "Physical count", 5)
@@ -107,7 +108,7 @@ class CatalogNativeTest {
                 val real = this
                 val scope = object : TransactionRepositories by real {
                     override val catalog = object : CatalogRepository by real.catalog {
-                        override suspend fun movement(productId: Long, delta: Long, reason: String, price: Double, stamp: String, reference: String?) {
+                        override suspend fun movement(productId: Long, delta: Long, reason: String, price: BigDecimal, stamp: String, reference: String?) {
                             throw IOException("Synthetic movement write failure")
                         }
                     }

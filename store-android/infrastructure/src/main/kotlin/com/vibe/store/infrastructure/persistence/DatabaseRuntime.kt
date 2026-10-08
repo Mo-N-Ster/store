@@ -65,7 +65,7 @@ internal val configuration = object : RoomDatabase.Callback() {
 internal fun buildStore(context: Context, file: File): StoreDatabase =
     Room.databaseBuilder(context, StoreDatabase::class.java, file.absolutePath)
         .setDriver(ConfiguredDriver()).setJournalMode(RoomDatabase.JournalMode.WRITE_AHEAD_LOGGING)
-        .setQueryCoroutineContext(Dispatchers.IO).addCallback(configuration).build()
+        .setQueryCoroutineContext(Dispatchers.IO).addCallback(configuration).addMigrations(MoneyMigration1To2).build()
 
 /** Composition-only entry point; no path/table/SQL accepted from UI. No DB opened by the smoke UI. */
 object AndroidPersistence {
@@ -86,7 +86,7 @@ private class Lease : AbstractCoroutineContextElement(Key) {
 internal class RoomDatabaseOwner(
     private val context: Context,
     internal val root: File,
-    private val targetVersion: Int = 1,
+    private val targetVersion: Int = 2,
     private val factory: (Context, File) -> StoreDatabase = ::buildStore
 ) : DatabaseOwner, UnitOfWork {
     override val generation = GenerationId("main")
@@ -170,9 +170,12 @@ internal class RoomDatabaseOwner(
             connection.usePrepared("PRAGMA busy_timeout=$BUSY_MILLIS") { it.step() }
             block(connection)
         }
-    override suspend fun <T> read(block: suspend ReadRepositories.() -> T): T = accepted { db -> reader(db) {
-        val repositories = RoomRepositories(db.records(), currentCoroutineContext()[Job], false)
-        try { repositories.block() } finally { repositories.release() }
+    override suspend fun <T> read(block: suspend ReadRepositories.() -> T): T = accepted { db -> reader(db) { connection ->
+        // A stable SQLite snapshot across bounded exact-payment pages and the opening balance.
+        connection.withTransaction(Transactor.SQLiteTransactionType.DEFERRED) {
+            val repositories = RoomRepositories(db.records(), currentCoroutineContext()[Job], false)
+            try { repositories.block() } finally { repositories.release() }
+        }
     } }
     override suspend fun <T> transaction(block: suspend TransactionRepositories.() -> T): T = accepted { db ->
         db.useWriterConnection { writer -> writer.withTransaction(Transactor.SQLiteTransactionType.IMMEDIATE) {

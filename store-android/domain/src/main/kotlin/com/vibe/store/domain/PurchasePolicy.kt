@@ -1,5 +1,6 @@
 package com.vibe.store.domain
 
+import java.math.BigDecimal
 object PurchasePolicy {
     enum class State { DRAFT, VALIDATED, CANCELLED }
     enum class Reception { APPLY, ALREADY_VALIDATED }
@@ -25,21 +26,20 @@ object PurchasePolicy {
     }
     /** D3: even an otherwise identical creation conflicts. No existing result is returned. */
     fun creationKeyAvailable(collision: Boolean) { WorkflowRules.check(!collision, WorkflowRuleError.CONFLICT) }
-    fun cost(value: Double): Double = value.also { WorkflowRules.check(it.isFinite() && it >= 0) }
-    fun lineTotal(quantity: Long, unitCost: Double): Double {
+    fun cost(value: BigDecimal): BigDecimal = value.also { WorkflowRules.check(it.signum() >= 0) }
+    fun lineTotal(quantity: Long, unitCost: BigDecimal): BigDecimal {
         WorkflowRules.quantity(quantity, positive = true); cost(unitCost)
-        return (quantity * unitCost).also { WorkflowRules.check(it.isFinite()) }
+        return ExactMoney.multiply(unitCost, quantity)
     }
-    data class Line(val productId: Long, val quantity: Long, val unitCost: Double)
-    /** Source stores q*cost and SUM(total_line), without POS cent rounding. */
-    fun total(lines: List<Line>): Double {
+    data class Line(val productId: Long, val quantity: Long, val unitCost: BigDecimal)
+    /** Exact line totals accumulated without rounding. */
+    fun total(lines: List<Line>): BigDecimal {
         WorkflowRules.check(lines.size <= WorkflowRules.MAX_LINES)
         WorkflowRules.check(lines.map { it.productId }.distinct().size == lines.size)
-        var total = 0.0
+        var total = BigDecimal.ZERO
         for (line in lines) {
             WorkflowRules.id(line.productId)
-            total += lineTotal(line.quantity, line.unitCost)
-            WorkflowRules.check(total.isFinite())
+            total = ExactMoney.add(total, lineTotal(line.quantity, line.unitCost))
         }
         return total
     }

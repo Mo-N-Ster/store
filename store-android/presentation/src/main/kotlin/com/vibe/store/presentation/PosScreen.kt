@@ -60,7 +60,7 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
     var to by remember { mutableStateOf("") }
     var selectedReceipt by remember { mutableStateOf<Receipt?>(null) }
     var resolvedKey by remember { mutableStateOf<String?>(null) }
-    fun money(text: String): Double? = text.trim().replace(',', '.').toDoubleOrNull()?.takeIf { it.isFinite() && it >= 0 }
+    fun money(text: String): java.math.BigDecimal? = DecimalInput.nonnegative(text)
     fun run(action: suspend () -> Unit) {
         if (busy) return
         busy = true; error = null
@@ -112,7 +112,7 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
     @Composable fun cashPanel() {
         ElevatedCard(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
             Text(cash?.let { "${t("Caisse ouverte", "Open cash")} · ${it.reference}" } ?: t("Aucune caisse ouverte", "No open cash session"))
-            cash?.let { Text("${t("Montant théorique", "Expected amount")} : ${it.expected}") }
+            cash?.let { Text("${t("Montant théorique", "Expected amount")} : ${DecimalInput.display(it.expected, french)}") }
             PosField(t("Montant initial / compté", "Opening / counted amount"), amount, "pos-cash-amount", !busy) { amount = it }
             if (cash == null && "CASH:CREATE" in actor.permissions) Button(enabled = !busy && money(amount) != null,
                 modifier = Modifier.testTag("pos-open"), onClick = { run { cash = service.openCash(money(amount)!!); amount = "" } }) { Text(t("Ouvrir la caisse", "Open cash")) }
@@ -128,7 +128,7 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
             products.items.forEach { product ->
                 ElevatedCard(Modifier.fillMaxWidth()) { Column(Modifier.padding(12.dp)) {
                     Text(product.name, style = MaterialTheme.typography.titleMedium)
-                    Text("${product.category} · ${product.price} · ${t("Stock", "Stock")}: ${product.stock}")
+                    Text("${product.category} · ${DecimalInput.display(product.price, french)} · ${t("Stock", "Stock")}: ${product.stock}")
                     Button(modifier = Modifier.testTag("pos-add-${product.id}"), enabled = !locked,
                         onClick = { val old = state.cart[product.id]?.second?.toLongOrNull() ?: 0L
                             if (old < 9_007_199_254_740_991L) state.cart[product.id] = product to (old + 1).toString()
@@ -159,16 +159,18 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
             Button(modifier = Modifier.testTag("pos-submit"), enabled = !locked && cash != null && state.cart.isNotEmpty() && pending.isEmpty() && "POS:VALIDATE" in actor.permissions,
                 onClick = {
                     val quantities = state.cart.map { (id, pair) -> id to pair.second.toLongOrNull() }
-                    val discount = if (state.discount.isBlank()) 0.0 else money(state.discount)
+                    val discount = if (state.discount.isBlank()) java.math.BigDecimal.ZERO else money(state.discount)
                     val received = if (state.received.isBlank()) null else money(state.received)
                     if (quantities.any { it.second == null || it.second!! !in 0..9_007_199_254_740_991L } || discount == null ||
-                        (!state.received.isBlank() && received == null) || (state.percent && discount > 100)) {
+                        (!state.received.isBlank() && received == null) || (state.percent && discount > java.math.BigDecimal("100"))) {
                         error = t("Valeurs non valides.", "Invalid values.")
                     } else {
                         quantities.filter { it.second == 0L }.forEach { state.cart.remove(it.first) }
                         val lines = quantities.filter { it.second!! > 0 }.map { SaleLine(it.first, it.second!!) }
                         if (lines.isEmpty()) error = t("Panier vide", "Empty cart") else {
-                            val requested = if (state.percent) lines.sumOf { state.cart.getValue(it.productId).first.price * it.quantity } * discount / 100 else discount
+                            val requested = if (state.percent) lines.fold(java.math.BigDecimal.ZERO) { sum, line ->
+                                sum.add(state.cart.getValue(line.productId).first.price.multiply(java.math.BigDecimal.valueOf(line.quantity)))
+                            }.multiply(discount).movePointLeft(2) else discount
                             val command = SaleCommand(UUID.randomUUID().toString(), cash!!.id, lines, requested, received)
                             state.submitted = command
                             run { state.result = service.sell(command); state.cart.clear(); state.discount = ""; state.received = ""; refresh() }
@@ -194,10 +196,10 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
             Text(receipt.storeName, style = MaterialTheme.typography.titleLarge)
             Text("${receipt.id}\n${receipt.date}\n${receipt.address}\n${receipt.phone} ${receipt.email}")
             Text("${t("Vendeur", "Seller")} #${receipt.actorId} · ${receipt.status}")
-            receipt.lines.forEach { Text("${it.name} · ${it.quantity} × ${it.unitPrice} = ${it.total} ${receipt.currency}") }
-            Text("${t("Sous-total", "Subtotal")}: ${receipt.subtotal}\n${t("Remise", "Discount")}: ${receipt.discount}")
-            Text("Total: ${receipt.total} ${receipt.currency}", style = MaterialTheme.typography.headlineSmall)
-            Text("${t("Reçu", "Received")}: ${receipt.received} · ${t("Monnaie", "Change")}: ${receipt.change}")
+            receipt.lines.forEach { Text("${it.name} · ${it.quantity} × ${DecimalInput.display(it.unitPrice, french)} = ${DecimalInput.display(it.total, french)} ${receipt.currency}") }
+            Text("${t("Sous-total", "Subtotal")}: ${DecimalInput.display(receipt.subtotal, french)}\n${t("Remise", "Discount")}: ${DecimalInput.display(receipt.discount, french)}")
+            Text("Total: ${DecimalInput.display(receipt.total, french)} ${receipt.currency}", style = MaterialTheme.typography.headlineSmall)
+            Text("${t("Reçu", "Received")}: ${DecimalInput.display(receipt.received, french)} · ${t("Monnaie", "Change")}: ${DecimalInput.display(receipt.change, french)}")
             receipt.cancellationReason?.let { Text(it) }
             if ("POS:DELETE" in actor.permissions && receipt.status == "validated") {
                 PosField(t("Motif d’annulation", "Cancellation reason"), reason, "pos-cancel-reason", !busy, false) { reason = it }
@@ -221,7 +223,7 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
         when {
             receipt != null -> receiptPanel(receipt)
             mode == "cash" -> Column(Modifier.verticalScroll(rememberScrollState())) {
-                cashRows.forEach { Text("${it.reference}\n${it.status} · ${it.openedAt}\n${t("Attendu / compté / écart", "Expected / counted / difference")}: ${it.expected} / ${it.counted ?: "—"} / ${it.difference ?: "—"}") }
+                cashRows.forEach { Text("${it.reference}\n${it.status} · ${it.openedAt}\n${t("Attendu / compté / écart", "Expected / counted / difference")}: ${DecimalInput.display(it.expected, french)} / ${it.counted?.let { value -> DecimalInput.display(value, french) } ?: "—"} / ${it.difference?.let { value -> DecimalInput.display(value, french) } ?: "—"}") }
                 TextButton(enabled = !busy && historyOffset > 0, onClick = { run { historyOffset -= 40; cashRows = service.cashHistory(historyOffset) } }) { Text(t("Précédent", "Previous")) }
                 TextButton(enabled = !busy && cashRows.size == 40, onClick = { run { historyOffset += 40; cashRows = service.cashHistory(historyOffset) } }) { Text(t("Suivant", "Next")) }
             }
@@ -231,7 +233,7 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
                 PosField(t("Jusqu’au AAAA-MM-JJ", "To YYYY-MM-DD"), to, "pos-history-to", !busy, false) { to = it }
                 Button(enabled = !busy, onClick = { run { historyOffset = 0; history = service.history(SaleFilter(historySearch, from, to)) } }) { Text(t("Filtrer", "Filter")) }
                 if (history.items.isEmpty()) Text(t("Aucune facture", "No invoices"))
-                history.items.forEach { item -> TextButton(enabled = !busy, onClick = { run { selectedReceipt = service.receipt(item.id) } }) { Text("${item.date} · ${item.id} · ${item.total} ${item.currency} · ${item.status}") } }
+                history.items.forEach { item -> TextButton(enabled = !busy, onClick = { run { selectedReceipt = service.receipt(item.id) } }) { Text("${item.date} · ${item.id} · ${DecimalInput.display(item.total, french)} ${item.currency} · ${item.status}") } }
                 TextButton(enabled = !busy && historyOffset > 0, onClick = { run { historyOffset -= 40; history = service.history(SaleFilter(historySearch, from, to, offset = historyOffset)) } }) { Text(t("Précédent", "Previous")) }
                 TextButton(enabled = !busy && history.hasMore, onClick = { run { historyOffset += 40; history = service.history(SaleFilter(historySearch, from, to, offset = historyOffset)) } }) { Text(t("Suivant", "Next")) }
             }

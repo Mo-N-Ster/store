@@ -1,22 +1,11 @@
 package com.vibe.store.domain
 
-/** Binary64 is deliberate: no implicit cents/banker's-rounding conversion. */
-@JvmInline value class MoneyValue(val value: Double) { init { require(value.isFinite()) } }
+import java.math.BigDecimal
+
+@JvmInline value class MoneyValue(val value: BigDecimal)
 @JvmInline value class Quantity(val value: Long) { init { require(value in 0..9_007_199_254_740_991L) } }
 @JvmInline value class GenerationId(val value: String) { init { require(value.matches(Regex("[a-zA-Z0-9-]{1,64}"))) } }
 
-fun interface MoneyParity { fun roundTwo(value: Double): Double }
-// Math.round(x * 100) / 100 with ties toward +infinity, unlike Kotlin round().
-object SourceMoneyParity : MoneyParity {
-    override fun roundTwo(value: Double): Double {
-        require(value.isFinite())
-        val scaled = value * 100
-        if (!scaled.isFinite()) return scaled
-        val lower = kotlin.math.floor(scaled)
-        val rounded = if (scaled - lower < 0.5) lower else lower + 1
-        return if (rounded == 0.0 && value < 0) -0.0 else rounded / 100
-    }
-}
 /** Caller chooses UTC or local calendar per source report, never an implicit global correction. */
 interface CalendarParity { fun day(epochMillis: Long, utc: Boolean): String }
 

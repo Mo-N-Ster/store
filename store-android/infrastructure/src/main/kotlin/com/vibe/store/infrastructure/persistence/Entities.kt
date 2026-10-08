@@ -1,5 +1,6 @@
 package com.vibe.store.infrastructure.persistence
 
+import java.math.BigDecimal
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -40,25 +41,25 @@ internal data class EmployeeEntity(@PrimaryKey val id: Long, val code: String, v
     ForeignKey(entity = UserEntity::class, parentColumns = ["id"], childColumns = ["closedBy"])],
     indices = [Index(value = ["reference"], unique = true), Index("userId"), Index("closedBy")])
 internal data class CashEntity(@PrimaryKey val id: Long, val reference: String, val userId: Long, val status: String,
-    val openingAmount: Double, val openedAt: String, val closedAt: String? = null, val closingAmount: Double? = null,
-    val expectedAmount: Double? = null, val difference: Double? = null, val closedBy: Long? = null)
+    val openingAmount: BigDecimal, val openedAt: String, val closedAt: String? = null, val closingAmount: BigDecimal? = null,
+    val expectedAmount: BigDecimal? = null, val difference: BigDecimal? = null, val closedBy: Long? = null)
 @Entity(tableName = "products", indices = [Index(value = ["reference"], unique = true)])
-internal data class ProductEntity(@PrimaryKey val id: Long, val name: String, val category: String, val price: Double,
+internal data class ProductEntity(@PrimaryKey val id: Long, val name: String, val category: String, val price: BigDecimal,
     val stock: Long, val minimumStock: Long, val createdAt: String, val updatedAt: String,
     val reference: String? = null, val hashtag: String? = null, val description: String = "",
     val deletedAt: String? = null, val imageRef: String? = null)
 @Entity(tableName = "product_price_history", foreignKeys = [ForeignKey(entity = ProductEntity::class, parentColumns = ["id"], childColumns = ["productId"])], indices = [Index("productId")])
-internal data class PriceEntity(@PrimaryKey val id: Long, val productId: Long, val price: Double, val recordedAt: String)
+internal data class PriceEntity(@PrimaryKey val id: Long, val productId: Long, val price: BigDecimal, val recordedAt: String)
 @Entity(tableName = "stock_movements", foreignKeys = [ForeignKey(entity = ProductEntity::class, parentColumns = ["id"], childColumns = ["productId"])], indices = [Index("productId")])
 internal data class MovementEntity(@PrimaryKey val id: Long, val productId: Long, val quantity: Long, val reason: String,
-    val unitPrice: Double, val createdAt: String, val referenceId: String? = null)
+    val unitPrice: BigDecimal, val createdAt: String, val referenceId: String? = null)
 
 @Entity(tableName = "invoices", foreignKeys = [ForeignKey(entity = UserEntity::class, parentColumns = ["id"], childColumns = ["userId"]),
     ForeignKey(entity = CashEntity::class, parentColumns = ["id"], childColumns = ["cashId"]),
     ForeignKey(entity = UserEntity::class, parentColumns = ["id"], childColumns = ["cancelledBy"])],
     indices = [Index(value = ["idempotencyKey"], unique = true), Index("userId"), Index("cashId"), Index("cancelledBy")])
 internal data class InvoiceEntity(@PrimaryKey val id: String, val userId: Long, val cashId: Long?, val invoiceDate: String,
-    val subtotal: Double, val totalAmount: Double, val discount: Double, val status: String,
+    val subtotal: BigDecimal, val totalAmount: BigDecimal, val discount: BigDecimal, val status: String,
     val idempotencyKey: String? = null, val canonicalVersion: Int? = null, val canonicalRequest: String? = null,
     val cancelledBy: Long? = null, val cancelledAt: String? = null, val cancellationReason: String? = null,
     val storeName: String? = null, val storeAddress: String? = null, val storePhone: String? = null,
@@ -66,11 +67,11 @@ internal data class InvoiceEntity(@PrimaryKey val id: String, val userId: Long, 
 @Entity(tableName = "invoice_lines", foreignKeys = [ForeignKey(entity = InvoiceEntity::class, parentColumns = ["id"], childColumns = ["invoiceId"], onDelete = ForeignKey.CASCADE),
     ForeignKey(entity = ProductEntity::class, parentColumns = ["id"], childColumns = ["productId"])], indices = [Index("invoiceId"), Index("productId")])
 internal data class InvoiceLineEntity(@PrimaryKey val id: Long, val invoiceId: String, val productId: Long?,
-    val productName: String, val category: String, val quantity: Long, val unitPrice: Double, val totalLine: Double, val unitCost: Double? = null)
+    val productName: String, val category: String, val quantity: Long, val unitPrice: BigDecimal, val totalLine: BigDecimal, val unitCost: BigDecimal? = null)
 @Entity(tableName = "payments", foreignKeys = [ForeignKey(entity = InvoiceEntity::class, parentColumns = ["id"], childColumns = ["invoiceId"], onDelete = ForeignKey.CASCADE),
     ForeignKey(entity = CashEntity::class, parentColumns = ["id"], childColumns = ["cashId"])], indices = [Index(value = ["invoiceId"], unique = true), Index("cashId")])
 internal data class PaymentEntity(@PrimaryKey val id: Long, val invoiceId: String, val cashId: Long, val method: String,
-    val amount: Double, val received: Double, val change: Double, val status: String, val createdAt: String)
+    val amount: BigDecimal, val received: BigDecimal, val change: BigDecimal, val status: String, val createdAt: String)
 
 @Entity(tableName = "suppliers", indices = [Index(value = ["name"], unique = true)])
 internal data class SupplierEntity(@PrimaryKey val id: Long, val name: String, val active: Boolean, val createdAt: String,
@@ -82,13 +83,13 @@ internal data class SupplierEntity(@PrimaryKey val id: Long, val name: String, v
     indices = [Index(value = ["reference"], unique = true), Index(value = ["idempotencyKey"], unique = true),
         Index("supplierId"), Index("createdBy"), Index("validatedBy"), Index("cancelledBy")])
 internal data class PurchaseEntity(@PrimaryKey val id: Long, val reference: String, val supplierId: Long?, val status: String,
-    val totalAmount: Double, val createdBy: Long, val createdAt: String, val idempotencyKey: String? = null,
+    val totalAmount: BigDecimal, val createdBy: Long, val createdAt: String, val idempotencyKey: String? = null,
     val supplierInvoice: String? = null, val note: String? = null, val validatedBy: Long? = null, val validatedAt: String? = null,
     val cancelledBy: Long? = null, val cancelledAt: String? = null, val cancellationReason: String? = null)
 @Entity(tableName = "purchase_items", foreignKeys = [ForeignKey(entity = PurchaseEntity::class, parentColumns = ["id"], childColumns = ["purchaseId"], onDelete = ForeignKey.CASCADE),
     ForeignKey(entity = ProductEntity::class, parentColumns = ["id"], childColumns = ["productId"])],
     indices = [Index(value = ["purchaseId", "productId"], unique = true), Index("productId")])
-internal data class PurchaseLineEntity(@PrimaryKey val id: Long, val purchaseId: Long, val productId: Long, val quantity: Long, val unitCost: Double, val totalLine: Double)
+internal data class PurchaseLineEntity(@PrimaryKey val id: Long, val purchaseId: Long, val productId: Long, val quantity: Long, val unitCost: BigDecimal, val totalLine: BigDecimal)
 @Entity(tableName = "inventory_counts", foreignKeys = [ForeignKey(entity = UserEntity::class, parentColumns = ["id"], childColumns = ["createdBy"]),
     ForeignKey(entity = UserEntity::class, parentColumns = ["id"], childColumns = ["validatedBy"])],
     indices = [Index(value = ["reference"], unique = true), Index("createdBy"), Index("validatedBy")])
@@ -132,7 +133,7 @@ internal data class SettingEntity(@PrimaryKey val key: String, val value: String
 internal data class AuditEntity(@PrimaryKey val id: Long, val userId: Long?, val action: String, val entity: String,
     val entityId: String?, val details: String?, val outcome: String, val createdAt: String,
     val responsibleId: Long? = null, val responsibleName: String? = null, val cashReference: String? = null,
-    val cashAmount: Double? = null, val cashCurrency: String? = null)
+    val cashAmount: BigDecimal? = null, val cashCurrency: String? = null)
 
 @Entity(tableName = "generation_metadata")
 internal data class GenerationEntity(@PrimaryKey val id: String, val createdAt: String)

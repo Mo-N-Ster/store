@@ -13,11 +13,11 @@ class CatalogPolicyTest {
         }
     }
     @Test fun pricesAreValidatedNeverRounded() {
-        assertEquals(12.34, CatalogPolicy.price(12.34), 0.0)
-        assertEquals(0.0, CatalogPolicy.price(0.0), 0.0)
-        listOf(-1.0, 1.001, Double.NaN, Double.POSITIVE_INFINITY).forEach {
-            assertThrows(IllegalArgumentException::class.java) { CatalogPolicy.price(it) }
+        for (text in listOf("12.3456", "2.675", "0", "1.001")) {
+            val price = java.math.BigDecimal(text)
+            assertEquals(price, CatalogPolicy.price(price))
         }
+        assertThrows(IllegalArgumentException::class.java) { CatalogPolicy.price(java.math.BigDecimal("-1")) }
     }
     @Test fun strictHistoryDiscriminatorAndJustification() {
         assertEquals("purchases", CatalogPolicy.historyType("purchases"))
