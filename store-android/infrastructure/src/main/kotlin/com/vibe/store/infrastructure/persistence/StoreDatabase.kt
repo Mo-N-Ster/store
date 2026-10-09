@@ -139,6 +139,43 @@ internal interface StoreDao {
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM attendances") suspend fun nextAttendanceId(): Long
     @Update suspend fun updateAttendance(value: AttendanceEntity)
     @Query("SELECT * FROM messages WHERE id=:id") suspend fun findMessage(id: Long): MessageEntity?
+    // I08: static, recipient-scoped local chat queries. Broadcast receipts snapshot recipients at send time.
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM messages") suspend fun nextMessageId(): Long
+    @Query("SELECT * FROM messages WHERE requestId=:key LIMIT 1") suspend fun messageByRequest(key: String): MessageEntity?
+    @Query("SELECT * FROM message_reads WHERE messageId=:id AND userId=:actor LIMIT 1")
+    suspend fun messageReceipt(id: Long, actor: Long): MessageReadEntity?
+    @Upsert suspend fun putMessageReceipt(value: MessageReadEntity)
+    @Upsert suspend fun putMessageDeletion(value: MessageDeletionEntity)
+    @Query("UPDATE message_reads SET readAt=:stamp WHERE messageId=:id AND userId=:actor")
+    suspend fun markMessageReceipt(id: Long, actor: Long, stamp: String): Int
+    @Query("SELECT m.* FROM messages m WHERE m.id=:id AND " +
+        "(m.senderId=:actor OR EXISTS(SELECT 1 FROM message_reads r WHERE r.messageId=m.id AND r.userId=:actor)) AND " +
+        "NOT EXISTS(SELECT 1 FROM message_deletions d WHERE d.messageId=m.id AND d.userId=:actor) LIMIT 1")
+    suspend fun visibleMessage(id: Long, actor: Long): MessageEntity?
+    @Query("SELECT m.* FROM messages m WHERE " +
+        "(m.senderId=:actor OR EXISTS(SELECT 1 FROM message_reads r WHERE r.messageId=m.id AND r.userId=:actor)) AND " +
+        "NOT EXISTS(SELECT 1 FROM message_deletions d WHERE d.messageId=m.id AND d.userId=:actor) AND " +
+        "(:unreadOnly=0 OR (m.senderId!=:actor AND EXISTS(SELECT 1 FROM message_reads r WHERE r.messageId=m.id AND r.userId=:actor AND r.readAt='PENDING'))) " +
+        "ORDER BY m.createdAt DESC,m.id DESC LIMIT :limit OFFSET :offset")
+    suspend fun visibleMessagePage(actor: Long, unreadOnly: Boolean, limit: Int, offset: Int): List<MessageEntity>
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM notifications") suspend fun nextNotificationId(): Long
+    @Query("UPDATE notifications SET resolvedAt=:stamp WHERE type='LOW_STOCK' AND productId=:product AND resolvedAt IS NULL")
+    suspend fun resolveStockAlert(product: Long, stamp: String): Int
+    @Query("SELECT * FROM notifications ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
+    suspend fun supportAlerts(limit: Int, offset: Int): List<NotificationEntity>
+    @Query("SELECT EXISTS(SELECT 1 FROM notifications WHERE id=:id)") suspend fun supportAlertExists(id: Long): Boolean
+    @Query("UPDATE notifications SET resolvedAt=:stamp WHERE id=:id AND resolvedAt IS NULL")
+    suspend fun supportResolveAlert(id: Long, stamp: String): Int
+    @Query("SELECT * FROM audit_logs WHERE (:action='' OR action=:action) AND (:entity='' OR entity=:entity) AND " +
+        "(:outcome='' OR outcome=:outcome) AND (:fromDate='' OR substr(createdAt,1,10)>=:fromDate) AND " +
+        "(:toDate='' OR substr(createdAt,1,10)<=:toDate) AND (:actor IS NULL OR userId=:actor) " +
+        "ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
+    suspend fun supportAudit(action: String, entity: String, outcome: String, fromDate: String, toDate: String,
+        actor: Long?, limit: Int, offset: Int): List<AuditEntity>
+    @Query("SELECT COUNT(*) FROM users") suspend fun supportUserCount(): Int
+    @Query("SELECT COUNT(*) FROM messages") suspend fun supportMessageCount(): Int
+    @Query("SELECT COUNT(*) FROM email_report_logs WHERE status IN ('pending','sending','failed')")
+    suspend fun supportEmailPendingCount(): Int
     @Query("SELECT * FROM audit_logs WHERE id=:id") suspend fun findAudit(id: Long): AuditEntity?
     @Query("SELECT value FROM settings WHERE `key`=:key") suspend fun settingValue(key: String): String?
     @Query("UPDATE products SET stock=:stock WHERE id=:id") suspend fun stock(id: Long, stock: Long)

@@ -18,6 +18,21 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     private val gate = Mutex()
     // Trusted application composition only. Same session mutex and transaction-
     // local authorization as I03; never call current() and trust a UI snapshot.
+    /** Chat is available to every valid signed-in account, even with DASHBOARD rights denied. */
+    internal suspend fun <T> sessionRead(block: suspend ReadRepositories.(Long) -> T): T = gate.withLock {
+        owner.read { block(actor().id) }
+    }
+    internal suspend fun <T> sessionWrite(block: suspend TransactionRepositories.(Long) -> T): T = gate.withLock {
+        commands.execute { block(actor().id) }
+    }
+    /** Integrity must run outside an active Room read lease while keeping the session gate. */
+    internal suspend fun supportIntegrity(): com.vibe.store.application.persistence.IntegrityResult = gate.withLock {
+        owner.read {
+            val user = requireRight("ADMINISTRATION:READ")
+            if (user.role != "owner") fail(SecurityError.FORBIDDEN)
+        }
+        owner.verifyIntegrity()
+    }
     internal suspend fun <T> authorizedRead(right: String, block: suspend ReadRepositories.(Long) -> T): T = gate.withLock {
         owner.read { val actor = requireRight(right); block(actor.id) }
     }

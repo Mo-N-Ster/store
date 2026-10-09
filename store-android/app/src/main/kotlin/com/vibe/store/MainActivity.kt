@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
             }
             val store = application as StoreApplication
             SideEffect { store.unsavedSale = posState.dirty }
-            if (access) SecurityApp(store.identity, store.catalog, pickImage = { callback ->
+            if (access) SecurityApp(store.identity, store.catalog, support = store.support, pickImage = { callback ->
                 selectionResult = callback; picker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }, team = store.team, sales = store.sales, posState = posState, suppliers = store.suppliers,
                 purchases = store.purchases, inventories = store.inventories, pickProfilePhoto = { callback ->

@@ -11,6 +11,7 @@ internal class RoomRepositories(internal val dao: StoreDao, private val job: Job
     override val cashOperations = RoomCashOperations(dao, ::check)
     override val saleOperations = RoomSaleOperations(dao, ::check)
     override val security: com.vibe.store.application.security.SecurityRepository = RoomSecurityRepository(dao, ::check)
+    override val support: com.vibe.store.application.security.SupportRepository = RoomSupportRepository(dao, ::check)
     private var active = true
     fun release() { active = false }
     private suspend fun check(write: Boolean = false) {

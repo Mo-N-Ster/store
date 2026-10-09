@@ -15,9 +15,22 @@ internal class RoomCatalogRepository(private val dao: StoreDao, private val chec
     override suspend fun duplicate(name: String, hashtag: String, exceptId: Long?): Boolean { check(false); return dao.duplicateProduct(name, hashtag, exceptId) }
     override suspend fun nextProductId(): Long { check(true); return dao.nextProductId() }
     override suspend fun write(product: CatalogRecord) {
-        check(true); val reference = dao.findProduct(product.id)?.reference
+        check(true)
+        val previous = dao.findProduct(product.id)
+        val reference = previous?.reference
         dao.putProduct(ProductEntity(product.id, product.name, product.category, product.price, product.stock, product.minimumStock,
             product.createdAt, product.updatedAt, reference, product.hashtag, product.description, product.deletedAt, product.imageRef))
+        // I08 durable low-stock alert in the SAME transaction as stock mutation.
+        // Repeated writes while still low never create duplicate alerts.
+        val low = product.deletedAt == null && product.stock <= product.minimumStock
+        val wasLow = previous?.let { it.deletedAt == null && it.stock <= it.minimumStock } ?: false
+        if (low && !wasLow) {
+            dao.notification(NotificationEntity(dao.nextNotificationId(), "LOW_STOCK", product.id,
+                "${product.name.take(120)} : stock ${product.stock} / seuil ${product.minimumStock}",
+                false, product.updatedAt))
+        } else if (!low && wasLow) {
+            dao.resolveStockAlert(product.id, product.updatedAt)
+        }
     }
     override suspend fun movement(productId: Long, delta: Long, reason: String, price: BigDecimal, stamp: String, reference: String?) {
         check(true); dao.movement(MovementEntity(dao.nextMovementId(), productId, delta, reason, price, stamp, reference))

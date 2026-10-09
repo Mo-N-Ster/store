@@ -35,6 +35,7 @@ interface ReadRepositories {
     val sales: SalesRepository; val purchases: PurchaseRepository; val inventories: InventoryRepository
     val employees: EmployeeRepository; val attendance: AttendanceRepository
     val messaging: MessagingRepository; val audit: AuditRepository
+    val support: com.vibe.store.application.security.SupportRepository get() = error("I08 support unavailable")
     val settings: SettingsReader
 }
 interface TransactionRepositories : ReadRepositories { override val settings: SettingsWriter }

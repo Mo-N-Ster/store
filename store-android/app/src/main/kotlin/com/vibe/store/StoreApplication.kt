@@ -26,6 +26,14 @@ class StoreApplication : Application() {
                 critical = { saleAuthority?.critical == true || purchaseAuthority?.critical == true || inventoryAuthority?.critical == true }, unsavedCart = { unsavedSale }))
     }
     val identity: IdentityService get() = authority
+    val support: com.vibe.store.api.SupportService by lazy {
+        com.vibe.store.application.security.SupportAuthority(authority, storage = {
+            val db = java.io.File(noBackupFilesDir, "generations/main/store.db")
+            val wal = java.io.File(db.path + "-wal")
+            val used: Long? = if (db.exists()) db.length() + (if (wal.exists()) wal.length() else 0L) else null
+            used to noBackupFilesDir.usableSpace
+        })
+    }
     val sales: com.vibe.store.api.SaleService by lazy {
         com.vibe.store.application.sales.SaleAuthority(authority).also { saleAuthority = it }
     }

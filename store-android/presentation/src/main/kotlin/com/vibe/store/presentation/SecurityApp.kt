@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 /** Navigation renders authority responses. No role supplied here can grant rights. */
 @Composable
 fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
+    support: SupportService? = null,
     pickImage: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
     team: TeamService? = null,
     pickProfilePhoto: ((SelectedImage?) -> Unit) -> Unit = { it(null) },
@@ -52,6 +53,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     var catalogActor by remember { mutableStateOf<Long?>(null) }
     var teamNavigationLocked by remember { mutableStateOf(false) }
     var settingsDirty by remember { mutableStateOf(false) }
+    var supportNavigationLocked by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val fr = prefs.language == "fr"
     fun text(french: String, english: String) = if (fr) french else english
@@ -91,9 +93,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
     val shellUser = identity
     val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings",
-        "operations", "suppliers", "purchases", "inventories")
+        "operations", "suppliers", "purchases", "inventories", "support")
     // Settings has an unsaved form. Catalog detail/edit and Team mutations must not be interrupted by navigation.
-    val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked &&
+    val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked && !supportNavigationLocked &&
         (page != "catalog" || (catalogState.selected == null && !catalogState.editing)) &&
         page !in setOf("suppliers", "purchases", "inventories")
     fun navigate(destination: String) {
@@ -101,6 +103,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
         if (!navigationEnabled || destination == page) return
         val permitted = when (destination) {
             "home" -> true
+            "support" -> support != null
             "catalog" -> catalog != null && "PRODUCTS:READ" in user.permissions
             "operations" -> user.role in setOf("owner", "manager") &&
                 (purchases != null && "PURCHASES:READ" in user.permissions ||
@@ -144,6 +147,15 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 identity?.let { user -> PurchaseScreen(purchases, suppliers, catalog, user.permissions, fr) { page = "operations" } }
             } else if (page == "inventories" && inventories != null) {
                 identity?.let { user -> InventoryScreen(inventories, user.permissions, fr) { page = "operations" } }
+            } else if (page == "support" && support != null) {
+                identity?.let { user ->
+                    key(user.id) {
+                        SupportScreen(support, service, user, fr,
+                            onSettings = { navigate("settings") },
+                            onBack = { supportNavigationLocked = false; page = "home" },
+                            onNavigationLock = { supportNavigationLocked = it })
+                    }
+                }
             } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
@@ -257,7 +269,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                         catalogState = CatalogScreenState(); catalogActor = null
                                         settingsDirty = false; teamNavigationLocked = false; page = "login"
                                     } }, hasPurchases = purchases != null && suppliers != null && catalog != null,
-                                    hasInventories = inventories != null)
+                                    hasInventories = inventories != null, hasSupport = support != null)
                             }
                             "settings" -> {
                                 var draft by remember { mutableStateOf(config) }
