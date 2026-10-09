@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.TeamAuthorityTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-09T12:11:37.766Z" hostname="Sterling-Setup" time="0.065">
+  <properties/>
+  <testcase name="correctionsPreserveOriginalsAndEmployeeHistoryIsServerScoped" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.03"/>
+  <testcase name="loginLogoutDoNotCreateAttendanceAndDatesAreCanonical" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.006"/>
+  <testcase name="blankEmployeeCodeIsAllocatedAndCustomCodeStillWorks" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.008"/>
+  <testcase name="openCashBlocksSensitiveChangesButNotOrdinaryProfileOrPhoto" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.006"/>
+  <testcase name="generatedCodeSkipsHistoricalManualCollisionAndRejectedCreateReservesNothing" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.003"/>
+  <testcase name="signRequiresPersonalPasswordAndPersistsLockoutWithoutSwitchingSession" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.004"/>
+  <testcase name="ownerWithoutHrProfileIsOnDailySheetAndCanSign" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.003"/>
+  <testcase name="rejectsDoubleEntryExitWithoutEntryAndUnprofiledNonOwner" classname="com.vibe.store.testing.TeamAuthorityTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

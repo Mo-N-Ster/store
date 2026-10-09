@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.ReportingUiTest" tests="13" failures="1" errors="0" skipped="0" time="29.479" timestamp="2026-10-09T11:14:00" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="detailedTableAdaptsToWidthAndLongSnapshotsStayWithinBound" classname="com.vibe.store.ReportingUiTest" time="4.481" />
+  <testcase name="resetClearsOldSnapshotBeforeLoadingCurrentTabDefaults" classname="com.vibe.store.ReportingUiTest" time="1.448" />
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="2.077" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="2.515" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="2.161" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.441" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.329" />
+  <testcase name="detailedTableHasAccessibleExpansionAndCollapseControl" classname="com.vibe.store.ReportingUiTest" time="1.496" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="3.03">
+    <failure>java.lang.AssertionError: Failed to assert the following: (Text + InputText + EditableText contains 'EUR 12,3456789' (ignoreCase: false) as substring)
+Semantics of the node:
+Node #4884 at (l=79.0, t=2205.0, r=402.0, b=2268.0)px, Tag: 'reports-kpi-value-revenue'
+Text = '[EUR 12.3456789]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+Has 1 sibling
+Selector used: (TestTag = 'reports-kpi-value-revenue')
+
+at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+at androidx.compose.ui.test.AssertionsKt.assertTextContains(Assertions.kt:208)
+at androidx.compose.ui.test.AssertionsKt.assertTextContains$default(Assertions.kt:204)
+at com.vibe.store.ReportingUiTest.allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot(ReportingUiTest.kt:137)
+</failure>
+  </testcase>
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="2.376" />
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="2.363" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.71" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.2" />
+</testsuite>

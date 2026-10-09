@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.WorkflowNavigationUiTest" tests="6" failures="1" errors="0" skipped="0" time="14.998" timestamp="2026-10-09T09:35:24" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="managementRouteHiddenWithoutCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.031" />
+  <testcase name="supplierCreationCallsServiceAndReloadsList" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.728" />
+  <testcase name="managementRouteAppearsOnlyWithCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.495" />
+  <testcase name="workflowFrenchEnglishAndLightDarkRender" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.525" />
+  <testcase name="adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions" classname="com.vibe.store.WorkflowNavigationUiTest" time="0.917">
+    <failure>java.lang.IllegalStateException: Required value was null.
+at com.vibe.store.WorkflowNavigationUiTest.adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions(WorkflowNavigationUiTest.kt:80)
+</failure>
+  </testcase>
+  <testcase name="workflowImeFocusAndDecimalCommaPointRemainUsable" classname="com.vibe.store.WorkflowNavigationUiTest" time="4.524" />
+</testsuite>

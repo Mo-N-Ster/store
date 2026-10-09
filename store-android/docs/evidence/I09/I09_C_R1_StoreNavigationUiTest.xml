@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.StoreNavigationUiTest" tests="6" failures="0" errors="0" skipped="0" time="16.06" timestamp="2026-10-09T09:10:31" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="authenticatedShellNavigatesToAuthorizedSettings" classname="com.vibe.store.StoreNavigationUiTest" time="3.401" />
+  <testcase name="employeeSeesOnlyPermittedPhoneDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="1.451" />
+  <testcase name="quickAccessUsesEffectivePermissionsOnly" classname="com.vibe.store.StoreNavigationUiTest" time="1.466" />
+  <testcase name="unsavedSettingsBlockTabNavigationUntilDiscarded" classname="com.vibe.store.StoreNavigationUiTest" time="3.765" />
+  <testcase name="ownerCanUseAllTabletDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="3.193" />
+  <testcase name="sensitiveNavigationCanBeDisabledWithoutHidingRoutes" classname="com.vibe.store.StoreNavigationUiTest" time="2.02" />
+</testsuite>

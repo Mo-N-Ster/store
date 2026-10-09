@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.ReportingUiTest" tests="14" failures="0" errors="0" skipped="0" time="33.382" timestamp="2026-10-09T11:54:38" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="detailedTableAdaptsToWidthAndLongSnapshotsStayWithinBound" classname="com.vibe.store.ReportingUiTest" time="5.004" />
+  <testcase name="resetClearsOldSnapshotBeforeLoadingCurrentTabDefaults" classname="com.vibe.store.ReportingUiTest" time="2.422" />
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="2.063" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="2.49" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="2.195" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.468" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.164" />
+  <testcase name="detailedTableHasAccessibleExpansionAndCollapseControl" classname="com.vibe.store.ReportingUiTest" time="1.613" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="3.141" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="2.4" />
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="2.298" />
+  <testcase name="currencyLabelRequiresRenderedMonetaryContentForStockAndTeam" classname="com.vibe.store.ReportingUiTest" time="2.301" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.739" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.306" />
+</testsuite>

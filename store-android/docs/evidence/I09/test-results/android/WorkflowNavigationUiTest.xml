@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.WorkflowNavigationUiTest" tests="6" failures="0" errors="0" skipped="0" time="17.024" timestamp="2026-10-09T09:36:39" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="managementRouteHiddenWithoutCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.003" />
+  <testcase name="supplierCreationCallsServiceAndReloadsList" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.621" />
+  <testcase name="managementRouteAppearsOnlyWithCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.295" />
+  <testcase name="workflowFrenchEnglishAndLightDarkRender" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.392" />
+  <testcase name="adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.676" />
+  <testcase name="workflowImeFocusAndDecimalCommaPointRemainUsable" classname="com.vibe.store.WorkflowNavigationUiTest" time="4.148" />
+</testsuite>

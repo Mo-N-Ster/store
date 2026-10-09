@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.ReportingUiTest" tests="14" failures="1" errors="0" skipped="0" time="32.908" timestamp="2026-10-09T11:37:19" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="detailedTableAdaptsToWidthAndLongSnapshotsStayWithinBound" classname="com.vibe.store.ReportingUiTest" time="5.311" />
+  <testcase name="resetClearsOldSnapshotBeforeLoadingCurrentTabDefaults" classname="com.vibe.store.ReportingUiTest" time="1.504" />
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="2.409" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="2.56" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="2.157" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.462" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.216" />
+  <testcase name="detailedTableHasAccessibleExpansionAndCollapseControl" classname="com.vibe.store.ReportingUiTest" time="1.595" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="4.007" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="2.299" />
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="2.26" />
+  <testcase name="currencyLabelRequiresRenderedMonetaryContentForStockAndTeam" classname="com.vibe.store.ReportingUiTest" time="1.325">
+    <failure>java.lang.AssertionError: Failed: assertDoesNotExist.
+Reason: Did not expect any node but found '1' node that satisfies: (TestTag = 'reports-currency')
+Node found:
+Node #5613 at (l=42.0, t=2172.0, r=278.0, b=2225.0)px, Tag: 'reports-currency'
+Text = '[Currency: EUR]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, SetTextSubstitution, ShowTextSubstitution]
+Has 20 siblings
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.assertDoesNotExist(SemanticsNodeInteraction.kt:101)
+at com.vibe.store.ReportingUiTest.currencyLabelRequiresRenderedMonetaryContentForStockAndTeam(ReportingUiTest.kt:158)
+</failure>
+  </testcase>
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.756" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.228" />
+</testsuite>

@@ -7,6 +7,30 @@ import androidx.sqlite.execSQL
 
 @Dao
 internal interface StoreDao {
+    @Query("SELECT * FROM invoices i WHERE i.invoiceDate>=:fromInclusive AND i.invoiceDate<:toExclusive AND (:afterId IS NULL OR i.id>:afterId) AND (:status IS NULL OR i.status=:status) AND (:productId IS NULL OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=i.id AND l.productId=:productId)) AND (:category IS NULL OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=i.id AND l.category=:category)) ORDER BY i.id LIMIT :limit")
+    suspend fun reportInvoicesPage(fromInclusive: String, toExclusive: String, afterId: String?, status: String?, productId: Long?, category: String?, limit: Int): List<InvoiceEntity>
+    @Query("SELECT * FROM invoices WHERE id IN (:ids)") suspend fun reportInvoices(ids: List<String>): List<InvoiceEntity>
+    @Query("SELECT * FROM invoice_lines WHERE invoiceId IN (:ids) ORDER BY invoiceId,id") suspend fun reportInvoiceLines(ids: List<String>): List<InvoiceLineEntity>
+    @Query("SELECT il.id AS lineId,il.invoiceId AS invoiceId,il.productId AS productId,il.productName AS productName,il.category AS category,il.quantity AS quantity,il.unitPrice AS unitPrice,il.totalLine AS totalLine,il.unitCost AS unitCost,i.invoiceDate AS invoiceDate,i.subtotal AS subtotal,i.totalAmount AS totalAmount FROM invoice_lines il JOIN invoices i ON i.id=il.invoiceId WHERE i.status='validated' AND i.invoiceDate>=:fromInclusive AND i.invoiceDate<:toExclusive AND il.productId IS NOT NULL AND (:productId IS NULL OR il.productId=:productId) AND (:category IS NULL OR il.category=:category) AND (:afterProductId IS NULL OR il.productId>:afterProductId OR (il.productId=:afterProductId AND il.id>:afterLineId)) ORDER BY il.productId,il.id LIMIT :limit")
+    suspend fun reportProductSalesLines(fromInclusive: String, toExclusive: String, productId: Long?, category: String?, afterProductId: Long?, afterLineId: Long, limit: Int): List<ReportProductSaleLineProjection>
+    @Query("SELECT il.id AS lineId,il.invoiceId AS invoiceId,il.productId AS productId,il.productName AS productName,il.category AS category,il.quantity AS quantity,il.unitPrice AS unitPrice,il.totalLine AS totalLine,il.unitCost AS unitCost,i.invoiceDate AS invoiceDate,i.subtotal AS subtotal,i.totalAmount AS totalAmount FROM invoice_lines il JOIN invoices i ON i.id=il.invoiceId WHERE i.status='validated' AND i.invoiceDate>=:fromInclusive AND i.invoiceDate<:toExclusive AND il.productId IS NOT NULL AND (:productId IS NULL OR il.productId=:productId) AND (:category IS NULL OR il.category=:category) AND (:afterCategory IS NULL OR il.category>:afterCategory OR (il.category=:afterCategory AND (il.productId>:afterProductId OR (il.productId=:afterProductId AND il.id>:afterLineId)))) ORDER BY il.category,il.productId,il.id LIMIT :limit")
+    suspend fun reportCategorySalesLines(fromInclusive: String, toExclusive: String, productId: Long?, category: String?, afterCategory: String?, afterProductId: Long, afterLineId: Long, limit: Int): List<ReportProductSaleLineProjection>
+    @Query("SELECT * FROM invoices WHERE invoiceDate>=:fromInclusive AND invoiceDate<:toExclusive AND (:status IS NULL OR status=:status) AND (:productId IS NULL OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=invoices.id AND l.productId=:productId)) AND (:category IS NULL OR EXISTS(SELECT 1 FROM invoice_lines l WHERE l.invoiceId=invoices.id AND l.category=:category)) ORDER BY invoiceDate DESC,id DESC LIMIT :limit")
+    suspend fun reportInvoiceDisplay(fromInclusive: String, toExclusive: String, status: String?, productId: Long?, category: String?, limit: Int): List<InvoiceEntity>
+    @Query("SELECT p.reference AS reference,p.createdAt AS createdAt,p.status AS status,COALESCE(s.name,'') AS supplierName FROM purchases p LEFT JOIN suppliers s ON s.id=p.supplierId WHERE p.createdAt>=:fromInclusive AND p.createdAt<:toExclusive AND (:status IS NULL OR p.status=:status) AND (:supplierId IS NULL OR p.supplierId=:supplierId) AND (:productId IS NULL OR EXISTS(SELECT 1 FROM purchase_items l WHERE l.purchaseId=p.id AND l.productId=:productId)) ORDER BY p.createdAt DESC,p.id DESC LIMIT :limit")
+    suspend fun reportPurchaseDisplay(fromInclusive: String, toExclusive: String, status: String?, supplierId: Long?, productId: Long?, limit: Int): List<ReportPurchaseProjection>
+    @Query("SELECT * FROM products WHERE deletedAt IS NULL AND (:productId IS NULL OR id=:productId) AND (:category IS NULL OR category=:category) AND (:afterId IS NULL OR id>:afterId) ORDER BY id LIMIT :limit")
+    suspend fun reportProductsPage(afterId: Long?, productId: Long?, category: String?, limit: Int): List<ProductEntity>
+    @Query("SELECT m.id,m.productId,m.quantity,m.reason,m.unitPrice,m.createdAt,m.referenceId,p.name AS productName,p.category AS productCategory FROM stock_movements m JOIN products p ON p.id=m.productId WHERE m.createdAt>=:fromInclusive AND m.createdAt<:toExclusive AND (:afterId IS NULL OR m.id>:afterId) AND (:productId IS NULL OR m.productId=:productId) AND (:category IS NULL OR p.category=:category) AND (:reason IS NULL OR m.reason=:reason OR (:reason='adjustment' AND m.reason LIKE 'adjustment:%')) ORDER BY m.id LIMIT :limit")
+    suspend fun reportMovementsPage(fromInclusive: String, toExclusive: String, afterId: Long?, productId: Long?, category: String?, reason: String?, limit: Int): List<ReportMovementProjection>
+    @Query("SELECT a.id,a.userId,a.startTime,a.endTime,a.status,u.firstName,u.lastName,u.role FROM attendances a JOIN users u ON u.id=a.userId WHERE a.startTime>=:fromInclusive AND a.startTime<:toExclusive AND (:afterId IS NULL OR a.id>:afterId) AND (:userId IS NULL OR a.userId=:userId) AND (:status IS NULL OR a.status=:status) AND (:onlyOpen=0 OR a.endTime IS NULL) ORDER BY a.id LIMIT :limit")
+    suspend fun reportAttendancePage(fromInclusive: String, toExclusive: String, afterId: Long?, userId: Long?, status: String?, onlyOpen: Boolean, limit: Int): List<ReportAttendanceProjection>
+    @Query("SELECT a.id,a.userId,a.startTime,a.endTime,a.status,u.firstName,u.lastName,u.role FROM attendances a JOIN users u ON u.id=a.userId WHERE a.startTime>=:fromInclusive AND a.startTime<:toExclusive AND (:userId IS NULL OR a.userId=:userId) AND (:status IS NULL OR a.status=:status) AND (:onlyOpen=0 OR a.endTime IS NULL) ORDER BY a.startTime DESC,a.id DESC LIMIT :limit")
+    suspend fun reportAttendanceDisplay(fromInclusive: String, toExclusive: String, userId: Long?, status: String?, onlyOpen: Boolean, limit: Int): List<ReportAttendanceProjection>
+    @Query("SELECT p.id AS id,p.status AS status FROM purchases p WHERE p.createdAt>=:fromInclusive AND p.createdAt<:toExclusive AND (:afterId IS NULL OR p.id>:afterId) AND (:status IS NULL OR p.status=:status) AND (:supplierId IS NULL OR p.supplierId=:supplierId) AND (:productId IS NULL OR EXISTS(SELECT 1 FROM purchase_items l WHERE l.purchaseId=p.id AND l.productId=:productId)) ORDER BY p.id LIMIT :limit")
+    suspend fun reportPurchaseCountsPage(fromInclusive: String, toExclusive: String, afterId: Long?, status: String?, supplierId: Long?, productId: Long?, limit: Int): List<ReportPurchaseCountProjection>
+    @Query("SELECT * FROM product_price_history WHERE productId IN (:productIds) AND recordedAt>=:fromInclusive AND recordedAt<:toExclusive ORDER BY recordedAt DESC,id DESC LIMIT :limit")
+    suspend fun reportPriceHistory(productIds: List<Long>, fromInclusive: String, toExclusive: String, limit: Int): List<PriceEntity>
     @Query("SELECT * FROM suppliers WHERE id=:id") suspend fun findSupplier(id: Long): SupplierEntity?
     @Query("SELECT * FROM suppliers WHERE (:active IS NULL OR active=:active) AND (:search='' OR instr(lower(name || ' ' || COALESCE(phone,'') || ' ' || COALESCE(email,'') || ' ' || COALESCE(address,'')),lower(:search))>0) ORDER BY name COLLATE NOCASE,id LIMIT :limit OFFSET :offset")
     suspend fun supplierPage(search: String, active: Boolean?, limit: Int, offset: Int): List<SupplierEntity>
@@ -191,6 +215,25 @@ internal interface StoreDao {
     GenerationEntity::class, PendingCommandEntity::class], version = 2, exportSchema = true)
 @TypeConverters(MoneyText::class)
 internal abstract class StoreDatabase : RoomDatabase() { abstract fun records(): StoreDao }
+
+internal data class ReportMovementProjection(
+    val id: Long, val productId: Long, val quantity: Long, val reason: String, val unitPrice: BigDecimal,
+    val createdAt: String, val referenceId: String?, val productName: String, val productCategory: String,
+)
+
+internal data class ReportAttendanceProjection(
+    val id: Long, val userId: Long, val startTime: String, val endTime: String?, val status: String,
+    val firstName: String, val lastName: String, val role: String,
+)
+
+internal data class ReportProductSaleLineProjection(
+    val lineId: Long, val invoiceId: String, val productId: Long, val productName: String, val category: String,
+    val quantity: Long, val unitPrice: BigDecimal, val totalLine: BigDecimal, val unitCost: BigDecimal?,
+    val invoiceDate: String, val subtotal: BigDecimal, val totalAmount: BigDecimal,
+)
+
+internal data class ReportPurchaseProjection(val reference: String, val createdAt: String, val status: String, val supplierName: String)
+internal data class ReportPurchaseCountProjection(val id: Long, val status: String)
 
 internal object StoreConstraints {
     // Room has no CHECK annotation. Fixed internal triggers enforce the same

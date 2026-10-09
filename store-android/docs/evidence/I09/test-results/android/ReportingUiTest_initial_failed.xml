@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.ReportingUiTest" tests="10" failures="4" errors="0" skipped="0" time="44.753" timestamp="2026-10-09T09:30:37" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="4.407" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="1.945" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="3.184" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="2.0" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="12.2">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.ReportingUiTest.changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot(ReportingUiTest.kt:217)
+</failure>
+  </testcase>
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="4.455" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="1.875">
+    <failure>java.lang.AssertionError: Failed to assert the following: (ContentDescription = 'EUR' (ignoreCase: false))
+Semantics of the node:
+Node #1437 at (l=105.0, t=2006.0, r=975.0, b=2258.0)px, Tag: 'reports-chart-validatedRevenue'
+ContentDescription = '[2026-10-03 · EUR 0; 2026-10-09 · EUR 12,3456789]'
+Has 2 siblings
+Selector used: (TestTag = 'reports-chart-validatedRevenue')
+
+at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+at androidx.compose.ui.test.AssertionsKt.assertContentDescriptionContains(Assertions.kt:163)
+at androidx.compose.ui.test.AssertionsKt.assertContentDescriptionContains$default(Assertions.kt:158)
+at com.vibe.store.ReportingUiTest.emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent(ReportingUiTest.kt:271)
+</failure>
+  </testcase>
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="1.467" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="11.326">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.ReportingUiTest.accountSwitchDisposesOldReportAndRejectsItsLateResponse(ReportingUiTest.kt:243)
+</failure>
+  </testcase>
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.106">
+    <failure>java.lang.IllegalStateException: Method setCurrentState must be called on the main thread
+at androidx.lifecycle.LifecycleRegistry.enforceMainThreadIfNeeded(LifecycleRegistry.jvm.kt:297)
+at androidx.lifecycle.LifecycleRegistry.setCurrentState(LifecycleRegistry.jvm.kt:101)
+at com.vibe.store.ReportingUiTest$TestLifecycleOwner.&lt;init&gt;(ReportingUiTest.kt:331)
+at com.vibe.store.ReportingUiTest.stopHidesSnapshotAndResumeReloadsTheAppliedFilter(ReportingUiTest.kt:286)
+</failure>
+  </testcase>
+</testsuite>

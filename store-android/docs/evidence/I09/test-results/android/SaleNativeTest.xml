@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.SaleNativeTest" tests="9" failures="0" errors="0" skipped="0" time="3.04" timestamp="2026-10-09T12:29:52" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="closingDifferenceInvalidReasonsAndAuditAreDurable" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.388" />
+  <testcase name="revokedOrDisabledActorCannotReplayOwnSale" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.379" />
+  <testcase name="duplicateMultisetOrderAndOmittedReceiptRemainDistinct" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.229" />
+  <testcase name="actorPermissionCashAndCancellationCannotGrantReplayAuthority" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.353" />
+  <testcase name="openIsIdempotentSwitchIsGuardedAndNoImplicitAttendance" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.304" />
+  <testcase name="cancellationIsAtomicOnceAndDoesNotRewriteClosedCashSnapshot" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.228" />
+  <testcase name="exactConcurrentReplayAfterStockConsumptionHasOneDurableEffect" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.254" />
+  <testcase name="everyWriterBoundaryRollsBackAndJournalAllowsExplicitResolution" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.354" />
+  <testcase name="changedIntentAndHistoricalNullAreDeniedWithoutMutation" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.228" />
+</testsuite>

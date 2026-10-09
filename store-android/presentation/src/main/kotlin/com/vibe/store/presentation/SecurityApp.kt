@@ -27,6 +27,7 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.window.core.layout.WindowWidthSizeClass
 import com.vibe.store.api.*
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /** Navigation renders authority responses. No role supplied here can grant rights. */
@@ -41,6 +42,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     suppliers: SupplierService? = null,
     purchases: PurchaseService? = null,
     inventories: InventoryService? = null,
+    reporting: ReportingService? = null,
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
@@ -54,6 +56,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     var teamNavigationLocked by remember { mutableStateOf(false) }
     var settingsDirty by remember { mutableStateOf(false) }
     var supportNavigationLocked by remember { mutableStateOf(false) }
+    var resumeRefresh by remember { mutableStateOf<Job?>(null) }
     val scope = rememberCoroutineScope()
     val fr = prefs.language == "fr"
     fun text(french: String, english: String) = if (fr) french else english
@@ -82,8 +85,19 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     DisposableEffect(lifecycle, service) {
         val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_STOP) identity = null // hide cached private data
-            if (event == Lifecycle.Event.ON_RESUME) run { refresh() }
+            if (event == Lifecycle.Event.ON_STOP) {
+                resumeRefresh?.cancel(); resumeRefresh = null
+                identity = null // hide cached private data
+            }
+            if (event == Lifecycle.Event.ON_RESUME) {
+                resumeRefresh?.cancel()
+                resumeRefresh = scope.launch {
+                    try { refresh() }
+                    catch (cancelled: CancellationException) { throw cancelled }
+                    catch (failure: SecurityFailure) { error = failure.code }
+                    catch (_: Exception) { error = SecurityError.UNAVAILABLE }
+                }
+            }
         }
         lifecycle.addObserver(observer)
         onDispose { lifecycle.removeObserver(observer) }
@@ -93,7 +107,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
     val shellUser = identity
     val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings",
-        "operations", "suppliers", "purchases", "inventories", "support")
+        "operations", "suppliers", "purchases", "inventories", "support", "reports")
     // Settings has an unsaved form. Catalog detail/edit and Team mutations must not be interrupted by navigation.
     val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked && !supportNavigationLocked &&
         (page != "catalog" || (catalogState.selected == null && !catalogState.editing)) &&
@@ -114,6 +128,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
             "inventories" -> user.role in setOf("owner", "manager") && inventories != null && "STOCKS:READ" in user.permissions
             "employees" -> team != null && "EMPLOYEES:READ" in user.permissions
             "today" -> team != null && "PRESENCE:READ" in user.permissions
+            "reports" -> reporting != null && "FINANCES:READ" in user.permissions
             "settings" -> "SETTINGS:READ" in user.permissions
             else -> false
         }
@@ -136,7 +151,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                     if (shellVisible && widthLabel != "COMPACT") {
                         StoreNavigationRail(page, shellUser!!.permissions, catalog != null, team != null,
                             fr, navigationEnabled, hasWorkflows = shellUser?.role in setOf("owner", "manager") &&
-                                (purchases != null || inventories != null), onNavigate = ::navigate)
+                                (purchases != null || inventories != null), hasReports = reporting != null, onNavigate = ::navigate)
                     }
                     Box(Modifier.weight(1f)) {
             if (page == "pos" && catalog != null && sales != null && posState != null) {
@@ -156,6 +171,10 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                             onNavigationLock = { supportNavigationLocked = it })
                     }
                 }
+            } else if (page == "reports" && reporting != null) {
+                identity?.let { user -> key(user.id) {
+                    ReportingScreen(reporting, user, fr) { page = "home" }
+                } }
             } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
@@ -269,7 +288,11 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                         catalogState = CatalogScreenState(); catalogActor = null
                                         settingsDirty = false; teamNavigationLocked = false; page = "login"
                                     } }, hasPurchases = purchases != null && suppliers != null && catalog != null,
-                                    hasInventories = inventories != null, hasSupport = support != null)
+                                    hasInventories = inventories != null, hasSupport = support != null,
+                                    hasReports = reporting != null)
+                                if (reporting != null) key(user.id) {
+                                    DashboardScreen(reporting, user, fr)
+                                }
                             }
                             "settings" -> {
                                 var draft by remember { mutableStateOf(config) }
@@ -296,7 +319,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 if (shellVisible && widthLabel == "COMPACT") {
                     StoreNavigationBar(page, shellUser!!.permissions, catalog != null, team != null,
                         fr, navigationEnabled, hasWorkflows = shellUser?.role in setOf("owner", "manager") &&
-                            (purchases != null || inventories != null), onNavigate = ::navigate)
+                            (purchases != null || inventories != null), hasReports = reporting != null, onNavigate = ::navigate)
                 }
             } // adaptive shell
         }

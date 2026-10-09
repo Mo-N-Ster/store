@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.ReportingUiTest" tests="10" failures="1" errors="0" skipped="0" time="28.133" timestamp="2026-10-09T09:31:54" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="4.398" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="2.109" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="3.399" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.984" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.828" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="4.671" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="1.984">
+    <failure>java.lang.AssertionError: Failed to assert the following: (ContentDescription = 'EUR 12,3456789' (ignoreCase: false))
+Semantics of the node:
+Node #1437 at (l=105.0, t=2006.0, r=975.0, b=2258.0)px, Tag: 'reports-chart-validatedRevenue'
+ContentDescription = '[2026-10-03 · EUR 0; 2026-10-09 · EUR 12,3456789]'
+Has 2 siblings
+Selector used: (TestTag = 'reports-chart-validatedRevenue')
+
+at androidx.compose.ui.test.AssertionsKt.assert(Assertions.kt:264)
+at androidx.compose.ui.test.AssertionsKt.assert$default(Assertions.kt:254)
+at androidx.compose.ui.test.AssertionsKt.assertContentDescriptionContains(Assertions.kt:163)
+at androidx.compose.ui.test.AssertionsKt.assertContentDescriptionContains$default(Assertions.kt:158)
+at com.vibe.store.ReportingUiTest.emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent(ReportingUiTest.kt:274)
+</failure>
+  </testcase>
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="2.402" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.722" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.597" />
+</testsuite>

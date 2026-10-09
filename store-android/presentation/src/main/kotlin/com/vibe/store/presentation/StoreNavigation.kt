@@ -21,7 +21,8 @@ private data class StoreDestination(val route: String, val fr: String, val en: S
     }
 }
 
-private fun availableDestinations(permissions: Set<String>, hasCatalog: Boolean, hasTeam: Boolean, hasWorkflows: Boolean = false): List<StoreDestination> =
+private fun availableDestinations(permissions: Set<String>, hasCatalog: Boolean, hasTeam: Boolean,
+    hasWorkflows: Boolean = false, hasReports: Boolean = false): List<StoreDestination> =
     buildList {
         add(StoreDestination("home", "Accueil", "Home"))
         if (hasCatalog && "PRODUCTS:READ" in permissions) add(StoreDestination("catalog", "Catalogue", "Catalog"))
@@ -29,6 +30,8 @@ private fun availableDestinations(permissions: Set<String>, hasCatalog: Boolean,
         if (hasTeam && "PRESENCE:READ" in permissions) add(StoreDestination("today", "Présences", "Attendance"))
         if (hasWorkflows && ("PURCHASES:READ" in permissions || "STOCKS:READ" in permissions))
             add(StoreDestination("operations", "Gestion", "Manage"))
+        if (hasReports && "FINANCES:READ" in permissions)
+            add(StoreDestination("reports", "Rapports", "Reports"))
         if (!hasWorkflows && "SETTINGS:READ" in permissions) add(StoreDestination("settings", "Réglages", "Settings"))
     }
 
@@ -36,10 +39,11 @@ private fun availableDestinations(permissions: Set<String>, hasCatalog: Boolean,
 @Composable
 fun StoreNavigationBar(
     page: String, permissions: Set<String>, hasCatalog: Boolean, hasTeam: Boolean,
-    french: Boolean, enabled: Boolean, hasWorkflows: Boolean = false, onNavigate: (String) -> Unit,
+    french: Boolean, enabled: Boolean, hasWorkflows: Boolean = false, hasReports: Boolean = false,
+    onNavigate: (String) -> Unit,
 ) {
     NavigationBar(Modifier.testTag("store-navigation-bottom")) {
-        availableDestinations(permissions, hasCatalog, hasTeam, hasWorkflows).forEach { destination ->
+        availableDestinations(permissions, hasCatalog, hasTeam, hasWorkflows, hasReports).forEach { destination ->
             NavigationBarItem(
                 modifier = Modifier.testTag(destination.tag),
                 selected = page == destination.route,
@@ -56,11 +60,12 @@ fun StoreNavigationBar(
 @Composable
 fun StoreNavigationRail(
     page: String, permissions: Set<String>, hasCatalog: Boolean, hasTeam: Boolean,
-    french: Boolean, enabled: Boolean, hasWorkflows: Boolean = false, onNavigate: (String) -> Unit,
+    french: Boolean, enabled: Boolean, hasWorkflows: Boolean = false, hasReports: Boolean = false,
+    onNavigate: (String) -> Unit,
 ) {
     NavigationRail(Modifier.safeDrawingPadding().testTag("store-navigation-rail")) {
         Spacer(Modifier.height(12.dp))
-        availableDestinations(permissions, hasCatalog, hasTeam, hasWorkflows).forEach { destination ->
+        availableDestinations(permissions, hasCatalog, hasTeam, hasWorkflows, hasReports).forEach { destination ->
             NavigationRailItem(
                 modifier = Modifier.testTag(destination.tag),
                 selected = page == destination.route,

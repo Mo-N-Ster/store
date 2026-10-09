@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.IdentityUiTest" tests="1" failures="0" errors="0" skipped="0" time="2.171" timestamp="2026-10-09T12:27:58" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="applicationSessionNotRestoredAfterRealDeath" classname="com.vibe.store.IdentityUiTest" time="1.523" />
+</testsuite>

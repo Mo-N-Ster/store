@@ -1,5 +1,6 @@
 package com.vibe.store.presentation
 
+import android.app.Activity
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
@@ -8,9 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 
 /** Small shared foundation; no business state or extra rendering layer. */
 object SpatialTokens {
@@ -42,6 +46,15 @@ private val Dark = darkColorScheme(
 
 @Composable
 fun SpatialTheme(dark: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val view = LocalView.current
+    SideEffect {
+        (view.context as? Activity)?.window?.let { window ->
+            WindowCompat.getInsetsController(window, view).apply {
+                isAppearanceLightStatusBars = !dark
+                isAppearanceLightNavigationBars = !dark
+            }
+        }
+    }
     MaterialTheme(
         colorScheme = if (dark) Dark else Light,
         shapes = Shapes(

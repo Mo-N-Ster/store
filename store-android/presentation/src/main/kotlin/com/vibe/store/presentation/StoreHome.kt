@@ -18,7 +18,7 @@ private data class HomeAction(val route: String, val french: String, val english
 fun StoreHome(identity: PublicIdentity, shopName: String, french: Boolean, enabled: Boolean,
     hasCatalog: Boolean, hasTeam: Boolean, onNavigate: (String) -> Unit,
     onSwitch: () -> Unit, onLogout: () -> Unit, hasPurchases: Boolean = false, hasInventories: Boolean = false,
-    hasSupport: Boolean = false) {
+    hasSupport: Boolean = false, hasReports: Boolean = false) {
     fun label(fr: String, en: String) = if (french) fr else en
     val actions = buildList {
         if (hasCatalog && "PRODUCTS:READ" in identity.permissions)
@@ -39,6 +39,9 @@ fun StoreHome(identity: PublicIdentity, shopName: String, french: Boolean, enabl
         if (hasSupport)
             add(HomeAction("support", "Messagerie et aide", "Messages and help",
                 "Messages locaux, guide et outils autorisés", "Local messages, help and authorized tools", "M"))
+        if (hasReports && "FINANCES:READ" in identity.permissions)
+            add(HomeAction("reports", "Rapports", "Reports",
+                "Synthèses et rapports autorisés", "Authorized summaries and reports", "R"))
         if ("SETTINGS:READ" in identity.permissions)
             add(HomeAction("settings", "Réglages", "Settings",
                 "Informations de la boutique", "Shop information", "R"))

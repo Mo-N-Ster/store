@@ -6,7 +6,9 @@ import com.vibe.store.application.team.TeamAuthority
 import com.vibe.store.api.TeamService
 import com.vibe.store.api.IdentityService
 import com.vibe.store.api.CatalogService
+import com.vibe.store.api.ReportingService
 import com.vibe.store.application.catalog.CatalogAuthority
+import com.vibe.store.application.reporting.ReportingAuthority
 import com.vibe.store.infrastructure.media.AndroidProductMedia
 import com.vibe.store.application.security.IdentityAuthority
 import com.vibe.store.infrastructure.persistence.AndroidPersistence
@@ -48,4 +50,5 @@ class StoreApplication : Application() {
     val team: TeamService by lazy {
         TeamAuthority(authority, AndroidProfilePhotoMedia.create(this))
     }
+    val reporting: ReportingService by lazy { ReportingAuthority(authority) }
 }

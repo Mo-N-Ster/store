@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogFormUiTest" tests="73" failures="0" errors="0" skipped="0" time="151.935" timestamp="2026-10-09T12:27:06" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="cancelledPickerPreservesExistingSelectionAndEntries" classname="com.vibe.store.CatalogFormUiTest" time="3.186" />
+  <testcase name="creationContinuousInputAndSingleSaveWhileBusy" classname="com.vibe.store.CatalogFormUiTest" time="3.982" />
+  <testcase name="editingKeepsInitialValuesAndSavesExistingIdentity" classname="com.vibe.store.CatalogFormUiTest" time="1.929" />
+  <testcase name="imeDoneClearsFocusWithoutSavingThenExplicitSaveWorks" classname="com.vibe.store.CatalogFormUiTest" time="3.053" />
+  <testcase name="unchangedAndRestoredValuesReturnWithoutConfirmation" classname="com.vibe.store.CatalogFormUiTest" time="2.458" />
+  <testcase name="readOnlyPermissionsDoNotExposeCreationOrEdit" classname="com.vibe.store.CatalogFormUiTest" time="2.137" />
+  <testcase name="cancelDiscardKeepsFieldsAndReplacementImage" classname="com.vibe.store.CatalogFormUiTest" time="2.063" />
+  <testcase name="failedSaveRetainsFormFieldsAndImageRemoval" classname="com.vibe.store.CatalogFormUiTest" time="2.901" />
+  <testcase name="systemBackConfirmedDiscardClearsOnlyPresentationDraft" classname="com.vibe.store.CatalogFormUiTest" time="1.729" />
+  <testcase name="compactFormSectionsAndAllControlsRemainReachable" classname="com.vibe.store.CatalogFormUiTest" time="4.475" />
+  <testcase name="detailAndHistoriesKeepReadableEntriesAndReadPermissions" classname="com.vibe.store.CatalogPresentationUiTest" time="1.475" />
+  <testcase name="cardsShowStockStatesAndStructuredAmounts" classname="com.vibe.store.CatalogPresentationUiTest" time="2.077" />
+  <testcase name="englishReadOnlyCatalogSearchDetailAndReturn" classname="com.vibe.store.CatalogUiTest" time="1.711" />
+  <testcase name="adaptiveWindowThresholdsRecomputeAndKeepCatalogUsable" classname="com.vibe.store.CatalogUiTest" time="10.178" />
+  <testcase name="frenchContinuousEntryAndCancelledPickerPreserveForm" classname="com.vibe.store.CatalogUiTest" time="2.449" />
+  <testcase name="effectiveDashboardDenialAndBackendDenialNeverExposeSnapshot" classname="com.vibe.store.DashboardUiTest" time="1.118" />
+  <testcase name="emptyAndErrorRetryStatesAreDistinct" classname="com.vibe.store.DashboardUiTest" time="2.019" />
+  <testcase name="authorizedRolesRenderCanonicalSnapshotAndRespectPresenceOmission" classname="com.vibe.store.DashboardUiTest" time="2.235" />
+  <testcase name="localMidnightDeadlineUsesTwentyThreeAndTwentyFiveHourDstDays" classname="com.vibe.store.DashboardUiTest" time="0.762" />
+  <testcase name="changingIdentityCancelsLateResponseAndLogoutDisposesPrivateSnapshot" classname="com.vibe.store.DashboardUiTest" time="1.996" />
+  <testcase name="timezoneChangeRefreshesEvenWhenLocalDateIsUnchanged" classname="com.vibe.store.DashboardUiTest" time="1.884" />
+  <testcase name="dashboardAdaptsAcrossWidthsAndFrenchEnglishLabels" classname="com.vibe.store.DashboardUiTest" time="1.958" />
+  <testcase name="presenceContextRequiresItsOwnEffectivePermission" classname="com.vibe.store.DashboardUiTest" time="1.827" />
+  <testcase name="sameLocalDaySchedulesMidnightWithoutRefreshingRepeatedly" classname="com.vibe.store.DashboardUiTest" time="0.745" />
+  <testcase name="disposalCancelsScheduledWaitAndLateOldContextResponseIsDiscarded" classname="com.vibe.store.DashboardUiTest" time="1.041" />
+  <testcase name="localMidnightWhileForegroundedRefreshesAndHidesOldSnapshot" classname="com.vibe.store.DashboardUiTest" time="1.076" />
+  <testcase name="timezoneChangeRefreshesWhenLocalDateChanges" classname="com.vibe.store.DashboardUiTest" time="1.053" />
+  <testcase name="frenchAndEnglishResourcesExist" classname="com.vibe.store.FoundationSmokeTest" time="0.914" />
+  <testcase name="adaptiveNativeSmokeAndTypedReturn" classname="com.vibe.store.FoundationSmokeTest" time="2.148" />
+  <testcase name="manifestAndNoDatabase" classname="com.vibe.store.FoundationSmokeTest" time="1.701" />
+  <testcase name="continuousPasswordEntryAndVisibility" classname="com.vibe.store.IdentityUiTest" time="1.788" />
+  <testcase name="failedLoginRetryAndRecoveryCleanForm" classname="com.vibe.store.IdentityUiTest" time="4.437" />
+  <testcase name="applicationSessionNotRestoredAfterRealDeath" classname="com.vibe.store.IdentityUiTest" time="0.941" />
+  <testcase name="rotationBackgroundAndProtectedNavigation" classname="com.vibe.store.IdentityUiTest" time="1.897" />
+  <testcase name="actualWindowClassAndIndependentPanels" classname="com.vibe.store.PosUiTest" time="1.35" />
+  <testcase name="retryRetainsKeyAndActivityRecreationRetainsOnlyEphemeralCart" classname="com.vibe.store.PosUiTest" time="1.399" />
+  <testcase name="zeroQuantityAndContinuousCommaPaymentReachRealSubmit" classname="com.vibe.store.PosUiTest" time="2.231" />
+  <testcase name="captureSevenReportsAndRepresentativePresentationVariants" classname="com.vibe.store.ReportingScreenshotTest" time="4.827" />
+  <testcase name="detailedTableAdaptsToWidthAndLongSnapshotsStayWithinBound" classname="com.vibe.store.ReportingUiTest" time="2.409" />
+  <testcase name="resetClearsOldSnapshotBeforeLoadingCurrentTabDefaults" classname="com.vibe.store.ReportingUiTest" time="1.322" />
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="1.732" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="2.292" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="1.94" />
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.326" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.135" />
+  <testcase name="detailedTableHasAccessibleExpansionAndCollapseControl" classname="com.vibe.store.ReportingUiTest" time="1.443" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.787" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="3.134" />
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="1.118" />
+  <testcase name="currencyLabelRequiresRenderedMonetaryContentForStockAndTeam" classname="com.vibe.store.ReportingUiTest" time="2.046" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.576" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.277" />
+  <testcase name="authenticatedShellNavigatesToAuthorizedSettings" classname="com.vibe.store.StoreNavigationUiTest" time="1.167" />
+  <testcase name="employeeSeesOnlyPermittedPhoneDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="1.23" />
+  <testcase name="quickAccessUsesEffectivePermissionsOnly" classname="com.vibe.store.StoreNavigationUiTest" time="2.181" />
+  <testcase name="unsavedSettingsBlockTabNavigationUntilDiscarded" classname="com.vibe.store.StoreNavigationUiTest" time="1.52" />
+  <testcase name="ownerCanUseAllTabletDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="1.473" />
+  <testcase name="sensitiveNavigationCanBeDisabledWithoutHidingRoutes" classname="com.vibe.store.StoreNavigationUiTest" time="1.991" />
+  <testcase name="ownerHasAdminAuditAndDiagnosticTabs" classname="com.vibe.store.SupportUiTest" time="0.915" />
+  <testcase name="employeeSeesChatHelpButNoAdministrationOrAlerts" classname="com.vibe.store.SupportUiTest" time="1.145" />
+  <testcase name="employeeCardSeparatesIdentityRoleAndAccess" classname="com.vibe.store.TeamPresentationUiTest" time="1.049" />
+  <testcase name="historyDefaultsToReadableDatesAndKeepsVerbatimAuditOnDemand" classname="com.vibe.store.TeamPresentationUiTest" time="1.303" />
+  <testcase name="editorGroupsFieldsAndAllowsMissingPhotoAndAutomaticReference" classname="com.vibe.store.TeamPresentationUiTest" time="2.286" />
+  <testcase name="adaptiveTeamWindowAndEvidence" classname="com.vibe.store.TeamPresentationUiTest" time="5.551" />
+  <testcase name="employeeCannotSeeAdministrativeControls" classname="com.vibe.store.TeamUiTest" time="1.221" />
+  <testcase name="createEmployeeWithContinuousTextAndOneShotTemporarySecret" classname="com.vibe.store.TeamUiTest" time="2.809" />
+  <testcase name="personalProofNeverOccursOnScreenOpenAndUsesSignersPassword" classname="com.vibe.store.TeamUiTest" time="2.154" />
+  <testcase name="managementRouteHiddenWithoutCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.22" />
+  <testcase name="supplierCreationCallsServiceAndReloadsList" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.374" />
+  <testcase name="managementRouteAppearsOnlyWithCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.38" />
+  <testcase name="workflowFrenchEnglishAndLightDarkRender" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.146" />
+  <testcase name="adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.74" />
+  <testcase name="workflowImeFocusAndDecimalCommaPointRemainUsable" classname="com.vibe.store.WorkflowNavigationUiTest" time="2.4" />
+</testsuite>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.SupportAuthorityTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T12:11:37.737Z" hostname="Sterling-Setup" time="0.027">
+  <properties/>
+  <testcase name="collisionAndCurrentAccountRevocationPreventForgedRecipients" classname="com.vibe.store.testing.SupportAuthorityTest" time="0.013"/>
+  <testcase name="forbiddenOwnerDataAndInvalidRequestsNeverMutate" classname="com.vibe.store.testing.SupportAuthorityTest" time="0.006"/>
+  <testcase name="directAndBroadcastVisibilityReadHideAndReplay" classname="com.vibe.store.testing.SupportAuthorityTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
