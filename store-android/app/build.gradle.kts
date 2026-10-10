@@ -20,13 +20,17 @@ android {
     }
     buildFeatures { compose = true; buildConfig = true }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
-    packaging { resources.excludes += "/META-INF/{AL2.0,LGPL2.1}" }
+    packaging {
+        resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        resources.merges += setOf("META-INF/NOTICE.md", "META-INF/LICENSE.md")
+    }
 }
 kotlin { jvmToolchain(21); compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
 dependencies {
     implementation(project(":presentation")); implementation(project(":application-api"))
     implementation(project(":application")); implementation(project(":infrastructure"))
     implementation(platform(libs.compose.bom)); implementation(libs.compose.ui)
+    implementation(libs.work.runtime)
     implementation(libs.activity.compose)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.foundation)

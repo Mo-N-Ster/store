@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.PersistenceTest" tests="12" failures="0" errors="0" skipped="0" time="2.805" timestamp="2026-10-10T12:23:28" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="corruptRecoverySnapshotRefusesBeforeRoomOpen" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.111" />
+  <testcase name="uniquenessConstraintsAndHistoricalSnapshots" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.052" />
+  <testcase name="deliveryMigrationBindsLegacyRowsToNoSender" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.028" />
+  <testcase name="boundedContentionNoRetry" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.781" />
+  <testcase name="effectiveConnectionsAndFreshV2" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.027" />
+  <testcase name="rollbackAtEveryWriteBoundary" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="1.005" />
+  <testcase name="processRestartPersistence" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.052" />
+  <testcase name="maintenanceDrainsAndSingleOwnership" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.152" />
+  <testcase name="schemaCoverageAndEveryForeignKey" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.103" />
+  <testcase name="sourceMoneyAndCalendarParity" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.0" />
+  <testcase name="serializationAndScopeLifetime" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.075" />
+  <testcase name="migrationSnapshotRestartAndFutureRefusal" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.103" />
+</testsuite>

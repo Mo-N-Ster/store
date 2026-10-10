@@ -81,7 +81,9 @@ class CatalogScreenState {
 fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boolean,
     state: CatalogScreenState, pickImage: ((SelectedImage?) -> Unit) -> Unit,
     documents: DocumentService? = null,
-    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
     catalogImport: CatalogImportService? = null,
     actorId: Long = -1,
     pickCatalogPdf: ((Long, (CatalogPdfSelection) -> Unit) -> Unit)? = null,
@@ -251,7 +253,8 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
                         DocumentRequest("catalog", DocumentType.CATALOG,
                             t("Catalogue des articles", "Product catalog"), java.time.Instant.now(),
                             DocumentSnapshot.Catalog(snapshot.items, snapshot.currency), if (french) "fr" else "en")
-                    }, save = saveDocument)
+                    }, save = saveDocument, printDocument = printDocument, shareDocument = shareDocument,
+                    actorId = actorId)
             }
             if (catalogPdfImportEnabled && catalogImport != null && pickCatalogPdf != null &&
                 "PRODUCTS:UPDATE" in permissions && !state.editing && state.selected == null) item {

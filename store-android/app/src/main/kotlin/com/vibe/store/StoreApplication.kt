@@ -60,4 +60,9 @@ class StoreApplication : Application() {
     }
     val reporting: ReportingService by lazy { ReportingAuthority(authority) }
     val documents: com.vibe.store.api.DocumentService by lazy { com.vibe.store.infrastructure.documents.AndroidDocumentService() }
+    val delivery: com.vibe.store.api.DeliveryService by lazy {
+        com.vibe.store.application.delivery.EmailAuthority(authority, reporting, documents,
+            com.vibe.store.infrastructure.security.KeystoreSecrets(),
+            com.vibe.store.infrastructure.delivery.AngusSmtpTransport())
+    }
 }

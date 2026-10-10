@@ -65,7 +65,8 @@ internal val configuration = object : RoomDatabase.Callback() {
 internal fun buildStore(context: Context, file: File): StoreDatabase =
     Room.databaseBuilder(context, StoreDatabase::class.java, file.absolutePath)
         .setDriver(ConfiguredDriver()).setJournalMode(RoomDatabase.JournalMode.WRITE_AHEAD_LOGGING)
-        .setQueryCoroutineContext(Dispatchers.IO).addCallback(configuration).addMigrations(MoneyMigration1To2).build()
+        .setQueryCoroutineContext(Dispatchers.IO).addCallback(configuration)
+        .addMigrations(MoneyMigration1To2, DeliveryMigration2To3).build()
 
 /** Composition-only entry point; no path/table/SQL accepted from UI. No DB opened by the smoke UI. */
 object AndroidPersistence {
@@ -86,7 +87,7 @@ private class Lease : AbstractCoroutineContextElement(Key) {
 internal class RoomDatabaseOwner(
     private val context: Context,
     internal val root: File,
-    private val targetVersion: Int = 2,
+    private val targetVersion: Int = 3,
     private val factory: (Context, File) -> StoreDatabase = ::buildStore
 ) : DatabaseOwner, UnitOfWork {
     override val generation = GenerationId("main")

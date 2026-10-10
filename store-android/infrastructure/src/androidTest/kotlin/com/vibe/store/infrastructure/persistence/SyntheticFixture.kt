@@ -70,6 +70,12 @@ internal fun syntheticV2(context: Context, file: File): StoreDatabase =
             override fun migrate(connection: SQLiteConnection) {
                 check(File(context.noBackupFilesDir, "maintenance/${file.parentFile!!.name}/pre-migration.db").isFile) { "Missing pre-migration snapshot" }
                 MoneyMigration1To2.migrate(connection)
+                // SyntheticV2 is compiled from the current entity graph. Keep its
+                // v1->v2 fixture aligned; production v2->v3 also supports the
+                // historical v2 table that lacked these ownership columns.
+                connection.execSQL("ALTER TABLE email_report_logs ADD COLUMN actorId INTEGER NOT NULL DEFAULT 0")
+                connection.execSQL("ALTER TABLE email_report_logs ADD COLUMN generation TEXT NOT NULL DEFAULT ''")
+                connection.execSQL("CREATE INDEX IF NOT EXISTS index_email_report_logs_status_nextAttemptAt_createdAt ON email_report_logs(status,nextAttemptAt,createdAt)")
                 connection.execSQL("CREATE TABLE IF NOT EXISTS synthetic_migration_marker (id INTEGER NOT NULL, PRIMARY KEY(id))")
             }
         }).build()

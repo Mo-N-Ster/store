@@ -12,6 +12,7 @@ android {
     }
     externalNativeBuild { cmake { path = file("src/main/cpp/CMakeLists.txt"); version = "3.22.1" } }
     testOptions { targetSdk = 36 }
+    packaging { resources { merges += setOf("META-INF/NOTICE.md", "META-INF/LICENSE.md") } }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 }
 kotlin { jvmToolchain(21); compilerOptions { jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17) } }
@@ -20,6 +21,7 @@ dependencies {
     implementation(libs.room.runtime); implementation(libs.sqlite.bundled)
     implementation(libs.coroutines)
     implementation(libs.bcrypt)
+    implementation(libs.angus.mail); implementation(libs.angus.activation)
     testImplementation(libs.junit)
     ksp(libs.room.compiler)
     androidTestImplementation(libs.test.runner); androidTestImplementation(libs.test.junit)

@@ -1,13 +1,14 @@
 package com.vibe.store.presentation
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
 import com.vibe.store.api.DocumentRequest
 import com.vibe.store.api.DocumentResult
 import com.vibe.store.api.DocumentService
@@ -31,7 +32,10 @@ fun DocumentExportAction(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     request: suspend () -> DocumentRequest,
-    save: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit,
+    save: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit,
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    actorId: Long,
 ) {
     val scope = rememberCoroutineScope()
     var busy by remember { mutableStateOf(false) }
@@ -39,6 +43,20 @@ fun DocumentExportAction(
     var alive by remember { mutableStateOf(true) }
     DisposableEffect(Unit) { onDispose { alive = false } }
     Column(modifier) {
+        fun create(action: suspend (Long, DocumentResult) -> Unit) {
+            if (busy) return
+            busy = true; message = null
+            scope.launch {
+                try {
+                    val result = documentService.render(request())
+                    if (alive) action(actorId, result)
+                }
+                catch (cancelled: CancellationException) { throw cancelled }
+                catch (_: Exception) { if (alive) message = if (french) "Document indisponible." else "Document unavailable." }
+                finally { if (alive) busy = false }
+            }
+        }
+        Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Button(enabled = enabled && !busy, modifier = Modifier.fillMaxWidth().testTag("document-export"), onClick = {
             if (busy) return@Button
             busy = true; message = null
@@ -46,7 +64,7 @@ fun DocumentExportAction(
                 try {
                     val result = documentService.render(request())
                     if (!alive) return@launch
-                    save(result) { outcome ->
+                    save(actorId, result) { outcome ->
                         if (!alive) return@save
                         busy = false
                         message = when (outcome) {
@@ -69,6 +87,11 @@ fun DocumentExportAction(
                 }
             }
         }) { Text(label) }
+        if (printDocument != null) OutlinedButton(enabled = enabled && !busy, modifier = Modifier.fillMaxWidth().testTag("document-print"),
+            onClick = { create(printDocument) }) { Text(if (french) "Imprimer" else "Print") }
+        if (shareDocument != null) OutlinedButton(enabled = enabled && !busy, modifier = Modifier.fillMaxWidth().testTag("document-share"),
+            onClick = { create(shareDocument) }) { Text(if (french) "Partager" else "Share") }
+        }
         if (busy) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("document-export-progress"))
         message?.let { Text(it, Modifier.testTag("document-export-status")) }
     }

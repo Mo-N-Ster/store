@@ -39,7 +39,8 @@ class PosState : ViewModel() {
 @Composable
 fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdentity,
     french: Boolean, state: PosState, documents: DocumentService? = null,
-    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null, shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
     back: () -> Unit) {
     fun t(fr: String, en: String) = if (french) fr else en
     val scope = rememberCoroutineScope()
@@ -210,7 +211,8 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
                         DocumentRequest(authorizedReceipt.id, DocumentType.INVOICE,
                             t("Facture ${authorizedReceipt.id}", "Invoice ${authorizedReceipt.id}"),
                             java.time.Instant.now(), DocumentSnapshot.Invoice(authorizedReceipt), if (french) "fr" else "en")
-                    }, save = saveDocument)
+                    }, save = saveDocument, printDocument = printDocument, shareDocument = shareDocument,
+                    actorId = actor.id)
             }
             if ("POS:DELETE" in actor.permissions && receipt.status == "validated") {
                 PosField(t("Motif d’annulation", "Cancellation reason"), reason, "pos-cancel-reason", !busy, false) { reason = it }

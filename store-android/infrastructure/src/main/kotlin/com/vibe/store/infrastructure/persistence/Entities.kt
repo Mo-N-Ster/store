@@ -122,10 +122,11 @@ internal data class MessageDeletionEntity(val messageId: Long, val userId: Long,
 @Entity(tableName = "notifications", foreignKeys = [ForeignKey(entity = ProductEntity::class, parentColumns = ["id"], childColumns = ["productId"])], indices = [Index("productId")])
 internal data class NotificationEntity(@PrimaryKey val id: Long, val type: String, val productId: Long?, val message: String,
     val isRead: Boolean, val createdAt: String, val resolvedAt: String? = null)
-@Entity(tableName = "email_report_logs")
+@Entity(tableName = "email_report_logs", indices = [Index(value = ["status", "nextAttemptAt", "createdAt"])])
 internal data class EmailEntity(@PrimaryKey val id: Long, val recipient: String, val subject: String, val filename: String,
     val message: String, val attachment: ByteArray?, val status: String, val attempts: Int, val createdAt: String,
-    val nextAttemptAt: String? = null, val lastError: String? = null, val sentAt: String? = null)
+    val nextAttemptAt: String? = null, val lastError: String? = null, val sentAt: String? = null,
+    val actorId: Long = 0, val generation: String = "")
 @Entity(tableName = "settings")
 internal data class SettingEntity(@PrimaryKey val key: String, val value: String)
 // Actor/responsible IDs intentionally not FKs: historical attribution survives deletion.

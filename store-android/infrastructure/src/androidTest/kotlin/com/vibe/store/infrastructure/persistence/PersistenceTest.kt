@@ -187,6 +187,38 @@ class PersistenceTest {
         assertEquals(futureHash, sha256(File(root, "store.db")))
     }
 
+    @Test fun deliveryMigrationBindsLegacyRowsToNoSender() {
+        val root = directory().apply { mkdirs() }
+        val dbFile = File(root, "legacy-delivery.db")
+        BundledSQLiteDriver().open(dbFile.path).use { connection ->
+            connection.execSQL("CREATE TABLE email_report_logs (id INTEGER NOT NULL PRIMARY KEY, recipient TEXT NOT NULL, subject TEXT NOT NULL, filename TEXT NOT NULL, message TEXT NOT NULL, attachment BLOB, status TEXT NOT NULL, attempts INTEGER NOT NULL, createdAt TEXT NOT NULL, nextAttemptAt TEXT, lastError TEXT, sentAt TEXT)")
+            connection.execSQL("INSERT INTO email_report_logs VALUES (1,'a@example.invalid','A','a.pdf','test',NULL,'pending',2,'2026-01-01T00:00:00.000Z','2026-01-01T00:01:00.000Z',NULL,NULL)")
+            connection.execSQL("INSERT INTO email_report_logs VALUES (2,'b@example.invalid','B','b.pdf','test',NULL,'sending',1,'2026-01-01T00:00:00.000Z',NULL,NULL,NULL)")
+            connection.execSQL("INSERT INTO email_report_logs VALUES (3,'c@example.invalid','C','c.pdf','test',NULL,'sent',0,'2026-01-01T00:00:00.000Z',NULL,NULL,'2026-01-01T00:02:00.000Z')")
+
+            DeliveryMigration2To3.migrate(connection)
+            val rows = connection.prepare("SELECT id,status,attempts,nextAttemptAt,lastError,actorId,generation FROM email_report_logs ORDER BY id").use { statement ->
+                buildList {
+                    while (statement.step()) add(listOf(
+                        statement.getLong(0).toString(), statement.getText(1), statement.getLong(2).toString(),
+                        if (statement.isNull(3)) "<null>" else statement.getText(3),
+                        if (statement.isNull(4)) "<null>" else statement.getText(4),
+                        statement.getLong(5).toString(), statement.getText(6),
+                    ))
+                }
+            }
+            assertEquals(listOf(
+                listOf("1", "failed", "2", "<null>", "legacy_sender_unknown", "0", ""),
+                listOf("2", "failed", "1", "<null>", "legacy_sender_unknown", "0", ""),
+                listOf("3", "sent", "0", "<null>", "<null>", "0", ""),
+            ), rows)
+            val indexCount = connection.prepare("SELECT count(*) FROM sqlite_master WHERE type='index' AND name='index_email_report_logs_status_nextAttemptAt_createdAt'").use {
+                check(it.step()); it.getLong(0)
+            }
+            assertEquals(1L, indexCount)
+        }
+    }
+
     @Test fun corruptRecoverySnapshotRefusesBeforeRoomOpen() = runBlocking {
         val root = directory(); legacyV1(root)
         val upgraded = RoomDatabaseOwner(context, root, 2, ::syntheticV2)

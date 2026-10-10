@@ -153,6 +153,17 @@ internal interface StoreDao {
     @Insert suspend fun notification(value: NotificationEntity)
     @Insert suspend fun importedNotifications(values: List<NotificationEntity>)
     @Insert suspend fun email(value: EmailEntity)
+    @Query("SELECT COALESCE(MAX(id),0)+1 FROM email_report_logs") suspend fun nextEmailId(): Long
+    @Query("SELECT * FROM email_report_logs WHERE id=:id") suspend fun email(id: Long): EmailEntity?
+    @Query("SELECT * FROM email_report_logs WHERE actorId=:actorId ORDER BY createdAt DESC,id DESC LIMIT :limit OFFSET :offset")
+    suspend fun emailPage(actorId: Long, limit: Int, offset: Int): List<EmailEntity>
+    @Query("SELECT * FROM email_report_logs WHERE actorId=:actorId AND generation=:generation AND status='pending' AND (nextAttemptAt IS NULL OR nextAttemptAt<=:now) ORDER BY createdAt,id LIMIT 1")
+    suspend fun dueEmail(actorId: Long, generation: String, now: String): EmailEntity?
+    @Query("SELECT MIN(COALESCE(nextAttemptAt,createdAt)) FROM email_report_logs WHERE actorId=:actorId AND generation=:generation AND status='pending'")
+    suspend fun nextPendingEmailAt(actorId: Long, generation: String): String?
+    @Update suspend fun updateEmail(value: EmailEntity): Int
+    @Query("UPDATE email_report_logs SET status='pending' WHERE actorId=:actorId AND generation=:generation AND status='sending'")
+    suspend fun recoverInterruptedEmails(actorId: Long, generation: String): Int
     @Insert suspend fun audit(value: AuditEntity)
     @Insert suspend fun generation(value: GenerationEntity)
     @Insert suspend fun pending(value: PendingCommandEntity)
@@ -220,7 +231,7 @@ internal interface StoreDao {
     PurchaseEntity::class, PurchaseLineEntity::class, InventoryEntity::class, InventoryLineEntity::class,
     AttendanceEntity::class, MessageEntity::class, MessageReadEntity::class, MessageDeletionEntity::class,
     NotificationEntity::class, EmailEntity::class, SettingEntity::class, AuditEntity::class,
-    GenerationEntity::class, PendingCommandEntity::class], version = 2, exportSchema = true)
+    GenerationEntity::class, PendingCommandEntity::class], version = 3, exportSchema = true)
 @TypeConverters(MoneyText::class)
 internal abstract class StoreDatabase : RoomDatabase() { abstract fun records(): StoreDao }
 

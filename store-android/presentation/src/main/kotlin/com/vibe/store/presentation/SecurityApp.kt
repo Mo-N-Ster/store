@@ -45,9 +45,13 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     reporting: ReportingService? = null,
     documents: DocumentService? = null,
     catalogImport: CatalogImportService? = null,
+    delivery: DeliveryService? = null,
+    scheduleDelivery: () -> Unit = {},
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
     pickCatalogPdf: (Long, (CatalogPdfSelection) -> Unit) -> Unit = { _, result -> result(CatalogPdfSelection.Cancelled) },
     invalidatePendingCatalogPdf: () -> Unit = {},
-    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
     invalidatePendingDocument: () -> Unit = {},
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
@@ -121,7 +125,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     val dark = when (prefs.theme) { "dark" -> true; "light" -> false; else -> isSystemInDarkTheme() }
     val shellUser = identity
     val shellVisible = shellUser != null && page in setOf("home", "catalog", "employees", "today", "settings",
-        "operations", "suppliers", "purchases", "inventories", "support", "reports")
+        "operations", "suppliers", "purchases", "inventories", "support", "reports", "delivery")
     // Settings has an unsaved form. Catalog detail/edit and Team mutations must not be interrupted by navigation.
     val navigationEnabled = !busy && !(page == "settings" && settingsDirty) && !teamNavigationLocked && !supportNavigationLocked &&
         (page != "catalog" || (catalogState.selected == null && !catalogState.editing)) &&
@@ -143,6 +147,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
             "employees" -> team != null && "EMPLOYEES:READ" in user.permissions
             "today" -> team != null && "PRESENCE:READ" in user.permissions
             "reports" -> reporting != null && "FINANCES:READ" in user.permissions
+            "delivery" -> delivery != null && "FINANCES:READ" in user.permissions
             "settings" -> "SETTINGS:READ" in user.permissions
             else -> false
         }
@@ -169,7 +174,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                     }
                     Box(Modifier.weight(1f)) {
             if (page == "pos" && catalog != null && sales != null && posState != null) {
-                identity?.let { user -> PosScreen(sales, catalog, user, fr, posState, documents, saveDocument) { page = "home" } }
+                identity?.let { user -> PosScreen(sales, catalog, user, fr, posState, documents,
+                    printDocument = printDocument, shareDocument = shareDocument, saveDocument = saveDocument) { page = "home" } }
             } else if (page == "suppliers" && suppliers != null) {
                 identity?.let { user -> SupplierScreen(suppliers, user.permissions, fr) { page = "operations" } }
             } else if (page == "purchases" && purchases != null && suppliers != null && catalog != null) {
@@ -179,7 +185,8 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
             } else if (page == "support" && support != null) {
                 identity?.let { user ->
                     key(user.id) {
-                        SupportScreen(support, service, user, fr, documents = documents, saveDocument = saveDocument,
+                        SupportScreen(support, service, user, fr, documents = documents, printDocument = printDocument,
+                            shareDocument = shareDocument, saveDocument = saveDocument,
                             onSettings = { navigate("settings") },
                             onBack = { supportNavigationLocked = false; page = "home" },
                             onNavigationLock = { supportNavigationLocked = it })
@@ -187,13 +194,18 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 }
             } else if (page == "reports" && reporting != null) {
                 identity?.let { user -> key(user.id) {
-                    ReportingScreen(reporting, user, fr, documents = documents, saveDocument = saveDocument) { page = "home" }
+                    ReportingScreen(reporting, user, fr, documents = documents, delivery = delivery,
+                        scheduleDelivery = scheduleDelivery, printDocument = printDocument, shareDocument = shareDocument,
+                        saveDocument = saveDocument) { page = "home" }
                 } }
+            } else if (page == "delivery" && delivery != null) {
+                identity?.let { user -> key(user.id) { EmailQueueScreen(delivery, fr, { page = "home" }, scheduleDelivery) } }
             } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
                     key(user.id) {
                         CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage,
-                            documents = documents, saveDocument = saveDocument,
+                            documents = documents, saveDocument = saveDocument, printDocument = printDocument,
+                            shareDocument = shareDocument,
                             catalogImport = catalogImport, actorId = user.id,
                             pickCatalogPdf = pickCatalogPdf) { page = "home" }
                     }
@@ -265,6 +277,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                     }
                                     lastDocumentSessionId = next.id
                                     identity = next; catalogState = CatalogScreenState(); catalogActor = next.id
+                                    if ("FINANCES:CREATE" in next.permissions) scheduleDelivery()
                                     settingsDirty = false; teamNavigationLocked = false; page = "home"
                                 } }) { Text(text("Continuer", "Continue")) }
                                 TextButton(enabled = !busy, onClick = { error = null; page = if (switching) "home" else "recovery" }) { Text(if (switching) text("Annuler", "Cancel") else text("Mot de passe oublié", "Forgot password")) }
@@ -313,7 +326,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                         settingsDirty = false; teamNavigationLocked = false; page = "login"
                                     } }, hasPurchases = purchases != null && suppliers != null && catalog != null,
                                     hasInventories = inventories != null, hasSupport = support != null,
-                                    hasReports = reporting != null)
+                                    hasReports = reporting != null, hasDelivery = delivery != null)
                                 if (reporting != null) key(user.id) {
                                     DashboardScreen(reporting, user, fr)
                                 }
@@ -332,6 +345,10 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 Row(verticalAlignment = Alignment.CenterVertically) { Checkbox(checked = draft.discountsEnabled, enabled = !busy, onCheckedChange = { edit(draft.copy(discountsEnabled = it)) }); Text(text("Autoriser les remises", "Enable discounts")) }
                                 Button(enabled = !busy, onClick = { run { service.configure(draft); config = draft; settingsDirty = false; page = "home" } }) { Text(text("Enregistrer", "Save")) }
                                 TextButton(enabled = !busy, onClick = { settingsDirty = false; page = "home" }) { Text(text("Retour", "Back")) }
+                                if (delivery != null && identity?.let { "SETTINGS:UPDATE" in it.permissions } == true) {
+                                    HorizontalDivider(Modifier.padding(vertical = 16.dp))
+                                    SmtpSettingsPanel(delivery, fr, busy, scheduleDelivery)
+                                }
                             }
                         }
                     }

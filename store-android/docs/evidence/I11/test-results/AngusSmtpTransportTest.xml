@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.infrastructure.delivery.AngusSmtpTransportTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-10T12:59:07.070Z" hostname="Sterling-Setup" time="11.539">
+  <properties/>
+  <testcase name="implicitTlsControlledServerAcceptsSyntheticDelivery" classname="com.vibe.store.infrastructure.delivery.AngusSmtpTransportTest" time="0.407"/>
+  <testcase name="requiredStartTlsRefusesServerBeforeSendingAuthentication" classname="com.vibe.store.infrastructure.delivery.AngusSmtpTransportTest" time="0.028"/>
+  <testcase name="untrustedCertificateFailsBeforeAuthenticationOrMessageDelivery" classname="com.vibe.store.infrastructure.delivery.AngusSmtpTransportTest" time="0.095"/>
+  <testcase name="stalledSmtpGreetingTimesOutWithoutSendingCredentials" classname="com.vibe.store.infrastructure.delivery.AngusSmtpTransportTest" time="11.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

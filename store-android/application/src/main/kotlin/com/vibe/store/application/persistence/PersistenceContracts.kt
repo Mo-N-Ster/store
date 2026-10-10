@@ -37,6 +37,7 @@ interface ReadRepositories {
     val employees: EmployeeRepository; val attendance: AttendanceRepository
     val messaging: MessagingRepository; val audit: AuditRepository
     val support: com.vibe.store.application.security.SupportRepository get() = error("I08 support unavailable")
+    val delivery: com.vibe.store.application.delivery.DeliveryRecords get() = error("I11 delivery unavailable")
     val settings: SettingsReader
 }
 interface TransactionRepositories : ReadRepositories { override val settings: SettingsWriter }

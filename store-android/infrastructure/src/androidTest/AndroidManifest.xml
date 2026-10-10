@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <service
+            android:name="com.vibe.store.infrastructure.persistence.EmailQueueWriterService"
+            android:exported="false"
+            android:process=":i11_email_queue_test" />
+    </application>
+</manifest>

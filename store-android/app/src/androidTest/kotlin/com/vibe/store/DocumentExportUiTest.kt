@@ -1,6 +1,13 @@
 package com.vibe.store
 
 import android.net.Uri
+import android.print.PageRange
+import android.print.PrintAttributes
+import android.print.PrintDocumentAdapter
+import android.print.PrintDocumentInfo
+import android.print.PrintManager
+import android.os.CancellationSignal
+import android.os.ParcelFileDescriptor
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.util.Log
@@ -20,6 +27,7 @@ import com.vibe.store.presentation.DocumentExportAction
 import com.vibe.store.presentation.PdfSaveOutcome
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -45,7 +53,7 @@ class DocumentExportUiTest {
         show {
             DocumentExportAction(object : DocumentService {
                 override suspend fun render(request: DocumentRequest) = rendered()
-            }, false, "Save PDF", request = ::request, save = { _, complete -> saveCalls++; complete(PdfSaveOutcome.Cancelled) })
+            }, false, "Save PDF", request = ::request, save = { _, _, complete -> saveCalls++; complete(PdfSaveOutcome.Cancelled) }, actorId = 7L)
         }
         compose.onNodeWithTag("document-export").performClick()
         compose.waitUntil(5_000) { saveCalls == 1 }
@@ -57,7 +65,7 @@ class DocumentExportUiTest {
         show {
             DocumentExportAction(object : DocumentService {
                 override suspend fun render(request: DocumentRequest) = rendered()
-            }, false, "Save PDF", request = { throw SecurityFailure(SecurityError.FORBIDDEN) }, save = { _, _ -> saveCalled = true })
+            }, false, "Save PDF", request = { throw SecurityFailure(SecurityError.FORBIDDEN) }, save = { _, _, _ -> saveCalled = true }, actorId = 7L)
         }
         compose.onNodeWithTag("document-export").performClick()
         compose.waitUntil(5_000) { compose.onAllNodesWithTag("document-export-status").fetchSemanticsNodes().isNotEmpty() }
@@ -69,10 +77,57 @@ class DocumentExportUiTest {
         show {
             DocumentExportAction(object : DocumentService {
                 override suspend fun render(request: DocumentRequest) = rendered()
-            }, true, "Enregistrer PDF", request = ::request, save = { _, complete -> complete(PdfSaveOutcome.Failed()) })
+            }, true, "Enregistrer PDF", request = ::request, save = { _, _, complete -> complete(PdfSaveOutcome.Failed()) }, actorId = 7L)
         }
         compose.onNodeWithTag("document-export").performClick()
         compose.onNodeWithText("Échec de l’enregistrement. Réessayez.").assertExists()
+    }
+
+    @Test fun printAndShareAreExplicitDocumentActionsBoundToTheRenderingActor() {
+        val actor = AtomicReference<Long?>(null)
+        var renders = 0
+        var prints = 0
+        var shares = 0
+        show {
+            DocumentExportAction(object : DocumentService {
+                override suspend fun render(request: DocumentRequest): DocumentResult { renders++; return rendered() }
+            }, false, "Save PDF", request = ::request,
+                save = { _, _, _ -> error("Print/share must not open the save picker") },
+                printDocument = { actorId, _ -> actor.set(actorId); prints++ },
+                shareDocument = { actorId, _ -> actor.set(actorId); shares++ }, actorId = 7L)
+        }
+
+        compose.onNodeWithTag("document-print").performClick()
+        compose.waitUntil(5_000) { prints == 1 }
+        assertEquals(7L, actor.get())
+        compose.onNodeWithTag("document-share").performClick()
+        compose.waitUntil(5_000) { shares == 1 }
+        assertEquals(7L, actor.get())
+        assertEquals(2, renders)
+        compose.onNodeWithTag("document-export").assertExists()
+    }
+
+    @Test fun androidPrintServiceAcceptsAndCancelsSyntheticPrintJob() {
+        val manager = compose.activity.getSystemService(PrintManager::class.java)
+        assertNotNull("Android PrintManager service must be present", manager)
+        val job = AtomicReference<android.print.PrintJob?>()
+        compose.runOnUiThread {
+            job.set(manager.print("STORE synthetic I11", object : PrintDocumentAdapter() {
+                override fun onLayout(oldAttributes: PrintAttributes?, newAttributes: PrintAttributes,
+                    cancellationSignal: CancellationSignal, callback: LayoutResultCallback, extras: Bundle?) {
+                    if (cancellationSignal.isCanceled) callback.onLayoutCancelled()
+                    else callback.onLayoutFinished(PrintDocumentInfo.Builder("synthetic.pdf")
+                        .setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT).setPageCount(1).build(), true)
+                }
+                override fun onWrite(pages: Array<out PageRange>, destination: ParcelFileDescriptor,
+                    cancellationSignal: CancellationSignal, callback: WriteResultCallback) {
+                    callback.onWriteFinished(arrayOf(PageRange(0, 0)))
+                }
+            }, null))
+        }
+        compose.waitUntil(5_000) { job.get() != null }
+        job.get()!!.cancel()
+        compose.waitUntil(5_000) { job.get()!!.isCancelled }
     }
 
     @Test fun createDocumentLaunchesSystemPickerAndCancellationReturnsNull() {

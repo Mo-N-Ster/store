@@ -1,11 +1,23 @@
 package com.vibe.store
-import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import android.net.Uri
+import android.content.ClipData
+import android.content.Intent
+import android.print.PrintAttributes
+import android.print.PrintDocumentAdapter
+import android.print.PrintDocumentInfo
+import android.print.PageRange
+import android.os.CancellationSignal
+import android.os.ParcelFileDescriptor
+import android.os.Bundle
+import android.print.PrintManager
+import androidx.core.content.FileProvider
+import java.io.File
+import java.io.FileOutputStream
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.CancellationException
@@ -27,6 +39,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 
 /** Composition only. This public launcher accepts no privileged command or data. */
 class MainActivity : ComponentActivity() {
+    private data class PendingPdfSave(val actorId: Long, val result: com.vibe.store.api.DocumentResult,
+        val complete: (com.vibe.store.presentation.PdfSaveOutcome) -> Unit)
     private data class PendingCatalogPdfSelection(
         val actorId: Long,
         val epoch: Int,
@@ -49,23 +63,24 @@ class MainActivity : ComponentActivity() {
                 val callback = profileSelectionResult; profileSelectionResult = null
                 callback?.invoke(uri?.let(AndroidProfilePhotoMedia::selection))
             }
-            var pendingPdf by remember { mutableStateOf<Pair<com.vibe.store.api.DocumentResult, (com.vibe.store.presentation.PdfSaveOutcome) -> Unit>?>(null) }
+            var pendingPdf by remember { mutableStateOf<PendingPdfSave?>(null) }
             val pdfPicker = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
                 val pending = pendingPdf; pendingPdf = null
                 if (pending != null) {
-                    val (result, completed) = pending
-                    if (uri == null) completed(com.vibe.store.presentation.PdfSaveOutcome.Cancelled)
+                    val result = pending.result
+                    if (uri == null) pending.complete(com.vibe.store.presentation.PdfSaveOutcome.Cancelled)
                     else lifecycleScope.launch {
                         val outcome = try {
+                            checkDocumentAuthorization(pending.actorId, result)
                             withContext(Dispatchers.IO) {
-                                writePdfDestination(result.content.copyBytes()) {
-                                    contentResolver.openOutputStream(uri, "wt")
-                                }
+                                val bytes = result.content.copyBytes()
+                                try { writePdfDestination(bytes) { contentResolver.openOutputStream(uri, "wt") } }
+                                finally { bytes.fill(0) }
                             }
                         } catch (cancelled: CancellationException) {
                             throw cancelled
                         } catch (_: Exception) { com.vibe.store.presentation.PdfSaveOutcome.Failed() }
-                        completed(outcome)
+                        pending.complete(outcome)
                     }
                 }
             }
@@ -96,6 +111,10 @@ class MainActivity : ComponentActivity() {
                 selectionResult = callback; picker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }, team = store.team, sales = store.sales, posState = posState, suppliers = store.suppliers,
                 reporting = store.reporting,
+                delivery = store.delivery,
+                scheduleDelivery = { EmailDeliveryScheduler.enqueue(this@MainActivity) },
+                printDocument = { actorId, result -> printPdf(actorId, result) },
+                shareDocument = { actorId, result -> sharePdf(actorId, result) },
                 catalogImport = store.catalogImport,
                 pickCatalogPdf = { actorId, callback ->
                     if (catalogSelectionResult != null) callback(com.vibe.store.presentation.CatalogPdfSelection.Failed)
@@ -108,13 +127,103 @@ class MainActivity : ComponentActivity() {
                 purchases = store.purchases, inventories = store.inventories, pickProfilePhoto = { callback ->
                 profileSelectionResult = callback; profilePicker.launch(arrayOf("image/jpeg", "image/png", "image/webp"))
             }, documents = store.documents,
-                saveDocument = { result, complete ->
+                saveDocument = { actorId, result, complete ->
                     if (pendingPdf != null) complete(com.vibe.store.presentation.PdfSaveOutcome.Failed())
-                    else { pendingPdf = result to complete; pdfPicker.launch(result.fileName) }
+                    else { pendingPdf = PendingPdfSave(actorId, result, complete); pdfPicker.launch(result.fileName) }
                 }, invalidatePendingDocument = { pendingPdf = null }
             ) { pendingPdf = null; catalogSelectionResult = null; access = false }
             else FoundationApp(service) { access = true }
         }
+    }
+
+    private suspend fun printPdf(actorId: Long, result: com.vibe.store.api.DocumentResult) {
+        checkDocumentAuthorization(actorId, result)
+        val manager = getSystemService(PRINT_SERVICE) as PrintManager
+        val bytes = result.content.copyBytes()
+        try { manager.print(result.fileName.removeSuffix(".pdf"), object : PrintDocumentAdapter() {
+            override fun onLayout(oldAttributes: PrintAttributes?, newAttributes: PrintAttributes,
+                cancellationSignal: CancellationSignal, callback: LayoutResultCallback, extras: Bundle?) {
+                if (cancellationSignal.isCanceled) { callback.onLayoutCancelled(); return }
+                callback.onLayoutFinished(PrintDocumentInfo.Builder(result.fileName)
+                    .setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT)
+                    .setPageCount(PrintDocumentInfo.PAGE_COUNT_UNKNOWN).build(), oldAttributes != newAttributes)
+            }
+            override fun onWrite(pages: Array<out PageRange>, destination: ParcelFileDescriptor,
+                cancellationSignal: CancellationSignal, callback: WriteResultCallback) {
+                if (cancellationSignal.isCanceled) { bytes.fill(0); callback.onWriteCancelled(); return }
+                lifecycleScope.launch {
+                    val writeBytes = try {
+                        checkDocumentAuthorization(actorId, result)
+                        if (cancellationSignal.isCanceled) {
+                            callback.onWriteCancelled()
+                            return@launch
+                        }
+                        bytes.copyOf()
+                    } catch (cancelled: CancellationException) {
+                        callback.onWriteCancelled()
+                        return@launch
+                    } catch (_: Exception) {
+                        callback.onWriteFailed("Access denied or document unavailable")
+                        return@launch
+                    }
+                    try {
+                        withContext(Dispatchers.IO) {
+                            FileOutputStream(destination.fileDescriptor).use { output ->
+                                output.write(writeBytes)
+                                output.flush()
+                            }
+                        }
+                        if (cancellationSignal.isCanceled) callback.onWriteCancelled()
+                        else callback.onWriteFinished(arrayOf(PageRange.ALL_PAGES))
+                    } catch (_: CancellationException) {
+                        callback.onWriteCancelled()
+                    } catch (_: Exception) {
+                        callback.onWriteFailed("Unable to print this document")
+                    } finally { writeBytes.fill(0) }
+                }
+            }
+            override fun onFinish() { bytes.fill(0); super.onFinish() }
+        }, null) } catch (failure: Exception) { bytes.fill(0); throw failure }
+    }
+
+    private suspend fun sharePdf(actorId: Long, result: com.vibe.store.api.DocumentResult) {
+        checkDocumentAuthorization(actorId, result)
+        val bytes = result.content.copyBytes()
+        val file = try { withContext(Dispatchers.IO) {
+                val directory = File(cacheDir, "shared-documents")
+                check(directory.isDirectory || directory.mkdirs())
+                directory.listFiles()?.filter { it.isFile && it.name.startsWith("store-document-") }
+                    ?.sortedByDescending { it.lastModified() }?.drop(2)?.forEach { it.delete() }
+                check(directory.usableSpace >= bytes.size.toLong() + 1_048_576L) { "Insufficient cache space" }
+                val target = File.createTempFile("store-document-", ".pdf", directory)
+                try { FileOutputStream(target).use { it.write(bytes); it.fd.sync() } }
+                catch (failure: Exception) { target.delete(); throw failure }
+                target
+            } } finally { bytes.fill(0) }
+        try { checkDocumentAuthorization(actorId, result) }
+        catch (failure: Exception) { file.delete(); throw failure }
+        val uri = FileProvider.getUriForFile(this, "$packageName.documents", file)
+        val send = Intent(Intent.ACTION_SEND).apply {
+            type = "application/pdf"
+            putExtra(Intent.EXTRA_STREAM, uri)
+            clipData = ClipData.newUri(contentResolver, result.fileName, uri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        try { startActivity(Intent.createChooser(send, result.fileName)) }
+        catch (failure: Exception) { file.delete(); throw failure }
+    }
+
+    private suspend fun checkDocumentAuthorization(actorId: Long, result: com.vibe.store.api.DocumentResult) {
+        val identity = (application as StoreApplication).identity.current()
+            ?: throw com.vibe.store.api.SecurityFailure(com.vibe.store.api.SecurityError.FORBIDDEN)
+        val required = when (result.type) {
+            com.vibe.store.api.DocumentType.REPORT -> "FINANCES:READ"
+            com.vibe.store.api.DocumentType.INVOICE -> "POS:READ"
+            com.vibe.store.api.DocumentType.CATALOG -> "PRODUCTS:READ"
+            com.vibe.store.api.DocumentType.HELP -> null
+        }
+        if (identity.id != actorId || required != null && required !in identity.permissions)
+            throw com.vibe.store.api.SecurityFailure(com.vibe.store.api.SecurityError.FORBIDDEN)
     }
 
     /** Reads the user-selected SAF stream with a strict technical byte cap; never resolves a path. */

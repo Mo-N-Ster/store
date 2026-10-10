@@ -23,6 +23,7 @@ import com.vibe.store.api.*
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.LocalDate
@@ -114,7 +115,9 @@ private fun statusOptions(tab: ReportTab): List<String> = when (tab) {
 @Composable
 fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french: Boolean,
     modifier: Modifier = Modifier, documents: DocumentService? = null,
-    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    delivery: DeliveryService? = null, scheduleDelivery: () -> Unit = {},
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null, shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
     onBack: (() -> Unit)? = null) {
     val zoneId = remember(identity.id) { ZoneId.systemDefault().id }
     var draft by remember(service, identity.id, zoneId) { mutableStateOf(initialReportDraft(ReportTab.SUMMARY, zoneId)) }
@@ -126,6 +129,7 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
     var active by remember(lifecycle) { mutableStateOf(lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)) }
     val permitted = "FINANCES:READ" in identity.permissions
     val validation = remember(draft, zoneId) { validateReportDraft(draft, zoneId) }
+    val scope = rememberCoroutineScope()
     fun label(fr: String, en: String) = if (french) fr else en
 
     DisposableEffect(lifecycle, identity.id) {
@@ -282,6 +286,9 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
                 }
                 is ReportScreenState.Content -> if (applied?.generation == current.generation &&
                     current.document.tab == draft.tab) {
+                    var recipient by remember(identity.id, current.generation) { mutableStateOf("") }
+                    var queueBusy by remember(identity.id, current.generation) { mutableStateOf(false) }
+                    var queueMessage by remember(identity.id, current.generation) { mutableStateOf<String?>(null) }
                     if (documents != null && "FINANCES:READ" in identity.permissions) {
                         DocumentExportAction(documents, french, label("Exporter ce rapport en PDF", "Export this report as PDF"),
                             request = {
@@ -289,7 +296,31 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
                                 DocumentRequest(authorized.reportId, DocumentType.REPORT,
                                     label("Rapport ${authorized.tab}", "${authorized.tab} report"), java.time.Instant.now(),
                                     DocumentSnapshot.Report(authorized), if (french) "fr" else "en")
-                            }, save = saveDocument)
+                            }, save = saveDocument, printDocument = printDocument, shareDocument = shareDocument,
+                            actorId = identity.id)
+                    }
+                    if (delivery != null && "FINANCES:CREATE" in identity.permissions) {
+                        OutlinedTextField(recipient, { recipient = it }, Modifier.fillMaxWidth().testTag("report-email-recipient"),
+                            label = { Text(label("Destinataire", "Recipient")) }, singleLine = true,
+                            enabled = !queueBusy && active)
+                        Button(enabled = !queueBusy && active && recipient.isNotBlank(), modifier = Modifier.testTag("queue-report-email"), onClick = {
+                            queueBusy = true; queueMessage = null
+                            scope.launch {
+                                try {
+                                    delivery.queueReport(EmailReportRequest(current.document.filter, recipient,
+                                        language = if (french) "fr" else "en"))
+                                    queueMessage = label("Rapport ajouté à la queue protégée.", "Report added to the protected queue.")
+                                    scheduleDelivery()
+                                } catch (cancelled: CancellationException) { throw cancelled }
+                                catch (failure: SecurityFailure) {
+                                    queueMessage = if (failure.code == SecurityError.FORBIDDEN)
+                                        label("Accès refusé. Aucun courrier ajouté.", "Access denied. No email was queued.")
+                                    else label("Échec de la mise en queue.", "Could not queue the email.")
+                                } catch (_: Exception) { queueMessage = label("Échec de la mise en queue.", "Could not queue the email.") }
+                                finally { queueBusy = false }
+                            }
+                        }) { Text(if (queueBusy) label("Préparation…", "Preparing…") else label("Envoyer le rapport par e-mail", "Email this report")) }
+                        queueMessage?.let { Text(it, Modifier.testTag("report-email-status"), color = MaterialTheme.colorScheme.onSurfaceVariant) }
                     }
                     ReportDocument(current.document, french)
                 }

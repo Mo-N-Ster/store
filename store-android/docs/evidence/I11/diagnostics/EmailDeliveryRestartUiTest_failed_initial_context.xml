@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.EmailDeliveryRestartUiTest" tests="1" failures="1" errors="0" skipped="0" time="0.49" timestamp="2026-10-10T12:52:27" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="verifyAfterProcessRestart" classname="com.vibe.store.EmailDeliveryRestartUiTest" time="0.012">
+    <failure>java.lang.AssertionError: WorkManager must restore the unique delayed request after app process restart expected:&lt;1&gt; but was:&lt;0&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at com.vibe.store.EmailDeliveryRestartUiTest.verifyAfterProcessRestart(EmailDeliveryRestartUiTest.kt:29)
+</failure>
+  </testcase>
+</testsuite>

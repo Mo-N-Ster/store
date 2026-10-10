@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "e9ee64e617c9b863b8a91d576755963d",
+    "identityHash": "711dc62ac8ca974312800f609d378e04",
     "entities": [
       {
         "tableName": "users",
@@ -2330,7 +2330,7 @@
       },
       {
         "tableName": "email_report_logs",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `recipient` TEXT NOT NULL, `subject` TEXT NOT NULL, `filename` TEXT NOT NULL, `message` TEXT NOT NULL, `attachment` BLOB, `status` TEXT NOT NULL, `attempts` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `nextAttemptAt` TEXT, `lastError` TEXT, `sentAt` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `recipient` TEXT NOT NULL, `subject` TEXT NOT NULL, `filename` TEXT NOT NULL, `message` TEXT NOT NULL, `attachment` BLOB, `status` TEXT NOT NULL, `attempts` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `nextAttemptAt` TEXT, `lastError` TEXT, `sentAt` TEXT, `actorId` INTEGER NOT NULL, `generation` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -2399,6 +2399,18 @@
             "fieldPath": "sentAt",
             "columnName": "sentAt",
             "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "actorId",
+            "columnName": "actorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "generation",
+            "columnName": "generation",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -2406,7 +2418,20 @@
           "columnNames": [
             "id"
           ]
-        }
+        },
+        "indices": [
+          {
+            "name": "index_email_report_logs_status_nextAttemptAt_createdAt",
+            "unique": false,
+            "columnNames": [
+              "status",
+              "nextAttemptAt",
+              "createdAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_email_report_logs_status_nextAttemptAt_createdAt` ON `${TABLE_NAME}` (`status`, `nextAttemptAt`, `createdAt`)"
+          }
+        ]
       },
       {
         "tableName": "settings",
@@ -2630,7 +2655,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e9ee64e617c9b863b8a91d576755963d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '711dc62ac8ca974312800f609d378e04')"
     ]
   }
 }

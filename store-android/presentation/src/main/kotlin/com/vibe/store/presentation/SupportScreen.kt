@@ -19,7 +19,8 @@ fun SupportScreen(
     support: SupportService, identity: IdentityService, actor: PublicIdentity, french: Boolean,
     onSettings: () -> Unit, onBack: () -> Unit, onNavigationLock: (Boolean) -> Unit,
     documents: DocumentService? = null,
-    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    printDocument: (suspend (Long, DocumentResult) -> Unit)? = null, shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
+    saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
 ) {
     fun t(fr: String, en: String) = if (french) fr else en
     val admin = actor.role == "owner" && "ADMINISTRATION:READ" in actor.permissions
@@ -305,7 +306,8 @@ fun SupportScreen(
                             t("Enregistrer l’aide en PDF", "Save help as PDF"),
                             request = { DocumentRequest("help-${topic.titleEn}", DocumentType.HELP, title,
                                 java.time.Instant.now(), DocumentSnapshot.Help(title, body), if (french) "fr" else "en") },
-                            save = saveDocument)
+                            save = saveDocument, printDocument = printDocument, shareDocument = shareDocument,
+                            actorId = actor.id)
                     } }
                 }
             }

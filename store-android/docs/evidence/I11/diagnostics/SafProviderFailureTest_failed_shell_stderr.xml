@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.SafProviderFailureTest" tests="4" failures="1" errors="0" skipped="0" time="6.305" timestamp="2026-10-10T12:57:28" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="shellCallerWithoutGrantCannotReadSharedDocumentUri" classname="com.vibe.store.SafProviderFailureTest" time="2.621">
+    <failure>java.lang.AssertionError: A distinct shell UID must be denied without a temporary URI grant:
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at com.vibe.store.SafProviderFailureTest.shellCallerWithoutGrantCannotReadSharedDocumentUri(SafProviderFailureTest.kt:83)
+</failure>
+  </testcase>
+  <testcase name="providerStorageFullReturnsFailureAndClosesDestination" classname="com.vibe.store.SafProviderFailureTest" time="1.08" />
+  <testcase name="shareProviderIsPrivateReadOnlyAndLimitedToSyntheticCacheDocuments" classname="com.vibe.store.SafProviderFailureTest" time="0.939" />
+  <testcase name="revokedSelectedUriFailsClosedBeforeParsing" classname="com.vibe.store.SafProviderFailureTest" time="0.997" />
+</testsuite>

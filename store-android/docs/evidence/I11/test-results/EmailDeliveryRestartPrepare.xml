@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.EmailDeliveryRestartUiTest" tests="1" failures="0" errors="0" skipped="0" time="0.457" timestamp="2026-10-10T12:53:39" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="prepareForProcessRestart" classname="com.vibe.store.EmailDeliveryRestartUiTest" time="0.013" />
+</testsuite>

@@ -122,3 +122,42 @@ watchdog are explicitly not represented as one), no source-revision binding in
 the artifact attestation, and no physical low-storage/provider-specific grant
 revocation exercise. No P0/P1 is currently evidenced. Do not begin I11 until
 I10's explicit-path commit and post-commit clean-tree verification complete.
+
+## Current status — 2026-10-10 I11 delivery
+
+This section supersedes the preceding “do not begin I11” instruction: I10 was
+accepted and committed at `07c9be3a6080e32ee9f7c3bb25cb8d6a6cf64fb9` on
+`feature/store-i10`; protected `main` remains
+`3691eccedc9855686b011e34c7420f17aaf6c085`. I11 is now implemented and its
+synthetic acceptance matrix passes, pending final exact-path review and local
+I11 commit. The index is empty; all I11 changes are under `store-android`.
+
+- I11 adds PrintManager/PrintDocumentAdapter, private FileProvider sharing,
+  durable actor/generation-bound SMTP report delivery, Keystore-backed secret
+  handling, mandatory TLS, bounded retry policy, a unique network-constrained
+  WorkManager chain, and FR/EN configuration/queue UI.
+- Final architecture + JVM regressions: 108/108, zero failures/errors/skips.
+  Final minified `:app:assembleRelease` passed.
+- API36 synthetic Android tests: PersistenceTest 12/12; queue persistence after
+  writer-process death 1/1; DocumentExportUiTest 7/7; SAF provider failures and
+  external shell-UID denial 4/4; queue UI 1/1; unique scheduler 1/1; offline →
+  reconnect 1/1. Direct installed-runner phases also verified the WorkManager
+  entry survived force-stopping `com.vibe.store.debug` (both 1/1). Emulator
+  Wi-Fi/airplane state was restored.
+- Controlled local SMTP suite 4/4: authenticated implicit-TLS message and PDF
+  accepted by synthetic server; untrusted cert, absent STARTTLS and stalled
+  greeting fail closed; nested timeout is surfaced as `SMTP_TIMEOUT`.
+- Evidence and reports: `I11/I11_IMPLEMENTATION_EVIDENCE.md` and
+  `I11/test-results/`. Gradle's split-process test invocation cleared the
+  target package between separate restart runs; this harness diagnostic is
+  retained separately, while the direct two-phase restart outputs are retained
+  as text. No restart PASS is inferred from the Gradle failure.
+- I11 limitations: physical printer/provider behavior is deferred to I14 as
+  specified; no live third-party SMTP provider was contacted; delivery is not
+  exactly-once. No known I11 P0/P1 remains; these are contractual limitations.
+
+Next: inspect complete I11 diff and path inventory, run final `git diff
+--check`, stage only reviewed I11 paths, verify the staged manifest, commit with
+the contract message `feat(android): I11 integrate print share and delivery`,
+verify clean worktree/main protection, then read I12's exact contract before
+implementation. Do not push or merge.
