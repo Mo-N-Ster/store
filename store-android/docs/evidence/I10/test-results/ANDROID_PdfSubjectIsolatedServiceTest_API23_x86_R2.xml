@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" tests="15" failures="0" errors="0" skipped="0" time="8.292" timestamp="2026-10-09T21:19:06" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I10_API23_x86(AVD) - 6.0" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="repeatedMalformedRequestsDoNotReusePriorSuccess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.165" />
+  <testcase name="stalledInputTimesOutByTerminatingOnlyTheIsolatedServiceProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="4.997" />
+  <testcase name="validStoreSubjectIsExtractedInsideIsolatedProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.04" />
+  <testcase name="oversizedPdfIsRejectedAtTheNativeInputBoundary" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.04" />
+  <testcase name="subjectAtOutputLimitUsesBoundedPipeInsteadOfBinderPayload" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.264" />
+  <testcase name="maximumAllowedPdfInputIsParsedWithinTheIsolatedProcessBudget" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="1.003" />
+  <testcase name="missingOrEmptySubjectIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.02" />
+  <testcase name="applicationExtractorRejectsMalformedPdfWithoutReturningMetadata" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.06" />
+  <testcase name="passwordProtectedPdfWithoutCredentialsIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.077" />
+  <testcase name="subjectBeyondCanonicalCodecBoundIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.069" />
+  <testcase name="syntheticLegacy201EnvelopeRetainsTheExactSubject" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.03" />
+  <testcase name="malformedSubjectPayloadsAreRejectedByTheStrictCodec" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.101" />
+  <testcase name="malformedAndTruncatedPdfAreRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.033" />
+  <testcase name="concurrentRequestsAcceptAtMostOnePdfAtATime" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.052" />
+  <testcase name="applicationExtractorUsesTheBoundedIsolatedBinderProtocol" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.034" />
+</testsuite>

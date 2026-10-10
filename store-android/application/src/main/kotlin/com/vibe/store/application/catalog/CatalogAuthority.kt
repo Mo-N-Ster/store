@@ -27,6 +27,20 @@ class CatalogAuthority(private val identity: IdentityAuthority, private val medi
             CatalogPage(items.take(filter.limit).map { it.view() }, items.size > filter.limit)
         }
     }
+    override suspend fun documentSnapshot(): CatalogDocumentSnapshot = identity.authorizedRead("PRODUCTS:READ") {
+        val maximum = 10_000
+        val items = ArrayList<ProductView>()
+        var offset = 0
+        while (offset < maximum) {
+            val batch = catalog.page(CatalogFilter(offset = offset, limit = minOf(201, maximum - offset + 1)))
+            val visible = batch.take(200)
+            items.addAll(visible.map { it.view() })
+            if (batch.size <= 200) break
+            offset += 200
+        }
+        if (items.size >= maximum && catalog.page(CatalogFilter(offset = maximum, limit = 1)).isNotEmpty()) fail(CatalogError.INVALID_INPUT)
+        CatalogDocumentSnapshot(items, settings.value("currency") ?: "EUR")
+    }
     override suspend fun detail(id: Long): ProductView {
         valid(id > 0); return identity.authorizedRead("PRODUCTS:READ") { (catalog.find(id) ?: fail(CatalogError.NOT_FOUND)).view() }
     }

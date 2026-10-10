@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.ReportingAuthorityTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-10T11:20:59.708Z" hostname="Sterling-Setup" time="0.068">
+  <properties/>
+  <testcase name="legacyDashboardRejectsMultiDayAndNonDayGrainBeforeProjection" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.048"/>
+  <testcase name="calendarDashboardUsesExplicitZoneAndEffectivePresenceRight" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.005"/>
+  <testcase name="reportDenialHappensBeforeRepositoryAndDoesNotDiscloseRows" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.002"/>
+  <testcase name="dashboardUsesCurrentIdentityAndDoesNotRequireFinancePermission" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.002"/>
+  <testcase name="incompatibleDimensionsAndUnsupportedGrainsAreRejected" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.002"/>
+  <testcase name="purchaseAndTeamSectionsRequireCurrentEffectiveAdditionalRights" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.003"/>
+  <testcase name="deniedDashboardDoesNotReachAnyProjection" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.001"/>
+  <testcase name="individuallyDeniedFinanceReadIsRejectedBeforeRepository" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.002"/>
+  <testcase name="invalidTabStatusIsRejectedWithoutProjectionRead" classname="com.vibe.store.testing.ReportingAuthorityTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

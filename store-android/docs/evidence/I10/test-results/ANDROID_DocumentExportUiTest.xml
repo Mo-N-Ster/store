@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.DocumentExportUiTest" tests="5" failures="0" errors="0" skipped="0" time="10.087" timestamp="2026-10-09T15:21:10" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="safCancellationIsShownAndDoesNotRetryOrMutateBusinessData" classname="com.vibe.store.DocumentExportUiTest" time="2.118" />
+  <testcase name="safDestinationWriteErrorHasRetryableStatus" classname="com.vibe.store.DocumentExportUiTest" time="1.095" />
+  <testcase name="createDocumentWritesToSelectedSystemProvider" classname="com.vibe.store.DocumentExportUiTest" time="2.961" />
+  <testcase name="destinationWriteFailureIsShownAndDeniedSourceNeverOpensSaf" classname="com.vibe.store.DocumentExportUiTest" time="1.172" />
+  <testcase name="createDocumentLaunchesSystemPickerAndCancellationReturnsNull" classname="com.vibe.store.DocumentExportUiTest" time="2.171" />
+</testsuite>

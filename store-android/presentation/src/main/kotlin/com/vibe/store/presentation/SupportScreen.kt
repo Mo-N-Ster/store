@@ -18,6 +18,8 @@ import java.util.UUID
 fun SupportScreen(
     support: SupportService, identity: IdentityService, actor: PublicIdentity, french: Boolean,
     onSettings: () -> Unit, onBack: () -> Unit, onNavigationLock: (Boolean) -> Unit,
+    documents: DocumentService? = null,
+    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
 ) {
     fun t(fr: String, en: String) = if (french) fr else en
     val admin = actor.role == "owner" && "ADMINISTRATION:READ" in actor.permissions
@@ -295,8 +297,15 @@ fun SupportScreen(
                     content.contains(helpSearch.trim(), ignoreCase = true)
                 }.forEach { topic ->
                     Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(14.dp)) {
-                        Text(if (french) topic.titleFr else topic.titleEn, style = MaterialTheme.typography.titleMedium)
-                        Text(if (french) topic.bodyFr else topic.bodyEn)
+                        val title = if (french) topic.titleFr else topic.titleEn
+                        val body = if (french) topic.bodyFr else topic.bodyEn
+                        Text(title, style = MaterialTheme.typography.titleMedium)
+                        Text(body)
+                        if (documents != null) DocumentExportAction(documents, french,
+                            t("Enregistrer l’aide en PDF", "Save help as PDF"),
+                            request = { DocumentRequest("help-${topic.titleEn}", DocumentType.HELP, title,
+                                java.time.Instant.now(), DocumentSnapshot.Help(title, body), if (french) "fr" else "en") },
+                            save = saveDocument)
                     } }
                 }
             }

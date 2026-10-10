@@ -2,6 +2,7 @@ import org.gradle.api.artifacts.ProjectDependency
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.test) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.compose) apply false
@@ -15,7 +16,8 @@ val allowed = mapOf(
     ":application" to setOf(":application-api", ":domain"),
     ":domain" to emptySet(),
     ":infrastructure" to setOf(":application", ":domain"),
-    ":testing" to setOf(":application-api", ":application", ":domain")
+    ":testing" to setOf(":application-api", ":application", ":domain"),
+    ":releaseQualification" to setOf(":app")
 )
 val verifyArchitecture = tasks.register("verifyArchitecture") {
     group = "verification"

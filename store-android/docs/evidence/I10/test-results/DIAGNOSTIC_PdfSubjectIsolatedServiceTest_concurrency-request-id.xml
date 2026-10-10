@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" tests="7" failures="1" errors="0" skipped="0" time="6.382" timestamp="2026-10-09T19:28:08" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="stalledInputTimesOutByTerminatingOnlyTheIsolatedServiceProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="5.132" />
+  <testcase name="validStoreSubjectIsExtractedInsideIsolatedProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.129" />
+  <testcase name="oversizedPdfIsRejectedAtTheNativeInputBoundary" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.152" />
+  <testcase name="missingOrEmptySubjectIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.127" />
+  <testcase name="syntheticLegacy201EnvelopeRetainsTheExactSubject" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.127" />
+  <testcase name="malformedAndTruncatedPdfAreRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.252" />
+  <testcase name="concurrentRequestsAcceptAtMostOnePdfAtATime" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.138">
+    <failure>java.lang.AssertionError: expected:&lt;(2, 1)&gt; but was:&lt;(0, 1)&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest.concurrentRequestsAcceptAtMostOnePdfAtATime(PdfSubjectIsolatedServiceTest.kt:140)
+</failure>
+  </testcase>
+</testsuite>

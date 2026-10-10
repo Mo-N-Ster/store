@@ -1,0 +1,22 @@
+Parser stress-run measurement summary
+Device: STORE_API36_Main, API 36, x86_64
+Test class: com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest
+JUnit XML: ANDROID_PdfSubjectIsolatedServiceTest_API36_x86_64_R5.xml
+JUnit result: 19 tests; 0 failures; 0 errors; 0 skipped
+
+Debug service log observations during the run (PdfSubjectQual):
+- Maximum sampled isolated-process PSS: 67,174 KiB
+- Maximum sampled native heap: 39,652,880 bytes
+- Maximum logged individual request elapsed time: 174 ms
+- PSS sampling interval configured by service: 25 ms
+
+The suite included a 2,048-level nested Info value, a valid 4,096-indirect-object graph,
+a 32 MiB Flate-expanded unused page stream, maximum configured input and Subject cases,
+the timeout/process-restart case, and bounded concurrency. These measurements are from
+one synthetic API 36 x86_64 run. The sampler may miss transient allocation peaks and is
+not an OS-enforced native-memory limit. This is not a general PDF fuzzing result, not
+proof against arbitrary decompression bombs, and not ARM64 or minified-release runtime
+qualification. Source: infrastructure/src/main/kotlin/com/vibe/store/infrastructure/
+documents/parser/PdfSubjectIsolatedService.kt; test source:
+infrastructure/src/androidTest/kotlin/com/vibe/store/infrastructure/documents/parser/
+PdfSubjectIsolatedServiceTest.kt.

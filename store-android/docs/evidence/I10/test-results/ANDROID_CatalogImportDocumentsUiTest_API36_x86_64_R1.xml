@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogImportDocumentsUiTest" tests="1" failures="0" errors="0" skipped="0" time="5.418" timestamp="2026-10-09T22:09:04" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="documentsUiSelectedPdfReachesIsolatedParserAndStrictCodec" classname="com.vibe.store.CatalogImportDocumentsUiTest" time="4.69" />
+</testsuite>

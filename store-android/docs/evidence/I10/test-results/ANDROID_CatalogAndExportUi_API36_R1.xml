@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogUiTest" tests="20" failures="0" errors="0" skipped="0" time="64.017" timestamp="2026-10-09T21:31:58" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="englishReadOnlyCatalogSearchDetailAndReturn" classname="com.vibe.store.CatalogUiTest" time="3.292" />
+  <testcase name="adaptiveWindowThresholdsRecomputeAndKeepCatalogUsable" classname="com.vibe.store.CatalogUiTest" time="12.664" />
+  <testcase name="frenchContinuousEntryAndCancelledPickerPreserveForm" classname="com.vibe.store.CatalogUiTest" time="3.397" />
+  <testcase name="detailAndHistoriesKeepReadableEntriesAndReadPermissions" classname="com.vibe.store.CatalogPresentationUiTest" time="1.608" />
+  <testcase name="cardsShowStockStatesAndStructuredAmounts" classname="com.vibe.store.CatalogPresentationUiTest" time="1.524" />
+  <testcase name="cancelledPickerPreservesExistingSelectionAndEntries" classname="com.vibe.store.CatalogFormUiTest" time="2.104" />
+  <testcase name="creationContinuousInputAndSingleSaveWhileBusy" classname="com.vibe.store.CatalogFormUiTest" time="4.692" />
+  <testcase name="editingKeepsInitialValuesAndSavesExistingIdentity" classname="com.vibe.store.CatalogFormUiTest" time="2.63" />
+  <testcase name="imeDoneClearsFocusWithoutSavingThenExplicitSaveWorks" classname="com.vibe.store.CatalogFormUiTest" time="4.072" />
+  <testcase name="unchangedAndRestoredValuesReturnWithoutConfirmation" classname="com.vibe.store.CatalogFormUiTest" time="2.677" />
+  <testcase name="readOnlyPermissionsDoNotExposeCreationOrEdit" classname="com.vibe.store.CatalogFormUiTest" time="1.183" />
+  <testcase name="cancelDiscardKeepsFieldsAndReplacementImage" classname="com.vibe.store.CatalogFormUiTest" time="2.644" />
+  <testcase name="failedSaveRetainsFormFieldsAndImageRemoval" classname="com.vibe.store.CatalogFormUiTest" time="2.217" />
+  <testcase name="systemBackConfirmedDiscardClearsOnlyPresentationDraft" classname="com.vibe.store.CatalogFormUiTest" time="2.187" />
+  <testcase name="compactFormSectionsAndAllControlsRemainReachable" classname="com.vibe.store.CatalogFormUiTest" time="7.346" />
+  <testcase name="safCancellationIsShownAndDoesNotRetryOrMutateBusinessData" classname="com.vibe.store.DocumentExportUiTest" time="1.004" />
+  <testcase name="safDestinationWriteErrorHasRetryableStatus" classname="com.vibe.store.DocumentExportUiTest" time="1.086" />
+  <testcase name="createDocumentWritesToSelectedSystemProvider" classname="com.vibe.store.DocumentExportUiTest" time="3.466" />
+  <testcase name="destinationWriteFailureIsShownAndDeniedSourceNeverOpensSaf" classname="com.vibe.store.DocumentExportUiTest" time="1.303" />
+  <testcase name="createDocumentLaunchesSystemPickerAndCancellationReturnsNull" classname="com.vibe.store.DocumentExportUiTest" time="2.051" />
+</testsuite>

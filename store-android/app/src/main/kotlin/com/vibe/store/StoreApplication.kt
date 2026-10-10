@@ -40,6 +40,14 @@ class StoreApplication : Application() {
         com.vibe.store.application.sales.SaleAuthority(authority).also { saleAuthority = it }
     }
     val catalog: CatalogService by lazy { CatalogAuthority(authority, AndroidProductMedia.create(this)) }
+    /** Prepared but not exposed to UI until I10 parser qualification is accepted. */
+    val catalogImport: com.vibe.store.api.CatalogImportService by lazy {
+        com.vibe.store.application.catalog.CatalogImportAuthority(
+            authority,
+            System::currentTimeMillis,
+            com.vibe.store.infrastructure.documents.parser.AndroidPdfSubjectExtractor(this),
+        )
+    }
     val suppliers: com.vibe.store.api.SupplierService by lazy { com.vibe.store.application.purchases.SupplierAuthority(authority) }
     val purchases: com.vibe.store.api.PurchaseService by lazy {
         com.vibe.store.application.purchases.PurchaseAuthority(authority, catalog).also { purchaseAuthority = it }
@@ -51,4 +59,5 @@ class StoreApplication : Application() {
         TeamAuthority(authority, AndroidProfilePhotoMedia.create(this))
     }
     val reporting: ReportingService by lazy { ReportingAuthority(authority) }
+    val documents: com.vibe.store.api.DocumentService by lazy { com.vibe.store.infrastructure.documents.AndroidDocumentService() }
 }

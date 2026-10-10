@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.SalePolicyTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-09T20:50:11.537Z" hostname="Sterling-Setup" time="0.011">
+  <properties/>
+  <testcase name="exactSubtotalDiscountClampPaidAndChange" classname="com.vibe.store.testing.SalePolicyTest" time="0.002"/>
+  <testcase name="invalidInputsAreNotCanonicalCommands" classname="com.vibe.store.testing.SalePolicyTest" time="0.007"/>
+  <testcase name="canonicalOrderMultiplicityScaleAndPrecision" classname="com.vibe.store.testing.SalePolicyTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

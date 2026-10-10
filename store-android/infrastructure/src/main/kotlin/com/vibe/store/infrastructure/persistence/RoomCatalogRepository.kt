@@ -44,4 +44,56 @@ internal class RoomCatalogRepository(private val dao: StoreDao, private val chec
     override suspend fun prices(productId: Long): List<PriceTrace> { check(false); return dao.productPrices(productId).map { PriceTrace(it.id, it.productId, it.price, it.recordedAt) } }
     override suspend fun deleteMovements(ids: List<Long>): Int { check(true); return dao.deleteMovements(ids) }
     override suspend fun imageReferences(): Set<String> { check(false); return dao.productImageReferences().toSet() }
+
+    override suspend fun matchingDuplicateKeys(names: Set<String>, hashtags: Set<String>): com.vibe.store.application.catalog.CatalogDuplicateKeys {
+        val matchedNames = LinkedHashSet<String>()
+        val matchedHashtags = LinkedHashSet<String>()
+        names.toList().chunked(400).forEach { keys -> check(false); matchedNames += dao.duplicateProductNames(keys) }
+        hashtags.toList().chunked(400).forEach { keys -> check(false); matchedHashtags += dao.duplicateProductHashtags(keys) }
+        return com.vibe.store.application.catalog.CatalogDuplicateKeys(matchedNames, matchedHashtags)
+    }
+
+    /** Batch insertion is only called inside the authorized owner transaction. */
+    override suspend fun insertImported(products: List<CatalogRecord>) {
+        check(true)
+        require(products.size <= 10_000 && products.all { it.id > 0 && it.deletedAt == null && it.imageRef == null })
+        if (products.isEmpty()) return
+        val productRows = products.map { product ->
+            ProductEntity(product.id, product.name, product.category, product.price, product.stock, product.minimumStock,
+                product.createdAt, product.updatedAt, null, product.hashtag, product.description, null, null)
+        }
+        check(true)
+        dao.importedProducts(productRows)
+
+        val withInitialStock = products.filter { it.stock > 0 }
+        if (withInitialStock.isNotEmpty()) {
+            check(true)
+            val firstMovementId = dao.nextMovementId()
+            require(firstMovementId > 0 && withInitialStock.size.toLong() <= Long.MAX_VALUE - firstMovementId)
+            check(true)
+            dao.importedMovements(withInitialStock.mapIndexed { index, product ->
+                MovementEntity(firstMovementId + index, product.id, product.stock, "initial", product.price, product.createdAt, null)
+            })
+        }
+
+        check(true)
+        val firstPriceId = dao.nextPriceId()
+        require(firstPriceId > 0 && products.size.toLong() <= Long.MAX_VALUE - firstPriceId)
+        check(true)
+        dao.importedPrices(products.mapIndexed { index, product ->
+            PriceEntity(firstPriceId + index, product.id, product.price, product.createdAt)
+        })
+
+        val lowStock = products.filter { it.stock <= it.minimumStock }
+        if (lowStock.isNotEmpty()) {
+            check(true)
+            val firstNotificationId = dao.nextNotificationId()
+            require(firstNotificationId > 0 && lowStock.size.toLong() <= Long.MAX_VALUE - firstNotificationId)
+            check(true)
+            dao.importedNotifications(lowStock.mapIndexed { index, product ->
+                NotificationEntity(firstNotificationId + index, "LOW_STOCK", product.id,
+                    "${product.name.take(120)} : stock ${product.stock} / seuil ${product.minimumStock}", false, product.createdAt)
+            })
+        }
+    }
 }

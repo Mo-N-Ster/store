@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <service
+            android:name="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedService"
+            android:exported="false"
+            android:isolatedProcess="true" />
+    </application>
+</manifest>

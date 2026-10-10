@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.ReportingCalculationsTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-10-09T14:14:02.728Z" hostname="Sterling-Setup" time="0.009">
+  <properties/>
+  <testcase name="nonTerminatingAverageUsesDocumentedDecimal128Precision" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.003"/>
+  <testcase name="immutableSnapshotsDefensivelyCopyNestedLists" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <testcase name="threeLineRepeatingAllocationIsBoundedConservedAndDeterministic" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <testcase name="zeroValueLinesAndOneHundredPercentDiscountRespectBounds" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.0"/>
+  <testcase name="dateRangeIsStartInclusiveAndEndExclusive" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.0"/>
+  <testcase name="lineDiscountAllocationPreservesTerminatingPrecisionAndBalancesExactly" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <testcase name="reportFiltersValidateBoundedDatesAndRows" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <testcase name="marginIsAlwaysEstimatedAndMissingCostIsDisclosed" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.0"/>
+  <testcase name="highPrecisionInputsAndTinyTotalsAreNotRoundedToCurrencyCents" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <testcase name="cancelledSalesAreSeparateAndNeverAffectRevenueOrMargin" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.0"/>
+  <testcase name="exactRevenueAndZeroSales" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.0"/>
+  <testcase name="revenueAggregatesExactDecimalsAndAverageUsesInternalPrecision" classname="com.vibe.store.testing.ReportingCalculationsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

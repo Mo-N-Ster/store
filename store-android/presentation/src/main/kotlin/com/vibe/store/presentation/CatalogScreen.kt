@@ -25,6 +25,9 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -33,6 +36,16 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Job
+
+/** Activated after parser confinement, bounds, authorization, and atomic-import gates passed. */
+private const val CATALOG_PDF_IMPORT_UI_ENABLED = true
+
+sealed interface CatalogPdfSelection {
+    data class Ready(val input: BoundedDocumentInput) : CatalogPdfSelection
+    data object Cancelled : CatalogPdfSelection
+    data object Failed : CatalogPdfSelection
+}
 
 /** In-memory presentation state only. Never an authorization decision or saved session. */
 class CatalogScreenState {
@@ -66,7 +79,14 @@ class CatalogScreenState {
 
 @Composable
 fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boolean,
-    state: CatalogScreenState, pickImage: ((SelectedImage?) -> Unit) -> Unit, back: () -> Unit) {
+    state: CatalogScreenState, pickImage: ((SelectedImage?) -> Unit) -> Unit,
+    documents: DocumentService? = null,
+    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    catalogImport: CatalogImportService? = null,
+    actorId: Long = -1,
+    pickCatalogPdf: ((Long, (CatalogPdfSelection) -> Unit) -> Unit)? = null,
+    catalogPdfImportEnabled: Boolean = CATALOG_PDF_IMPORT_UI_ENABLED,
+    back: () -> Unit) {
     fun t(fr: String, en: String) = if (french) fr else en
     var page by remember { mutableStateOf(CatalogPage(emptyList(), false)) }
     var busy by remember { mutableStateOf(false) }
@@ -80,7 +100,36 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
     var history by remember { mutableStateOf("") }
     var movementFilter by remember { mutableStateOf(MovementFilter()) }
     var confirmDiscard by remember(state) { mutableStateOf(false) }
+    var importPreview by remember { mutableStateOf<CatalogImportPreview?>(null) }
+    var importBusy by remember { mutableStateOf(false) }
+    var importError by remember { mutableStateOf<String?>(null) }
+    var importNotice by remember { mutableStateOf<String?>(null) }
+    var importRequest by remember { mutableIntStateOf(0) }
+    var importJob by remember { mutableStateOf<Job?>(null) }
     val scope = rememberCoroutineScope()
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    DisposableEffect(lifecycle, catalogImport) {
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_STOP) {
+                importRequest++
+                importJob?.cancel()
+                importJob = null
+                val previewId = importPreview?.previewId
+                importPreview = null
+                importBusy = false
+                importError = null
+                if (previewId != null && catalogImport != null) scope.launch { catalogImport.discard(previewId) }
+            }
+        }
+        lifecycle.addObserver(observer)
+        onDispose {
+            lifecycle.removeObserver(observer)
+            importRequest++
+            importJob?.cancel()
+            val previewId = importPreview?.previewId
+            if (previewId != null && catalogImport != null) scope.launch { catalogImport.discard(previewId) }
+        }
+    }
     fun run(action: suspend () -> Unit) {
         if (busy) return
         busy = true; error = null
@@ -99,6 +148,48 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
             catch (_: SecurityFailure) { error = t("Accès refusé ou session expirée.", "Access denied or session expired.") }
             catch (_: Exception) { error = t("Erreur de stockage. Aucune réussite n’est confirmée.", "Storage error. No success is confirmed.") }
             finally { busy = false }
+        }
+    }
+    fun selectCatalogPdf() {
+        if (importBusy) return
+        importError = null
+        importNotice = null
+        importPreview = null
+        importBusy = true
+        pickCatalogPdf?.invoke(actorId) { selection ->
+            when (selection) {
+                CatalogPdfSelection.Cancelled -> importBusy = false
+                CatalogPdfSelection.Failed -> { importBusy = false; importError = t("Lecture du PDF impossible. Vérifiez l’accès au fichier.", "Could not read the PDF. Check access to the file.") }
+                is CatalogPdfSelection.Ready -> {
+                    val importer = catalogImport
+                    if (importer == null) importBusy = false
+                    else {
+                        importRequest++
+                        val requestId = importRequest
+                        importJob?.cancel()
+                        importJob = scope.launch {
+                            try {
+                                val preview = importer.previewPdf(selection.input)
+                                if (requestId == importRequest) importPreview = preview
+                                else preview.previewId?.let { importer.discard(it) }
+                            } catch (cancelled: CancellationException) { throw cancelled }
+                            catch (_: SecurityFailure) { if (requestId == importRequest) importError = t("Accès refusé ou session expirée.", "Access denied or session expired.") }
+                            catch (failure: CatalogImportFailure) {
+                                if (requestId == importRequest) importError = when (failure.code) {
+                                    CatalogImportFailureCode.INVALID_DOCUMENT -> t("PDF ou données STORE non valides.", "Invalid PDF or STORE data.")
+                                    CatalogImportFailureCode.PARSER_UNAVAILABLE -> t("Import PDF temporairement indisponible.", "PDF import is temporarily unavailable.")
+                                    CatalogImportFailureCode.STALE_PREVIEW -> t("La session a changé. Sélectionnez à nouveau le fichier.", "The session changed. Select the file again.")
+                                    else -> t("Import PDF refusé. Aucune donnée n’a été modifiée.", "PDF import rejected. No data was changed.")
+                                }
+                            } catch (_: Exception) {
+                                if (requestId == importRequest) importError = t("Analyse impossible. Aucune donnée n’a été modifiée.", "Could not analyze the document. No data was changed.")
+                            } finally {
+                                if (requestId == importRequest) importBusy = false
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     val filter = state.filter
@@ -149,6 +240,26 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
                 }
                 if (busy) LinearProgressIndicator(Modifier.fillMaxWidth())
                 error?.let { Text(it, Modifier.testTag("catalog-error"), color = MaterialTheme.colorScheme.error) }
+                if (importBusy) LinearProgressIndicator(Modifier.fillMaxWidth().testTag("catalog-import-progress"))
+                importError?.let { Text(it, Modifier.testTag("catalog-import-error"), color = MaterialTheme.colorScheme.error) }
+                importNotice?.let { Text(it, Modifier.testTag("catalog-import-success"), color = MaterialTheme.colorScheme.primary) }
+            }
+            if (documents != null && "PRODUCTS:READ" in permissions && !state.editing && state.selected == null) item {
+                DocumentExportAction(documents, french, t("Exporter le catalogue en PDF", "Export catalog as PDF"),
+                    request = {
+                        val snapshot = service.documentSnapshot()
+                        DocumentRequest("catalog", DocumentType.CATALOG,
+                            t("Catalogue des articles", "Product catalog"), java.time.Instant.now(),
+                            DocumentSnapshot.Catalog(snapshot.items, snapshot.currency), if (french) "fr" else "en")
+                    }, save = saveDocument)
+            }
+            if (catalogPdfImportEnabled && catalogImport != null && pickCatalogPdf != null &&
+                "PRODUCTS:UPDATE" in permissions && !state.editing && state.selected == null) item {
+                OutlinedButton(
+                    modifier = Modifier.fillMaxWidth().testTag("catalog-import-pdf"),
+                    enabled = !busy && !importBusy,
+                    onClick = ::selectCatalogPdf,
+                ) { Text(t("Importer un catalogue PDF", "Import catalog PDF")) }
             }
             if (state.editing) {
                 item {
@@ -334,6 +445,73 @@ fun CatalogScreen(service: CatalogService, permissions: Set<String>, french: Boo
             onClick = { if (!busy) { state.discardEdit(); confirmDiscard = false } }) { Text(t("Abandonner", "Discard")) } },
         dismissButton = { TextButton(modifier = Modifier.testTag("product-discard-cancel"), enabled = !busy,
             onClick = { confirmDiscard = false }) { Text(t("Continuer la saisie", "Keep editing")) } })
+    importPreview?.let { preview ->
+        AlertDialog(
+            modifier = Modifier.testTag("catalog-import-preview"),
+            onDismissRequest = { if (!importBusy) {
+                val id = preview.previewId
+                importPreview = null
+                if (id != null) scope.launch { catalogImport?.discard(id) }
+            } },
+            title = { Text(t("Aperçu du catalogue", "Catalog preview")) },
+            text = {
+                Column(Modifier.heightIn(max = 420.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Text(t("Données non authentifiées · ${preview.products.size} article(s) · devise de catalogue ${preview.currency}",
+                        "Unauthenticated data · ${preview.products.size} product(s) · catalog currency ${preview.currency}"))
+                    Text(t("La validité du fichier ne prouve ni son origine ni l’exactitude des valeurs.",
+                        "File validity does not prove its origin or the correctness of its values."),
+                        style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    preview.products.take(8).forEachIndexed { index, product ->
+                        Text("${index + 1}. ${product.name} · ${DecimalInput.display(product.price, french)} ${preview.currency} · ${t("stock", "stock")} ${product.stockQuantity}",
+                            style = MaterialTheme.typography.bodySmall)
+                    }
+                    if (preview.products.size > 8) Text(t("Aperçu limité aux 8 premières lignes.", "Preview limited to the first 8 rows."), style = MaterialTheme.typography.bodySmall)
+                    preview.issues.take(12).forEach { issue ->
+                        Text(t("Ligne ${issue.row} · ${issue.field} · ${issue.code}", "Row ${issue.row} · ${issue.field} · ${issue.code}"),
+                            color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                    }
+                    if (preview.issues.size > 12) Text(t("${preview.issues.size - 12} autre(s) erreur(s).", "${preview.issues.size - 12} more issue(s)."),
+                        color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    modifier = Modifier.testTag("catalog-import-confirm"),
+                    enabled = preview.canImport && !importBusy,
+                    onClick = {
+                        val importer = catalogImport
+                        val id = preview.previewId
+                        if (importer != null && id != null && preview.canImport && !importBusy) {
+                            importBusy = true
+                            importError = null
+                            importJob = scope.launch {
+                                try {
+                                    val result = importer.confirm(id)
+                                    importPreview = null
+                                    importNotice = t("${result.importedCount} article(s) importé(s).", "${result.importedCount} product(s) imported.")
+                                    revision++
+                                } catch (cancelled: CancellationException) { throw cancelled }
+                                catch (_: SecurityFailure) { importError = t("Accès refusé ou session expirée. Aucune donnée n’a été importée.", "Access denied or session expired. Nothing was imported.") }
+                                catch (_: Exception) { importError = t("Import annulé ou refusé. Vérifiez le catalogue; aucune réussite n’est confirmée.", "Import cancelled or rejected. Check the catalog; no success is confirmed.") }
+                                finally { importBusy = false }
+                            }
+                        }
+                    },
+                ) { Text(t("Confirmer l’import", "Confirm import")) }
+            },
+            dismissButton = {
+                TextButton(
+                    modifier = Modifier.testTag("catalog-import-cancel"),
+                    enabled = !importBusy,
+                    onClick = {
+                        val id = preview.previewId
+                        importPreview = null
+                        if (id != null) scope.launch { catalogImport?.discard(id) }
+                    },
+                ) { Text(t("Annuler", "Cancel")) }
+            },
+        )
+    }
     if (adjustment && product != null) AlertDialog(onDismissRequest = { if (!busy) adjustment = false },
         title = { Text(t("Stock cible justifié", "Justified target stock")) },
         text = { Column { CatalogField(t("Quantité cible", "Target quantity"), target, "stock-target", busy, true) { target = it }; CatalogField(t("Motif (3 caractères minimum)", "Reason (minimum 3 characters)"), reason, "stock-reason", busy) { reason = it }; error?.let { Text(it, color = MaterialTheme.colorScheme.error) } } },

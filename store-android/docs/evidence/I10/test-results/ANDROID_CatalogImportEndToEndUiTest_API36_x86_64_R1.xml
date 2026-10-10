@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogImportEndToEndUiTest" tests="1" failures="0" errors="0" skipped="0" time="5.247" timestamp="2026-10-10T10:11:52" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="realPickerPreviewConfirmationAndRoomPersistenceAreOneWorkflow" classname="com.vibe.store.CatalogImportEndToEndUiTest" time="4.694" />
+</testsuite>

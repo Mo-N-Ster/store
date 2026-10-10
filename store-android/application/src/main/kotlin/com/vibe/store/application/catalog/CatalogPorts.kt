@@ -16,7 +16,11 @@ interface CatalogRecords {
     suspend fun prices(productId: Long): List<PriceTrace>
     suspend fun deleteMovements(ids: List<Long>): Int
     suspend fun imageReferences(): Set<String>
+    suspend fun matchingDuplicateKeys(names: Set<String>, hashtags: Set<String>): CatalogDuplicateKeys
+    /** Inserts new products plus their initial stock movements, price history, and low-stock alerts. */
+    suspend fun insertImported(products: List<CatalogRecord>)
 }
+data class CatalogDuplicateKeys(val names: Set<String>, val hashtags: Set<String>)
 class PreparedMedia(val reference: String)
 data class MediaInspection(val missing: Int, val orphaned: Int)
 /** Trusted filesystem adapter; no paths/references accepted through public UI API. */

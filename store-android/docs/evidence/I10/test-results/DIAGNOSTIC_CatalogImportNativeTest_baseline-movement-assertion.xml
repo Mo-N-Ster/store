@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" tests="4" failures="1" errors="0" skipped="0" time="1.559" timestamp="2026-10-09T15:50:57" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="accountSwitchRechecksCurrentRightsAndRejectsOldPreview" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.463" />
+  <testcase name="invalidAndExistingDuplicatesHaveNoPartialEffects" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.23">
+    <failure>java.lang.AssertionError: expected:&lt;1&gt; but was:&lt;0&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.persistence.CatalogImportNativeTest$invalidAndExistingDuplicatesHaveNoPartialEffects$1$1.invokeSuspend(CatalogImportNativeTest.kt:78)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.CatalogImportNativeTest.invalidAndExistingDuplicatesHaveNoPartialEffects(CatalogImportNativeTest.kt:71)
+</failure>
+  </testcase>
+  <testcase name="authorizedImportWritesExactPricesAndInitialStockHistoryAtomically" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.228" />
+  <testcase name="partialRepositoryFailureRollsBackProductsStockHistoryAndAlerts" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.279" />
+</testsuite>

@@ -113,7 +113,9 @@ private fun statusOptions(tab: ReportTab): List<String> = when (tab) {
 /** Native, filter-driven reporting UI. All metrics and rows come from one immutable service snapshot. */
 @Composable
 fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french: Boolean,
-    modifier: Modifier = Modifier, onBack: (() -> Unit)? = null) {
+    modifier: Modifier = Modifier, documents: DocumentService? = null,
+    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    onBack: (() -> Unit)? = null) {
     val zoneId = remember(identity.id) { ZoneId.systemDefault().id }
     var draft by remember(service, identity.id, zoneId) { mutableStateOf(initialReportDraft(ReportTab.SUMMARY, zoneId)) }
     var applied by remember(service, identity.id) { mutableStateOf<AppliedReport?>(null) }
@@ -279,7 +281,18 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
                     }
                 }
                 is ReportScreenState.Content -> if (applied?.generation == current.generation &&
-                    current.document.tab == draft.tab) ReportDocument(current.document, french)
+                    current.document.tab == draft.tab) {
+                    if (documents != null && "FINANCES:READ" in identity.permissions) {
+                        DocumentExportAction(documents, french, label("Exporter ce rapport en PDF", "Export this report as PDF"),
+                            request = {
+                                val authorized = service.snapshot(current.document.filter)
+                                DocumentRequest(authorized.reportId, DocumentType.REPORT,
+                                    label("Rapport ${authorized.tab}", "${authorized.tab} report"), java.time.Instant.now(),
+                                    DocumentSnapshot.Report(authorized), if (french) "fr" else "en")
+                            }, save = saveDocument)
+                    }
+                    ReportDocument(current.document, french)
+                }
                 }
             }
         }

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogImportWorkflowUiTest" tests="4" failures="0" errors="0" skipped="0" time="10.074" timestamp="2026-10-10T11:16:39" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="defaultImportActionRequiresProductUpdatePermission" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="2.096" />
+  <testcase name="confirmationRunsOnceAndSessionDenialNeverShowsSuccess" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.887" />
+  <testcase name="syntheticSelectionShowsExactPreviewAndCancelDiscardsWithoutConfirming" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.353" />
+  <testcase name="realPickerPreviewConfirmationAndRoomPersistenceAreOneWorkflow" classname="com.vibe.store.CatalogImportEndToEndUiTest" time="4.028" />
+</testsuite>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogImportWorkflowUiTest" tests="3" failures="1" errors="0" skipped="0" time="6.887" timestamp="2026-10-09T22:21:55" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="disabledByDefaultAndPermissionDenialHideImportAction" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="2.374" />
+  <testcase name="confirmationRunsOnceAndSessionDenialNeverShowsSuccess" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.961" />
+  <testcase name="syntheticSelectionShowsExactPreviewAndCancelDiscardsWithoutConfirming" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.8">
+    <failure>java.lang.AssertionError: Assert failed: The component with Text + InputText + EditableText contains '1. Synthetic Café · 12.3400 XOF · stock 3' (ignoreCase: false) is not displayed!
+at androidx.compose.ui.test.AssertionsKt.assertIsDisplayed(Assertions.kt:34)
+at com.vibe.store.CatalogImportWorkflowUiTest.syntheticSelectionShowsExactPreviewAndCancelDiscardsWithoutConfirming(CatalogImportWorkflowUiTest.kt:89)
+</failure>
+  </testcase>
+</testsuite>

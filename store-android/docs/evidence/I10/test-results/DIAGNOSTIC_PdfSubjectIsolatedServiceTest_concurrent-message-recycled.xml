@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" tests="9" failures="1" errors="0" skipped="0" time="14.906" timestamp="2026-10-09T19:32:49" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="repeatedMalformedRequestsDoNotReusePriorSuccess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="6.713" />
+  <testcase name="stalledInputTimesOutByTerminatingOnlyTheIsolatedServiceProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="5.471" />
+  <testcase name="validStoreSubjectIsExtractedInsideIsolatedProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.328" />
+  <testcase name="oversizedPdfIsRejectedAtTheNativeInputBoundary" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.352" />
+  <testcase name="missingOrEmptySubjectIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.478" />
+  <testcase name="passwordProtectedPdfWithoutCredentialsIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.176" />
+  <testcase name="syntheticLegacy201EnvelopeRetainsTheExactSubject" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.302" />
+  <testcase name="malformedAndTruncatedPdfAreRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.554" />
+  <testcase name="concurrentRequestsAcceptAtMostOnePdfAtATime" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.152">
+    <failure>java.lang.AssertionError: expected:&lt;(1, 0)&gt; but was:&lt;(0, 0)&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest.concurrentRequestsAcceptAtMostOnePdfAtATime(PdfSubjectIsolatedServiceTest.kt:155)
+</failure>
+  </testcase>
+</testsuite>

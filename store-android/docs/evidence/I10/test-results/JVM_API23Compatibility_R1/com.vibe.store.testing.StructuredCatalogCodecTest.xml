@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.StructuredCatalogCodecTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-10-09T20:50:11.626Z" hostname="Sterling-Setup" time="0.154">
+  <properties/>
+  <testcase name="malformedBase64MalformedUtf8AndTruncatedJsonFailClosed" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.004"/>
+  <testcase name="productAndStringBoundsAreEnforcedWithoutPromotingThemToBusinessValidation" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.132"/>
+  <testcase name="unsupportedVersionsUnknownAndDuplicateFieldsAreRejected" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.001"/>
+  <testcase name="excessivePayloadAndTruncatedBase64AreRejected" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.008"/>
+  <testcase name="syntheticStore201PdfSubjectEnvelopeRemainsReadable" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.003"/>
+  <testcase name="canonicalRoundTripPreservesExactDecimalUnicodeAndCanonicalOrdering" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.001"/>
+  <testcase name="reorderedLegacyPropertiesAreAcceptedAndReencodedCanonically" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.001"/>
+  <testcase name="platformNeutralBase64MatchesRfc4648ForEveryFinalQuantumLength" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.001"/>
+  <testcase name="validAlterationIsParsedButRemainsExplicitlyUnauthenticated" classname="com.vibe.store.testing.StructuredCatalogCodecTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

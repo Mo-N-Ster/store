@@ -19,6 +19,10 @@ data class ProductDraft(val id: Long? = null, val name: String, val category: St
 data class CatalogFilter(val search: String = "", val category: String = "", val archived: Boolean = false,
     val stock: String = "all", val offset: Int = 0, val limit: Int = 50)
 data class CatalogPage(val items: List<ProductView>, val hasMore: Boolean)
+class CatalogDocumentSnapshot(items: List<ProductView>, val currency: String) {
+    val items: List<ProductView> = java.util.Collections.unmodifiableList(ArrayList(items))
+    init { require(items.size <= 10_000 && currency.matches(Regex("[A-Z]{3}"))) }
+}
 data class MovementView(val id: Long, val productId: Long, val productName: String, val category: String,
     val quantity: Long, val reason: String, val unitPrice: BigDecimal, val createdAt: String, val reference: String?)
 data class MovementFilter(val from: String = "", val to: String = "", val productId: Long? = null,
@@ -30,6 +34,8 @@ enum class CatalogError { INVALID_INPUT, NOT_FOUND, DUPLICATE, CONFLICT, INVALID
 class CatalogFailure(val code: CatalogError) : Exception(code.name)
 interface CatalogService {
     suspend fun list(filter: CatalogFilter = CatalogFilter()): CatalogPage
+    /** Bounded, authorized full active-catalog snapshot with its currency from the same read lease. */
+    suspend fun documentSnapshot(): CatalogDocumentSnapshot = throw UnsupportedOperationException("Catalog document snapshot unavailable")
     suspend fun detail(id: Long): ProductView
     suspend fun save(draft: ProductDraft, image: ImageEdit = ImageEdit.Keep): CatalogWrite
     suspend fun archive(id: Long, expectedUpdatedAt: String): ProductView

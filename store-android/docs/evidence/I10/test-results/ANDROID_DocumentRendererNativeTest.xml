@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" tests="2" failures="0" errors="0" skipped="0" time="3.101" timestamp="2026-10-09T14:37:14" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="oversizedInvoiceIsRejectedBeforeDetailRowsAreMaterialized" classname="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" time="0.036" />
+  <testcase name="allFourSyntheticDocumentTypesRenderAndRasterizeEveryBoundedPage" classname="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" time="2.737" />
+</testsuite>

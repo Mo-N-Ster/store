@@ -43,6 +43,12 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     purchases: PurchaseService? = null,
     inventories: InventoryService? = null,
     reporting: ReportingService? = null,
+    documents: DocumentService? = null,
+    catalogImport: CatalogImportService? = null,
+    pickCatalogPdf: (Long, (CatalogPdfSelection) -> Unit) -> Unit = { _, result -> result(CatalogPdfSelection.Cancelled) },
+    invalidatePendingCatalogPdf: () -> Unit = {},
+    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    invalidatePendingDocument: () -> Unit = {},
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
@@ -57,6 +63,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     var settingsDirty by remember { mutableStateOf(false) }
     var supportNavigationLocked by remember { mutableStateOf(false) }
     var resumeRefresh by remember { mutableStateOf<Job?>(null) }
+    var lastDocumentSessionId by remember { mutableStateOf<Long?>(null) }
     val scope = rememberCoroutineScope()
     val fr = prefs.language == "fr"
     fun text(french: String, english: String) = if (fr) french else english
@@ -71,7 +78,14 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
         }
     }
     suspend fun refresh() {
-        prefs = service.preferences(); identity = service.current()
+        prefs = service.preferences()
+        val refreshedIdentity = service.current()
+        if (refreshedIdentity != null && lastDocumentSessionId != null && refreshedIdentity.id != lastDocumentSessionId) {
+            invalidatePendingDocument()
+            invalidatePendingCatalogPdf()
+        }
+        if (refreshedIdentity != null) lastDocumentSessionId = refreshedIdentity.id
+        identity = refreshedIdentity
         val sameCatalogActor = identity?.id != null && identity?.id == catalogActor
         if (!sameCatalogActor) { catalogState = CatalogScreenState(); catalogActor = identity?.id }
         page = if (identity != null) {
@@ -155,7 +169,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                     }
                     Box(Modifier.weight(1f)) {
             if (page == "pos" && catalog != null && sales != null && posState != null) {
-                identity?.let { user -> PosScreen(sales, catalog, user, fr, posState) { page = "home" } }
+                identity?.let { user -> PosScreen(sales, catalog, user, fr, posState, documents, saveDocument) { page = "home" } }
             } else if (page == "suppliers" && suppliers != null) {
                 identity?.let { user -> SupplierScreen(suppliers, user.permissions, fr) { page = "operations" } }
             } else if (page == "purchases" && purchases != null && suppliers != null && catalog != null) {
@@ -165,7 +179,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
             } else if (page == "support" && support != null) {
                 identity?.let { user ->
                     key(user.id) {
-                        SupportScreen(support, service, user, fr,
+                        SupportScreen(support, service, user, fr, documents = documents, saveDocument = saveDocument,
                             onSettings = { navigate("settings") },
                             onBack = { supportNavigationLocked = false; page = "home" },
                             onNavigationLock = { supportNavigationLocked = it })
@@ -173,11 +187,16 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 }
             } else if (page == "reports" && reporting != null) {
                 identity?.let { user -> key(user.id) {
-                    ReportingScreen(reporting, user, fr) { page = "home" }
+                    ReportingScreen(reporting, user, fr, documents = documents, saveDocument = saveDocument) { page = "home" }
                 } }
             } else if (page == "catalog" && catalog != null) {
                 identity?.let { user ->
-                    CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage) { page = "home" }
+                    key(user.id) {
+                        CatalogScreen(catalog, user.permissions, fr, catalogState, pickImage,
+                            documents = documents, saveDocument = saveDocument,
+                            catalogImport = catalogImport, actorId = user.id,
+                            pickCatalogPdf = pickCatalogPdf) { page = "home" }
+                    }
                 }
             } else if ((page == "employees" || page == "today") && team != null) {
                 identity?.let { user ->
@@ -240,6 +259,11 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 Button(modifier = Modifier.testTag("login-submit"), enabled = !busy, onClick = { run {
                                     val next = if (switching) service.switchUser(Credentials(identifier, password))
                                         else service.login(Credentials(identifier, password))
+                                    if (lastDocumentSessionId != null && lastDocumentSessionId != next.id) {
+                                        invalidatePendingDocument()
+                                        invalidatePendingCatalogPdf()
+                                    }
+                                    lastDocumentSessionId = next.id
                                     identity = next; catalogState = CatalogScreenState(); catalogActor = next.id
                                     settingsDirty = false; teamNavigationLocked = false; page = "home"
                                 } }) { Text(text("Continuer", "Continue")) }
@@ -282,9 +306,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                         onClick = { posState.bind(user.id); page = "pos" }) { Text(text("Caisse et ventes", "Cash and sales")) }
                                 }
                                 StoreHome(user, config.storeName, fr, !busy, catalog != null,
-                                    team != null, ::navigate, onSwitch = { page = "switch" },
+                                    team != null, ::navigate, onSwitch = { invalidatePendingDocument(); invalidatePendingCatalogPdf(); page = "switch" },
                                     onLogout = { run {
-                                        service.logout(); identity = null
+                                        service.logout(); invalidatePendingDocument(); invalidatePendingCatalogPdf(); identity = null
                                         catalogState = CatalogScreenState(); catalogActor = null
                                         settingsDirty = false; teamNavigationLocked = false; page = "login"
                                     } }, hasPurchases = purchases != null && suppliers != null && catalog != null,

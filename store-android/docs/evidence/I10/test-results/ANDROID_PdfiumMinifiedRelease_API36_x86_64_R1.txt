@@ -1,0 +1,27 @@
+I10 targeted minified Release PDFium runtime qualification
+Date: 2026-10-10 (UTC)
+Target: emulator-5554 / STORE_API36_Main / API 36 / x86_64
+Application: :app release APK, R8 minification enabled; test-signed with local Android debug key only.
+Harness: :releaseQualification release APK, test-only dependency-free Instrumentation.
+
+Build command (store-android):
+  bash ./gradlew --offline :verifyArchitecture :app:assembleRelease :releaseQualification:assembleRelease
+
+Runtime command (after installing the locally test-signed app and harness APKs):
+  adb -s emulator-5554 shell am instrument -w -r com.vibe.store.releasequalification/.PdfiumReleaseInstrumentation
+
+Assertions: app package is com.vibe.store; private PdfSubjectIsolatedService binds via Binder/Messenger; the service's successful result requires Process.isIsolated() on API 36; a synthetic PDF is passed via a read-only ParcelFileDescriptor; PDFium JNI returns the exact bounded UTF-16LE Subject through a pipe; Subject length is within the configured protocol cap; both ends and the service connection are closed.
+
+Actual final instrumentation output:
+  INSTRUMENTATION_RESULT: stream=PASS: minified Release service bound, JNI loaded, Subject matched
+  INSTRUMENTATION_RESULT: tests=1
+  INSTRUMENTATION_CODE: 0
+
+Result: 1/1 PASS. This is a runtime check of the minified Release app and its actual isolated service on API 36 x86_64. It does not qualify ARM64 runtime, API 23 Release runtime, arbitrary physical devices, or universal parser safety.
+
+Harness note: the standard connectedReleaseAndroidTest Gradle task attempted to install the unsigned release APK and stopped with INSTALL_PARSE_FAILED_NO_CERTIFICATES before test execution (0 tests). The APKs were instead locally test-signed without changing production signing configuration and run directly with Android's instrumentation command above. That task failure is a packaging/test-harness limitation, not a product runtime result; the manual instrumented execution above is the passing runtime evidence.
+
+Test-signed artifact SHA-256:
+  app Release APK: 77ce02a479caa424a5f0c976353df73e466f90c08634e316410294bd0e26f026
+  Release qualification APK: 01a3a6f8b1c9aeecea00acbf460d1456d5f3d30813859f5ed1570dd8b3533823
+After the final SAF failure-handling source update, the unsigned R8 app APK was assembled at 2026-10-10 13:24:22 +0200; its local test-signed copy (same packaged app payload with a debug certificate added) was installed immediately before the final successful instrumentation result. Final build command was rerun with `:verifyArchitecture :app:assembleRelease :releaseQualification:assembleRelease`.

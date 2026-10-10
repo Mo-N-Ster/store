@@ -3,7 +3,14 @@ android {
     namespace = "com.vibe.store.infrastructure"
     compileSdk = 36
     buildToolsVersion = "35.0.0"
-    defaultConfig { minSdk = 23; testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" }
+    ndkVersion = "27.2.12479018"
+    defaultConfig {
+        minSdk = 23
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64", "x86") }
+        externalNativeBuild { cmake { cppFlags += listOf("-std=c++17", "-fvisibility=hidden") } }
+    }
+    externalNativeBuild { cmake { path = file("src/main/cpp/CMakeLists.txt"); version = "3.22.1" } }
     testOptions { targetSdk = 36 }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 }

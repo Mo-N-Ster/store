@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" tests="8" failures="0" errors="0" skipped="0" time="6.582" timestamp="2026-10-09T21:28:07" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I10_API23_x86(AVD) - 6.0" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="accountSwitchRechecksCurrentRightsAndRejectsOldPreview" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.692" />
+  <testcase name="cancellingPdfPreviewDiscardsItWithoutAnyBusinessMutation" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.439" />
+  <testcase name="rightsAreCheckedBeforeParserAndSessionChangeDuringParsingRejectsPreview" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="1.156" />
+  <testcase name="invalidAndExistingDuplicatesHaveNoPartialEffects" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.42" />
+  <testcase name="syntheticLegacyPdfTraversesIsolatedParserCodecPreviewAndAtomicImport" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.554" />
+  <testcase name="authorizedImportWritesExactPricesAndInitialStockHistoryAtomically" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.449" />
+  <testcase name="pdfPreviewUsesCurrentRightsAndDoesNotMutateUntilExplicitConfirmation" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.453" />
+  <testcase name="partialRepositoryFailureRollsBackProductsStockHistoryAndAlerts" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.686" />
+</testsuite>

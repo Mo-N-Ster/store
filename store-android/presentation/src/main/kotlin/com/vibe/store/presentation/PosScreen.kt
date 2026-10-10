@@ -38,7 +38,9 @@ class PosState : ViewModel() {
 
 @Composable
 fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdentity,
-    french: Boolean, state: PosState, back: () -> Unit) {
+    french: Boolean, state: PosState, documents: DocumentService? = null,
+    saveDocument: (DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, complete -> complete(PdfSaveOutcome.Failed()) },
+    back: () -> Unit) {
     fun t(fr: String, en: String) = if (french) fr else en
     val scope = rememberCoroutineScope()
     var busy by remember { mutableStateOf(false) }
@@ -201,6 +203,15 @@ fun PosScreen(service: SaleService, catalog: CatalogService, actor: PublicIdenti
             Text("Total: ${DecimalInput.display(receipt.total, french)} ${receipt.currency}", style = MaterialTheme.typography.headlineSmall)
             Text("${t("Reçu", "Received")}: ${DecimalInput.display(receipt.received, french)} · ${t("Monnaie", "Change")}: ${DecimalInput.display(receipt.change, french)}")
             receipt.cancellationReason?.let { Text(it) }
+            if (documents != null && "POS:READ" in actor.permissions) {
+                DocumentExportAction(documents, french, t("Enregistrer le PDF", "Save PDF"),
+                    request = {
+                        val authorizedReceipt = service.receipt(receipt.id)
+                        DocumentRequest(authorizedReceipt.id, DocumentType.INVOICE,
+                            t("Facture ${authorizedReceipt.id}", "Invoice ${authorizedReceipt.id}"),
+                            java.time.Instant.now(), DocumentSnapshot.Invoice(authorizedReceipt), if (french) "fr" else "en")
+                    }, save = saveDocument)
+            }
             if ("POS:DELETE" in actor.permissions && receipt.status == "validated") {
                 PosField(t("Motif d’annulation", "Cancellation reason"), reason, "pos-cancel-reason", !busy, false) { reason = it }
                 OutlinedButton(enabled = !busy && reason.trim().length >= 3, onClick = { run {

@@ -80,6 +80,10 @@ internal interface StoreDao {
     suspend fun catalogPage(search: String, category: String, archived: Boolean, stock: String, limit: Int, offset: Int): List<ProductEntity>
     @Query("SELECT EXISTS(SELECT 1 FROM products WHERE deletedAt IS NULL AND id!=COALESCE(:exceptId,0) AND (lower(trim(name))=lower(:name) OR (:hashtag!='' AND lower(COALESCE(hashtag,''))=lower(:hashtag))))")
     suspend fun duplicateProduct(name: String, hashtag: String, exceptId: Long?): Boolean
+    @Query("SELECT lower(trim(name)) FROM products WHERE deletedAt IS NULL AND lower(trim(name)) IN (:keys)")
+    suspend fun duplicateProductNames(keys: List<String>): List<String>
+    @Query("SELECT lower(trim(hashtag)) FROM products WHERE deletedAt IS NULL AND hashtag IS NOT NULL AND hashtag!='' AND lower(trim(hashtag)) IN (:keys)")
+    suspend fun duplicateProductHashtags(keys: List<String>): List<String>
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM products") suspend fun nextProductId(): Long
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM stock_movements") suspend fun nextMovementId(): Long
     @Query("SELECT COALESCE(MAX(id),0)+1 FROM product_price_history") suspend fun nextPriceId(): Long
@@ -129,8 +133,11 @@ internal interface StoreDao {
     @Insert suspend fun employee(value: EmployeeEntity)
     @Insert suspend fun cash(value: CashEntity)
     @Insert suspend fun product(value: ProductEntity)
+    @Insert suspend fun importedProducts(values: List<ProductEntity>)
     @Insert suspend fun price(value: PriceEntity)
+    @Insert suspend fun importedPrices(values: List<PriceEntity>)
     @Insert suspend fun movement(value: MovementEntity)
+    @Insert suspend fun importedMovements(values: List<MovementEntity>)
     @Insert suspend fun invoice(value: InvoiceEntity)
     @Insert suspend fun invoiceLine(value: InvoiceLineEntity)
     @Insert suspend fun payment(value: PaymentEntity)
@@ -144,6 +151,7 @@ internal interface StoreDao {
     @Insert suspend fun messageRead(value: MessageReadEntity)
     @Insert suspend fun messageDeletion(value: MessageDeletionEntity)
     @Insert suspend fun notification(value: NotificationEntity)
+    @Insert suspend fun importedNotifications(values: List<NotificationEntity>)
     @Insert suspend fun email(value: EmailEntity)
     @Insert suspend fun audit(value: AuditEntity)
     @Insert suspend fun generation(value: GenerationEntity)

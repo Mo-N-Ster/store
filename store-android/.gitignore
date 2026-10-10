@@ -3,6 +3,7 @@
 .gradle-home/
 .android-home/
 .kotlin/
+**/.cxx/
 **/build/
 local.properties
 out/

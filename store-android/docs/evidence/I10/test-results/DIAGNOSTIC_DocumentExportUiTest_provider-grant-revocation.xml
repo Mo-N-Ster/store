@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.DocumentExportUiTest" tests="5" failures="1" errors="0" skipped="0" time="11.749" timestamp="2026-10-09T14:41:01" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="safCancellationIsShownAndDoesNotRetryOrMutateBusinessData" classname="com.vibe.store.DocumentExportUiTest" time="1.956" />
+  <testcase name="safDestinationWriteErrorHasRetryableStatus" classname="com.vibe.store.DocumentExportUiTest" time="2.084" />
+  <testcase name="createDocumentCanWriteAndRevokeSyntheticProviderUri" classname="com.vibe.store.DocumentExportUiTest" time="2.996">
+    <failure>java.lang.AssertionError: write after URI revocation should fail
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at com.vibe.store.DocumentExportUiTest.createDocumentCanWriteAndRevokeSyntheticProviderUri(DocumentExportUiTest.kt:158)
+</failure>
+  </testcase>
+  <testcase name="destinationWriteFailureIsShownAndDeniedSourceNeverOpensSaf" classname="com.vibe.store.DocumentExportUiTest" time="2.061" />
+  <testcase name="createDocumentLaunchesSystemPickerAndCancellationReturnsNull" classname="com.vibe.store.DocumentExportUiTest" time="2.051" />
+</testsuite>
