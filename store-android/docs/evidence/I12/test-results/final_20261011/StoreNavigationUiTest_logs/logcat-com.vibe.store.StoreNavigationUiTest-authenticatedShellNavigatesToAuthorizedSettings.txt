@@ -1,0 +1,575 @@
+10-11 22:24:40.142 30437 30452 I TestRunner: started: authenticatedShellNavigatesToAuthorizedSettings(com.vibe.store.StoreNavigationUiTest)
+10-11 22:24:40.150 30437 30455 D WM-PackageManagerHelper: Skipping component enablement for androidx.work.impl.background.systemalarm.RescheduleReceiver
+10-11 22:24:40.193 30437 30452 I Tracing : Tracer added: class androidx.test.platform.tracing.AndroidXTracer
+10-11 22:24:40.198 30437 30452 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@15647aa]
+10-11 22:24:40.205 30437 30452 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-11 22:24:40.209   691  2104 I system_server: AssetManager2(0x71737540c138) locale list changing from [] to [en-US]
+10-11 22:24:40.210   691  2104 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10307, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:40.212   550   575 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:40.214  1088  1222 I ndroid.systemui: AssetManager2(0x7173753e9b38) locale list changing from [] to [en-US]
+10-11 22:24:40.215  1367  1367 W SplitSelectStateCtor: Missing session instanceIds
+10-11 22:24:40.215  1367  1367 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-11 22:24:40.216  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{9caffa5 V.E...... ......ID 0,0-0,0}
+10-11 22:24:40.216  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:40.216  1088  1224 D SplashScreenView: Branding: view: android.view.View{3f14f7a G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:40.218   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:40.218   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:40.219   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:40.221 30437 30437 I ibe.store.debug: AssetManager2(0x7173753c1db8) locale list changing from [] to [en-US]
+10-11 22:24:40.225   550   550 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:40.247 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: PRE_ON_CREATE
+10-11 22:24:40.248 30437 30437 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-11 22:24:40.256 30437 30437 D CompatChangeReporter: Compat change id reported: 377864165; UID 10307; state: ENABLED
+10-11 22:24:40.257 30437 30437 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-11 22:24:40.282 30437 30457 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-11 22:24:40.282 30437 30457 I EGL_emulation: Opening libGLESv2_emulation.so
+10-11 22:24:40.285 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: CREATED
+10-11 22:24:40.285 30437 30437 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.vibe.store.MainActivity@26d6668
+10-11 22:24:40.286 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: STARTED
+10-11 22:24:40.286 30437 30437 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.vibe.store.MainActivity@26d6668
+10-11 22:24:40.292 30437 30457 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-11 22:24:40.293 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: RESUMED
+10-11 22:24:40.293 30437 30437 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.vibe.store.MainActivity@26d6668
+10-11 22:24:40.303 30437 30437 W HWUI    : Unknown dataspace 0
+10-11 22:24:40.417 30437 30437 I ibe.store.debug: hiddenapi: Accessing hidden method Landroid/os/SystemProperties;->addChangeCallback(Ljava/lang/Runnable;)V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/compose/ui/platform/AndroidComposeView$Companion; (domain=app) using reflection: allowed
+10-11 22:24:40.442 30437 30437 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=9, activity embedding enabled=true
+10-11 22:24:40.565  1367  1367 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:40.575  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:40.599 30437 30441 I ibe.store.debug: Compiler allocated 5042KB to compile void android.view.ViewRootImpl.performTraversals()
+10-11 22:24:40.606   550   576 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10307 pid=0
+10-11 22:24:40.606   550   576 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10307 => denied (144 us)
+10-11 22:24:40.606   550   576 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10307 pid=0
+10-11 22:24:40.606   550   576 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10307 => denied (53 us)
+10-11 22:24:40.606   550   576 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10307 pid=0
+10-11 22:24:40.606   550   576 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10307 => denied (51 us)
+10-11 22:24:40.964   691  2109 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10307 pid=0
+10-11 22:24:40.964   691  2109 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10307 => denied (123 us)
+10-11 22:24:40.964   691  2109 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10307 pid=0
+10-11 22:24:40.964   691  2109 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10307 => denied (11 us)
+10-11 22:24:40.964   691  2109 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10307 pid=0
+10-11 22:24:40.964   691  2109 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10307 => denied (13 us)
+10-11 22:24:40.964 30437 30437 I Choreographer: Skipped 37 frames!  The application may be doing too much work on its main thread.
+10-11 22:24:40.965 30437 30437 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@26d6668, of which baseContext=android.app.ContextImpl@c85f479
+10-11 22:24:40.966   691   711 I ActivityTaskManager: Displayed com.vibe.store.debug/com.vibe.store.MainActivity for user 0: +756ms
+10-11 22:24:40.967  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:40.967  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:40.967  1367  1367 D BaseDepthController: 	mBaseSurface: null
+10-11 22:24:40.968  1367  1367 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-11 22:24:40.968  1367  1367 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-11 22:24:40.968  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+10-11 22:24:40.968  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:40.968  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+10-11 22:24:40.968  1367  1367 D StatsLog: LAUNCHER_ONSTOP
+10-11 22:24:40.968  1367  1367 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-11 22:24:40.972  1418  1556 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-11 22:24:40.972  1418  1556 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+10-11 22:24:40.973  1418  1556 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-11 22:24:40.982  1418  1428 I FontLog : Pulling font file for id = 63, cache size = 5 [CONTEXT service_id=132 ]
+10-11 22:24:40.986  1418  1428 I FontLog : Pulling font file for id = 63, cache size = 5 [CONTEXT service_id=132 ]
+10-11 22:24:40.991   473   535 I netd    : tetherGetStats() -> {[]} <0.36ms>
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:41.004   691   806 I ImeTracker: com.vibe.store.debug:3ff404f: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:41.006 30437 30437 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:41.006 30437 30437 I ImeTracker: com.vibe.store.debug:3ff404f: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:41.008  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:41.009   691  2103 I ImeTracker: system_server:6664cc30: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:41.010  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:41.010  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.vibe.store.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:41.011   691   714 I ImeTracker: system_server:6664cc30: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:41.012  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:41.115   691   810 I system_server: AssetManager2(0x717375458718) locale list changing from [] to [en-US]
+10-11 22:24:41.116   691   810 I system_server: AssetManager2(0x7173754532b8) locale list changing from [] to [en-US]
+10-11 22:24:41.121   691   714 I system_server: AssetManager2(0x7173754457f8) locale list changing from [] to [en-US]
+10-11 22:24:41.122  1253  1500 I SatelliteAppTracker: onPackageModified : com.vibe.store.debug
+10-11 22:24:41.124  1253  1253 D CarrierSvcBindHelper: onPackageModified: com.vibe.store.debug
+10-11 22:24:41.125  1089  2287 I PermissionControllerServiceImpl: Updating user sensitive for uid 10307
+10-11 22:24:41.125   691   719 I system_server: AssetManager2(0x7173754acd18) locale list changing from [] to [en-US]
+10-11 22:24:41.125  1253  1253 D CarrierSvcBindHelper: No carrier app for: 0
+10-11 22:24:41.127   691   719 I system_server: AssetManager2(0x717375441fb8) locale list changing from [] to [en-US]
+10-11 22:24:41.128  1367  1389 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[com.vibe.store.debug], user=UserHandle{0}
+10-11 22:24:41.129   691   790 I RoleService: Granting default roles...
+10-11 22:24:41.130  1833 30329 I AiAiEcho: AppIndexer Package:[com.vibe.store.debug] UserProfile:[0] Enabled:[true].
+10-11 22:24:41.130  1833 30329 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.vibe.store.debug], userId:[0], reason:[package is updated.].
+10-11 22:24:41.130  1088  1088 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+10-11 22:24:41.132   691   719 I system_server: AssetManager2(0x71737543e458) locale list changing from [] to [en-US]
+10-11 22:24:41.133   691   719 I system_server: AssetManager2(0x7173753f6338) locale list changing from [] to [en-US]
+10-11 22:24:41.134   691  1215 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+10-11 22:24:41.134   691  1215 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-11 22:24:41.134  1253  1253 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-11 22:24:41.136   691  1215 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+10-11 22:24:41.136  1367  1389 W HWUI    : Image decoding logging dropped!
+10-11 22:24:41.136   691   810 I system_server: AssetManager2(0x71737543c518) locale list changing from [] to [en-US]
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: java.lang.Exception
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.addIconToDBAndMemCache(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:23)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.updateIconsForPkg(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:35)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:302)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-11 22:24:41.136  1367  1389 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-11 22:24:41.138  1367  1389 W HWUI    : Image decoding logging dropped!
+10-11 22:24:41.138   691   810 I system_server: AssetManager2(0x7173754425f8) locale list changing from [] to [en-US]
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: java.lang.Exception
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.loadFallbackIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:17)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:14)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked$default(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:15)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:13)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.AllAppsList.updatePackage(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:163)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:309)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-11 22:24:41.139  1367  1389 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-11 22:24:41.139  1367  1389 D AlphabeticIndexCompat: computeSectionName: cs: STORE · 57€|2£!/v9 sectionName: S
+10-11 22:24:41.139  1367  1367 D AllAppsStore: setApps: apps.length=19
+10-11 22:24:41.139  1367  1367 D AllAppsStore: notifyUpdate: notifying listeners
+10-11 22:24:41.139  1367  1367 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 19
+10-11 22:24:41.140  1367  1367 D ActivityAllAppsContainerView: rebindAdapters: force: false
+10-11 22:24:41.140  1367  1367 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+10-11 22:24:41.140  1367  1367 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-11 22:24:41.140  1367  1367 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-11 22:24:41.144  1253  1498 D ImsResolver: maybeAddedImsService, packageName: com.vibe.store.debug
+10-11 22:24:41.144  1253  1498 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-11 22:24:41.144  1253  1498 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.144   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.145   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.145   691   691 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.147  1253  1253 D SatelliteController: packageStateChanged: package:com.vibe.store.debug DefaultSmsPackageName:com.google.android.apps.messaging
+10-11 22:24:41.147  1253  1253 V SatelliteController: Neither SMS or SatelliteGateway package
+10-11 22:24:41.147  1253  1253 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-11 22:24:41.148  1253  1253 D SatelliteAccessController: Current default SMS app:ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.shared.receiver.SmsDeliverReceiver}
+10-11 22:24:41.148  1253  1253 D SatelliteController: getSelectedSatelliteSubId: subId=-1
+10-11 22:24:41.148  1253  1253 D SatelliteAccessController: supportedMsgApps:com.google.android.apps.messaging
+10-11 22:24:41.158   691  1215 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+10-11 22:24:41.158   691   717 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
+10-11 22:24:41.158   300   300 I tombstoned: intercept for pid 1291 and type kDebuggerdNativeBacktrace terminated: due to input
+10-11 22:24:41.161   691  1215 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+10-11 22:24:41.215   691   717 E android.os.Debug: Failed to get binder state info for pid: 1045 status: -2: Try again
+10-11 22:24:41.216   691   717 I system_server: libdebuggerd_client: started dumping process 1045
+10-11 22:24:41.216   300   300 I tombstoned: registered intercept for pid 1045 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.216  1045  1045 I libc    : Requested dump for pid 1045 (binder:1045_2)
+10-11 22:24:41.225 30469 30469 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.226   300   300 I tombstoned: received crash request for pid 1045
+10-11 22:24:41.226   300   300 I tombstoned: found intercept fd 512 for pid 1045 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.226 30469 30469 I crash_dump64: performing dump of process 1045 (target tid = 1045)
+10-11 22:24:41.230   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.237   691   717 I system_server: libdebuggerd_client: done dumping process 1045
+10-11 22:24:41.243   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.243   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.243   621  8093 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: nl80211: Drv Event 34 (NL80211_CMD_NEW_SCAN_RESULTS) received for wlan0
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: nl80211: New scan results available
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: nl80211: Scan probed for SSID ''
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: nl80211: Scan included frequencies: 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 2484 5180 5200 5220 5240 5260 5280 5300 5320 5500 5520 5540 5560 5580 5600 5620 5640 5660 5680 5700 5745 5765 5785 5805 5825
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: Event SCAN_RESULTS (3) received
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: nl80211: Received scan results (1 BSSes)
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: BSS: Start scan result update 37
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: BSS: Add new id 1 BSSID 02:15:b2:00:00:01 SSID 'AndroidWifi' freq 2437
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: BSS: last_scan_res_used=1/32
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: New scan results available (own=0 ext=1)
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: wlan0: Do not use results from externally requested scan operation for network selection
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: p2p-dev-wlan0: Updating scan results from sibling
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: nl80211: Received scan results (1 BSSes)
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: p2p-dev-wlan0: BSS: Start scan result update 37
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: p2p-dev-wlan0: BSS: Add new id 1 BSSID 02:15:b2:00:00:01 SSID 'AndroidWifi' freq 2437
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: BSS: last_scan_res_used=1/32
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: p2p-dev-wlan0: New scan results available (own=0 ext=1)
+10-11 22:24:41.279 17945 17945 D wpa_supplicant: p2p-dev-wlan0: Do not use results from externally requested scan operation for network selection
+10-11 22:24:41.279   691  2112 D WifiNl80211Manager: Scan result ready event
+10-11 22:24:41.279   691  2112 D WifiNative: Scan result ready event
+10-11 22:24:41.285   691   717 E android.os.Debug: Failed to get binder state info for pid: 533 status: -2: Success
+10-11 22:24:41.285   691   717 I system_server: libdebuggerd_client: started dumping process 533
+10-11 22:24:41.285   300   300 I tombstoned: registered intercept for pid 533 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.285   533   533 I libc    : Requested dump for pid 533 (android.hardwar)
+10-11 22:24:41.293 30474 30474 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.293   300   300 I tombstoned: received crash request for pid 533
+10-11 22:24:41.293   300   300 I tombstoned: found intercept fd 512 for pid 533 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.293 30474 30474 I crash_dump64: performing dump of process 533 (target tid = 533)
+10-11 22:24:41.301   691   717 I system_server: libdebuggerd_client: done dumping process 533
+10-11 22:24:41.301   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.346   691   717 E android.os.Debug: Failed to get binder state info for pid: 537 status: -2: Success
+10-11 22:24:41.346   691   717 I system_server: libdebuggerd_client: started dumping process 537
+10-11 22:24:41.347   300   300 I tombstoned: registered intercept for pid 537 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.347   537   537 I libc    : Requested dump for pid 537 (android.hardwar)
+10-11 22:24:41.353 30479 30479 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.353   300   300 I tombstoned: received crash request for pid 537
+10-11 22:24:41.353   300   300 I tombstoned: found intercept fd 512 for pid 537 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.353 30479 30479 I crash_dump64: performing dump of process 537 (target tid = 537)
+10-11 22:24:41.357   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.357   691   717 I system_server: libdebuggerd_client: done dumping process 537
+10-11 22:24:41.402   691   717 E android.os.Debug: Failed to get binder state info for pid: 17945 status: -2: Success
+10-11 22:24:41.403   691   717 I system_server: libdebuggerd_client: started dumping process 17945
+10-11 22:24:41.403   300   300 I tombstoned: registered intercept for pid 17945 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.403 17945 17945 I libc    : Requested dump for pid 17945 (wpa_supplicant)
+10-11 22:24:41.410 30484 30484 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.410   300   300 I tombstoned: received crash request for pid 17945
+10-11 22:24:41.410   300   300 I tombstoned: found intercept fd 512 for pid 17945 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.411 30484 30484 I crash_dump64: performing dump of process 17945 (target tid = 17945)
+10-11 22:24:41.420   691   717 I system_server: libdebuggerd_client: done dumping process 17945
+10-11 22:24:41.420   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.467   691   717 I system_server: libdebuggerd_client: started dumping process 473
+10-11 22:24:41.467   300   300 I tombstoned: registered intercept for pid 473 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.467   473   473 I libc    : Requested dump for pid 473 (binder:473_4)
+10-11 22:24:41.474 30489 30489 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.474   300   300 I tombstoned: received crash request for pid 473
+10-11 22:24:41.474   300   300 I tombstoned: found intercept fd 512 for pid 473 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.474 30489 30489 I crash_dump64: performing dump of process 473 (target tid = 473)
+10-11 22:24:41.483   691   717 I system_server: libdebuggerd_client: done dumping process 473
+10-11 22:24:41.483   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.525   691   717 E android.os.Debug: Failed to get binder state info for pid: 538 status: -2: Success
+10-11 22:24:41.525   691   717 I system_server: libdebuggerd_client: started dumping process 538
+10-11 22:24:41.525   300   300 I tombstoned: registered intercept for pid 538 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.525   538   538 I libc    : Requested dump for pid 538 (android.hardwar)
+10-11 22:24:41.531 30494 30494 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.531   300   300 I tombstoned: received crash request for pid 538
+10-11 22:24:41.531   300   300 I tombstoned: found intercept fd 512 for pid 538 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.531 30494 30494 I crash_dump64: performing dump of process 538 (target tid = 538)
+10-11 22:24:41.536   691   717 I system_server: libdebuggerd_client: done dumping process 538
+10-11 22:24:41.536   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.581   691   717 E android.os.Debug: Failed to get binder state info for pid: 539 status: -2: Success
+10-11 22:24:41.581   691   717 I system_server: libdebuggerd_client: started dumping process 539
+10-11 22:24:41.581   300   300 I tombstoned: registered intercept for pid 539 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.582   539   539 I libc    : Requested dump for pid 539 (android.hardwar)
+10-11 22:24:41.582 30437 30437 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@26d6668, of which baseContext=android.app.ContextImpl@c85f479
+10-11 22:24:41.587 30499 30499 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.588   300   300 I tombstoned: received crash request for pid 539
+10-11 22:24:41.588   300   300 I tombstoned: found intercept fd 512 for pid 539 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.588 30499 30499 I crash_dump64: performing dump of process 539 (target tid = 539)
+10-11 22:24:41.592   691   717 I system_server: libdebuggerd_client: done dumping process 539
+10-11 22:24:41.592   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.638   691   717 E android.os.Debug: Failed to get binder state info for pid: 475 status: -2: Success
+10-11 22:24:41.638   691   717 I system_server: libdebuggerd_client: started dumping process 475
+10-11 22:24:41.638   300   300 I tombstoned: registered intercept for pid 475 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.638   475   475 I libc    : Requested dump for pid 475 (binder:475_2)
+10-11 22:24:41.647 30504 30504 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.647   300   300 I tombstoned: received crash request for pid 475
+10-11 22:24:41.647   300   300 I tombstoned: found intercept fd 512 for pid 475 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.647 30504 30504 I crash_dump64: performing dump of process 475 (target tid = 475)
+10-11 22:24:41.659   691   717 I system_server: libdebuggerd_client: done dumping process 475
+10-11 22:24:41.659   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.694   691   717 E android.os.Debug: Failed to get binder state info for pid: 540 status: -2: Success
+10-11 22:24:41.694   691   717 I system_server: libdebuggerd_client: started dumping process 540
+10-11 22:24:41.694   300   300 I tombstoned: registered intercept for pid 540 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.695   540   540 I libc    : Requested dump for pid 540 (android.hardwar)
+10-11 22:24:41.699 30509 30509 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.700   300   300 I tombstoned: received crash request for pid 540
+10-11 22:24:41.700   300   300 I tombstoned: found intercept fd 512 for pid 540 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.700 30509 30509 I crash_dump64: performing dump of process 540 (target tid = 540)
+10-11 22:24:41.702   691   717 I system_server: libdebuggerd_client: done dumping process 540
+10-11 22:24:41.702   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.740   691   717 E android.os.Debug: Failed to get binder state info for pid: 544 status: -2: Success
+10-11 22:24:41.741   691   717 I system_server: libdebuggerd_client: started dumping process 544
+10-11 22:24:41.741   300   300 I tombstoned: registered intercept for pid 544 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.741   544   544 I libc    : Requested dump for pid 544 (android.hardwar)
+10-11 22:24:41.747 30514 30514 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.747   300   300 I tombstoned: received crash request for pid 544
+10-11 22:24:41.747   300   300 I tombstoned: found intercept fd 512 for pid 544 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.747 30514 30514 I crash_dump64: performing dump of process 544 (target tid = 544)
+10-11 22:24:41.750   691   717 I system_server: libdebuggerd_client: done dumping process 544
+10-11 22:24:41.750   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.791   691   717 E android.os.Debug: Failed to get binder state info for pid: 545 status: -2: Success
+10-11 22:24:41.791   691   717 I system_server: libdebuggerd_client: started dumping process 545
+10-11 22:24:41.791   300   300 I tombstoned: registered intercept for pid 545 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.791   545   545 I libc    : Requested dump for pid 545 (android.hardwar)
+10-11 22:24:41.797 30519 30519 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.797   300   300 I tombstoned: received crash request for pid 545
+10-11 22:24:41.797   300   300 I tombstoned: found intercept fd 512 for pid 545 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.797 30519 30519 I crash_dump64: performing dump of process 545 (target tid = 545)
+10-11 22:24:41.802   691   717 I system_server: libdebuggerd_client: done dumping process 545
+10-11 22:24:41.802   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.857   691   717 I system_server: libdebuggerd_client: started dumping process 546
+10-11 22:24:41.857   300   300 I tombstoned: registered intercept for pid 546 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.857   546   546 I libc    : Requested dump for pid 546 (audioserver)
+10-11 22:24:41.869 30524 30524 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.870   300   300 I tombstoned: received crash request for pid 546
+10-11 22:24:41.870   300   300 I tombstoned: found intercept fd 512 for pid 546 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.870 30524 30524 I crash_dump64: performing dump of process 546 (target tid = 546)
+10-11 22:24:41.887   691   717 I system_server: libdebuggerd_client: done dumping process 546
+10-11 22:24:41.887   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.933   691   717 E android.os.Debug: Failed to get binder state info for pid: 613 status: -2: Success
+10-11 22:24:41.934   691   717 I system_server: libdebuggerd_client: started dumping process 613
+10-11 22:24:41.934   300   300 I tombstoned: registered intercept for pid 613 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.935   613   613 I libc    : Requested dump for pid 613 (drmserver)
+10-11 22:24:41.943 30529 30529 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:41.946   300   300 I tombstoned: received crash request for pid 613
+10-11 22:24:41.946   300   300 I tombstoned: found intercept fd 512 for pid 613 and type kDebuggerdNativeBacktrace
+10-11 22:24:41.946 30529 30529 I crash_dump64: performing dump of process 613 (target tid = 613)
+10-11 22:24:41.952   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:41.953   691   717 I system_server: libdebuggerd_client: done dumping process 613
+10-11 22:24:42.015   691   717 I system_server: libdebuggerd_client: started dumping process 550
+10-11 22:24:42.015   300   300 I tombstoned: registered intercept for pid 550 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.016   550   550 I libc    : Requested dump for pid 550 (surfaceflinger)
+10-11 22:24:42.027 30534 30534 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.027   300   300 I tombstoned: received crash request for pid 550
+10-11 22:24:42.027   300   300 I tombstoned: found intercept fd 512 for pid 550 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.027 30534 30534 I crash_dump64: performing dump of process 550 (target tid = 550)
+10-11 22:24:42.067   691   717 I system_server: libdebuggerd_client: done dumping process 550
+10-11 22:24:42.069   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.095 30223 30234 I AidlLazyServiceRegistrar: Process has 0 (of 2 available) client(s) in use after notification android.system.virtualizationmaintenance has clients: 0
+10-11 22:24:42.095 30223 30234 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+10-11 22:24:42.102 30223 30234 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+10-11 22:24:42.119   691   717 E android.os.Debug: Failed to get binder state info for pid: 30183 status: -2: Success
+10-11 22:24:42.119   691   717 I system_server: libdebuggerd_client: started dumping process 30183
+10-11 22:24:42.119   300   300 I tombstoned: registered intercept for pid 30183 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.119 30183 30183 I libc    : Requested dump for pid 30183 (binder:30183_2)
+10-11 22:24:42.126 30539 30539 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.126   300   300 I tombstoned: received crash request for pid 30183
+10-11 22:24:42.126   300   300 I tombstoned: found intercept fd 512 for pid 30183 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.126 30539 30539 I crash_dump64: performing dump of process 30183 (target tid = 30183)
+10-11 22:24:42.130   691   717 I system_server: libdebuggerd_client: done dumping process 30183
+10-11 22:24:42.130   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.158   691   717 E android.os.Debug: Failed to get binder state info for pid: 488 status: -2: Success
+10-11 22:24:42.160   691   717 I system_server: libdebuggerd_client: started dumping process 488
+10-11 22:24:42.160   300   300 I tombstoned: registered intercept for pid 488 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.160   488   488 I libc    : Requested dump for pid 488 (binder:488_2)
+10-11 22:24:42.172 30544 30544 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.172   300   300 I tombstoned: received crash request for pid 488
+10-11 22:24:42.172   300   300 I tombstoned: found intercept fd 512 for pid 488 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.173 30544 30544 I crash_dump64: performing dump of process 488 (target tid = 488)
+10-11 22:24:42.183   691   717 I system_server: libdebuggerd_client: done dumping process 488
+10-11 22:24:42.183   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.216   691   717 E android.os.Debug: Failed to get binder state info for pid: 489 status: -2: Success
+10-11 22:24:42.217   691   717 I system_server: libdebuggerd_client: started dumping process 489
+10-11 22:24:42.217   300   300 I tombstoned: registered intercept for pid 489 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.217   489   489 I libc    : Requested dump for pid 489 (binder:489_2)
+10-11 22:24:42.224 30549 30549 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.225   300   300 I tombstoned: received crash request for pid 489
+10-11 22:24:42.225   300   300 I tombstoned: found intercept fd 512 for pid 489 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.225 30549 30549 I crash_dump64: performing dump of process 489 (target tid = 489)
+10-11 22:24:42.234   691   717 I system_server: libdebuggerd_client: done dumping process 489
+10-11 22:24:42.235   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.272   691   717 E android.os.Debug: Failed to get binder state info for pid: 233 status: -2: Success
+10-11 22:24:42.273   691   717 I system_server: libdebuggerd_client: started dumping process 233
+10-11 22:24:42.273   300   300 I tombstoned: registered intercept for pid 233 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.282   233   233 I libc    : Requested dump for pid 233 (servicemanager)
+10-11 22:24:42.288 30556 30556 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.289   300   300 I tombstoned: received crash request for pid 233
+10-11 22:24:42.289   300   300 I tombstoned: found intercept fd 512 for pid 233 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.289 30556 30556 I crash_dump64: performing dump of process 233 (target tid = 233)
+10-11 22:24:42.296   691   717 I system_server: libdebuggerd_client: done dumping process 233
+10-11 22:24:42.296   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.318   691   717 E android.os.Debug: Failed to get binder state info for pid: 490 status: -2: Success
+10-11 22:24:42.318   691   717 I system_server: libdebuggerd_client: started dumping process 490
+10-11 22:24:42.319   300   300 I tombstoned: registered intercept for pid 490 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.319   490   490 I libc    : Requested dump for pid 490 (camera.provider)
+10-11 22:24:42.327 30562 30562 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.328   300   300 I tombstoned: received crash request for pid 490
+10-11 22:24:42.328   300   300 I tombstoned: found intercept fd 512 for pid 490 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.328 30562 30562 I crash_dump64: performing dump of process 490 (target tid = 490)
+10-11 22:24:42.336   691   717 I system_server: libdebuggerd_client: done dumping process 490
+10-11 22:24:42.336   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.371   691   717 E android.os.Debug: Failed to get binder state info for pid: 493 status: -2: Success
+10-11 22:24:42.371   691   717 I system_server: libdebuggerd_client: started dumping process 493
+10-11 22:24:42.371   300   300 I tombstoned: registered intercept for pid 493 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.372   493   493 I libc    : Requested dump for pid 493 (binder:493_2)
+10-11 22:24:42.383 30568 30568 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.384   300   300 I tombstoned: received crash request for pid 493
+10-11 22:24:42.384   300   300 I tombstoned: found intercept fd 512 for pid 493 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.384 30568 30568 I crash_dump64: performing dump of process 493 (target tid = 493)
+10-11 22:24:42.387   691   717 I system_server: libdebuggerd_client: done dumping process 493
+10-11 22:24:42.388   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.422   691   717 E android.os.Debug: Failed to get binder state info for pid: 621 status: -2: Success
+10-11 22:24:42.422   691   717 I system_server: libdebuggerd_client: started dumping process 621
+10-11 22:24:42.422   300   300 I tombstoned: registered intercept for pid 621 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.423   621   621 I libc    : Requested dump for pid 621 (binder:621_2)
+10-11 22:24:42.436 30574 30574 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.436   300   300 I tombstoned: received crash request for pid 621
+10-11 22:24:42.436   300   300 I tombstoned: found intercept fd 512 for pid 621 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.436 30574 30574 I crash_dump64: performing dump of process 621 (target tid = 621)
+10-11 22:24:42.450   691   717 I system_server: libdebuggerd_client: done dumping process 621
+10-11 22:24:42.450   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.454   691  2103 I system_server: AssetManager2(0x7173753d3a18) locale list changing from [] to [en-US]
+10-11 22:24:42.454   691  2103 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10308, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:42.457   550   602 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:42.458  1088  1222 I ndroid.systemui: AssetManager2(0x7173753ef8f8) locale list changing from [] to [en-US]
+10-11 22:24:42.462 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: PAUSED
+10-11 22:24:42.462 30437 30437 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.vibe.store.MainActivity@26d6668
+10-11 22:24:42.463  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{2e464e7 V.E...... ......ID 0,0-0,0}
+10-11 22:24:42.463  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:42.463  1088  1224 D SplashScreenView: Branding: view: android.view.View{3a78894 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:42.468   691   714 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10308, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:42.470   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:42.470   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:42.470   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:42.475   550   550 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:42.479   476   476 D Zygote  : Forked child process 30578
+10-11 22:24:42.492   473 18028 I netd    : tetherGetStats() -> {[]} <0.91ms>
+10-11 22:24:42.496 30578 30578 I tore.debug.test: Late-enabling -Xcheck:jni
+10-11 22:24:42.517   691   717 E android.os.Debug: Failed to get binder state info for pid: 494 status: -2: Success
+10-11 22:24:42.518   691   717 I system_server: libdebuggerd_client: started dumping process 494
+10-11 22:24:42.519   300   300 I tombstoned: registered intercept for pid 494 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.519   494   494 I libc    : Requested dump for pid 494 (android.hardwar)
+10-11 22:24:42.520 30578 30578 I tore.debug.test: Using CollectorTypeCMC GC.
+10-11 22:24:42.521 30578 30578 W tore.debug.test: Unexpected CPU variant for x86: x86_64.
+10-11 22:24:42.521 30578 30578 W tore.debug.test: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-11 22:24:42.522   559   573 I adbd    : jdwp connection from 30578
+10-11 22:24:42.530 30578 30578 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-11 22:24:42.533 30590 30590 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.533   300   300 I tombstoned: received crash request for pid 494
+10-11 22:24:42.533   300   300 I tombstoned: found intercept fd 512 for pid 494 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.533 30590 30590 I crash_dump64: performing dump of process 494 (target tid = 494)
+10-11 22:24:42.538   691   717 I system_server: libdebuggerd_client: done dumping process 494
+10-11 22:24:42.538   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.552 30578 30578 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+10-11 22:24:42.554 30578 30578 D nativeloader: Configuring clns-9 for other apk /system/framework/android.test.mock.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/data/app/~~jnk28jnS3I5cZQE83hpyMQ==/com.vibe.store.debug.test-lVtDMbI-n0-jfLzoDz8WQA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-11 22:24:42.554 30578 30578 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+10-11 22:24:42.555 30578 30578 D nativeloader: Configuring clns-10 for other apk /system/framework/android.test.runner.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/data/app/~~jnk28jnS3I5cZQE83hpyMQ==/com.vibe.store.debug.test-lVtDMbI-n0-jfLzoDz8WQA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-11 22:24:42.576 30578 30578 D nativeloader: Configuring clns-11 for other apk /data/app/~~jnk28jnS3I5cZQE83hpyMQ==/com.vibe.store.debug.test-lVtDMbI-n0-jfLzoDz8WQA==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~jnk28jnS3I5cZQE83hpyMQ==/com.vibe.store.debug.test-lVtDMbI-n0-jfLzoDz8WQA==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-11 22:24:42.578 30578 30578 I tore.debug.test: AssetManager2(0x7173753b3678) locale list changing from [] to [en-US]
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment: Currently set values for:
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment: com.vibe.store.debug.test is not listed in per-application setting
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment: com.vibe.store.debug.test is not listed in ANGLE allowlist or settings, returning default
+10-11 22:24:42.582 30578 30578 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-11 22:24:42.587   691   717 E android.os.Debug: Failed to get binder state info for pid: 495 status: -2: Success
+10-11 22:24:42.587   691   717 I system_server: libdebuggerd_client: started dumping process 495
+10-11 22:24:42.587   300   300 I tombstoned: registered intercept for pid 495 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.588   300   300 I tombstoned: received crash request for pid 495
+10-11 22:24:42.588   300   300 I tombstoned: found intercept fd 512 for pid 495 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.592 30578 30578 I tore.debug.test: AssetManager2(0x7173753b7b38) locale list changing from [] to [en-US]
+10-11 22:24:42.597 30578 30578 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+10-11 22:24:42.609 30578 30578 D CompatChangeReporter: Compat change id reported: 377864165; UID 10308; state: ENABLED
+10-11 22:24:42.611 30578 30578 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-11 22:24:42.617 30578 30597 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-11 22:24:42.617 30578 30597 I EGL_emulation: Opening libGLESv2_emulation.so
+10-11 22:24:42.623 30578 30597 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-11 22:24:42.631   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.631   691   717 I system_server: libdebuggerd_client: done dumping process 495
+10-11 22:24:42.642 30578 30578 W HWUI    : Unknown dataspace 0
+10-11 22:24:42.654   550   602 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:42.664   550   602 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10308 pid=0
+10-11 22:24:42.664   550   602 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10308 => denied (327 us)
+10-11 22:24:42.664   550   602 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10308 pid=0
+10-11 22:24:42.664   550   602 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10308 => denied (60 us)
+10-11 22:24:42.665   550   602 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10308 pid=0
+10-11 22:24:42.665   550   602 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10308 => denied (538 us)
+10-11 22:24:42.666   550   575 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10308 pid=30578
+10-11 22:24:42.666   550   575 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10308 => denied (2293 us)
+10-11 22:24:42.713   691   717 E android.os.Debug: Failed to get binder state info for pid: 497 status: -2: Success
+10-11 22:24:42.713   691   717 I system_server: libdebuggerd_client: started dumping process 497
+10-11 22:24:42.714   300   300 I tombstoned: registered intercept for pid 497 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.714   497   497 I libc    : Requested dump for pid 497 (android.hardwar)
+10-11 22:24:42.739 30607 30607 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.740   300   300 I tombstoned: received crash request for pid 497
+10-11 22:24:42.740   300   300 I tombstoned: found intercept fd 512 for pid 497 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.740 30607 30607 I crash_dump64: performing dump of process 497 (target tid = 497)
+10-11 22:24:42.745   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.745   691   717 I system_server: libdebuggerd_client: done dumping process 497
+10-11 22:24:42.762   691  2116 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10308 pid=0
+10-11 22:24:42.762   691  2116 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10308 => denied (413 us)
+10-11 22:24:42.762   691  2116 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10308 pid=0
+10-11 22:24:42.762   691  2116 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10308 => denied (63 us)
+10-11 22:24:42.763   691  2116 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10308 pid=0
+10-11 22:24:42.763   691  2116 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10308 => denied (26 us)
+10-11 22:24:42.763  1367  1367 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:42.764  1367  1367 D StatsLog: LAUNCHER_ONRESUME
+10-11 22:24:42.767  1367  1389 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-11 22:24:42.774  1833  2075 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-11 22:24:42.775  1833  2075 I AiAiEcho: EchoTargets:
+10-11 22:24:42.775  1833  2075 I AiAiEcho: Filtered by AiAi flag check:
+10-11 22:24:42.775  1833  2075 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-11 22:24:42.775  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+10-11 22:24:42.777  1833  2075 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-11 22:24:42.783  1833  2075 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-11 22:24:42.784  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:42.784  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:42.784  1367  1367 D BaseDepthController: 	mBaseSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0x55ffb91
+10-11 22:24:42.807  1367  1367 I NotificationListener: Handling notification state refresh for com.android.systemui#0
+10-11 22:24:42.807  1367  1367 D SsBaseTemplateCard: No text view can be set up
+10-11 22:24:42.807  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:42.807  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:42.807  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:42.807  1367  1367 I SsBaseTemplateCard: Secondary card pane is null
+10-11 22:24:42.854   691   717 E android.os.Debug: Failed to get binder state info for pid: 499 status: -2: Success
+10-11 22:24:42.855   691   717 I system_server: libdebuggerd_client: started dumping process 499
+10-11 22:24:42.855 30437 30437 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:42.855   300   300 I tombstoned: registered intercept for pid 499 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.855   499   499 I libc    : Requested dump for pid 499 (binder:499_2)
+10-11 22:24:42.865 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453e1bf0 (UnprojectedRipple) with handle 0x7173353f5540
+10-11 22:24:42.871 30613 30613 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:42.871   300   300 I tombstoned: received crash request for pid 499
+10-11 22:24:42.871 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: STOPPED
+10-11 22:24:42.871   300   300 I tombstoned: found intercept fd 512 for pid 499 and type kDebuggerdNativeBacktrace
+10-11 22:24:42.871 30437 30437 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.vibe.store.MainActivity@26d6668
+10-11 22:24:42.871 30613 30613 I crash_dump64: performing dump of process 499 (target tid = 499)
+10-11 22:24:42.875  1367  1367 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+10-11 22:24:42.875  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.prepareToAnimate(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:22)
+10-11 22:24:42.875  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:42.875  1367  1367 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:339)
+10-11 22:24:42.875  1367  1367 D b/311077782: LauncherAnimationRunner.setAnimation
+10-11 22:24:42.882   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:42.884   691   717 I system_server: libdebuggerd_client: done dumping process 499
+10-11 22:24:42.885   691   806 I ImeTracker: com.google.android.apps.nexuslauncher:5bfe25f8: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:42.887  1367  1367 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:42.887  1367  1367 I ImeTracker: com.google.android.apps.nexuslauncher:5bfe25f8: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:42.888  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:42.891  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:42.892  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:42.894  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:42.895   691  2103 I ImeTracker: system_server:bc1f1b9f: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:42.897   691   714 I ImeTracker: system_server:bc1f1b9f: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:42.921 30437 30437 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@cd74adc
+10-11 22:24:42.921 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@26d6668 in: DESTROYED
+10-11 22:24:42.921 30437 30437 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-11 22:24:42.928 30437 30452 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@15647aa]
+10-11 22:24:42.933 30437 30437 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:42.941 30437 30452 I TestRunner: finished: authenticatedShellNavigatesToAuthorizedSettings(com.vibe.store.StoreNavigationUiTest)

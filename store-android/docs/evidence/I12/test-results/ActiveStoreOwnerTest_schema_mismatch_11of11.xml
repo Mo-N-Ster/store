@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" tests="11" failures="0" errors="0" skipped="0" time="2.184" timestamp="2026-10-10T14:44:08" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="automaticRetentionKeepsSevenAndNeverDeletesManualArchives" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.503" />
+  <testcase name="completeSyntheticBusinessDatabaseSurvivesBackupAndRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.202" />
+  <testcase name="archiveWithoutActiveOwnerIsRejectedBeforeGenerationSwitch" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.229" />
+  <testcase name="malformedGenerationPointerFailsClosed" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.0" />
+  <testcase name="startupRollsBackPreparedInvalidGenerationToVerifiedOldState" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.082" />
+  <testcase name="rejectedArchiveLeavesActiveGenerationUntouched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.045" />
+  <testcase name="startupCompletesPreparedGenerationWhosePointerAlreadySwitched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.077" />
+  <testcase name="resetUsesVerifiedEmptyGenerationAndRetainsSafetyBackup" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.175" />
+  <testcase name="verifiedBackupRestoresThroughGenerationCommit" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.229" />
+  <testcase name="archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.104" />
+  <testcase name="activationIsSerializedVerifiedAndSurvivesOwnerRecreation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.149" />
+</testsuite>

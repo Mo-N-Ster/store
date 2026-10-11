@@ -28,6 +28,8 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import com.vibe.store.api.SelectedImage
+import com.vibe.store.api.RecoverySource
+import com.vibe.store.api.RecoveryTarget
 import com.vibe.store.infrastructure.media.AndroidProductMedia
 import com.vibe.store.infrastructure.media.AndroidProfilePhotoMedia
 import com.vibe.store.application.FoundationServiceImpl
@@ -84,6 +86,20 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+            var recoveryTargetCallback by remember { mutableStateOf<((RecoveryTarget?) -> Unit)?>(null) }
+            val recoveryTargetPicker = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/octet-stream")) { uri ->
+                val callback = recoveryTargetCallback; recoveryTargetCallback = null
+                callback?.invoke(uri?.let { selected -> object : RecoveryTarget {
+                    override fun openOutputStream(): OutputStream? = contentResolver.openOutputStream(selected, "wt")
+                } })
+            }
+            var recoverySourceCallback by remember { mutableStateOf<((RecoverySource?) -> Unit)?>(null) }
+            val recoverySourcePicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+                val callback = recoverySourceCallback; recoverySourceCallback = null
+                callback?.invoke(uri?.let { selected -> object : RecoverySource {
+                    override fun openInputStream(): InputStream? = contentResolver.openInputStream(selected)
+                } })
+            }
             var catalogSelectionResult by remember { mutableStateOf<PendingCatalogPdfSelection?>(null) }
             var catalogImportEpoch by remember { mutableIntStateOf(0) }
             val catalogPicker = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
@@ -112,6 +128,15 @@ class MainActivity : ComponentActivity() {
             }, team = store.team, sales = store.sales, posState = posState, suppliers = store.suppliers,
                 reporting = store.reporting,
                 delivery = store.delivery,
+                recovery = store.recovery,
+                pickRecoveryDestination = { callback ->
+                    if (recoveryTargetCallback != null) callback(null)
+                    else { recoveryTargetCallback = callback; recoveryTargetPicker.launch("STORE-backup.storebackup") }
+                },
+                pickRecoverySource = { callback ->
+                    if (recoverySourceCallback != null) callback(null)
+                    else { recoverySourceCallback = callback; recoverySourcePicker.launch(arrayOf("application/zip", "application/octet-stream", "*/*")) }
+                },
                 scheduleDelivery = { EmailDeliveryScheduler.enqueue(this@MainActivity) },
                 printDocument = { actorId, result -> printPdf(actorId, result) },
                 shareDocument = { actorId, result -> sharePdf(actorId, result) },

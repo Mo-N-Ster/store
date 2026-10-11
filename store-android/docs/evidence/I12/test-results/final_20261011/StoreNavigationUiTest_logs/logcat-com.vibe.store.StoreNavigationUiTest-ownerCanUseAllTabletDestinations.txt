@@ -1,0 +1,188 @@
+10-11 22:24:48.227 30437 30452 I TestRunner: started: ownerCanUseAllTabletDestinations(com.vibe.store.StoreNavigationUiTest)
+10-11 22:24:48.231   691   715 I ImeTracker: system_server:651b76dc: onRequestShow at ORIGIN_SERVER reason CONTROLS_CHANGED fromUser false
+10-11 22:24:48.241 30437 30452 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@314b9f8]
+10-11 22:24:48.244 30437 30452 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-11 22:24:48.248  1367  1367 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:48.248  1367  1367 I ImeTracker: com.google.android.apps.nexuslauncher:6465dd52: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:48.249  1367  1367 D RecentsView: onTaskRemoved: 338, not handling task stack changes
+10-11 22:24:48.249  1367  1367 D RecentsView: onTaskRemoved: 338, not handling task stack changes
+10-11 22:24:48.252  1367  1367 I ImeTracker: system_server:651b76dc: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+10-11 22:24:48.254   691  2112 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10307, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:48.319  1367  1367 W SplitSelectStateCtor: Missing session instanceIds
+10-11 22:24:48.319  1367  1367 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-11 22:24:48.343 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: PRE_ON_CREATE
+10-11 22:24:48.343 30437 30437 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-11 22:24:48.345   550  1431 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:48.352  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{500d9bd V.E...... ......ID 0,0-0,0}
+10-11 22:24:48.352  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:48.352  1088  1224 D SplashScreenView: Branding: view: android.view.View{8e27bb2 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:48.353 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: CREATED
+10-11 22:24:48.354 30437 30437 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.vibe.store.MainActivity@c3eec1a
+10-11 22:24:48.354 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: STARTED
+10-11 22:24:48.355 30437 30437 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.vibe.store.MainActivity@c3eec1a
+10-11 22:24:48.355 30437 30437 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:48.355 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: RESUMED
+10-11 22:24:48.356 30437 30437 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.vibe.store.MainActivity@c3eec1a
+10-11 22:24:48.384   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.384   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.384   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.424 30578 30578 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:48.447   691   715 I ImeTracker: system_server:4ecb4985: onRequestShow at ORIGIN_SERVER reason CONTROLS_CHANGED fromUser false
+10-11 22:24:48.451  1738  1738 W TooltipLifecycleManager: TooltipLifecycleManager.dismissTooltips():154 Tooltip with id undo_access_point_promotion_banner not found in tooltipManager.
+10-11 22:24:48.457  1367  1367 I ImeTracker: system_server:4ecb4985: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+10-11 22:24:48.464   691  2104 I ImeTracker: system_server:e7667bc: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:48.464   691   714 I ImeTracker: system_server:e7667bc: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:48.477  1367  1367 D WorkspaceRevealAnim: onAnimationEnd: workspace alpha = 1.0
+10-11 22:24:48.528 30437 30437 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@c3eec1a, of which baseContext=android.app.ContextImpl@3d7b18a
+10-11 22:24:48.532   691   711 I ActivityTaskManager: Displayed com.vibe.store.debug/com.vibe.store.MainActivity for user 0: +277ms
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.556   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.557   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.558   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.559   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.560   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.560   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:48.562 30578 30578 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@4efbf38
+10-11 22:24:48.562 30578 30578 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:48.566   691   806 I ImeTracker: com.vibe.store.debug:b34e3ffa: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:48.568  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:48.568  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:48.568  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.vibe.store.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:48.572 30437 30437 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:48.573 30437 30437 I ImeTracker: com.vibe.store.debug:b34e3ffa: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:48.573  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:48.575   691  2116 I ImeTracker: system_server:20d40276: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:48.578   691   714 I ImeTracker: system_server:20d40276: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:48.597  1367  1367 D RecentsView: onTaskRemoved: 339, not handling task stack changes
+10-11 22:24:48.597  1367  1367 D RecentsView: onTaskRemoved: 339, not handling task stack changes
+10-11 22:24:48.761  1367  1367 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:48.761  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:48.801  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:48.801  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:48.801  1367  1367 D BaseDepthController: 	mBaseSurface: null
+10-11 22:24:48.801  1367  1367 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-11 22:24:48.801  1367  1367 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-11 22:24:48.801  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+10-11 22:24:48.801  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:48.801  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+10-11 22:24:48.802  1367  1367 D StatsLog: LAUNCHER_ONSTOP
+10-11 22:24:48.802  1367  1367 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-11 22:24:49.514  1253  1500 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+10-11 22:24:49.732   691  2102 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10308, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:49.734   550   602 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:49.736  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{775bbfc V.E...... ......ID 0,0-0,0}
+10-11 22:24:49.736  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:49.736  1088  1224 D SplashScreenView: Branding: view: android.view.View{d500285 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:49.737 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: PAUSED
+10-11 22:24:49.737 30437 30437 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.vibe.store.MainActivity@c3eec1a
+10-11 22:24:49.738   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:49.738   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:49.738   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:49.739 30578 30597 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-11 22:24:49.739 30578 30597 I EGL_emulation: Opening libGLESv2_emulation.so
+10-11 22:24:49.741   550   550 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:49.747 30578 30597 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-11 22:24:49.748   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:49.748   691   714 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:49.756 30578 30578 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:49.763  1088  1162 I ndroid.systemui: AssetManager2(0x71737540da38) locale list changing from [] to [en-US]
+10-11 22:24:49.763   473 18028 I netd    : tetherGetStats() -> {[]} <0.86ms>
+10-11 22:24:49.766  1088  1162 I ndroid.systemui: AssetManager2(0x71737542f6d8) locale list changing from [] to [en-US]
+10-11 22:24:49.790  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:49.790  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:49.790  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:49.829   550   576 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:49.834   691   711 I ActivityTaskManager: Displayed com.vibe.store.debug.test/androidx.test.core.app.InstrumentationActivityInvoker$EmptyActivity for user 0: +100ms
+10-11 22:24:49.838  1367  1367 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:49.839  1367  1367 D StatsLog: LAUNCHER_ONRESUME
+10-11 22:24:49.841  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+10-11 22:24:49.846  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:49.846  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:49.846  1367  1367 D BaseDepthController: 	mBaseSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0x55ffb91
+10-11 22:24:49.849  1367  1389 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-11 22:24:49.858  1367  1367 I NotificationListener: Handling notification state refresh for com.android.systemui#0
+10-11 22:24:49.861  1833  2075 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-11 22:24:49.861  1833  2075 I AiAiEcho: EchoTargets:
+10-11 22:24:49.861  1833  2075 I AiAiEcho: Filtered by AiAi flag check:
+10-11 22:24:49.861  1833  2075 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-11 22:24:49.861  1833  2075 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-11 22:24:49.862  1833  2075 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-11 22:24:49.862  1367  1367 D SsBaseTemplateCard: No text view can be set up
+10-11 22:24:49.862  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:49.862  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:49.862  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:49.862  1367  1367 I SsBaseTemplateCard: Secondary card pane is null
+10-11 22:24:49.872 30437 30437 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:49.875  1367  1367 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+10-11 22:24:49.875  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.prepareToAnimate(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:22)
+10-11 22:24:49.875  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:49.875  1367  1367 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:339)
+10-11 22:24:49.876  1367  1367 D b/311077782: LauncherAnimationRunner.setAnimation
+10-11 22:24:49.877 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453ed6a0 (UnprojectedRipple) with handle 0x7173353f9dd0
+10-11 22:24:49.877 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453c1f60 (UnprojectedRipple) with handle 0x7173353d4ff0
+10-11 22:24:49.878 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453b84e0 (UnprojectedRipple) with handle 0x7173353ed0b0
+10-11 22:24:49.878 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453fb7f0 (UnprojectedRipple) with handle 0x7173353e4da0
+10-11 22:24:49.878 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453e9640 (UnprojectedRipple) with handle 0x7173353e51f0
+10-11 22:24:49.881   691   806 I ImeTracker: com.google.android.apps.nexuslauncher:4bbeb95f: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:49.881  1367  1367 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:49.881  1367  1367 I ImeTracker: com.google.android.apps.nexuslauncher:4bbeb95f: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:49.882  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:49.882 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: STOPPED
+10-11 22:24:49.882 30437 30437 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.vibe.store.MainActivity@c3eec1a
+10-11 22:24:49.883  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:49.883  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:49.884   691  2112 I ImeTracker: system_server:6dc75403: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:49.885   691   714 I ImeTracker: system_server:6dc75403: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:49.886  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:49.892 30437 30437 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@73e0d6c
+10-11 22:24:49.892 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@c3eec1a in: DESTROYED
+10-11 22:24:49.892 30437 30437 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-11 22:24:49.894 30437 30437 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:49.895 30437 30452 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@314b9f8]
+10-11 22:24:49.896 30437 30452 I TestRunner: finished: ownerCanUseAllTabletDestinations(com.vibe.store.StoreNavigationUiTest)

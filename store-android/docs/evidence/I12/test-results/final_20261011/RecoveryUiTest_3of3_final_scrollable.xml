@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="3" failures="0" errors="0" skipped="0" time="11.945" timestamp="2026-10-11T21:03:02" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi" classname="com.vibe.store.RecoveryUiTest" time="5.788" />
+  <testcase name="recoveryPanelExportsThroughRealDocumentsUiAndProvider" classname="com.vibe.store.RecoveryUiTest" time="3.48" />
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.929" />
+</testsuite>

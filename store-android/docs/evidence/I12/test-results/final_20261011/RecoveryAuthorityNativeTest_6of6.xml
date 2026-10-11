@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" tests="6" failures="0" errors="0" skipped="0" time="3.023" timestamp="2026-10-11T19:39:59" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="accountSwitchWaitsForAuthorizedPreviewAndRevokesRestoreBeforeConfirmation" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.642" />
+  <testcase name="revokedSourceAndInterruptedDestinationFailWithoutChangingActiveGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.278" />
+  <testcase name="scheduledAutomaticBackupSerializesWithLivePosSale" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.329" />
+  <testcase name="employeeAndSignedOutSessionsCannotInspectExportRestoreOrReset" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.351" />
+  <testcase name="resetPasswordFailuresLockOwnerWithoutReplacingDataThenPermitAuthorizedReset" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.679" />
+  <testcase name="ownerBackupPreviewConfirmationRestoreAndSessionInvalidationUseRealRoomGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.427" />
+</testsuite>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="3" failures="2" errors="0" skipped="0" time="31.9" timestamp="2026-10-10T15:23:22" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi" classname="com.vibe.store.RecoveryUiTest" time="25.336">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 20000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.RecoveryUiTest.productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi(RecoveryUiTest.kt:280)
+</failure>
+  </testcase>
+  <testcase name="recoveryPanelExportsThroughRealDocumentsUiAndProvider" classname="com.vibe.store.RecoveryUiTest" time="3.997">
+    <failure>android.database.sqlite.SQLiteDiskIOException: disk I/O error (code 1034 SQLITE_IOERR_FSYNC)
+at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:195)
+at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:153)
+at android.content.ContentProviderProxy.call(ContentProviderNative.java:764)
+at android.content.ContentResolver.call(ContentResolver.java:2468)
+at android.provider.DocumentsContract.deleteDocument(DocumentsContract.java:1469)
+at com.vibe.store.RecoveryUiTest.recoveryPanelExportsThroughRealDocumentsUiAndProvider(RecoveryUiTest.kt:178)
+</failure>
+  </testcase>
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.83" />
+</testsuite>

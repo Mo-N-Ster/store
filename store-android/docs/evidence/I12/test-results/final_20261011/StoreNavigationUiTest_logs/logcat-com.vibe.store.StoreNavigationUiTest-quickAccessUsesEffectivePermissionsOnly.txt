@@ -1,0 +1,125 @@
+10-11 22:24:44.254 30437 30452 I TestRunner: started: quickAccessUsesEffectivePermissionsOnly(com.vibe.store.StoreNavigationUiTest)
+10-11 22:24:44.256  1367  1367 D RecentsView: onTaskRemoved: 334, not handling task stack changes
+10-11 22:24:44.256 30437 30452 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@c10e03d]
+10-11 22:24:44.256  1367  1367 D RecentsView: onTaskRemoved: 334, not handling task stack changes
+10-11 22:24:44.257   691   806 I ImeTracker: com.google.android.apps.nexuslauncher:d8cad404: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:44.258  1367  1367 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:44.258  1367  1367 I ImeTracker: com.google.android.apps.nexuslauncher:d8cad404: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:44.258 30437 30452 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-11 22:24:44.258  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:44.259  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:44.259  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:44.260  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:44.262   691  2102 I ImeTracker: system_server:72452801: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:44.265   691   714 I ImeTracker: system_server:72452801: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:44.274   691  2109 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10307, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:44.283  1367  1367 W SplitSelectStateCtor: Missing session instanceIds
+10-11 22:24:44.284  1367  1367 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-11 22:24:44.297  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{60b6688 V.E...... ......ID 0,0-0,0}
+10-11 22:24:44.297  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:44.297  1088  1224 D SplashScreenView: Branding: view: android.view.View{1484821 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:44.298 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: PRE_ON_CREATE
+10-11 22:24:44.298 30437 30437 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-11 22:24:44.301 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: CREATED
+10-11 22:24:44.301 30437 30437 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.vibe.store.MainActivity@d19a830
+10-11 22:24:44.301 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: STARTED
+10-11 22:24:44.301 30437 30437 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.vibe.store.MainActivity@d19a830
+10-11 22:24:44.302 30437 30437 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:44.302 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: RESUMED
+10-11 22:24:44.302 30437 30437 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.vibe.store.MainActivity@d19a830
+10-11 22:24:44.383   550   602 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:44.448 30437 30437 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@d19a830, of which baseContext=android.app.ContextImpl@1810b4c
+10-11 22:24:44.484   691   711 I ActivityTaskManager: Displayed com.vibe.store.debug/com.vibe.store.MainActivity for user 0: +175ms
+10-11 22:24:44.494 30578 30578 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:44.526 30578 30578 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@b10cbfd
+10-11 22:24:44.527 30578 30578 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:44.545  1367  1367 D RecentsView: onTaskRemoved: 335, not handling task stack changes
+10-11 22:24:44.545  1367  1367 D RecentsView: onTaskRemoved: 335, not handling task stack changes
+10-11 22:24:44.547   691   806 I ImeTracker: com.vibe.store.debug:d50bea9a: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:44.548  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:44.548  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:44.548   691  2112 I ImeTracker: system_server:72c4089c: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:44.549  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.vibe.store.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:44.549   691   714 I ImeTracker: system_server:72c4089c: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:44.549 30437 30437 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:44.549 30437 30437 I ImeTracker: com.vibe.store.debug:d50bea9a: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:44.549  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:44.550   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.550   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.550   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.558  1367  1367 D WorkspaceRevealAnim: onAnimationEnd: workspace alpha = 1.0
+10-11 22:24:44.565   473 18028 I netd    : tetherGetStats() -> {[]} <5.03ms>
+10-11 22:24:44.804  1367  1367 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:44.815  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:44.815  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:44.815  1367  1367 D BaseDepthController: 	mBaseSurface: null
+10-11 22:24:44.815  1367  1367 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-11 22:24:44.815  1367  1367 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-11 22:24:44.815  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+10-11 22:24:44.815  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:44.815  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+10-11 22:24:44.815  1367  1367 D StatsLog: LAUNCHER_ONSTOP
+10-11 22:24:44.817  1367  1367 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-11 22:24:44.819  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:44.821  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:45.231   691  2102 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10308, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:45.234   550   576 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:45.235  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{85cc8e8 V.E...... ......ID 0,0-0,0}
+10-11 22:24:45.235  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:45.235  1088  1224 D SplashScreenView: Branding: view: android.view.View{286b01 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:45.235 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: PAUSED
+10-11 22:24:45.235 30437 30437 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.vibe.store.MainActivity@d19a830
+10-11 22:24:45.236   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:45.236   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:45.236   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:45.237 30578 30597 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-11 22:24:45.237 30578 30597 I EGL_emulation: Opening libGLESv2_emulation.so
+10-11 22:24:45.239 30578 30578 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:45.241   550   550 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:45.244 30578 30597 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-11 22:24:45.273   550   575 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:45.314  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:45.314  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:45.314  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:45.345  1367  1367 D StatsLog: LAUNCHER_ONRESUME
+10-11 22:24:45.353  1367  1389 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-11 22:24:45.354  1833  2075 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-11 22:24:45.354  1833  2075 I AiAiEcho: EchoTargets:
+10-11 22:24:45.354  1833  2075 I AiAiEcho: Filtered by AiAi flag check:
+10-11 22:24:45.354  1833  2075 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-11 22:24:45.354  1833  2075 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-11 22:24:45.354  1833  2075 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-11 22:24:45.358  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+10-11 22:24:45.361  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:45.361  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:45.361  1367  1367 D BaseDepthController: 	mBaseSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0x55ffb91
+10-11 22:24:45.372  1367  1367 I NotificationListener: Handling notification state refresh for com.android.systemui#0
+10-11 22:24:45.372  1367  1367 D SsBaseTemplateCard: No text view can be set up
+10-11 22:24:45.372  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:45.372  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:45.372  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:45.372  1367  1367 I SsBaseTemplateCard: Secondary card pane is null
+10-11 22:24:45.384 30437 30437 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:45.387  1367  1367 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+10-11 22:24:45.387  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.prepareToAnimate(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:22)
+10-11 22:24:45.387  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:45.387  1367  1367 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:339)
+10-11 22:24:45.387  1367  1367 D b/311077782: LauncherAnimationRunner.setAnimation
+10-11 22:24:45.395 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453d8170 (UnprojectedRipple) with handle 0x7173353f47c0
+10-11 22:24:45.402   691   806 I ImeTracker: com.google.android.apps.nexuslauncher:923b8c7a: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:45.403  1367  1367 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:45.403  1367  1367 I ImeTracker: com.google.android.apps.nexuslauncher:923b8c7a: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:45.404  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:45.405  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:45.405  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.apps.nexuslauncher, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:45.405   691  2113 I ImeTracker: system_server:5026b276: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:45.406   691   714 I ImeTracker: system_server:5026b276: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:45.406 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: STOPPED
+10-11 22:24:45.406 30437 30437 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.vibe.store.MainActivity@d19a830
+10-11 22:24:45.407  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:45.416 30437 30437 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@79242de
+10-11 22:24:45.416 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d19a830 in: DESTROYED
+10-11 22:24:45.416 30437 30437 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-11 22:24:45.420 30437 30452 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@c10e03d]
+10-11 22:24:45.423 30437 30437 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:45.435 30437 30452 I TestRunner: finished: quickAccessUsesEffectivePermissionsOnly(com.vibe.store.StoreNavigationUiTest)

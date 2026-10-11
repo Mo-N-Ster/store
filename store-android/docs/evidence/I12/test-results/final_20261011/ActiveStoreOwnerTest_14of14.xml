@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" tests="14" failures="0" errors="0" skipped="0" time="2.166" timestamp="2026-10-11T19:36:49" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="automaticRetentionKeepsSevenAndNeverDeletesManualArchives" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.416" />
+  <testcase name="startupRemovesOnlyOrphanRecoveryStagingAfterGenerationValidation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.028" />
+  <testcase name="completeSyntheticBusinessDatabaseSurvivesBackupAndRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.178" />
+  <testcase name="archiveWithoutActiveOwnerIsRejectedBeforeGenerationSwitch" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.202" />
+  <testcase name="malformedGenerationPointerFailsClosed" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.003" />
+  <testcase name="restoreMigratesLegacySchemaOnlyInsideCandidateBeforePublishingGeneration" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.175" />
+  <testcase name="startupRollsBackPreparedInvalidGenerationToVerifiedOldState" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.052" />
+  <testcase name="rejectedArchiveLeavesActiveGenerationUntouched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.051" />
+  <testcase name="startupCompletesPreparedGenerationWhosePointerAlreadySwitched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.051" />
+  <testcase name="resetUsesVerifiedEmptyGenerationAndRetainsSafetyBackup" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.151" />
+  <testcase name="simulatedLowSpaceRejectsBackupAndRestoreWithoutPublishingOrSwitching" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.127" />
+  <testcase name="verifiedBackupRestoresThroughGenerationCommit" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.202" />
+  <testcase name="archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.077" />
+  <testcase name="activationIsSerializedVerifiedAndSurvivesOwnerRecreation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.101" />
+</testsuite>

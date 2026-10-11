@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" tests="8" failures="0" errors="0" skipped="0" time="2.683" timestamp="2026-10-11T21:05:00" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="contextualArticleStartsWithZeroAndSaleSnapshotIsNotChangedByReceiving" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.412" />
+  <testcase name="insufficientStockOnLastLineRollsBackAllCompensation" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.253" />
+  <testcase name="supplierInactiveAndArchivedArticleBlockNewReceptionNotHistoricalCancellation" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.279" />
+  <testcase name="injectedFaultAfterStockRollsBackEntireReception" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.228" />
+  <testcase name="receivingTwiceAndConcurrentlyNeverDoubleApplies" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.253" />
+  <testcase name="currentRightsAndEmployeeDirectCallsCannotMutate" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.48" />
+  <testcase name="draftReplacementCollisionPagingAndNoStockEffect" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.227" />
+  <testcase name="cancelDraftHasNoCompensationAndCancelValidatedOnlyOnce" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.253" />
+</testsuite>

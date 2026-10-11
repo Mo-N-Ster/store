@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ReportingNativeTest" tests="7" failures="0" errors="0" skipped="0" time="0.77" timestamp="2026-10-11T21:05:31" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="dashboardCalendarBoundsRespectDstAndLocalDate" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.088" />
+  <testcase name="validatedSalesTotalsContinueAcrossDisplayPageBoundary" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.103" />
+  <testcase name="financeRejectsMissingOrMixedSalesCurrencyWithoutReturningPartialSnapshot" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.077" />
+  <testcase name="reportTabsUseExactValidatedTotalsCurrentStockAndCompletedHours" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.052" />
+  <testcase name="expiredLeaseIsCheckedBeforeProductRankingQuery" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.028" />
+  <testcase name="dashboardIsOneLocalCalendarSnapshotWithMonthAndRollingTrend" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.052" />
+  <testcase name="purchaseStatusCountsCrossKeysetBatchesAndCalendarGrainsHaveZeroBuckets" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.052" />
+</testsuite>

@@ -8,6 +8,7 @@ import com.vibe.store.api.IdentityService
 import com.vibe.store.api.CatalogService
 import com.vibe.store.api.ReportingService
 import com.vibe.store.application.catalog.CatalogAuthority
+import com.vibe.store.application.recovery.RecoveryAuthority
 import com.vibe.store.application.reporting.ReportingAuthority
 import com.vibe.store.infrastructure.media.AndroidProductMedia
 import com.vibe.store.application.security.IdentityAuthority
@@ -25,12 +26,13 @@ class StoreApplication : Application() {
     private val authority by lazy {
         IdentityAuthority(persistence.owner, persistence.commands, BcryptPasswords(),
             com.vibe.store.application.security.OperationGuards(
-                critical = { saleAuthority?.critical == true || purchaseAuthority?.critical == true || inventoryAuthority?.critical == true }, unsavedCart = { unsavedSale }))
+                critical = { saleAuthority?.critical == true || purchaseAuthority?.critical == true || inventoryAuthority?.critical == true }, unsavedCart = { unsavedSale }),
+            onOwnerAuthenticated = { RecoveryBackupScheduler.enqueue(this) })
     }
     val identity: IdentityService get() = authority
     val support: com.vibe.store.api.SupportService by lazy {
         com.vibe.store.application.security.SupportAuthority(authority, storage = {
-            val db = java.io.File(noBackupFilesDir, "generations/main/store.db")
+            val db = java.io.File(com.vibe.store.infrastructure.persistence.AndroidPersistence.activeGenerationRoot(this), "store.db")
             val wal = java.io.File(db.path + "-wal")
             val used: Long? = if (db.exists()) db.length() + (if (wal.exists()) wal.length() else 0L) else null
             used to noBackupFilesDir.usableSpace
@@ -39,7 +41,12 @@ class StoreApplication : Application() {
     val sales: com.vibe.store.api.SaleService by lazy {
         com.vibe.store.application.sales.SaleAuthority(authority).also { saleAuthority = it }
     }
-    val catalog: CatalogService by lazy { CatalogAuthority(authority, AndroidProductMedia.create(this)) }
+    private val catalogAuthority by lazy { CatalogAuthority(authority, AndroidProductMedia.create(this)) }
+    val catalog: CatalogService get() = catalogAuthority
+    val recovery: com.vibe.store.api.RecoveryService by lazy { RecoveryAuthority(authority, catalogAuthority, persistence.recovery) }
+    internal suspend fun performAutomaticBackup() {
+        recovery.createAutomaticBackup()
+    }
     /** Prepared but not exposed to UI until I10 parser qualification is accepted. */
     val catalogImport: com.vibe.store.api.CatalogImportService by lazy {
         com.vibe.store.application.catalog.CatalogImportAuthority(

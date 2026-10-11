@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.CatalogFormUiTest" tests="100" failures="11" errors="0" skipped="0" time="243.666" timestamp="2026-10-11T19:03:34" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="cancelledPickerPreservesExistingSelectionAndEntries" classname="com.vibe.store.CatalogFormUiTest" time="3.396" />
+  <testcase name="creationContinuousInputAndSingleSaveWhileBusy" classname="com.vibe.store.CatalogFormUiTest" time="5.69" />
+  <testcase name="editingKeepsInitialValuesAndSavesExistingIdentity" classname="com.vibe.store.CatalogFormUiTest" time="3.717" />
+  <testcase name="imeDoneClearsFocusWithoutSavingThenExplicitSaveWorks" classname="com.vibe.store.CatalogFormUiTest" time="4.123" />
+  <testcase name="unchangedAndRestoredValuesReturnWithoutConfirmation" classname="com.vibe.store.CatalogFormUiTest" time="3.066" />
+  <testcase name="readOnlyPermissionsDoNotExposeCreationOrEdit" classname="com.vibe.store.CatalogFormUiTest" time="1.155" />
+  <testcase name="cancelDiscardKeepsFieldsAndReplacementImage" classname="com.vibe.store.CatalogFormUiTest" time="2.518" />
+  <testcase name="failedSaveRetainsFormFieldsAndImageRemoval" classname="com.vibe.store.CatalogFormUiTest" time="2.43" />
+  <testcase name="systemBackConfirmedDiscardClearsOnlyPresentationDraft" classname="com.vibe.store.CatalogFormUiTest" time="2.166" />
+  <testcase name="compactFormSectionsAndAllControlsRemainReachable" classname="com.vibe.store.CatalogFormUiTest" time="9.498" />
+  <testcase name="documentsUiSelectedPdfReachesIsolatedParserAndStrictCodec" classname="com.vibe.store.CatalogImportDocumentsUiTest" time="3.396" />
+  <testcase name="realPickerPreviewConfirmationAndRoomPersistenceAreOneWorkflow" classname="com.vibe.store.CatalogImportEndToEndUiTest" time="3.625" />
+  <testcase name="defaultImportActionRequiresProductUpdatePermission" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.163" />
+  <testcase name="confirmationRunsOnceAndSessionDenialNeverShowsSuccess" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.38" />
+  <testcase name="syntheticSelectionShowsExactPreviewAndCancelDiscardsWithoutConfirming" classname="com.vibe.store.CatalogImportWorkflowUiTest" time="1.386" />
+  <testcase name="detailAndHistoriesKeepReadableEntriesAndReadPermissions" classname="com.vibe.store.CatalogPresentationUiTest" time="1.525" />
+  <testcase name="cardsShowStockStatesAndStructuredAmounts" classname="com.vibe.store.CatalogPresentationUiTest" time="1.194" />
+  <testcase name="englishReadOnlyCatalogSearchDetailAndReturn" classname="com.vibe.store.CatalogUiTest" time="1.784" />
+  <testcase name="adaptiveWindowThresholdsRecomputeAndKeepCatalogUsable" classname="com.vibe.store.CatalogUiTest" time="12.678" />
+  <testcase name="frenchContinuousEntryAndCancelledPickerPreserveForm" classname="com.vibe.store.CatalogUiTest" time="1.951">
+    <failure>java.lang.AssertionError: Action performScrollTo() failed.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'product-price')
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow(SemanticsNodeInteraction.kt:178)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrThrow$default(SemanticsNodeInteraction.kt:150)
+at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+at androidx.compose.ui.test.ActionsKt.performScrollTo(Actions.kt:81)
+at com.vibe.store.CatalogUiTest.frenchContinuousEntryAndCancelledPickerPreserveForm(CatalogUiTest.kt:48)
+</failure>
+  </testcase>
+  <testcase name="effectiveDashboardDenialAndBackendDenialNeverExposeSnapshot" classname="com.vibe.store.DashboardUiTest" time="1.079" />
+  <testcase name="emptyAndErrorRetryStatesAreDistinct" classname="com.vibe.store.DashboardUiTest" time="1.45" />
+  <testcase name="authorizedRolesRenderCanonicalSnapshotAndRespectPresenceOmission" classname="com.vibe.store.DashboardUiTest" time="1.467" />
+  <testcase name="localMidnightDeadlineUsesTwentyThreeAndTwentyFiveHourDstDays" classname="com.vibe.store.DashboardUiTest" time="1.071" />
+  <testcase name="changingIdentityCancelsLateResponseAndLogoutDisposesPrivateSnapshot" classname="com.vibe.store.DashboardUiTest" time="2.153" />
+  <testcase name="timezoneChangeRefreshesEvenWhenLocalDateIsUnchanged" classname="com.vibe.store.DashboardUiTest" time="1.07" />
+  <testcase name="dashboardAdaptsAcrossWidthsAndFrenchEnglishLabels" classname="com.vibe.store.DashboardUiTest" time="1.315" />
+  <testcase name="presenceContextRequiresItsOwnEffectivePermission" classname="com.vibe.store.DashboardUiTest" time="1.122" />
+  <testcase name="sameLocalDaySchedulesMidnightWithoutRefreshingRepeatedly" classname="com.vibe.store.DashboardUiTest" time="0.741" />
+  <testcase name="disposalCancelsScheduledWaitAndLateOldContextResponseIsDiscarded" classname="com.vibe.store.DashboardUiTest" time="0.762" />
+  <testcase name="localMidnightWhileForegroundedRefreshesAndHidesOldSnapshot" classname="com.vibe.store.DashboardUiTest" time="1.022" />
+  <testcase name="timezoneChangeRefreshesWhenLocalDateChanges" classname="com.vibe.store.DashboardUiTest" time="0.901" />
+  <testcase name="safCancellationIsShownAndDoesNotRetryOrMutateBusinessData" classname="com.vibe.store.DocumentExportUiTest" time="1.368" />
+  <testcase name="safDestinationWriteErrorHasRetryableStatus" classname="com.vibe.store.DocumentExportUiTest" time="0.888" />
+  <testcase name="printAndShareAreExplicitDocumentActionsBoundToTheRenderingActor" classname="com.vibe.store.DocumentExportUiTest" time="1.141" />
+  <testcase name="androidPrintServiceAcceptsAndCancelsSyntheticPrintJob" classname="com.vibe.store.DocumentExportUiTest" time="2.032" />
+  <testcase name="createDocumentWritesToSelectedSystemProvider" classname="com.vibe.store.DocumentExportUiTest" time="2.455" />
+  <testcase name="destinationWriteFailureIsShownAndDeniedSourceNeverOpensSaf" classname="com.vibe.store.DocumentExportUiTest" time="1.075" />
+  <testcase name="createDocumentLaunchesSystemPickerAndCancellationReturnsNull" classname="com.vibe.store.DocumentExportUiTest" time="1.857" />
+  <testcase name="constrainedDeliveryWaitsOfflineAndRunsAfterConnectivityReturns" classname="com.vibe.store.EmailDeliveryConnectivityUiTest" time="4.181" />
+  <testcase name="prepareForProcessRestart" classname="com.vibe.store.EmailDeliveryRestartUiTest" time="0.0">
+    <failure>java.lang.AssertionError: expected:&lt;1&gt; but was:&lt;2&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.EmailDeliveryRestartUiTest.prepareForProcessRestart(EmailDeliveryRestartUiTest.kt:19)
+</failure>
+  </testcase>
+  <testcase name="verifyAfterProcessRestart" classname="com.vibe.store.EmailDeliveryRestartUiTest" time="0.027">
+    <failure>java.lang.AssertionError: WorkManager must restore the unique delayed request after app process restart expected:&lt;1&gt; but was:&lt;2&gt;
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.failNotEquals(Assert.java:835)
+at org.junit.Assert.assertEquals(Assert.java:120)
+at com.vibe.store.EmailDeliveryRestartUiTest.verifyAfterProcessRestart(EmailDeliveryRestartUiTest.kt:28)
+</failure>
+  </testcase>
+  <testcase name="repeatedSchedulingUsesOneUniqueNonParallelChain" classname="com.vibe.store.EmailDeliverySchedulerUiTest" time="0.028" />
+  <testcase name="failedQueueEntryShowsSafeStatusAndExplicitRetry" classname="com.vibe.store.EmailDeliveryUiTest" time="0.993" />
+  <testcase name="frenchAndEnglishResourcesExist" classname="com.vibe.store.FoundationSmokeTest" time="0.84" />
+  <testcase name="adaptiveNativeSmokeAndTypedReturn" classname="com.vibe.store.FoundationSmokeTest" time="0.994">
+    <failure>java.lang.IllegalStateException: expectedWidth COMPACT/MEDIUM/EXPANDED required
+at com.vibe.store.FoundationSmokeTest.adaptiveNativeSmokeAndTypedReturn(FoundationSmokeTest.kt:18)
+</failure>
+  </testcase>
+  <testcase name="manifestAndNoDatabase" classname="com.vibe.store.FoundationSmokeTest" time="1.206" />
+  <testcase name="durableRestoreAndResetBoundariesRecoverAfterThreeExternalProcessKillsEach" classname="com.vibe.store.I12RecoveryProcessDeathTest" time="28.167" />
+  <testcase name="continuousPasswordEntryAndVisibility" classname="com.vibe.store.IdentityUiTest" time="2.377" />
+  <testcase name="failedLoginRetryAndRecoveryCleanForm" classname="com.vibe.store.IdentityUiTest" time="5.783" />
+  <testcase name="applicationSessionNotRestoredAfterRealDeath" classname="com.vibe.store.IdentityUiTest" time="1.168">
+    <failure>java.lang.IllegalArgumentException: Failed requirement.
+at com.vibe.store.IdentityUiTest$applicationSessionNotRestoredAfterRealDeath$1.invokeSuspend(IdentityUiTest.kt:92)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.IdentityUiTest.applicationSessionNotRestoredAfterRealDeath(IdentityUiTest.kt:90)
+</failure>
+  </testcase>
+  <testcase name="rotationBackgroundAndProtectedNavigation" classname="com.vibe.store.IdentityUiTest" time="1.638" />
+  <testcase name="actualWindowClassAndIndependentPanels" classname="com.vibe.store.PosUiTest" time="0.871">
+    <failure>java.lang.IllegalStateException: Required value was null.
+at com.vibe.store.PosUiTest.actualWindowClassAndIndependentPanels(PosUiTest.kt:111)
+</failure>
+  </testcase>
+  <testcase name="retryRetainsKeyAndActivityRecreationRetainsOnlyEphemeralCart" classname="com.vibe.store.PosUiTest" time="1.577" />
+  <testcase name="zeroQuantityAndContinuousCommaPaymentReachRealSubmit" classname="com.vibe.store.PosUiTest" time="2.791" />
+  <testcase name="ownerAuthenticationSchedulesOnlyOnePeriodicBackup" classname="com.vibe.store.RecoveryBackupSchedulerTest" time="0.129" />
+  <testcase name="actualWorkerSkipsWithoutOwnerThenWritesVerifiableAutomaticBackup" classname="com.vibe.store.RecoveryBackupSchedulerTest" time="0.028">
+    <failure>com.vibe.store.api.SecurityFailure: FORBIDDEN
+at com.vibe.store.application.security.IdentityAuthority.fail(IdentityAuthority.kt:121)
+at com.vibe.store.application.security.IdentityAuthority.login(IdentityAuthority.kt:266)
+at com.vibe.store.RecoveryBackupSchedulerTest$actualWorkerSkipsWithoutOwnerThenWritesVerifiableAutomaticBackup$1.invokeSuspend(RecoveryBackupSchedulerTest.kt:67)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.RecoveryBackupSchedulerTest.actualWorkerSkipsWithoutOwnerThenWritesVerifiableAutomaticBackup(RecoveryBackupSchedulerTest.kt:37)
+</failure>
+  </testcase>
+  <testcase name="productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi" classname="com.vibe.store.RecoveryUiTest" time="4.42" />
+  <testcase name="recoveryPanelExportsThroughRealDocumentsUiAndProvider" classname="com.vibe.store.RecoveryUiTest" time="3.353" />
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.544" />
+  <testcase name="captureSevenReportsAndRepresentativePresentationVariants" classname="com.vibe.store.ReportingScreenshotTest" time="4.706" />
+  <testcase name="detailedTableAdaptsToWidthAndLongSnapshotsStayWithinBound" classname="com.vibe.store.ReportingUiTest" time="2.279" />
+  <testcase name="resetClearsOldSnapshotBeforeLoadingCurrentTabDefaults" classname="com.vibe.store.ReportingUiTest" time="1.55" />
+  <testcase name="financesDenialAndIndividualPurchasePresenceDenialsRenderNoRows" classname="com.vibe.store.ReportingUiTest" time="1.881" />
+  <testcase name="draftChangesStayUnappliedUntilApplyAndPresetCreatesInclusiveDateRange" classname="com.vibe.store.ReportingUiTest" time="3.113" />
+  <testcase name="invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown" classname="com.vibe.store.ReportingUiTest" time="1.884">
+    <failure>java.lang.AssertionError: Failed: assertDoesNotExist.
+Reason: Did not expect any node but found '1' node that satisfies: (TestTag = 'reports-grain-WEEK')
+Node found:
+Node #13012 at (l=217.0, t=627.0, r=398.0, b=711.0)px, Tag: 'reports-grain-WEEK'
+Focused = 'false'
+Role = 'Checkbox'
+Selected = 'false'
+Text = '[WEEK]'
+Actions = [ClearTextSubstitution, GetTextLayoutResult, OnClick, RequestFocus, SetTextSubstitution, ShowTextSubstitution]
+MergeDescendants = 'true'
+Has 27 siblings
+
+at androidx.compose.ui.test.SemanticsNodeInteraction.assertDoesNotExist(SemanticsNodeInteraction.kt:101)
+at com.vibe.store.ReportingUiTest.invalidDatesDisableApplyAndUnsupportedFilterControlsAreNotSilentlyShown(ReportingUiTest.kt:224)
+</failure>
+  </testcase>
+  <testcase name="authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation" classname="com.vibe.store.ReportingUiTest" time="1.215" />
+  <testcase name="changedAppliedFilterDiscardsLateResponseAndHidesPreviousSnapshot" classname="com.vibe.store.ReportingUiTest" time="1.96" />
+  <testcase name="detailedTableHasAccessibleExpansionAndCollapseControl" classname="com.vibe.store.ReportingUiTest" time="1.439" />
+  <testcase name="allSevenTabsLoadOnlyTheirAppliedDocumentSnapshot" classname="com.vibe.store.ReportingUiTest" time="2.749" />
+  <testcase name="emptyErrorRetryExactMoneyMarginUnavailableCurrencyAndChartEquivalent" classname="com.vibe.store.ReportingUiTest" time="2.179" />
+  <testcase name="frenchEnglishAndAllWindowWidthsRemainReadable" classname="com.vibe.store.ReportingUiTest" time="1.369" />
+  <testcase name="currencyLabelRequiresRenderedMonetaryContentForStockAndTeam" classname="com.vibe.store.ReportingUiTest" time="1.996" />
+  <testcase name="accountSwitchDisposesOldReportAndRejectsItsLateResponse" classname="com.vibe.store.ReportingUiTest" time="1.597" />
+  <testcase name="stopHidesSnapshotAndResumeReloadsTheAppliedFilter" classname="com.vibe.store.ReportingUiTest" time="1.497" />
+  <testcase name="shellCallerWithoutGrantCannotReadSharedDocumentUri" classname="com.vibe.store.SafProviderFailureTest" time="2.068" />
+  <testcase name="providerStorageFullReturnsFailureAndClosesDestination" classname="com.vibe.store.SafProviderFailureTest" time="1.124" />
+  <testcase name="shareProviderIsPrivateReadOnlyAndLimitedToSyntheticCacheDocuments" classname="com.vibe.store.SafProviderFailureTest" time="1.065" />
+  <testcase name="revokedSelectedUriFailsClosedBeforeParsing" classname="com.vibe.store.SafProviderFailureTest" time="0.747" />
+  <testcase name="authenticatedShellNavigatesToAuthorizedSettings" classname="com.vibe.store.StoreNavigationUiTest" time="1.219" />
+  <testcase name="employeeSeesOnlyPermittedPhoneDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="1.058" />
+  <testcase name="quickAccessUsesEffectivePermissionsOnly" classname="com.vibe.store.StoreNavigationUiTest" time="1.124" />
+  <testcase name="unsavedSettingsBlockTabNavigationUntilDiscarded" classname="com.vibe.store.StoreNavigationUiTest" time="2.027" />
+  <testcase name="ownerCanUseAllTabletDestinations" classname="com.vibe.store.StoreNavigationUiTest" time="1.595" />
+  <testcase name="sensitiveNavigationCanBeDisabledWithoutHidingRoutes" classname="com.vibe.store.StoreNavigationUiTest" time="1.137" />
+  <testcase name="ownerHasAdminAuditAndDiagnosticTabs" classname="com.vibe.store.SupportUiTest" time="1.148" />
+  <testcase name="employeeSeesChatHelpButNoAdministrationOrAlerts" classname="com.vibe.store.SupportUiTest" time="1.012" />
+  <testcase name="employeeCardSeparatesIdentityRoleAndAccess" classname="com.vibe.store.TeamPresentationUiTest" time="1.138" />
+  <testcase name="historyDefaultsToReadableDatesAndKeepsVerbatimAuditOnDemand" classname="com.vibe.store.TeamPresentationUiTest" time="1.22" />
+  <testcase name="editorGroupsFieldsAndAllowsMissingPhotoAndAutomaticReference" classname="com.vibe.store.TeamPresentationUiTest" time="2.386" />
+  <testcase name="adaptiveTeamWindowAndEvidence" classname="com.vibe.store.TeamPresentationUiTest" time="10.888">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.TeamPresentationUiTest.adaptiveTeamWindowAndEvidence(TeamPresentationUiTest.kt:67)
+</failure>
+  </testcase>
+  <testcase name="employeeCannotSeeAdministrativeControls" classname="com.vibe.store.TeamUiTest" time="0.71" />
+  <testcase name="createEmployeeWithContinuousTextAndOneShotTemporarySecret" classname="com.vibe.store.TeamUiTest" time="3.571" />
+  <testcase name="personalProofNeverOccursOnScreenOpenAndUsesSignersPassword" classname="com.vibe.store.TeamUiTest" time="1.856" />
+  <testcase name="managementRouteHiddenWithoutCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.226" />
+  <testcase name="supplierCreationCallsServiceAndReloadsList" classname="com.vibe.store.WorkflowNavigationUiTest" time="11.441">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.WorkflowNavigationUiTest.supplierCreationCallsServiceAndReloadsList(WorkflowNavigationUiTest.kt:70)
+</failure>
+  </testcase>
+  <testcase name="managementRouteAppearsOnlyWithCapability" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.093" />
+  <testcase name="workflowFrenchEnglishAndLightDarkRender" classname="com.vibe.store.WorkflowNavigationUiTest" time="1.225" />
+  <testcase name="adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions" classname="com.vibe.store.WorkflowNavigationUiTest" time="0.842">
+    <failure>java.lang.IllegalStateException: Required value was null.
+at com.vibe.store.WorkflowNavigationUiTest.adaptiveWorkflowScreensUseRealWidthAndAccessiblePrimaryActions(WorkflowNavigationUiTest.kt:80)
+</failure>
+  </testcase>
+  <testcase name="workflowImeFocusAndDecimalCommaPointRemainUsable" classname="com.vibe.store.WorkflowNavigationUiTest" time="3.253" />
+</testsuite>

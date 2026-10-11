@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.infrastructure.persistence.RecoveryArchiveTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-10-10T14:18:02.996Z" hostname="Sterling-Setup" time="0.077">
+  <properties/>
+  <testcase name="contentDigestMismatchAndUnsupportedSchemaAreRejected" classname="com.vibe.store.infrastructure.persistence.RecoveryArchiveTest" time="0.055"/>
+  <testcase name="rejectsTraversalDuplicateUnexpectedAndTruncatedArchives" classname="com.vibe.store.infrastructure.persistence.RecoveryArchiveTest" time="0.013"/>
+  <testcase name="streamedArchiveRoundTripsDatabaseAndAllowedMediaWithHashes" classname="com.vibe.store.infrastructure.persistence.RecoveryArchiveTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.SecurityAuthorityTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-11T19:39:30.599Z" hostname="Sterling-Setup" time="0.051">
+  <properties/>
+  <testcase name="bootstrapUniqueNoDefaultAndDistinctSetup" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.011"/>
+  <testcase name="settingsAllowlistAndPublicResponses" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.011"/>
+  <testcase name="switchingGuardsAndSessionGeneration" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.005"/>
+  <testcase name="identityNfcCaseSpacesAccentsAmbiguityAndInactive" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.007"/>
+  <testcase name="directCallsOwnerManagerAndZeroMutation" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.007"/>
+  <testcase name="subtractiveDenialsConflictCashAndRightsReread" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.004"/>
+  <testcase name="boundedLockoutRecoveryAndRetry" classname="com.vibe.store.testing.SecurityAuthorityTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

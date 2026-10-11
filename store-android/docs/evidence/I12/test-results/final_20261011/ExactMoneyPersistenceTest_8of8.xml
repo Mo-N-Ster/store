@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" tests="8" failures="0" errors="0" skipped="0" time="1.484" timestamp="2026-10-11T19:15:01" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="productionMigrationPreservesRecordsRelationsIndexesAndPendingIntent" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.163" />
+  <testcase name="migratedPendingCommandsResolveAndReplayWithoutDuplicateEffects" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.254" />
+  <testcase name="capturedAggregationIsExactBoundedAndRefundsAreNotDoubleCounted" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.252" />
+  <testcase name="canonicalConverterRejectsMalformedTextAndPreservesNullableSigns" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.001" />
+  <testcase name="failedMigrationRetainsV1AndVerifiedRecoverySnapshot" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.052" />
+  <testcase name="allMonetaryColumnsAreTextAndMalformedWritesAreRejected" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.077" />
+  <testcase name="exactSalesPurchasesCashAndRestart" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.326" />
+  <testcase name="nonfiniteLegacyMoneyFailsWithoutReplacingSource" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.051" />
+</testsuite>

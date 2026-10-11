@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="3" failures="1" errors="0" skipped="0" time="11.194" timestamp="2026-10-10T16:05:49" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi" classname="com.vibe.store.RecoveryUiTest" time="4.502">
+    <failure>java.lang.AssertionError: Backup provider output was not ZIP
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at com.vibe.store.RecoveryUiTest.productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi(RecoveryUiTest.kt:273)
+</failure>
+  </testcase>
+  <testcase name="recoveryPanelExportsThroughRealDocumentsUiAndProvider" classname="com.vibe.store.RecoveryUiTest" time="4.105" />
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.939" />
+</testsuite>

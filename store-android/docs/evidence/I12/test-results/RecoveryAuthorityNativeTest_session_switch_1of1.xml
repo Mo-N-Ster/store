@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" tests="1" failures="0" errors="0" skipped="0" time="0.849" timestamp="2026-10-11T18:55:19" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="accountSwitchWaitsForAuthorizedPreviewAndRevokesRestoreBeforeConfirmation" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.566" />
+</testsuite>

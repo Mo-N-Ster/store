@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" tests="10" failures="1" errors="0" skipped="0" time="2.155" timestamp="2026-10-10T14:24:48" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="automaticRetentionKeepsSevenAndNeverDeletesManualArchives" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.558" />
+  <testcase name="completeSyntheticBusinessDatabaseSurvivesBackupAndRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.175" />
+  <testcase name="archiveWithoutActiveOwnerIsRejectedBeforeGenerationSwitch" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.27" />
+  <testcase name="malformedGenerationPointerFailsClosed" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.001" />
+  <testcase name="startupRollsBackPreparedInvalidGenerationToVerifiedOldState" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.055">
+    <failure>org.junit.ComparisonFailure: expected:&lt;[main]&gt; but was:&lt;[candidate-0281dca7-bea2-40ee-890e-e8caf0207af2]&gt;
+at org.junit.Assert.assertEquals(Assert.java:117)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest$startupRollsBackPreparedInvalidGenerationToVerifiedOldState$1.invokeSuspend(ActiveStoreOwnerTest.kt:93)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest.startupRollsBackPreparedInvalidGenerationToVerifiedOldState(ActiveStoreOwnerTest.kt:79)
+</failure>
+  </testcase>
+  <testcase name="rejectedArchiveLeavesActiveGenerationUntouched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.048" />
+  <testcase name="startupCompletesPreparedGenerationWhosePointerAlreadySwitched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.072" />
+  <testcase name="resetUsesVerifiedEmptyGenerationAndRetainsSafetyBackup" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.198" />
+  <testcase name="verifiedBackupRestoresThroughGenerationCommit" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.252" />
+  <testcase name="activationIsSerializedVerifiedAndSurvivesOwnerRecreation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.129" />
+</testsuite>

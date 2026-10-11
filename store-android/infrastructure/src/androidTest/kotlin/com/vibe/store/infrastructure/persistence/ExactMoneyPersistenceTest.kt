@@ -165,11 +165,14 @@ class ExactMoneyPersistenceTest {
         val snapshot = File(context.noBackupFilesDir, "maintenance/${root.name}/pre-migration.db")
         assertEquals(before, sha256(snapshot))
         BundledSQLiteDriver().open(source.path, 1).use { connection ->
-            assertEquals("2", connection.scalar("PRAGMA user_version"))
+            assertEquals("3", connection.scalar("PRAGMA user_version"))
             val after = connection.prepare("SELECT sql FROM sqlite_master WHERE type='index' AND sql IS NOT NULL ORDER BY name").use { row ->
                 buildList { while (row.step()) add(row.getText(0)) }
             }
-            assertEquals(indexes, after)
+            assertTrue("Production migration must preserve every legacy index", after.toSet().containsAll(indexes))
+            fun indexName(sql: String) = Regex("^CREATE (?:UNIQUE )?INDEX [`]?([^` ]+)").find(sql)!!.groupValues[1]
+            assertEquals(setOf("index_email_report_logs_status_nextAttemptAt_createdAt"),
+                after.map(::indexName).toSet() - indexes.map(::indexName).toSet())
             for ((table, columns) in MoneyColumns.tables) for (column in columns) {
                 connection.prepare("SELECT typeof(`$column`) FROM `$table` WHERE `$column` IS NOT NULL").use { row ->
                     while (row.step()) assertEquals("text", row.getText(0))

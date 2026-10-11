@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" tests="11" failures="1" errors="0" skipped="0" time="2.169" timestamp="2026-10-10T14:43:16" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="automaticRetentionKeepsSevenAndNeverDeletesManualArchives" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.549" />
+  <testcase name="completeSyntheticBusinessDatabaseSurvivesBackupAndRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.199" />
+  <testcase name="archiveWithoutActiveOwnerIsRejectedBeforeGenerationSwitch" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.253" />
+  <testcase name="malformedGenerationPointerFailsClosed" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.001" />
+  <testcase name="startupRollsBackPreparedInvalidGenerationToVerifiedOldState" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.077" />
+  <testcase name="rejectedArchiveLeavesActiveGenerationUntouched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.053" />
+  <testcase name="startupCompletesPreparedGenerationWhosePointerAlreadySwitched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.102" />
+  <testcase name="resetUsesVerifiedEmptyGenerationAndRetainsSafetyBackup" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.178" />
+  <testcase name="verifiedBackupRestoresThroughGenerationCommit" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.253" />
+  <testcase name="archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.001">
+    <failure>java.lang.IllegalArgumentException: Failed requirement.
+at com.vibe.store.infrastructure.persistence.RecoveryArchive.write(RecoveryArchive.kt:32)
+at com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest$archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore$1.invokeSuspend(ActiveStoreOwnerTest.kt:206)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest.archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore(ActiveStoreOwnerTest.kt:199)
+</failure>
+  </testcase>
+  <testcase name="activationIsSerializedVerifiedAndSurvivesOwnerRecreation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.152" />
+</testsuite>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.EmailAuthorityTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-11T19:39:30.374Z" hostname="Sterling-Setup" time="0.134">
+  <properties/>
+  <testcase name="authorizedDeliveryPersistsSentOnlyAfterTransportAcceptsMessage" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.085"/>
+  <testcase name="revokedFinanceCreateDeniesWorkerBeforeTransport" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.017"/>
+  <testcase name="accountSwitchDuringPdfRenderRejectsQueueCommitWithNoEmailRecord" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.006"/>
+  <testcase name="missingSmtpSecretKeepsQueuePendingWithoutConsumingAnAttempt" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.003"/>
+  <testcase name="employeeCannotConfigureSmtpOrReadDeliveryQueue" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.004"/>
+  <testcase name="interruptedSendingRowRecoversOnlyForItsCurrentGeneration" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.005"/>
+  <testcase name="settingsNeverReturnSecretAndOwnerOnlyTestRequiresConfiguredSecret" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.006"/>
+  <testcase name="queuedReportIsAuthorizedAndBoundToCurrentActorAndGeneration" classname="com.vibe.store.testing.EmailAuthorityTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,250 @@
+# proto-message: google.testing.platform.proto.api.core.TestSuiteResult
+# 2026-10-11T21:11:17.994097625Z:
+test_suite_meta_data {
+  scheduled_test_case_count: 4
+  device {
+    id: "emulator-5558"
+    friendly_name: "primary"
+  }
+}
+test_status: FAILED
+test_result {
+  test_case {
+    test_class: "RecoveryUiTest"
+    test_package: "com.vibe.store"
+    test_method: "productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi"
+    start_time {
+      seconds: 1791753065
+      nanos: 437000000
+    }
+    end_time {
+      seconds: 1791753070
+      nanos: 215000000
+    }
+    device {
+      id: "emulator-5558"
+      friendly_name: "primary"
+    }
+  }
+  test_status: FAILED
+  error {
+    error_message: "java.lang.AssertionError: Synthetic archive row could not be selected\nat org.junit.Assert.fail(Assert.java:89)\nat org.junit.Assert.assertTrue(Assert.java:42)\nat com.vibe.store.RecoveryUiTest.productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi(RecoveryUiTest.kt:374)\n"
+    error_type: "java.lang.AssertionError"
+    stack_trace: "java.lang.AssertionError: Synthetic archive row could not be selected\nat org.junit.Assert.fail(Assert.java:89)\nat org.junit.Assert.assertTrue(Assert.java:42)\nat com.vibe.store.RecoveryUiTest.productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi(RecoveryUiTest.kt:374)\n"
+  }
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/logcat-com.vibe.store.RecoveryUiTest-productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "RecoveryUiTest"
+    test_package: "com.vibe.store"
+    test_method: "recoveryPanelExportsThroughRealDocumentsUiAndProvider"
+    start_time {
+      seconds: 1791753070
+      nanos: 232000000
+    }
+    end_time {
+      seconds: 1791753073
+      nanos: 746000000
+    }
+    device {
+      id: "emulator-5558"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/logcat-com.vibe.store.RecoveryUiTest-recoveryPanelExportsThroughRealDocumentsUiAndProvider.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "RecoveryUiTest"
+    test_package: "com.vibe.store"
+    test_method: "backupAndConfirmedRestoreUseExplicitSelections"
+    start_time {
+      seconds: 1791753073
+      nanos: 750000000
+    }
+    end_time {
+      seconds: 1791753075
+      nanos: 938000000
+    }
+    device {
+      id: "emulator-5558"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/logcat-com.vibe.store.RecoveryUiTest-backupAndConfirmedRestoreUseExplicitSelections.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/cpuinfo"
+    }
+  }
+}
+test_result {
+  test_case {
+    test_class: "RecoveryUiTest"
+    test_package: "com.vibe.store"
+    test_method: "failedSecondArchiveInspectionClearsPriorPreviewAndSelection"
+    start_time {
+      seconds: 1791753075
+      nanos: 941000000
+    }
+    end_time {
+      seconds: 1791753077
+      nanos: 189000000
+    }
+    device {
+      id: "emulator-5558"
+      friendly_name: "primary"
+    }
+  }
+  test_status: PASSED
+  output_artifact {
+    label {
+      label: "logcat"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/logcat-com.vibe.store.RecoveryUiTest-failedSecondArchiveInspectionClearsPriorPreviewAndSelection.txt"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/device-info.pb"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.meminfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/meminfo"
+    }
+  }
+  output_artifact {
+    label {
+      label: "device-info.cpuinfo"
+      namespace: "android"
+    }
+    source_path {
+      path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/cpuinfo"
+    }
+  }
+}
+output_artifact {
+  label {
+    label: "test-results.log"
+    namespace: "com.google.testing.platform.runtime.android.driver.AndroidInstrumentationDriver"
+  }
+  source_path {
+    path: "/home/sterling_dev/Projects/STORE/store-android/app/build/outputs/androidTest-results/connected/debug/STORE_I12_API36_CLEAN(AVD) - 16/testlog/test-results.log"
+  }
+  type: TEST_DATA
+  mime_type: "text/plain"
+}

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.TeamNativeTest" tests="6" failures="0" errors="0" skipped="0" time="2.757" timestamp="2026-10-11T21:06:11" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="correctionPreservesOriginalsAndRefusedIntervalsDoNotMutateRoom" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.588" />
+  <testcase name="personalProofPersistsWithoutSwitchingFacilitatorOrImplicitPunch" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.579" />
+  <testcase name="managerRestrictionsAndOpenCashBlockSensitiveChanges" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.378" />
+  <testcase name="accountProfilePasswordAndPhotoSurviveRealRoomReopen" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.378" />
+  <testcase name="injectedWriterFailureRollsBackAttendanceAndAuditAtomically" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.278" />
+  <testcase name="automaticReferenceIsUniqueAndDurableInRealRoom" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.278" />
+</testsuite>

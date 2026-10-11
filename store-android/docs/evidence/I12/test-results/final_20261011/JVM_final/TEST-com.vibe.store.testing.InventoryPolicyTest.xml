@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.InventoryPolicyTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-11T21:15:30.251Z" hostname="Sterling-Setup" time="0.012">
+  <properties/>
+  <testcase name="inventoryFiltersRejectUnknownStatesBadDatesAndUnboundedPages" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.003"/>
+  <testcase name="d2ReviewAndCommandCopyInputLists" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="d2DurableReReadAndReviewIdentityMustMatch" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="d2PrefilledAndMissingAcknowledgementNeverConfirm" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="d2IncompleteDuplicateExtraAndMismatchedLinesReject" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.002"/>
+  <testcase name="validationIsUniqueAndMalformedStatusesFailClosed" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="d2ProcessDeathOrSessionInvalidationRequiresNewReview" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.0"/>
+  <testcase name="d4ArchivedOrMissingArticleIsNotAdmissible" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="d1ReadRequiresBothTrustedRoleAndEffectiveRight" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <testcase name="deltaUsesCurrentStockAndAllSafeIntegerExtremes" classname="com.vibe.store.testing.InventoryPolicyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

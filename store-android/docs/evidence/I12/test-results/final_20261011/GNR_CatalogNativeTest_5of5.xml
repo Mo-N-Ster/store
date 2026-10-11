@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.CatalogNativeTest" tests="5" failures="0" errors="0" skipped="0" time="1.863" timestamp="2026-10-11T21:05:58" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="invalidStockHistoryAndEmployeeRequestsHaveZeroMutation" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.564" />
+  <testcase name="catalogCrudFiltersDuplicatesPriceAndArchiveHistory" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.253" />
+  <testcase name="mediaFormatsCancellationInvalidOversizedRevokedAndPartialCopy" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.228" />
+  <testcase name="rollbackBeforeReferenceAndPostCommitCleanupAreSafe" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.253" />
+  <testcase name="stockAndMovementRollbackTogetherOnPersistenceFailure" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.253" />
+</testsuite>

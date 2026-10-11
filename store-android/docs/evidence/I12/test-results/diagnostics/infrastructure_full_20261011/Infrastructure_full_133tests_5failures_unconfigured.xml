@@ -1,0 +1,208 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" tests="133" failures="5" errors="0" skipped="0" time="41.029" timestamp="2026-10-11T19:11:12" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="oversizedInvoiceIsRejectedBeforeDetailRowsAreMaterialized" classname="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" time="0.012" />
+  <testcase name="allFourSyntheticDocumentTypesRenderAndRasterizeEveryBoundedPage" classname="com.vibe.store.infrastructure.documents.DocumentRendererNativeTest" time="2.917" />
+  <testcase name="repeatedMalformedRequestsDoNotReusePriorSuccess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="1.132" />
+  <testcase name="stalledInputTimesOutByTerminatingOnlyTheIsolatedServiceProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="5.297" />
+  <testcase name="validStoreSubjectIsExtractedInsideIsolatedProcess" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.152" />
+  <testcase name="oversizedPdfIsRejectedAtTheNativeInputBoundary" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.178" />
+  <testcase name="deeplyNestedMetadataIsRejectedOrExtractedWithoutPoisoningTheNextRequest" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.277" />
+  <testcase name="subjectExtractionDoesNotExpandACompressedPageStream" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.377" />
+  <testcase name="subjectAtOutputLimitUsesBoundedPipeInsteadOfBinderPayload" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.329" />
+  <testcase name="maximumAllowedPdfInputIsParsedWithinTheIsolatedProcessBudget" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.729" />
+  <testcase name="largeIndirectObjectGraphReturnsOnlyTheRequestedSubjectAndRecovers" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.277" />
+  <testcase name="missingOrEmptySubjectIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.277" />
+  <testcase name="applicationExtractorRejectsMalformedPdfWithoutReturningMetadata" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.127" />
+  <testcase name="passwordProtectedPdfWithoutCredentialsIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.127" />
+  <testcase name="subjectBeyondCanonicalCodecBoundIsRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.303" />
+  <testcase name="syntheticLegacy201EnvelopeRetainsTheExactSubject" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.132" />
+  <testcase name="malformedSubjectPayloadsAreRejectedByTheStrictCodec" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.421" />
+  <testcase name="malformedAndTruncatedPdfAreRejected" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.303" />
+  <testcase name="concurrentRequestsAcceptAtMostOnePdfAtATime" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.127" />
+  <testcase name="applicationExtractorUsesTheBoundedIsolatedBinderProtocol" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.129" />
+  <testcase name="cyclicPageReferencesAndDeepMetadataRemainInsideTheFailureBoundary" classname="com.vibe.store.infrastructure.documents.parser.PdfSubjectIsolatedServiceTest" time="0.277" />
+  <testcase name="automaticRetentionKeepsSevenAndNeverDeletesManualArchives" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.428" />
+  <testcase name="completeSyntheticBusinessDatabaseSurvivesBackupAndRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.177" />
+  <testcase name="archiveWithoutActiveOwnerIsRejectedBeforeGenerationSwitch" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.228" />
+  <testcase name="malformedGenerationPointerFailsClosed" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.0" />
+  <testcase name="restoreMigratesLegacySchemaOnlyInsideCandidateBeforePublishingGeneration" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.178" />
+  <testcase name="startupRollsBackPreparedInvalidGenerationToVerifiedOldState" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.077" />
+  <testcase name="rejectedArchiveLeavesActiveGenerationUntouched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.052" />
+  <testcase name="startupCompletesPreparedGenerationWhosePointerAlreadySwitched" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.076" />
+  <testcase name="resetUsesVerifiedEmptyGenerationAndRetainsSafetyBackup" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.151" />
+  <testcase name="simulatedLowSpaceRejectsBackupAndRestoreWithoutPublishingOrSwitching" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.177" />
+  <testcase name="verifiedBackupRestoresThroughGenerationCommit" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.203" />
+  <testcase name="archiveManifestSchemaMustMatchSqliteBeforeInspectionOrRestore" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.101" />
+  <testcase name="activationIsSerializedVerifiedAndSurvivesOwnerRecreation" classname="com.vibe.store.infrastructure.persistence.ActiveStoreOwnerTest" time="0.126" />
+  <testcase name="accountSwitchRechecksCurrentRightsAndRejectsOldPreview" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.353" />
+  <testcase name="cancellingPdfPreviewDiscardsItWithoutAnyBusinessMutation" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.352" />
+  <testcase name="rightsAreCheckedBeforeParserAndSessionChangeDuringParsingRejectsPreview" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.453" />
+  <testcase name="invalidAndExistingDuplicatesHaveNoPartialEffects" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.227" />
+  <testcase name="syntheticLegacyPdfTraversesIsolatedParserCodecPreviewAndAtomicImport" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.528" />
+  <testcase name="authorizedImportWritesExactPricesAndInitialStockHistoryAtomically" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.227" />
+  <testcase name="pdfPreviewUsesCurrentRightsAndDoesNotMutateUntilExplicitConfirmation" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.229" />
+  <testcase name="partialRepositoryFailureRollsBackProductsStockHistoryAndAlerts" classname="com.vibe.store.infrastructure.persistence.CatalogImportNativeTest" time="0.275" />
+  <testcase name="invalidStockHistoryAndEmployeeRequestsHaveZeroMutation" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.378" />
+  <testcase name="catalogCrudFiltersDuplicatesPriceAndArchiveHistory" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.252" />
+  <testcase name="mediaFormatsCancellationInvalidOversizedRevokedAndPartialCopy" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.228" />
+  <testcase name="rollbackBeforeReferenceAndPostCommitCleanupAreSafe" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.227" />
+  <testcase name="stockAndMovementRollbackTogetherOnPersistenceFailure" classname="com.vibe.store.infrastructure.persistence.CatalogNativeTest" time="0.279" />
+  <testcase name="realInterruptionPreservesMediaReferences" classname="com.vibe.store.infrastructure.persistence.CatalogRestartTest" time="0.001">
+    <failure>java.lang.IllegalArgumentException: Explicit catalogPhase, catalogBoundary and unique catalogRun required
+at com.vibe.store.infrastructure.persistence.CatalogRestartTest$realInterruptionPreservesMediaReferences$1.invokeSuspend(CatalogRestartTest.kt:29)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.CatalogRestartTest.realInterruptionPreservesMediaReferences(CatalogRestartTest.kt:24)
+</failure>
+  </testcase>
+  <testcase name="queuedEmailSurvivesWriterProcessDeath" classname="com.vibe.store.infrastructure.persistence.EmailDeliveryPersistenceTest" time="0.253" />
+  <testcase name="productionMigrationPreservesRecordsRelationsIndexesAndPendingIntent" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.102">
+    <failure>org.junit.ComparisonFailure: expected:&lt;[2]&gt; but was:&lt;[3]&gt;
+at org.junit.Assert.assertEquals(Assert.java:117)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest$productionMigrationPreservesRecordsRelationsIndexesAndPendingIntent$1.invokeSuspend(ExactMoneyPersistenceTest.kt:168)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest.productionMigrationPreservesRecordsRelationsIndexesAndPendingIntent(ExactMoneyPersistenceTest.kt:137)
+</failure>
+  </testcase>
+  <testcase name="migratedPendingCommandsResolveAndReplayWithoutDuplicateEffects" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.228" />
+  <testcase name="capturedAggregationIsExactBoundedAndRefundsAreNotDoubleCounted" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.152" />
+  <testcase name="canonicalConverterRejectsMalformedTextAndPreservesNullableSigns" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.0" />
+  <testcase name="failedMigrationRetainsV1AndVerifiedRecoverySnapshot" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.052" />
+  <testcase name="allMonetaryColumnsAreTextAndMalformedWritesAreRejected" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.051" />
+  <testcase name="exactSalesPurchasesCashAndRestart" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.278" />
+  <testcase name="nonfiniteLegacyMoneyFailsWithoutReplacingSource" classname="com.vibe.store.infrastructure.persistence.ExactMoneyPersistenceTest" time="0.051" />
+  <testcase name="conditionalTransitionsPreserveHistoryAndRejectLateDraftWrites" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.202" />
+  <testcase name="suppliersCrudBoundedSearchContactsUniquenessAndInactiveHistory" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.228" />
+  <testcase name="readScopesAndExpiredLeasesCannotWriteOrEscape" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.202" />
+  <testcase name="freshOwnerAndIdentityReloadPersistedDraftsWithoutRestoringSession" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.277" />
+  <testcase name="concurrentSupplierEditsHaveOneWinnerAndNoLostUpdate" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.202" />
+  <testcase name="durableDraftLinesAndCountsHaveZeroStockEffectAcrossReopen" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.253" />
+  <testcase name="keyCollisionForeignKeysAndTransactionFailureRollbackWithoutMutation" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.203" />
+  <testcase name="currentRightsEmployeeDirectCallsAndInvalidSessionsNeverMutate" classname="com.vibe.store.infrastructure.persistence.I07PersistenceTest" time="0.528" />
+  <testcase name="realDeathPreservesPurchaseInventoryAndCompensationAtomicity" classname="com.vibe.store.infrastructure.persistence.I07RestartTest" time="0.0">
+    <failure>java.lang.IllegalArgumentException: Explicit i07Phase/i07Operation/i07Boundary/i07Run required
+at com.vibe.store.infrastructure.persistence.I07RestartTest$realDeathPreservesPurchaseInventoryAndCompensationAtomicity$1.invokeSuspend(I07RestartTest.kt:41)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.I07RestartTest.realDeathPreservesPurchaseInventoryAndCompensationAtomicity(I07RestartTest.kt:34)
+</failure>
+  </testcase>
+  <testcase name="auditUsesTrustedResponsibleCashSnapshot" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.378" />
+  <testcase name="realTransactionPermissionsCashAndZeroBusinessMutation" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.453" />
+  <testcase name="lockoutAndRecoveryAreDurableWithoutPublicSecrets" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.628" />
+  <testcase name="realProcessDeathRequiresAuthenticationWithoutCashOrAttendanceChanges" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.0">
+    <failure>java.lang.IllegalArgumentException: Explicit prepare/verify process phase required
+at com.vibe.store.infrastructure.persistence.IdentityNativeTest$realProcessDeathRequiresAuthenticationWithoutCashOrAttendanceChanges$1.invokeSuspend(IdentityNativeTest.kt:106)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.IdentityNativeTest.realProcessDeathRequiresAuthenticationWithoutCashOrAttendanceChanges(IdentityNativeTest.kt:104)
+</failure>
+  </testcase>
+  <testcase name="bootstrapRepositoryAndDeniedReadScope" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.378" />
+  <testcase name="keystoreLossTamperAndReconfiguration" classname="com.vibe.store.infrastructure.persistence.IdentityNativeTest" time="0.026" />
+  <testcase name="reconcilingAlwaysUsesCurrentStockNotInitialSnapshot" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.253" />
+  <testcase name="explicitCompleteAttestationIsRequired" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.227" />
+  <testcase name="editingCountIncludingAbaRevokesPriorReview" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.201" />
+  <testcase name="freshAuthorityAfterDatabaseReopenRejectsLostVolatileReview" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.303" />
+  <testcase name="archivedArticleIsRejectedWithoutUndoingPriorEffects" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.202" />
+  <testcase name="failureAfterFirstStockWriteRollsBackEverythingAndMayRetry" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.228" />
+  <testcase name="draftPrefillsAreDurableButHaveNoStockEffects" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.227" />
+  <testcase name="repeatedAndConcurrentValidationNeverReapply" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.227" />
+  <testcase name="managerAllowedButEmployeeAndRevokedRightsDeniedDirectly" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.478" />
+  <testcase name="corruptRecoverySnapshotRefusesBeforeRoomOpen" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.077" />
+  <testcase name="uniquenessConstraintsAndHistoricalSnapshots" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.051" />
+  <testcase name="deliveryMigrationBindsLegacyRowsToNoSender" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.027" />
+  <testcase name="boundedContentionNoRetry" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.778" />
+  <testcase name="effectiveConnectionsAndFreshV2" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.027" />
+  <testcase name="rollbackAtEveryWriteBoundary" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="1.03" />
+  <testcase name="processRestartPersistence" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.052" />
+  <testcase name="maintenanceDrainsAndSingleOwnership" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.152" />
+  <testcase name="schemaCoverageAndEveryForeignKey" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.101" />
+  <testcase name="sourceMoneyAndCalendarParity" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.0" />
+  <testcase name="serializationAndScopeLifetime" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.077" />
+  <testcase name="migrationSnapshotRestartAndFutureRefusal" classname="com.vibe.store.infrastructure.persistence.PersistenceTest" time="0.102" />
+  <testcase name="contextualArticleStartsWithZeroAndSaleSnapshotIsNotChangedByReceiving" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.252" />
+  <testcase name="insufficientStockOnLastLineRollsBackAllCompensation" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.227" />
+  <testcase name="supplierInactiveAndArchivedArticleBlockNewReceptionNotHistoricalCancellation" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.252" />
+  <testcase name="injectedFaultAfterStockRollsBackEntireReception" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.227" />
+  <testcase name="receivingTwiceAndConcurrentlyNeverDoubleApplies" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.227" />
+  <testcase name="currentRightsAndEmployeeDirectCallsCannotMutate" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.479" />
+  <testcase name="draftReplacementCollisionPagingAndNoStockEffect" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.252" />
+  <testcase name="cancelDraftHasNoCompensationAndCancelValidatedOnlyOnce" classname="com.vibe.store.infrastructure.persistence.PurchaseNativeTest" time="0.228" />
+  <testcase name="accountSwitchWaitsForAuthorizedPreviewAndRevokesRestoreBeforeConfirmation" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.403" />
+  <testcase name="revokedSourceAndInterruptedDestinationFailWithoutChangingActiveGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.253" />
+  <testcase name="scheduledAutomaticBackupSerializesWithLivePosSale" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.277" />
+  <testcase name="employeeAndSignedOutSessionsCannotInspectExportRestoreOrReset" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.332" />
+  <testcase name="resetPasswordFailuresLockOwnerWithoutReplacingDataThenPermitAuthorizedReset" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.624" />
+  <testcase name="ownerBackupPreviewConfirmationRestoreAndSessionInvalidationUseRealRoomGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.428" />
+  <testcase name="dashboardCalendarBoundsRespectDstAndLocalDate" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.051" />
+  <testcase name="validatedSalesTotalsContinueAcrossDisplayPageBoundary" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.051" />
+  <testcase name="financeRejectsMissingOrMixedSalesCurrencyWithoutReturningPartialSnapshot" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.102" />
+  <testcase name="reportTabsUseExactValidatedTotalsCurrentStockAndCompletedHours" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.051" />
+  <testcase name="expiredLeaseIsCheckedBeforeProductRankingQuery" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.026" />
+  <testcase name="dashboardIsOneLocalCalendarSnapshotWithMonthAndRollingTrend" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.052" />
+  <testcase name="purchaseStatusCountsCrossKeysetBatchesAndCalendarGrainsHaveZeroBuckets" classname="com.vibe.store.infrastructure.persistence.ReportingNativeTest" time="0.051" />
+  <testcase name="closingDifferenceInvalidReasonsAndAuditAreDurable" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.253" />
+  <testcase name="revokedOrDisabledActorCannotReplayOwnSale" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.327" />
+  <testcase name="duplicateMultisetOrderAndOmittedReceiptRemainDistinct" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.202" />
+  <testcase name="actorPermissionCashAndCancellationCannotGrantReplayAuthority" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.328" />
+  <testcase name="openIsIdempotentSwitchIsGuardedAndNoImplicitAttendance" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.327" />
+  <testcase name="cancellationIsAtomicOnceAndDoesNotRewriteClosedCashSnapshot" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.227" />
+  <testcase name="exactConcurrentReplayAfterStockConsumptionHasOneDurableEffect" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.227" />
+  <testcase name="everyWriterBoundaryRollsBackAndJournalAllowsExplicitResolution" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.377" />
+  <testcase name="changedIntentAndHistoricalNullAreDeniedWithoutMutation" classname="com.vibe.store.infrastructure.persistence.SaleNativeTest" time="0.252" />
+  <testcase name="realDeathPreservesSubmittedCommandWithoutAutomaticSale" classname="com.vibe.store.infrastructure.persistence.SaleRestartTest" time="0.007">
+    <failure>java.lang.IllegalStateException: Explicit run required
+at com.vibe.store.infrastructure.persistence.SaleRestartTest$realDeathPreservesSubmittedCommandWithoutAutomaticSale$1.invokeSuspend(SaleRestartTest.kt:25)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.SaleRestartTest.realDeathPreservesSubmittedCommandWithoutAutomaticSale(SaleRestartTest.kt:21)
+</failure>
+  </testcase>
+  <testcase name="broadcastOwnerOnlyRevocationAndAuditNoRawDetails" classname="com.vibe.store.infrastructure.persistence.SupportNativeTest" time="0.397" />
+  <testcase name="directMessageScopedReadHideIdempotencyAndRestart" classname="com.vibe.store.infrastructure.persistence.SupportNativeTest" time="0.427" />
+  <testcase name="stockAlertsAreDurableBoundedAndResolvedOnRestock" classname="com.vibe.store.infrastructure.persistence.SupportNativeTest" time="0.276" />
+  <testcase name="correctionPreservesOriginalsAndRefusedIntervalsDoNotMutateRoom" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.455" />
+  <testcase name="personalProofPersistsWithoutSwitchingFacilitatorOrImplicitPunch" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.528" />
+  <testcase name="managerRestrictionsAndOpenCashBlockSensitiveChanges" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.378" />
+  <testcase name="accountProfilePasswordAndPhotoSurviveRealRoomReopen" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.377" />
+  <testcase name="injectedWriterFailureRollsBackAttendanceAndAuditAtomically" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.252" />
+  <testcase name="automaticReferenceIsUniqueAndDurableInRealRoom" classname="com.vibe.store.infrastructure.persistence.TeamNativeTest" time="0.277" />
+</testsuite>

@@ -1,0 +1,819 @@
+10-10 16:28:52.561 12812 12827 I TestRunner: started: realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(com.vibe.store.RecoveryUiTest)
+10-10 16:28:52.566 12812 12826 D WM-PackageManagerHelper: Skipping component enablement for androidx.work.impl.background.systemalarm.RescheduleReceiver
+10-10 16:28:52.581   485   530 I netd    : tetherGetStats() -> {[]} <0.33ms>
+10-10 16:28:52.610 12812 12827 I Tracing : Tracer added: class androidx.test.platform.tracing.AndroidXTracer
+10-10 16:28:52.616 12812 12827 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@1474b8f]
+10-10 16:28:52.625 12812 12827 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-10 16:28:52.630   699   780 I system_server: AssetManager2(0x783f5e710338) locale list changing from [] to [en-US]
+10-10 16:28:52.630   699   780 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10263, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:28:52.633   561   592 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:52.635   948  1163 I ndroid.systemui: AssetManager2(0x783f5e685878) locale list changing from [] to [en-US]
+10-10 16:28:52.636   948  1164 D SplashScreenView: Build android.window.SplashScreenView{bb8fc16 V.E...... ......ID 0,0-0,0}
+10-10 16:28:52.636   948  1164 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-10 16:28:52.636   948  1164 D SplashScreenView: Branding: view: android.view.View{9963997 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-10 16:28:52.638   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:52.638   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:52.641  1082  1082 W SplitSelectStateCtor: Missing session instanceIds
+10-10 16:28:52.642  1082  1082 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-10 16:28:52.672 12812 12812 I ibe.store.debug: AssetManager2(0x783f5e621558) locale list changing from [] to [en-US]
+10-10 16:28:52.673   561   561 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:52.687 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: PRE_ON_CREATE
+10-10 16:28:52.687 12812 12812 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-10 16:28:52.694 12812 12832 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-10 16:28:52.694 12812 12832 I EGL_emulation: Opening libGLESv2_emulation.so
+10-10 16:28:52.697 12812 12812 D CompatChangeReporter: Compat change id reported: 377864165; UID 10263; state: ENABLED
+10-10 16:28:52.700 12812 12812 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-10 16:28:52.702 12812 12832 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-10 16:28:52.717 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: CREATED
+10-10 16:28:52.717 12812 12812 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.vibe.store.MainActivity@d30d695
+10-10 16:28:52.718 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: STARTED
+10-10 16:28:52.718 12812 12812 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.vibe.store.MainActivity@d30d695
+10-10 16:28:52.728 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: RESUMED
+10-10 16:28:52.728 12812 12812 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.vibe.store.MainActivity@d30d695
+10-10 16:28:52.747 12812 12812 W HWUI    : Unknown dataspace 0
+10-10 16:28:52.780   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=6 freq=2437 RxLinkSpeed=2
+10-10 16:28:52.780   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:28:52.780   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:28:52.780   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:28:52.780   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:52.780   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:52.781   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:52.782   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 6Mbps, Tx Link speed: 6Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:28:52.782   699   850 D WifiScoreCard: txRate: 1 txSpeed: 6
+10-10 16:28:52.782   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:28:52.785   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=6 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3006] from screen [on:0 period:6502216] score=60
+10-10 16:28:52.872 12812 12812 I ibe.store.debug: hiddenapi: Accessing hidden method Landroid/os/SystemProperties;->addChangeCallback(Ljava/lang/Runnable;)V (runtime_flags=0, domain=platform, api=unsupported) from Landroidx/compose/ui/platform/AndroidComposeView$Companion; (domain=app) using reflection: allowed
+10-10 16:28:52.915 12812 12812 I WindowExtensionsImpl: Initializing Window Extensions, vendor API level=9, activity embedding enabled=true
+10-10 16:28:52.983  1082  1082 D VRI[NexusLauncherActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-10 16:28:52.989  1082  1082 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-10 16:28:53.085   561   592 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10263 pid=0
+10-10 16:28:53.085   561   591 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10263 pid=12812
+10-10 16:28:53.086   561   591 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10263 => denied (148 us)
+10-10 16:28:53.086   561   592 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10263 => denied (373 us)
+10-10 16:28:53.086   561   591 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10263 pid=12812
+10-10 16:28:53.086   561   592 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10263 pid=0
+10-10 16:28:53.086   561   591 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10263 => denied (84 us)
+10-10 16:28:53.086   561   592 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10263 => denied (86 us)
+10-10 16:28:53.086   561   591 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10263 pid=12812
+10-10 16:28:53.086   561   591 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10263 => denied (39 us)
+10-10 16:28:53.086   561   592 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10263 pid=0
+10-10 16:28:53.086   561   592 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10263 => denied (145 us)
+10-10 16:28:53.147 12812 12816 I ibe.store.debug: Compiler allocated 5042KB to compile void android.view.ViewRootImpl.performTraversals()
+10-10 16:28:53.473   699   932 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10263 pid=0
+10-10 16:28:53.473   699   932 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10263 => denied (100 us)
+10-10 16:28:53.473   699   932 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10263 pid=0
+10-10 16:28:53.473   699   932 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10263 => denied (14 us)
+10-10 16:28:53.473   699   932 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10263 pid=0
+10-10 16:28:53.473   699   932 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10263 => denied (11 us)
+10-10 16:28:53.473 12812 12812 I Choreographer: Skipped 42 frames!  The application may be doing too much work on its main thread.
+10-10 16:28:53.474 12812 12812 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@d30d695, of which baseContext=android.app.ContextImpl@f07d037
+10-10 16:28:53.475   699   719 I ActivityTaskManager: Displayed com.vibe.store.debug/com.vibe.store.MainActivity for user 0: +845ms
+10-10 16:28:53.478  1082  1082 D BaseDepthController: setSurface:
+10-10 16:28:53.478  1082  1082 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-10 16:28:53.478  1082  1082 D BaseDepthController: 	mBaseSurface: null
+10-10 16:28:53.479  1082  1082 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-10 16:28:53.479  1082  1082 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-10 16:28:53.479  1082  1082 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+10-10 16:28:53.479  1082  1082 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.479  1082  1082 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+10-10 16:28:53.479  1082  1082 D StatsLog: LAUNCHER_ONSTOP
+10-10 16:28:53.481  1082  1082 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-10 16:28:53.484  1223  1704 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-10 16:28:53.484  1223  1704 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+10-10 16:28:53.485  1223  1704 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-10 16:28:53.488  1223  1704 I FontLog : Pulling font file for id = 23, cache size = 4 [CONTEXT service_id=132 ]
+10-10 16:28:53.496 12812 12822 I HWUI    : Davey! duration=709ms; Flags=1, FrameTimelineVsyncId=44004, IntendedVsync=6696159872633, Vsync=6696159872633, InputEventId=0, HandleInputStart=6696160097296, AnimationStart=6696160098028, PerformTraversalsStart=6696160098388, DrawStart=6696521889861, FrameDeadline=6696176539299, FrameStartTime=6696160093890, FrameInterval=16666666, WorkloadTarget=16666666, SyncQueued=6696529893139, SyncStart=6696534271073, IssueDrawCommandsStart=6696534320144, SwapBuffers=6696782880745, FrameCompleted=6696873715082, DequeueBufferDuration=3246, QueueBufferDuration=360535, GpuCompleted=6696873642797, SwapBuffersCompleted=6696873715082, DisplayPresentTime=0, CommandSubmissionCompleted=6696782880745,
+10-10 16:28:53.496  1223  1704 I FontLog : Pulling font file for id = 23, cache size = 4 [CONTEXT service_id=132 ]
+10-10 16:28:53.524  1082  1090 W System  : A resource failed to call release.
+10-10 16:28:53.524  1082  1090 W System  : A resource failed to call release.
+10-10 16:28:53.524  1082  1090 W System  : A resource failed to call release.
+10-10 16:28:53.534  1071  1309 I SatelliteAppTracker: onPackageModified : com.vibe.store.debug
+10-10 16:28:53.539   699   817 I ImeTracker: com.vibe.store.debug:90c6d348: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-10 16:28:53.539  1071  1071 D CarrierSvcBindHelper: onPackageModified: com.vibe.store.debug
+10-10 16:28:53.541   699   800 I RoleService: Granting default roles...
+10-10 16:28:53.542 12812 12812 D InsetsController: hide(ime(), fromIme=false)
+10-10 16:28:53.542   948   948 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+10-10 16:28:53.542 12812 12812 I ImeTracker: com.vibe.store.debug:90c6d348: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-10 16:28:53.543  1208  8270 I PermissionControllerServiceImpl: Updating user sensitive for uid 10263
+10-10 16:28:53.543   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.543   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.543   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.544   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.544  1082  1145 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[com.vibe.store.debug], user=UserHandle{0}
+10-10 16:28:53.544   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.544   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.545   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.545   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.545  1577 12755 I AiAiEcho: AppIndexer Package:[com.vibe.store.debug] UserProfile:[0] Enabled:[true].
+10-10 16:28:53.546  1577 12755 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.vibe.store.debug], userId:[0], reason:[package is updated.].
+10-10 16:28:53.548  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: java.lang.Exception
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.addIconToDBAndMemCache(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:23)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.updateIconsForPkg(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:35)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:302)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:28:53.548  1082  1145 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-10 16:28:53.549  1071  1071 D CarrierSvcBindHelper: No carrier app for: 0
+10-10 16:28:53.550  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:28:53.552  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-10 16:28:53.552  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-10 16:28:53.552  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.vibe.store.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-10 16:28:53.553  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at asx.p(PG:6)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at axb.b(PG:13)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at nco.v(PG:13)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-10 16:28:53.553  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-10 16:28:53.555   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+10-10 16:28:53.555   699  1844 I ImeTracker: system_server:244ecac9: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-10 16:28:53.556   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-10 16:28:53.557   699   722 I ImeTracker: system_server:244ecac9: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-10 16:28:53.557  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: java.lang.Exception
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.loadFallbackIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:17)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:14)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked$default(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:15)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:13)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.AllAppsList.updatePackage(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:163)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:309)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:28:53.558  1082  1145 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-10 16:28:53.558  1071  1071 D SatelliteController: packageStateChanged: package:com.vibe.store.debug DefaultSmsPackageName:com.google.android.apps.messaging
+10-10 16:28:53.558  1071  1071 V SatelliteController: Neither SMS or SatelliteGateway package
+10-10 16:28:53.559  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: STORE · 57€|2£!/v9 sectionName: S
+10-10 16:28:53.559  1082  1082 D AllAppsStore: setApps: apps.length=19
+10-10 16:28:53.559  1082  1082 D AllAppsStore: notifyUpdate: notifying listeners
+10-10 16:28:53.559  1082  1082 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 19
+10-10 16:28:53.559  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: force: false
+10-10 16:28:53.559  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+10-10 16:28:53.559  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:28:53.559  1082  1082 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:28:53.559  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:28:53.560  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:28:53.564  1071  1071 D SatelliteAccessController: Current default SMS app:ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.shared.receiver.SmsDeliverReceiver}
+10-10 16:28:53.564  1071  1071 D SatelliteController: getSelectedSatelliteSubId: subId=-1
+10-10 16:28:53.565  1071  1071 D SatelliteAccessController: supportedMsgApps:com.google.android.apps.messaging
+10-10 16:28:53.567  1071  1307 D ImsResolver: maybeAddedImsService, packageName: com.vibe.store.debug
+10-10 16:28:53.567  1071  1307 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-10 16:28:53.567  1071  1307 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-10 16:28:53.573   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+10-10 16:28:53.575  1082  1082 D b/387844520: getOutlineOffsetX: measured width = 173, mNormalizedIconSize = 159, last updated width = 173
+10-10 16:28:53.594   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+10-10 16:28:53.596   699  2667 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+10-10 16:28:53.767   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.767   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:53.790   485   530 I netd    : tetherGetStats() -> {[]} <1.76ms>
+10-10 16:28:54.075   699  2063 I system_server: AssetManager2(0x783f5e707ff8) locale list changing from [] to [en-US]
+10-10 16:28:54.075   699  2063 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10102, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:28:54.078   561   591 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:54.080 12812 12827 I UiAutomation: Initialized for user 0 on display 0
+10-10 16:28:54.083  1577  1966 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+10-10 16:28:54.083  1577  1776 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-10 16:28:54.083  1577  1776 I AiAiEcho: EchoTargets:
+10-10 16:28:54.083  1577  1776 I AiAiEcho: Filtered by AiAi flag check:
+10-10 16:28:54.083  1577  1776 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-10 16:28:54.084  1577  1776 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-10 16:28:54.084  1577  1776 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-10 16:28:54.084  1577  1776 I AiAiEcho: EchoTargets:
+10-10 16:28:54.084  1577  1776 I AiAiEcho: Filtered by AiAi flag check:
+10-10 16:28:54.084  1577  1776 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-10 16:28:54.084  1577  1776 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-10 16:28:54.084  1577  1776 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.084  1577  1776 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-10 16:28:54.084   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085  1082  1082 D SsBaseTemplateCard: No text view can be set up
+10-10 16:28:54.085  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:54.085  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:54.085  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:54.085  1082  1082 I SsBaseTemplateCard: Secondary card pane is null
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   948   948 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.085   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.088 12812 12842 V UiAutomation: Init UiAutomation@e1bb001[id=6, displayId=0, flags=0]
+10-10 16:28:54.090   561   561 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:54.091 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: PAUSED
+10-10 16:28:54.091 12812 12812 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.vibe.store.MainActivity@d30d695
+10-10 16:28:54.094   699  2062 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:54.098  4528  4558 I alhi    : NGA disabled since it's running Panthera and at least one a11y feature is on.
+10-10 16:28:54.098  4528  4558 I alhi    : (REDACTED) Nga state changed to %s
+10-10 16:28:54.098  4528  4558 I alhi    : (REDACTED) isTngActive=%s
+10-10 16:28:54.105  4329  4329 I oid.documentsui: AssetManager2(0x783f5e621558) locale list changing from [] to [en-US]
+10-10 16:28:54.106  1596  2003 I tkr     : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+10-10 16:28:54.106  1596  2003 I tkr     : (REDACTED) Nga on-device enabled based on TNG:MA active state: %b
+10-10 16:28:54.122  4329  4329 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+10-10 16:28:54.123  4329  4329 I oid.documentsui: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:28:54.125  4329 12844 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-10 16:28:54.125  4329 12844 I EGL_emulation: Opening libGLESv2_emulation.so
+10-10 16:28:54.134  4329 12844 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-10 16:28:54.134  4329  4329 D CompatChangeReporter: Compat change id reported: 377864165; UID 10102; state: ENABLED
+10-10 16:28:54.135  4329  4329 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-10 16:28:54.156  1486  1499 W putmethod.latin: Reducing the number of considered missed Gc histogram windows from 650 to 100
+10-10 16:28:54.171  4329  4329 D PickActivity: Created new state object: State{action=4, acceptMimes=[application/octet-stream], allowMultiple=false, localOnly=false, stack=DocumentStack{root=null, docStack=[], stackTouched=false}, dirConfigs={}, excludedAuthorities=[], openableOnly=false, restrictScopeStorage=true, sortModel=SortModel{dimensions={16908304=SortDimension{id=16908304, labelId=2131755247, dataType=0, sortCapability=0, defaultSortDirection=1, sortDirection=0, visibility=4}, 16908310=SortDimension{id=16908310, labelId=2131755241, dataType=0, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}, 2131296377=SortDimension{id=2131296377, labelId=2131755234, dataType=1, sortCapability=3, defaultSortDirection=2, sortDirection=0, visibility=0}, 2131296425=SortDimension{id=2131296425, labelId=2131755238, dataType=0, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}, 2131296571=SortDimension{id=2131296571, labelId=2131755244, dataType=1, sortCapability=3, defaultSortDirection=1, sortDirection=0, visibility=0}}, defaultDimensionId=0, sortedDimension=null}}
+10-10 16:28:54.172  4329  4329 D DrawerController: Calculated drawer width:280.0
+10-10 16:28:54.187  4329  4329 D BaseActivity: Set recents screenshot to enabled
+10-10 16:28:54.189  4329  4329 D PickerActionHandler: Load last accessed stack.
+10-10 16:28:54.189  4329  4329 D PickerActionHandler: Attempting to load last used stack for calling package.
+10-10 16:28:54.191  4329  4329 I oid.documentsui: AssetManager2(0x783f5e629ed8) locale list changing from [] to [en-US]
+10-10 16:28:54.193   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10172, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:28:54.202   488   488 D Zygote  : Forked child process 12848
+10-10 16:28:54.234 12848 12848 I droid.apps.docs: Using CollectorTypeCMC GC.
+10-10 16:28:54.235 12848 12848 W droid.apps.docs: Unexpected CPU variant for x86: x86_64.
+10-10 16:28:54.235 12848 12848 W droid.apps.docs: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:28:54.240 12848 12848 E droid.apps.docs: Not starting debugger since process cannot load the jdwp agent.
+10-10 16:28:54.242 12848 12848 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:28:54.251 12848 12848 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/org.apache.http.legacy.jar
+10-10 16:28:54.251 12848 12848 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:28:54.251 12848 12848 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:28:54.262 12848 12848 D nativeloader: InitLlndkLibrariesProduct: libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libRS.so:libandroid_net.so:libapexsupport.so:libavf.so:libbinder_ndk.so:libc.so:libcgrouprc.so:libclang_rt.asan-x86_64-android.so:libcom.android.tethering.connectivity_native.so:libdl.so:libft2.so:liblog.so:libm.so:libmediandk.so:libnativewindow.so:libneuralnetworks.so:libselinux.so:libsync.so:libvendorsupport.so:libvndksupport.so:libvulkan.so
+10-10 16:28:54.262 12848 12848 D nativeloader: Configuring product-clns-9 for unbundled product apk /product/app/Drive/Drive.apk. target_sdk_version=35, uses_libraries=, library_path=/product/app/Drive/lib/x86_64:/product/app/Drive/Drive.apk!/lib/x86_64:/product/lib64:/system/product/lib64, permitted_path=/data:/mnt/expand:/data/user/0/com.google.android.apps.docs:/product/lib64:/system/product/lib64
+10-10 16:28:54.263 12848 12848 D nativeloader: InitVndkspLibrariesProduct: VNDK is deprecated with product
+10-10 16:28:54.271 12848 12848 D CompatChangeReporter: Compat change id reported: 202956589; UID 10172; state: ENABLED
+10-10 16:28:54.273 12848 12848 I droid.apps.docs: AssetManager2(0x783f5e623178) locale list changing from [] to [en-US]
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment: Currently set values for:
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment: com.google.android.apps.docs is not listed in per-application setting
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment: com.google.android.apps.docs is not listed in ANGLE allowlist or settings, returning default
+10-10 16:28:54.278 12848 12848 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:28:54.616 12848 12868 D nativeloader: Load /product/app/Drive/Drive.apk!/lib/x86_64/libnative_crash_handler_jni.so using class loader ns product-clns-9 (caller=/product/app/Drive/Drive.apk!classes2.dex): ok
+10-10 16:28:54.619 12848 12875 W CacheStorage: cache doesn't exist
+10-10 16:28:54.626 12848 12876 E DocsApplication: from onCreate Completable for sending summary about blocked SyncRequests
+10-10 16:28:54.626 12848 12876 E DocsApplication: java.lang.IllegalStateException
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at gcl.i(PG:64)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at fpw.lambda$onCreate$2(PG:281)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at fpw.$r8$lambda$M-tqsz8QJK2QrqieVTlg-c3Lhbo(PG:1)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at fpv.run(PG:717)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wql.d(PG:13)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wnv.e(PG:3)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wqt$a.run(PG:3)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wog$a.run(PG:10)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wuv.run(PG:14)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at wuv.call(PG:1)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at java.util.concurrent.FutureTask.run(FutureTask.java:317)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:348)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1156)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:651)
+10-10 16:28:54.626 12848 12876 E DocsApplication: 	at java.lang.Thread.run(Thread.java:1119)
+10-10 16:28:54.638   699  2063 I WifiService: getVerboseLoggingLevel uid=10172
+10-10 16:28:54.640 12848 12848 D CompatChangeReporter: Compat change id reported: 279646685; UID 10172; state: ENABLED
+10-10 16:28:54.642   699  1844 D ConnectivityService: requestNetwork for uid/pid:10172/12848 activeRequest: null callbackRequest: 217 [NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST|UNAVAIL|NC
+10-10 16:28:54.643   699   860 D ConnectivityService: NetReassign [218 : null → 103] [c 0] [a 1] [i 0]
+10-10 16:28:54.643   699   850 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]
+10-10 16:28:54.643   699   850 V WifiNetworkFactory: Accepted network request NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]
+10-10 16:28:54.644   699   850 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]
+10-10 16:28:54.644   699   850 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]
+10-10 16:28:54.648   699   850 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=218, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 10172 RequestorPkg: com.google.android.apps.docs UnderlyingNetworks: Null] ]
+10-10 16:28:54.650  1223  2196 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+10-10 16:28:54.650  1223  2196 I FontLog : Query [Noto Color Emoji Compat] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} [CONTEXT service_id=132 ]
+10-10 16:28:54.651  1223  2196 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false}, isVf false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+10-10 16:28:54.652  1223  2196 I FontLog : Pulling font file for id = 24, cache size = 4 [CONTEXT service_id=132 ]
+10-10 16:28:54.653   699  2063 D FileUtils: Rounded bytes from 4110139392 to 8000000000
+10-10 16:28:54.655  1223  2427 I FontLog : Pulling font file for id = 24, cache size = 4 [CONTEXT service_id=132 ]
+10-10 16:28:54.662 12848 12885 D CompatChangeReporter: Compat change id reported: 311402873; UID 10172; state: ENABLED
+10-10 16:28:54.662 12848 12885 D CompatChangeReporter: Compat change id reported: 323349338; UID 10172; state: ENABLED
+10-10 16:28:54.663   699  1844 D ConnectivityService: requestNetwork for uid/pid:1000/699 asUid: 10172 activeRequest: null callbackRequest: 219 [NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false declaredMethods: AVAIL|LOST|BLK
+10-10 16:28:54.664 12848 12886 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+10-10 16:28:54.667   699   850 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-10 16:28:54.667   699   850 V WifiNetworkFactory: Accepted network request NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-10 16:28:54.668   699   850 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-10 16:28:54.671 12848 12848 D CompatChangeReporter: Compat change id reported: 270674727; UID 10172; state: ENABLED
+10-10 16:28:54.672   699   850 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-10 16:28:54.672   699   850 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=220, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10172 RequestorUid: 1000 RequestorPkg: android UnderlyingNetworks: Null] ]
+10-10 16:28:54.673   699   860 D ConnectivityService: NetReassign [220 : null → 103] [c 0] [a 0] [i 6]
+10-10 16:28:54.673 12848 12888 D CompatChangeReporter: Compat change id reported: 312399441; UID 10172; state: ENABLED
+10-10 16:28:54.689  4329  4329 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-10 16:28:54.690  4329  4329 D ProvidersAccess: Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=sdk_gphone64_x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary, Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads]
+10-10 16:28:54.697  4329 12895 D LoadRootTask: Loading root: content://com.android.providers.downloads.documents/root/downloads on user 0
+10-10 16:28:54.707  4329  4329 W HWUI    : Image decoding logging dropped!
+10-10 16:28:54.707  4329  4329 W HWUI    : Image decoding logging dropped!
+10-10 16:28:54.707  4329  4329 W HWUI    : Image decoding logging dropped!
+10-10 16:28:54.718  1223  6231 I HeterodyneSyncScheduler: Scheduling Phenotype for a PhenotypeSyncImmediately(16, com.google.apps.drive.android#com.google.android.apps.docs) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]
+10-10 16:28:54.735  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:54.743  4329 12903 D ProvidersAccess: Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=sdk_gphone64_x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary, Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads]
+10-10 16:28:54.754  4329  4329 W HWUI    : Unknown dataspace 0
+10-10 16:28:54.789  4329  4329 I ProvidersCache: Updating roots due to change on user 0at content://com.google.android.apps.docs.storage/root
+10-10 16:28:54.792  4329  4329 D LoadRootTask: Loaded root: Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads
+10-10 16:28:54.792  4329  4329 W ActionModeController: Tried to finish a null action mode.
+10-10 16:28:54.792  4329  4329 D DocumentStack: Root changed to: Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads
+10-10 16:28:54.792  1223  4423 I .gms.persistent: AssetManager2(0x783f5e6318b8) locale list changing from [] to [en-US]
+10-10 16:28:54.800  4329  4369 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-10 16:28:54.800  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:54.822   485   530 I netd    : tetherGetStats() -> {[]} <2.67ms>
+10-10 16:28:54.830   561  1167 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10102 pid=0
+10-10 16:28:54.830   561  1167 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10102 => denied (206 us)
+10-10 16:28:54.830   561   592 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10102 pid=4329
+10-10 16:28:54.830   561   592 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10102 => denied (195 us)
+10-10 16:28:54.831   561   592 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10102 pid=4329
+10-10 16:28:54.831   561   592 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10102 => denied (39 us)
+10-10 16:28:54.831   561   592 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10102 pid=4329
+10-10 16:28:54.831   561   592 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10102 => denied (27 us)
+10-10 16:28:54.833   561  1167 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10102 pid=0
+10-10 16:28:54.833   561  1167 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10102 => denied (2473 us)
+10-10 16:28:54.940   699   709 I system_server: Background concurrent mark compact GC freed 25MB AllocSpace bytes, 62(1608KB) LOS objects, 42% free, 32MB/56MB, paused 1.451ms,1.441ms total 207.807ms
+10-10 16:28:55.073  1071  1309 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+10-10 16:28:55.398   699  2063 W ServiceManagerCppClient: Permission failure: android.permission.ACCESS_SURFACE_FLINGER from uid=10102 pid=0
+10-10 16:28:55.398  4329 12464 D ProvidersAccess: Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=sdk_gphone64_x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary, Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads]
+10-10 16:28:55.398  4329  4329 I Choreographer: Skipped 35 frames!  The application may be doing too much work on its main thread.
+10-10 16:28:55.398   699  2063 D PermissionCache: checking android.permission.ACCESS_SURFACE_FLINGER for uid=10102 => denied (769 us)
+10-10 16:28:55.398   699  2063 W ServiceManagerCppClient: Permission failure: android.permission.ROTATE_SURFACE_FLINGER from uid=10102 pid=0
+10-10 16:28:55.398   699  2063 D PermissionCache: checking android.permission.ROTATE_SURFACE_FLINGER for uid=10102 => denied (56 us)
+10-10 16:28:55.398   699  2063 W ServiceManagerCppClient: Permission failure: android.permission.INTERNAL_SYSTEM_WINDOW from uid=10102 pid=0
+10-10 16:28:55.398   699  2063 D PermissionCache: checking android.permission.INTERNAL_SYSTEM_WINDOW for uid=10102 => denied (21 us)
+10-10 16:28:55.402   699   719 I ActivityTaskManager: Displayed com.google.android.documentsui/com.android.documentsui.picker.PickActivity for user 0: +1s325ms
+10-10 16:28:55.410   948   953 W ndroid.systemui: Missing inline cache for void com.android.wm.shell.transition.Transitions.processReadyQueue(com.android.wm.shell.transition.Transitions$Track)
+10-10 16:28:55.410   948   953 W ndroid.systemui: Missing inline cache for void com.android.wm.shell.transition.Transitions.processReadyQueue(com.android.wm.shell.transition.Transitions$Track)
+10-10 16:28:55.411  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:55.418  4329  4329 D DocumentStack: Adding doc to stack: DocumentInfo{docId=downloads, userId=0, name=Downloads, mimeType=vnd.android.document/directory, isContainer=true, isDirectory=true, isArchive=false, isInArchive=false, isPartial=false, isVirtual=false, isDeleteSupported=false, isCreateSupported=true, isMoveSupported=false, isRenameSupported=false, isMetadataSupported=false, isBlockedFromTree=false} @ content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.419  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:55.419  4329  4329 D DocumentStack: Resetting the whole darn stack to: DocumentStack{root=Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads, docStack=[DocumentInfo{docId=downloads, userId=0, name=Downloads, mimeType=vnd.android.document/directory, isContainer=true, isDirectory=true, isArchive=false, isInArchive=false, isPartial=false, isVirtual=false, isDeleteSupported=false, isCreateSupported=true, isMoveSupported=false, isRenameSupported=false, isMetadataSupported=false, isBlockedFromTree=false} @ content://com.android.providers.downloads.documents/document/downloads], stackTouched=true}
+10-10 16:28:55.419  4329  4329 D DirectoryFragment: Showing directory: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.419  4329  4329 D DirectoryFragment: Creating new fragment for directory: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.420  4329  4329 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-10 16:28:55.420  4329  4329 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-10 16:28:55.427  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:55.430  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:55.448  4329  4329 W SelectionTracker: Setting gestureTooltypes is likely to result in unexpected behavior.
+10-10 16:28:55.449  4329  4329 D AbstractActionHandler: Creating new directory loader for: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.619   699   818 I system_server: AssetManager2(0x783f5e712ef8) locale list changing from [] to [en-US]
+10-10 16:28:55.620  1071  1309 I SatelliteAppTracker: onPackageModified : com.google.android.apps.docs
+10-10 16:28:55.621   699   818 I system_server: AssetManager2(0x783f5e70e0d8) locale list changing from [] to [en-US]
+10-10 16:28:55.621  1071  1071 D CarrierSvcBindHelper: onPackageModified: com.google.android.apps.docs
+10-10 16:28:55.621  1071  1071 D CarrierSvcBindHelper: No carrier app for: 0
+10-10 16:28:55.622   948   948 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+10-10 16:28:55.624   699   821 I system_server: AssetManager2(0x783f5e6d14f8) locale list changing from [] to [en-US]
+10-10 16:28:55.626  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:28:55.627   699   800 I RoleService: Granting default roles...
+10-10 16:28:55.629   699   821 I system_server: AssetManager2(0x783f5e7079b8) locale list changing from [] to [en-US]
+10-10 16:28:55.629   699   722 I system_server: AssetManager2(0x783f5e7095d8) locale list changing from [] to [en-US]
+10-10 16:28:55.629   699  1850 I system_server: AssetManager2(0x783f5e70caf8) locale list changing from [] to [en-US]
+10-10 16:28:55.629  1071  1307 D ImsResolver: maybeAddedImsService, packageName: com.google.android.apps.docs
+10-10 16:28:55.629  1071  1307 V ImsResolver: searchForImsServices: package=com.google.android.apps.docs, users=[UserHandle{0}]
+10-10 16:28:55.629  1071  1307 V ImsResolver: searchForImsServices: package=com.google.android.apps.docs, users=[UserHandle{0}]
+10-10 16:28:55.630  1208  8270 I PermissionControllerServiceImpl: Updating user sensitive for uid 10172
+10-10 16:28:55.631  1071  1071 D SatelliteController: packageStateChanged: package:com.google.android.apps.docs DefaultSmsPackageName:com.google.android.apps.messaging
+10-10 16:28:55.632  1071  1071 V SatelliteController: Neither SMS or SatelliteGateway package
+10-10 16:28:55.633  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:28:55.635  1071  1071 D SatelliteAccessController: Current default SMS app:ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.shared.receiver.SmsDeliverReceiver}
+10-10 16:28:55.635  1071  1071 D SatelliteController: getSelectedSatelliteSubId: subId=-1
+10-10 16:28:55.635  1071  1071 D SatelliteAccessController: supportedMsgApps:com.google.android.apps.messaging
+10-10 16:28:55.637   699   905 E system_server: No package ID 7f found for resource ID 0x7f0803b2.
+10-10 16:28:55.637   699   905 E system_server: No package ID 7f found for resource ID 0x7f150798.
+10-10 16:28:55.637   699   905 E system_server: No package ID 7f found for resource ID 0x7f150798.
+10-10 16:28:55.637   699   905 E system_server: No package ID 7f found for resource ID 0x7f0803ae.
+10-10 16:28:55.638   699   905 E system_server: No package ID 7f found for resource ID 0x7f150796.
+10-10 16:28:55.638   699   905 E system_server: No package ID 7f found for resource ID 0x7f150796.
+10-10 16:28:55.638   699   727 I system_server: AssetManager2(0x783f5e70f9d8) locale list changing from [] to [en-US]
+10-10 16:28:55.639   699   821 I system_server: AssetManager2(0x783f5e6bdc78) locale list changing from [] to [en-US]
+10-10 16:28:55.640   699   905 E system_server: No package ID 7f found for resource ID 0x7f0803b0.
+10-10 16:28:55.640   699   905 E system_server: No package ID 7f found for resource ID 0x7f150797.
+10-10 16:28:55.640   699   905 E system_server: No package ID 7f found for resource ID 0x7f150797.
+10-10 16:28:55.640   699   905 W ShortcutService: Invalid tag 'capability' found at depth 2
+10-10 16:28:55.640   699   905 E ShortcutService: Ignoring excessive intent tag.
+10-10 16:28:55.640   699   905 W ShortcutService: Invalid tag 'parameter' found at depth 4
+10-10 16:28:55.640   699   905 W ShortcutService: Invalid tag 'capability' found at depth 2
+10-10 16:28:55.640   699   905 W ShortcutService: Invalid tag 'slice' found at depth 3
+10-10 16:28:55.640   699   905 W ShortcutService: Invalid tag 'url-template' found at depth 4
+10-10 16:28:55.641   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+10-10 16:28:55.642   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-10 16:28:55.643   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+10-10 16:28:55.645   699   821 I system_server: AssetManager2(0x783f5e70abb8) locale list changing from [] to [en-US]
+10-10 16:28:55.646   699   727 I system_server: AssetManager2(0x783f5e705118) locale list changing from [] to [en-US]
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.647  1577  1966 I AiAiEcho: Settings changed for uri: content://settings/secure/accessibility_enabled
+10-10 16:28:55.648  1577  1776 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-10 16:28:55.648  1577  1776 I AiAiEcho: EchoTargets:
+10-10 16:28:55.648  1577  1776 I AiAiEcho: Filtered by AiAi flag check:
+10-10 16:28:55.648  1577  1776 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-10 16:28:55.648  1577  1776 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-10 16:28:55.650   699  2062 W ParceledListSlice: Element #26 is 19748 bytes.
+10-10 16:28:55.650   699  2062 W ParceledListSlice: Element #27 is 19784 bytes.
+10-10 16:28:55.650  1577  1776 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-10 16:28:55.651  1577  1776 I AiAiEcho: EchoTargets:
+10-10 16:28:55.651  1577  1776 I AiAiEcho: Filtered by AiAi flag check:
+10-10 16:28:55.651  1577  1776 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-10 16:28:55.651   699  2062 W ParceledListSlice: Element #28 is 19924 bytes.
+10-10 16:28:55.651   699  2062 W ParceledListSlice: Element #29 is 20012 bytes.
+10-10 16:28:55.651   699  2062 W ParceledListSlice: Element #30 is 19648 bytes.
+10-10 16:28:55.651  1577  1776 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-10 16:28:55.651  1577  1776 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-10 16:28:55.652  1577  1776 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+10-10 16:28:55.655   948   948 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+10-10 16:28:55.657  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e648658) locale list changing from [] to [en-US]
+10-10 16:28:55.664  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.672  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.675   699   727 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:55.678   699   727 I system_server: AssetManager2(0x783f5e677a98) locale list changing from [] to [en-US]
+10-10 16:28:55.678  1577 12726 I AiAiEcho: AppIndexer Package:[com.google.android.apps.docs] UserProfile:[0] Enabled:[true].
+10-10 16:28:55.678  1577 12726 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.google.android.apps.docs], userId:[0], reason:[package is updated.].
+10-10 16:28:55.682   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+10-10 16:28:55.684  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.685   699  2667 I system_server: AssetManager2(0x783f5e707cd8) locale list changing from [] to [en-US]
+10-10 16:28:55.686   699  2667 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+10-10 16:28:55.689  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.701  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e662f58) locale list changing from [] to [en-US]
+10-10 16:28:55.705  4329  4329 D AbstractActionHandler: Loader has finished for: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.705  4329  4329 I Model   : Updating model with new result set.
+10-10 16:28:55.706  4329  4329 D DirectoryFragment: Received model update. Loading=false
+10-10 16:28:55.706  4329  4329 D DefaultSelectionTracker: Ignoring onDataSetChange. No active selection.
+10-10 16:28:55.708  4329  4329 V RefreshTask: Provider does not support refresh and did not refresh
+10-10 16:28:55.709  4329  4329 D AbstractActionHandler: Creating new directory loader for: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.713   699   817 I ImeTracker: com.google.android.documentsui:20dcc608: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-10 16:28:55.726  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e67ee38) locale list changing from [] to [en-US]
+10-10 16:28:55.729  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.735  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-10 16:28:55.735   699  1844 I ImeTracker: system_server:170f0035: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-10 16:28:55.736  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-10 16:28:55.736  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.documentsui, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-10 16:28:55.736   699   722 I ImeTracker: system_server:170f0035: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-10 16:28:55.737  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-10 16:28:55.737  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at asx.p(PG:6)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at axb.b(PG:13)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at nco.v(PG:13)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-10 16:28:55.738  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-10 16:28:55.741  4329  4366 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-10 16:28:55.743  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.749  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.753  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.773  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.783   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=6 freq=2437 RxLinkSpeed=2
+10-10 16:28:55.783   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:28:55.783   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:28:55.783   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:28:55.783   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:28:55.784   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 6Mbps, Tx Link speed: 6Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:28:55.784   699   850 D WifiScoreCard: txRate: 1 txSpeed: 6
+10-10 16:28:55.784   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:28:55.784   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=6 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:2999] from screen [on:0 period:6505215] score=60
+10-10 16:28:55.785  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.805  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e66f118) locale list changing from [] to [en-US]
+10-10 16:28:55.820  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e677db8) locale list changing from [] to [en-US]
+10-10 16:28:55.825  4329  4329 D InsetsController: hide(ime(), fromIme=false)
+10-10 16:28:55.825  4329  4329 I ImeTracker: com.google.android.documentsui:20dcc608: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-10 16:28:55.827  4329  4329 D AbstractActionHandler: Loader has finished for: content://com.android.providers.downloads.documents/document/downloads
+10-10 16:28:55.828  4329  4329 I Model   : Updating model with new result set.
+10-10 16:28:55.828  4329  4329 D DirectoryFragment: Received model update. Loading=false
+10-10 16:28:55.829  4329  4329 D DefaultSelectionTracker: Ignoring onDataSetChange. No active selection.
+10-10 16:28:55.838  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.851  4329 12903 D ProvidersAccess: Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=sdk_gphone64_x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary, Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads]
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Settings sectionName: S
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Photos sectionName: P
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Battery sectionName: B
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Chrome sectionName: C
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Gmail sectionName: G
+10-10 16:28:55.858  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Drive sectionName: D
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Clock sectionName: C
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Contacts sectionName: C
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Calendar sectionName: C
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Maps sectionName: M
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: YouTube Music sectionName: Y
+10-10 16:28:55.859  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: YouTube sectionName: Y
+10-10 16:28:55.860  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Google sectionName: G
+10-10 16:28:55.860  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Android System Intelligence sectionName: A
+10-10 16:28:55.860  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Digital Wellbeing sectionName: D
+10-10 16:28:55.861  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Conversations sectionName: C
+10-10 16:28:55.861  1082  1145 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[com.google.android.apps.docs], user=UserHandle{0}
+10-10 16:28:55.863 12812 12812 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-10 16:28:55.867 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: STOPPED
+10-10 16:28:55.867 12812 12812 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.vibe.store.MainActivity@d30d695
+10-10 16:28:55.874  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:55.888  1082  1145 I s.nexuslauncher: AssetManager2(0x783f5e647078) locale list changing from [] to [en-US]
+10-10 16:28:55.893  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.921   485   530 I netd    : tetherGetStats() -> {[]} <0.58ms>
+10-10 16:28:55.927  1082  2180 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-10 16:28:55.948  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:28:55.949  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: Drive sectionName: D
+10-10 16:28:55.953  1082  1082 D AllAppsStore: setApps: apps.length=19
+10-10 16:28:55.953  1082  1082 D AllAppsStore: notifyUpdate: notifying listeners
+10-10 16:28:55.953  1082  1082 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 19
+10-10 16:28:55.953  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: force: false
+10-10 16:28:55.953  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+10-10 16:28:55.953  1082  1082 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:28:55.953  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:28:55.954  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:28:55.954  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-10 16:28:55.955  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-10 16:28:55.955  1486  1486 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.google.android.documentsui, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-10 16:28:55.957  1486  1486 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: EmojiCompatManager.getEmojiCompatIfLoaded():343 EmojiCompat.init() was never called.
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: java.lang.IllegalStateException: EmojiCompat is not initialized. Please call EmojiCompat.init() first
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at asx.p(PG:6)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at axb.b(PG:13)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at jnr.b(PG:2)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at jnr.c(PG:4)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at jnr.f(PG:3)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at jnx.c(PG:3)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at kif.cz(PG:47)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at lhl.run(PG:1025)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at jaf.execute(PG:12)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at nco.v(PG:13)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at lhn.m(PG:96)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at lhn.k(PG:25)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at kgn.onStartInput(PG:250)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService.doStartInput(InputMethodService.java:3521)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.startInput(InputMethodService.java:879)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.InputMethodService$InputMethodImpl.dispatchStartInput(InputMethodService.java:908)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.inputmethodservice.IInputMethodWrapper.executeMessage(IInputMethodWrapper.java:201)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.HandlerCaller$MyHandler.handleMessage(HandlerCaller.java:44)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at android.app.ActivityThread.main(ActivityThread.java:9067)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at java.lang.reflect.Method.invoke(Native Method)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:593)
+10-10 16:28:55.958  1486  1486 I EmojiCompatManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:932)
+10-10 16:28:55.959  1082  1082 D b/387844520: getOutlineOffsetX: measured width = 173, mNormalizedIconSize = 159, last updated width = 173
+10-10 16:28:55.959  1082  1082 D SsBaseTemplateCard: No text view can be set up
+10-10 16:28:55.959  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:55.959  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:55.959  1082  1082 D SsBaseTemplateCard: Passed-in item info is null
+10-10 16:28:55.959  1082  1082 I SsBaseTemplateCard: Secondary card pane is null
+10-10 16:28:55.966   549   587 W AudioFlinger: createTrack_l(): mismatch between requested flags (00000004) and output flags (00000002)
+10-10 16:28:55.966   549   587 I AF::PthrPatchRecord: creating track with enforcement level 0
+10-10 16:28:55.966   549   587 W AF::TrackHandle: OpPlayAudio: not muting track:55 usage:13 for service UID 1000
+10-10 16:28:56.001   699  2063 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+10-10 16:28:56.003 12812 12827 E AccessibilityInteractionClient: 4 Disconnected nodes.
+10-10 16:28:56.026   496 12921 W libprocessgroup: A JoinCgroup action in the SystemMemoryProcess profile is used for controller memory in the cgroup v2 hierarchy and will be ignored
+10-10 16:28:56.048 12812 12827 E AccessibilityInteractionClient: 4 Disconnected nodes.
+10-10 16:28:56.121   699  2062 I system_server: AssetManager2(0x783f5e7128b8) locale list changing from [] to [en-US]
+10-10 16:28:56.121   699  2062 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10264, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:28:56.130   561  1167 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:56.130   948  1163 I ndroid.systemui: AssetManager2(0x783f5e688d98) locale list changing from [] to [en-US]
+10-10 16:28:56.133   948  1164 D SplashScreenView: Build android.window.SplashScreenView{a8db40c V.E...... ......ID 0,0-0,0}
+10-10 16:28:56.133   948  1164 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-10 16:28:56.133   948  1164 D SplashScreenView: Branding: view: android.view.View{8798155 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-10 16:28:56.134   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:56.134   634  5404 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:28:56.135   699   722 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10264, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:28:56.140   561   561 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:56.149   488   488 D Zygote  : Forked child process 12924
+10-10 16:28:56.169 12924 12924 I tore.debug.test: Late-enabling -Xcheck:jni
+10-10 16:28:56.193 12924 12924 I tore.debug.test: Using CollectorTypeCMC GC.
+10-10 16:28:56.197 12924 12924 W tore.debug.test: Unexpected CPU variant for x86: x86_64.
+10-10 16:28:56.197 12924 12924 W tore.debug.test: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:28:56.199   570   584 I adbd    : jdwp connection from 12924
+10-10 16:28:56.204 12924 12924 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:28:56.236 12924 12924 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+10-10 16:28:56.242 12924 12924 D nativeloader: Configuring clns-9 for other apk /system/framework/android.test.mock.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/data/app/~~Dfd9zdMSkJFb5aekILbpOw==/com.vibe.store.debug.test-tslg6dY_-4geZ1IKNzD9iQ==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-10 16:28:56.246 12924 12924 D ApplicationLoaders: Returning zygote-cached class loader: /system/framework/android.test.base.jar
+10-10 16:28:56.249 12924 12924 D nativeloader: Configuring clns-10 for other apk /system/framework/android.test.runner.jar. target_sdk_version=36, uses_libraries=ALL, library_path=/data/app/~~Dfd9zdMSkJFb5aekILbpOw==/com.vibe.store.debug.test-tslg6dY_-4geZ1IKNzD9iQ==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-10 16:28:56.283 12924 12924 D nativeloader: Configuring clns-11 for other apk /data/app/~~Dfd9zdMSkJFb5aekILbpOw==/com.vibe.store.debug.test-tslg6dY_-4geZ1IKNzD9iQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~Dfd9zdMSkJFb5aekILbpOw==/com.vibe.store.debug.test-tslg6dY_-4geZ1IKNzD9iQ==/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug.test
+10-10 16:28:56.287 12924 12924 I tore.debug.test: AssetManager2(0x783f5e61f618) locale list changing from [] to [en-US]
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment: Currently set values for:
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment: com.vibe.store.debug.test is not listed in per-application setting
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment: com.vibe.store.debug.test is not listed in ANGLE allowlist or settings, returning default
+10-10 16:28:56.295 12924 12924 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:28:56.321   948  1044 I ndroid.systemui: AssetManager2(0x783f5e683f78) locale list changing from [] to [en-US]
+10-10 16:28:56.332   948  1044 I ndroid.systemui: AssetManager2(0x783f5e6877b8) locale list changing from [] to [en-US]
+10-10 16:28:56.342 12924 12924 I tore.debug.test: AssetManager2(0x783f5e61efd8) locale list changing from [] to [en-US]
+10-10 16:28:56.352 12924 12924 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+10-10 16:28:56.357   512   597 I RanchuHwc: logCompositionFallbackIfChanged: layer 123 CompositionType fallback from 3 to 1
+10-10 16:28:56.374 12924 12937 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-10 16:28:56.375 12924 12937 I EGL_emulation: Opening libGLESv2_emulation.so
+10-10 16:28:56.380 12924 12937 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-10 16:28:56.390  4329  4329 W WindowOnBackDispatcher: OnBackInvokedCallback is not enabled for the application.
+10-10 16:28:56.390  4329  4329 W WindowOnBackDispatcher: Set 'android:enableOnBackInvokedCallback="true"' in the application manifest.
+10-10 16:28:56.397 12924 12924 D CompatChangeReporter: Compat change id reported: 377864165; UID 10264; state: ENABLED
+10-10 16:28:56.400 12924 12924 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+10-10 16:28:56.438  4329  4861 I ProvidersCache: Provider returned no roots. Possibly naughty: com.google.android.apps.docs.storage
+10-10 16:28:56.447  4329 12909 D ProvidersAccess: Matched roots: [Root{userId=0, authority=com.android.externalstorage.documents, rootId=primary, title=sdk_gphone64_x86_64, isUsb=false, isSd=false, isMtp=false} @ content://com.android.externalstorage.documents/root/primary, Root{userId=0, authority=com.android.providers.downloads.documents, rootId=downloads, title=Downloads, isUsb=false, isSd=false, isMtp=false} @ content://com.android.providers.downloads.documents/root/downloads]
+10-10 16:28:56.448  4329  4329 E oid.documentsui: No package ID ff found for resource ID 0xffffffff.
+10-10 16:28:56.451 12812 12812 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@a7d14b9
+10-10 16:28:56.452 12812 12812 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@d30d695 in: DESTROYED
+10-10 16:28:56.452 12812 12812 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-10 16:28:56.453 12924 12924 W HWUI    : Unknown dataspace 0
+10-10 16:28:56.455 12812 12827 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@1474b8f]
+10-10 16:28:56.470 12812 12827 E TestRunner: failed: realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(com.vibe.store.RecoveryUiTest)
+10-10 16:28:56.477   561  1167 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-10 16:28:56.479 12812 12827 E TestRunner: ----- begin exception -----
+10-10 16:28:56.479 12812 12827 E TestRunner: java.lang.AssertionError
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.Assert.fail(Assert.java:87)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.Assert.assertTrue(Assert.java:42)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.Assert.assertTrue(Assert.java:53)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at com.vibe.store.RecoveryUiTest.realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(RecoveryUiTest.kt:122)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at java.lang.reflect.Method.invoke(Native Method)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$testWithDisposal$1.evaluate(AndroidComposeTestRule.android.kt:306)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.rules.ExternalResource$1.evaluate(ExternalResource.java:54)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invokeSuspend(AndroidComposeTestRule.android.kt:318)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:8)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1$evaluate$1.invoke(Unknown Source:4)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invokeSuspend(ComposeUiTest.android.kt:569)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:8)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1$1$1$1.invoke(Unknown Source:2)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.EspressoLink.withStrategy(EspressoLink.android.kt:69)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invokeSuspend(ComposeUiTest.android.kt:566)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:8)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$runTest$1$1.invoke(Unknown Source:4)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$1.invokeSuspend(TestBuilders.kt:317)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestDispatcher.processEvent$kotlinx_coroutines_test(TestDispatcher.kt:24)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestCoroutineScheduler.tryRunNextTaskUnless$kotlinx_coroutines_test(TestCoroutineScheduler.kt:99)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt$runTest$2$1$workRunner$1.invokeSuspend(TestBuilders.kt:326)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersJvmKt.createTestResult(TestBuildersJvm.kt:10)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:309)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt__TestBuildersKt.runTest-8Mi8wO0(TestBuilders.kt:167)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at kotlinx.coroutines.test.TestBuildersKt.runTest-8Mi8wO0(Unknown Source:1)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment.runTest(ComposeUiTest.android.kt:549)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at androidx.compose.ui.test.junit4.AndroidComposeTestRule$apply$1.evaluate(AndroidComposeTestRule.android.kt:318)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-10 16:28:56.479 12812 12827 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at androidx.test.ext.junit.runners.AndroidJUnit4.run(AndroidJUnit4.java:162)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:128)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.Suite.runChild(Suite.java:27)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at org.junit.runner.JUnitCore.run(JUnitCore.java:115)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:68)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at androidx.test.internal.runner.TestExecutor.execute(TestExecutor.java:59)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at androidx.test.runner.AndroidJUnitRunner.onStart(AndroidJUnitRunner.java:467)
+10-10 16:28:56.480 12812 12827 E TestRunner: 	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2597)
+10-10 16:28:56.480 12812 12827 E TestRunner: ----- end exception -----
+10-10 16:28:56.483 12812 12827 I TestRunner: finished: realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(com.vibe.store.RecoveryUiTest)

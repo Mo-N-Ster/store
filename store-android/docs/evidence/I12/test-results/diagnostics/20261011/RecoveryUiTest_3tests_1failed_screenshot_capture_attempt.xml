@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="3" failures="1" errors="0" skipped="0" time="11.472" timestamp="2026-10-11T20:50:46" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi" classname="com.vibe.store.RecoveryUiTest" time="5.043">
+    <failure>java.lang.AssertionError: Synthetic archive row could not be selected
+at org.junit.Assert.fail(Assert.java:89)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at com.vibe.store.RecoveryUiTest.productionRecoveryAuthorityRoundTripsSyntheticRoomThroughDocumentsUi(RecoveryUiTest.kt:331)
+</failure>
+  </testcase>
+  <testcase name="recoveryPanelExportsThroughRealDocumentsUiAndProvider" classname="com.vibe.store.RecoveryUiTest" time="3.766" />
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.979" />
+</testsuite>

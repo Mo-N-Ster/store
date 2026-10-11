@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.InventoryNativeTest" tests="9" failures="0" errors="0" skipped="0" time="2.882" timestamp="2026-10-11T21:05:17" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="reconcilingAlwaysUsesCurrentStockNotInitialSnapshot" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.388" />
+  <testcase name="explicitCompleteAttestationIsRequired" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.251" />
+  <testcase name="editingCountIncludingAbaRevokesPriorReview" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.228" />
+  <testcase name="freshAuthorityAfterDatabaseReopenRejectsLostVolatileReview" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.304" />
+  <testcase name="archivedArticleIsRejectedWithoutUndoingPriorEffects" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.228" />
+  <testcase name="failureAfterFirstStockWriteRollsBackEverythingAndMayRetry" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.228" />
+  <testcase name="draftPrefillsAreDurableButHaveNoStockEffects" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.229" />
+  <testcase name="repeatedAndConcurrentValidationNeverReapply" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.228" />
+  <testcase name="managerAllowedButEmployeeAndRevokedRightsDeniedDirectly" classname="com.vibe.store.infrastructure.persistence.InventoryNativeTest" time="0.454" />
+</testsuite>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" tests="4" failures="1" errors="0" skipped="0" time="1.782" timestamp="2026-10-11T18:47:18" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_I12_API36_CLEAN(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":infrastructure" />
+  </properties>
+  <testcase name="revokedSourceAndInterruptedDestinationFailWithoutChangingActiveGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.414" />
+  <testcase name="scheduledAutomaticBackupSerializesWithLivePosSale" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.296">
+    <failure>org.junit.ComparisonFailure: expected:&lt;[VALIDATED]&gt; but was:&lt;[validated]&gt;
+at org.junit.Assert.assertEquals(Assert.java:117)
+at org.junit.Assert.assertEquals(Assert.java:146)
+at com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest$scheduledAutomaticBackupSerializesWithLivePosSale$1.invokeSuspend(RecoveryAuthorityNativeTest.kt:176)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+at com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest.scheduledAutomaticBackupSerializesWithLivePosSale(RecoveryAuthorityNativeTest.kt:155)
+</failure>
+  </testcase>
+  <testcase name="employeeAndSignedOutSessionsCannotInspectExportRestoreOrReset" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.328" />
+  <testcase name="ownerBackupPreviewConfirmationRestoreAndSessionInvalidationUseRealRoomGeneration" classname="com.vibe.store.infrastructure.persistence.RecoveryAuthorityNativeTest" time="0.428" />
+</testsuite>

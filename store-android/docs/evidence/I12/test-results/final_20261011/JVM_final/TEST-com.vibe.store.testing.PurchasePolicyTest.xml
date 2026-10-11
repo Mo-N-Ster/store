@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.vibe.store.testing.PurchasePolicyTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-11T21:15:30.266Z" hostname="Sterling-Setup" time="0.019">
+  <properties/>
+  <testcase name="costsAndTotalsPreserveExactPrecision" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.002"/>
+  <testcase name="fieldsAndFiltersAreBoundedAndDatesStrict" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.005"/>
+  <testcase name="d3AnyCollisionConflictsWithoutReplay" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.001"/>
+  <testcase name="lineUniquenessAndBoundedBodyAreRequired" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.002"/>
+  <testcase name="additionAndCompensationBoundsPreventNegativeStockAndOverflow" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.0"/>
+  <testcase name="d4NewReceptionRequiresSelectedActiveSupplierAndAdmissibleArticles" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.002"/>
+  <testcase name="publicPaginationIsBoundedAndSnapshotsCannotAliasMutableLists" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.001"/>
+  <testcase name="transitionsFailClosedAndDoNotConflateCancellationEffects" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.002"/>
+  <testcase name="contextualArticleContractHasZeroInitialStockOnly" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.001"/>
+  <testcase name="quantitiesRejectMalformedAndRespectSafeIntegerBound" classname="com.vibe.store.testing.PurchasePolicyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

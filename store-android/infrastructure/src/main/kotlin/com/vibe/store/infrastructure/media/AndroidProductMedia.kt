@@ -19,20 +19,20 @@ import java.util.UUID
 private class ContentSelection(val uri: Uri) : SelectedImage
 
 class AndroidProductMedia private constructor(
-    private val root: File,
+    private val root: () -> File,
     private val open: (Uri) -> InputStream?,
     private val beforeWrite: (Int) -> Unit = {},
 ) : ProductMedia {
     companion object {
         fun create(context: Context) = AndroidProductMedia(
-            File(context.noBackupFilesDir, "generations/main/media/articles"),
+            { File(com.vibe.store.infrastructure.persistence.AndroidPersistence.activeGenerationRoot(context), "media/articles") },
             { context.contentResolver.openInputStream(it) },
         )
         fun selection(uri: Uri): SelectedImage {
             if (uri.scheme != "content") throw CatalogFailure(CatalogError.INVALID_MEDIA)
             return ContentSelection(uri)
         }
-        internal fun fixture(root: File, beforeWrite: (Int) -> Unit = {}, open: (Uri) -> InputStream?) = AndroidProductMedia(root, open, beforeWrite)
+        internal fun fixture(root: File, beforeWrite: (Int) -> Unit = {}, open: (Uri) -> InputStream?) = AndroidProductMedia({ root }, open, beforeWrite)
     }
 
     private fun directory(): File {
@@ -44,9 +44,10 @@ class AndroidProductMedia private constructor(
             val fd = Os.open(parent.path, OsConstants.O_RDONLY, 0)
             try { Os.fsync(fd) } finally { Os.close(fd) }
         }
-        ensure(root)
-        if (!root.isDirectory) throw CatalogFailure(CatalogError.STORAGE_UNAVAILABLE)
-        return root
+        val activeRoot = root()
+        ensure(activeRoot)
+        if (!activeRoot.isDirectory) throw CatalogFailure(CatalogError.STORAGE_UNAVAILABLE)
+        return activeRoot
     }
 
     private fun file(reference: String): File {

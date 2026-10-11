@@ -161,3 +161,124 @@ Next: inspect complete I11 diff and path inventory, run final `git diff
 the contract message `feat(android): I11 integrate print share and delivery`,
 verify clean worktree/main protection, then read I12's exact contract before
 implementation. Do not push or merge.
+
+## Current status — 2026-10-10 I12 recovery implementation
+
+This is the current continuation and supersedes the stale I11 `Next` above.
+Branch/HEAD are still `feature/store-i10` /
+`0589c779f4fb0fa523b8d01569eda91959723b40`; protected `main` remains
+`3691eccedc9855686b011e34c7420f17aaf6c085`. I10/I11 remain committed and
+unmodified. I12 changes are uncommitted; the index remains empty.
+
+I12 now has a bounded recovery archive, active-generation AtomicFile pointer,
+durable transition journal, single Room owner/maintenance gate, first-read
+startup validation, catalog-media snapshotting, internal verified backup,
+candidate restore and reset generation switching, Owner/password service
+checks, SAF settings workflows, unique daily Worker scheduling, and automatic
+backup retention limited to seven. Latest focused evidence: `ActiveStoreOwnerTest`
+11/11 on API 36 x86_64, including schema-manifest mismatch rejection before
+inspection/restore with no active-generation switch; non-empty product/stock-history/media restore and
+actor-linked restore/reset audit assertions; `RecoveryArchiveTest` 3/3 JVM;
+`RecoveryUiTest` 2/2 API 36 (including `RecoveryPanel` cancellation and a real
+DocumentsUI CreateDocument → Downloads provider byte-write/read/delete flow);
+`RecoveryBackupSchedulerTest`
+1/1 API 36; and `:verifyArchitecture :testing:test --rerun-tasks` 103/103 JVM
+tests. Reports are retained under `I12/test-results/`. Failed picker-selection
+diagnostics are retained separately; the product OpenDocument/restore flow is
+still unqualified.
+
+I12 is **not accepted**. Contractual blockers remain: seven product-level SP-01
+commit boundaries with external process death/recovery ×3; full sale/purchase/
+team/reporting/delivery-queue plus media before/after proof; real DocumentsUI/
+provider export-import, revoked URI, low-space and interrupted-export tests;
+Owner-vs-employee/reset lockout and session integration tests; WorkManager
+catch-up and actual worker-execution-after-process-restart evidence; candidate
+migration/corruption, concurrent POS/Worker and wider domain regressions. Unique
+scheduling and retention are partly covered; manual backup, restore and reset
+outcomes now append an actor-attributed audit row. Do not start I13 until I12
+G-PASS/G-RECOVERY/G-EVIDENCE and its contractual local commit pass. No push,
+merge or deployment.
+
+## Latest I12 continuation — 2026-10-10
+
+The restore/reset interruption matrix is now exercised against product
+`ActiveStoreOwner` + Room on the authorized API 36 x86_64 emulator. The final
+`I12RecoveryProcessDeathTest` reports 1/1 JUnit and retains 30 external process
+kills: seven restore boundaries and three reset boundaries, each repeated
+three times. Each interrupted service PID is observed gone; a distinct new
+verifier PID/token reopens the durable pointer/journal, checks expected old/new
+state, Owner count, SQLite quick/full/FK integrity, and referenced media. The
+final reports are `I12/test-results/I12RecoveryProcessDeathTest_restore_reset_boundaries_x3.xml`
+and `.logcat.txt`; a prior reused-verifier diagnostic is retained separately.
+
+`RecoveryAuthorityNativeTest_API36.xml` passes 2/2 using the real application
+RecoveryAuthority, AndroidRecoveryBackend, synthetic Room generations and
+Owner/employee sessions. It verifies backup/preview/confirmation/restore,
+session invalidation, plus employee and signed-out denial. The normal Room
+owner suite remains 11/11; the actual RecoveryPanel/real DocumentsUI destination
+and provider cancellation flow remains 2/2 but uses a synthetic service.
+
+An attempted next instrumentation build first hit a temporary quota while
+Room/KSP extracted its SQLite verifier library, then stale KSP storage state.
+The affected stale, user-owned `/tmp/sqlite-3.41.2.2-*` extraction files were
+removed after confirming no KSP worker was running; no app/build/evidence,
+AVD/APK, or unrelated core file was removed. A fresh Gradle daemon then built
+and ran the targeted RecoveryAuthority suite successfully. The current branch
+and HEAD remain `feature/store-i10` / `0589c779f4fb0fa523b8d01569eda91959723b40`,
+`main` remains protected, and the index is empty.
+
+I12 remains **IN PROGRESS / not commit-ready**. Remaining mandatory items are
+production-path SAF archive selection/restore and provider-failure/revocation,
+partial export, low-space/candidate corruption/migration, concurrent POS/Worker
+and actual WorkManager catch-up/restart behavior, reset-password/lockout and
+session-race cases, and the required broad I10/I11 non-regression matrix. No
+I13 work may begin before contractual I12 acceptance and its local commit.
+
+## Authoritative recovery — I12 gate closure candidate, 2026-10-11
+
+The preceding open-items paragraph is historical and superseded by
+`I12/I12_IMPLEMENTATION_EVIDENCE.md` final continuation. Branch/HEAD are still
+`feature/store-i10` / `0589c779f4fb0fa523b8d01569eda91959723b40`; `main` remains
+`3691eccedc9855686b011e34c7420f17aaf6c085`; index empty. The production
+RecoveryAuthority/Room path through DocumentsUI now passes 3/3 on the verified
+synthetic API36 x86_64 AVD `STORE_I12_API36_CLEAN` / `emulator-5558`. Recovery
+process death: 30 external kills across ten restore/reset boundaries ×3. Actual
+WorkManager delayed process-restart and retry evidence is retained. Final
+affected-domain G-NR classes: Sale 9/9, Purchase 8/8, Inventory 9/9, Reporting
+7/7, Catalog 5/5, Team 6/6 and ExactMoney/migration 8/8. ActiveStoreOwner is
+15/15, including an Android Keystore backup secret-envelope/plaintext regression.
+JVM 103/103; Reporting UI 14/14; architecture, KSP-enabled build/AndroidTest
+assembly and release assembly passed. The six StoreNavigation UTP tests are
+marked PASSED in textproto/logs; runner gRPC ended without XML, so no Gradle XML
+pass is asserted.
+
+Gate assessment: G-PASS PASS; G-RECOVERY PASS; G-NR PASS for the I12 impact
+matrix; G-EVIDENCE PASS_WITH_LIMITATIONS. P0=0, P1=0 observed in I12 scope.
+P2 limitations: no physical power-loss/OEM storage guarantee (absolute power
+loss is contractually excluded), no new API23/physical ARM64 claim, no manual
+TalkBack, representative dark/French captures, unknown cause for prior AVD /
+DocumentsUI fsync event, and no final StoreNavigation gRPC response. Final
+screenshots and individual XMLs are under `I12/`. Current worktree has 147
+status entries, all within `store-android`; last diff check passed. I12 may be
+committed only after the final path/evidence review; I13 is unlocked only by
+the resulting clean contractual I12 commit. No push, merge or deployment.
+
+### I12 update — focused Room success, SAF E2E diagnostic
+
+- Latest `ActiveStoreOwnerTest_migration_low_space_13of13.xml`: 13/13 PASS, adding candidate-only legacy Room migration and simulated low-space rejection before publication/switch.
+- Latest `RecoveryAuthorityNativeTest_provider_failures_3of3.xml`: 3/3 PASS, including revoked-source/interrupted-destination no-generation-change checks.
+- Restore/reset process death remains 30 external kills across 10 boundaries ×3 with distinct verifier process identities and integrity/media checks.
+- A debug-only real-authority DocumentsUI restore test was added and compiled. The first run failed before preview (selected archive did not produce displayed preview); another provider UI test then failed `SQLITE_IOERR_FSYNC` while deleting its synthetic document and emulator-5554 went offline. Failure XML is retained at `I12/test-results/diagnostics/RecoveryUiTest_20261010_real_authority_e2e/RecoveryUiTest_picker_callback_timeout_and_provider_fsync.xml`. An explicit OpenDocument “Open” tap was added after this run and remains UNTESTED.
+- No emulator profile was wiped/recreated and the unresponsive second device was not used. Re-establish and verify only the authorized API 36 emulator before another focused native test. I12 remains blocked/uncommitted; do not start I13 until G-PASS/G-RECOVERY/G-NR/G-EVIDENCE pass.
+
+## Current I12 continuation — 2026-10-11
+
+Supersedes the previous I12 blocker snapshot above. Branch/HEAD: `feature/store-i10` / `0589c779f4fb0fa523b8d01569eda91959723b40`; protected `main` unchanged; index empty. All 122 changed paths remain under `store-android`. The authorized disposable API36 x86_64 AVD is `STORE_I12_API36_CLEAN` on `emulator-5558`; the older AVD was not wiped. KSP ran normally with a dedicated temporary extraction directory.
+
+Completed final focused evidence: actual RecoveryPanel + DocumentsUI + production RecoveryAuthority/Room restore 3/3; Room ActiveStoreOwner 14/14; RecoveryAuthority 6/6; archive codec 4/4; exact-money persistence 8/8; JVM 103/103; reporting UI 14/14; navigation UTP textproto six PASSED; external restore/reset crash matrix 30 kills × ten boundaries; actual delayed Worker restart and failed-write retry. Artifacts are retained in `docs/evidence/I12/test-results/final_20261011/`.
+
+I12 no longer has an identified feature/recovery defect in the tested synthetic scope. Gate assessment is G-PASS PASS, G-RECOVERY PASS, affected-scope G-NR PASS, G-EVIDENCE PASS_WITH_LIMITATIONS pending complete manifest review. The unconfigured full legacy app/infrastructure attempts remain separately retained diagnostics, not acceptance suites. Physical power-loss and OEM storage behavior are not claimed. Next: complete the source/worktree/evidence review and only then decide G-COMMIT; I13 remains locked until the contractual I12 local commit exists.
+
+### Final verification delta — 2026-10-11
+
+The paragraphs above are historical snapshots. Current `RecoveryUiTest` is 4/4 PASS after fixing stale preview/source retention on a failed second archive inspection and synchronizing DocumentsUI selection on an actionable row/SAF callback. One intermediate 1-failure run is preserved in `I12/test-results/diagnostics/20261011/`; it is excluded from final counts. Latest XML: `I12/test-results/final_20261011/RecoveryUiTest_4of4_final.xml`. `ActiveStoreOwnerTest` is 15/15 with the synthetic Keystore envelope/plaintext exclusion test. I12 gates are G-PASS PASS, G-RECOVERY PASS, affected-impact G-NR PASS, G-EVIDENCE PASS_WITH_LIMITATIONS. Current status inventory is 168 entries, 10 modified +158 untracked, all under `store-android`; empty index, main unchanged, and diff check passes. No I13 implementation begins until I12 is committed locally and the worktree is verified clean.

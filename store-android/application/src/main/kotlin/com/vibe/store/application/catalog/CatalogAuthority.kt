@@ -14,6 +14,9 @@ class CatalogAuthority(private val identity: IdentityAuthority, private val medi
     private val clock: () -> Long = System::currentTimeMillis,
     private val probe: CatalogProbe = CatalogProbe {}) : CatalogService {
     private val mediaGate = Mutex()
+
+    /** I12 takes this same gate before the database owner barrier, matching the catalog lock order. */
+    suspend fun <T> withMaintenanceBarrier(block: suspend () -> T): T = mediaGate.withLock { block() }
     private fun fail(code: CatalogError): Nothing = throw CatalogFailure(code)
     private fun valid(condition: Boolean) { if (!condition) fail(CatalogError.INVALID_INPUT) }
     private fun stamp() = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ROOT).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(clock()))

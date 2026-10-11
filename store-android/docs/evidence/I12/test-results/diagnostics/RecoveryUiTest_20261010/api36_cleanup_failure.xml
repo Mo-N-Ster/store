@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="2" failures="1" errors="0" skipped="0" time="6.649" timestamp="2026-10-10T14:38:44" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="realDocumentsUiProviderWritesAndReadsSyntheticRecoveryArchive" classname="com.vibe.store.RecoveryUiTest" time="4.304">
+    <failure>java.lang.UnsupportedOperationException: Delete not supported
+at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:185)
+at android.database.DatabaseUtils.readExceptionFromParcel(DatabaseUtils.java:153)
+at android.content.ContentProviderProxy.delete(ContentProviderNative.java:661)
+at android.content.ContentResolver.delete(ContentResolver.java:2351)
+at android.content.ContentResolver.delete(ContentResolver.java:2317)
+at com.vibe.store.RecoveryUiTest.realDocumentsUiProviderWritesAndReadsSyntheticRecoveryArchive(RecoveryUiTest.kt:148)
+</failure>
+  </testcase>
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.769" />
+</testsuite>

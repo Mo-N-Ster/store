@@ -53,6 +53,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     invalidatePendingCatalogPdf: () -> Unit = {},
     saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
     invalidatePendingDocument: () -> Unit = {},
+    recovery: RecoveryService? = null,
+    pickRecoveryDestination: ((RecoveryTarget?) -> Unit) -> Unit = { it(null) },
+    pickRecoverySource: ((RecoverySource?) -> Unit) -> Unit = { it(null) },
     back: () -> Unit) {
     var identity by remember { mutableStateOf<PublicIdentity?>(null) }
     var page by remember { mutableStateOf("loading") }
@@ -348,6 +351,21 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                                 if (delivery != null && identity?.let { "SETTINGS:UPDATE" in it.permissions } == true) {
                                     HorizontalDivider(Modifier.padding(vertical = 16.dp))
                                     SmtpSettingsPanel(delivery, fr, busy, scheduleDelivery)
+                                }
+                                if (recovery != null && identity?.role == "owner") {
+                                    HorizontalDivider(Modifier.padding(vertical = 16.dp))
+                                    key(identity!!.id) {
+                                        RecoveryPanel(recovery, identity!!, fr, pickRecoveryDestination, pickRecoverySource) {
+                                            invalidatePendingDocument()
+                                            invalidatePendingCatalogPdf()
+                                            identity = null
+                                            catalogState = CatalogScreenState()
+                                            catalogActor = null
+                                            posState?.clear()
+                                            page = "login"
+                                            settingsDirty = false
+                                        }
+                                    }
                                 }
                             }
                         }

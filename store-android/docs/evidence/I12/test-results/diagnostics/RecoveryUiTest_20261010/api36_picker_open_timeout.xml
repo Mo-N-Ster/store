@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="2" failures="1" errors="0" skipped="0" time="16.931" timestamp="2026-10-10T14:30:29" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive" classname="com.vibe.store.RecoveryUiTest" time="14.786">
+    <failure>androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 10000 ms
+at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:755)
+at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:362)
+at com.vibe.store.RecoveryUiTest.realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(RecoveryUiTest.kt:159)
+</failure>
+  </testcase>
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="1.681" />
+</testsuite>

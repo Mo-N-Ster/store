@@ -12,7 +12,8 @@ import java.util.*
 /** Application-lifetime authority. Never serialize or save this object's session. */
 class IdentityAuthority(private val owner: DatabaseOwner, private val commands: CommandCoordinator,
     private val hasher: PasswordHasher, private val guards: OperationGuards = OperationGuards(),
-    private val clock: () -> Long = System::currentTimeMillis) : IdentityService {
+    private val clock: () -> Long = System::currentTimeMillis,
+    private val onOwnerAuthenticated: () -> Unit = {}) : IdentityService {
     private class Session(val accountId: Long, val generation: GenerationId, val nonce: UUID = UUID.randomUUID())
     private var session: Session? = null
     private val gate = Mutex()
@@ -38,6 +39,56 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     }
     internal suspend fun <T> authorizedWrite(right: String, block: suspend TransactionRepositories.(Long) -> T): T = gate.withLock {
         commands.execute { val actor = requireRight(right); block(actor.id) }
+    }
+    /** Holds the identity gate across maintenance so switch/logout cannot race a restore. */
+    internal suspend fun <T> ownerMaintenance(invalidateSession: Boolean = false, block: suspend (actorId: Long) -> T): T = gate.withLock {
+        val actorId = owner.read {
+            val current = actor()
+            if (current.role != "owner") fail(SecurityError.FORBIDDEN)
+            current.id
+        }
+        block(actorId).also { if (invalidateSession) session = null }
+    }
+    /** Scheduled maintenance is session-independent, but serialized with login, restore and reset. */
+    internal suspend fun <T> persistedOwnerMaintenance(block: suspend (actorId: Long) -> T): T? = gate.withLock {
+        val actorId = owner.read {
+            security.accounts().firstOrNull { it.role == "owner" && it.active }?.id
+        } ?: return@withLock null
+        block(actorId)
+    }
+    /** Append a maintenance outcome while called from an ownerMaintenance block. */
+    internal suspend fun appendMaintenanceAudit(actorId: Long, action: String, entity: String, reference: String, success: Boolean = true) {
+        require(actorId > 0 && action.matches(Regex("[a-z_]{1,64}")) && entity.matches(Regex("[a-z_]{1,64}")) && reference.length <= 128)
+        commands.execute {
+            security.appendAudit(SecurityAudit(actorId, null, action, entity, reference, success, stamp()))
+        }
+    }
+    internal suspend fun <T> ownerPasswordMaintenance(
+        password: String,
+        block: suspend (actorId: Long) -> T,
+    ): T = gate.withLock {
+        if (password.isEmpty() || password.length > 256) fail(SecurityError.INVALID_INPUT)
+        val authenticated = commands.execute {
+            val user = actor()
+            if (user.role != "owner") fail(SecurityError.FORBIDDEN)
+            val now = clock()
+            val locked = (user.lockedUntil ?: Long.MIN_VALUE) > now
+            val matched = verify(password, user.verifier)
+            if (locked || !matched || !valid(user)) {
+                if (!locked) {
+                    val next = policy().next(user.failures, now)
+                    security.loginResult(user.id, next.first, next.second, null)
+                }
+                audit(user.id, "maintenance_password_failed", "maintenance", "reset", false)
+                false to user.id
+            } else {
+                security.loginResult(user.id, 0, null, null)
+                audit(user.id, "maintenance_password_verified", "maintenance", "reset")
+                true to user.id
+            }
+        }
+        if (!authenticated.first) fail(SecurityError.INVALID_CREDENTIALS)
+        block(authenticated.second).also { session = null }
     }
     /** Inventory-only trusted session binding. The same identity gate protects
      * issuance/lookup of volatile review tokens against login and user switching.
@@ -214,7 +265,9 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     override suspend fun login(input: Credentials): PublicIdentity = gate.withLock {
         if (session != null) fail(SecurityError.FORBIDDEN) // login is not an unguarded switch
         val result = commands.execute { authenticate(input, false) } ?: fail(SecurityError.INVALID_CREDENTIALS)
-        session = Session(result.id, owner.generation); result
+        session = Session(result.id, owner.generation)
+        if (result.role == "owner") runCatching(onOwnerAuthenticated)
+        result
     }
     override suspend fun current(): PublicIdentity? = gate.withLock {
         if (session == null) return@withLock null
@@ -232,7 +285,9 @@ class IdentityAuthority(private val owner: DatabaseOwner, private val commands: 
     }
     override suspend fun switchUser(input: Credentials, confirmDiscard: Boolean): PublicIdentity = gate.withLock {
         val result = commands.execute { switchGuard(confirmDiscard); authenticate(input, true) } ?: fail(SecurityError.INVALID_CREDENTIALS)
-        session = Session(result.id, owner.generation); result
+        session = Session(result.id, owner.generation)
+        if (result.role == "owner") runCatching(onOwnerAuthenticated)
+        result
     }
     override suspend fun logout(confirmDiscard: Boolean): Unit = gate.withLock {
         commands.execute { val user = switchGuard(confirmDiscard); audit(user.id, "logout", "session", user.id.toString()) }

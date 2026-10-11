@@ -1,0 +1,181 @@
+10-11 22:24:42.946 30437 30452 I TestRunner: started: employeeSeesOnlyPermittedPhoneDestinations(com.vibe.store.StoreNavigationUiTest)
+10-11 22:24:42.951 30437 30452 D IdlingRegistry: Registering idling resources: [androidx.compose.ui.test.EspressoLink@ae0922a]
+10-11 22:24:42.953 30437 30452 W Settings: Setting always_finish_activities has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only value.
+10-11 22:24:42.964   691  2102 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10307, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:42.965  1367  1367 D RecentsView: onTaskRemoved: 332, not handling task stack changes
+10-11 22:24:42.965  1367  1367 D RecentsView: onTaskRemoved: 332, not handling task stack changes
+10-11 22:24:43.009  1367  1367 W SplitSelectStateCtor: Missing session instanceIds
+10-11 22:24:43.009  1367  1367 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+10-11 22:24:43.022 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: PRE_ON_CREATE
+10-11 22:24:43.022 30437 30437 V ActivityScenario: Activity lifecycle changed event received but ignored because the reported transition was not ON_CREATE while the last known transition was PRE_ON_CREATE
+10-11 22:24:43.026 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: CREATED
+10-11 22:24:43.026 30437 30437 V ActivityScenario: Update currentActivityStage to CREATED, currentActivity=com.vibe.store.MainActivity@86e9ece
+10-11 22:24:43.027 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: STARTED
+10-11 22:24:43.032   550  1431 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:43.032 30437 30437 V ActivityScenario: Update currentActivityStage to STARTED, currentActivity=com.vibe.store.MainActivity@86e9ece
+10-11 22:24:43.038 30437 30437 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:43.039 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: RESUMED
+10-11 22:24:43.039 30437 30437 V ActivityScenario: Update currentActivityStage to RESUMED, currentActivity=com.vibe.store.MainActivity@86e9ece
+10-11 22:24:43.044  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{7a78bb7 V.E...... ......ID 0,0-0,0}
+10-11 22:24:43.044  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:43.044  1088  1224 D SplashScreenView: Branding: view: android.view.View{5726f24 G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:43.057   691   717 E android.os.Debug: Failed to get binder state info for pid: 627 status: -2: Success
+10-11 22:24:43.058   691   717 I system_server: libdebuggerd_client: started dumping process 627
+10-11 22:24:43.058   300   300 I tombstoned: registered intercept for pid 627 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.059   300   300 I tombstoned: received crash request for pid 627
+10-11 22:24:43.059   300   300 I tombstoned: found intercept fd 512 for pid 627 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.133   691   717 I system_server: libdebuggerd_client: done dumping process 627
+10-11 22:24:43.135   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.170 30578 30578 D VRI[InstrumentationActivityInvoker$EmptyActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:43.175   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:43.175   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:43.175   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:43.216  1367  1367 D WorkspaceRevealAnim: onAnimationEnd: workspace alpha = 1.0
+10-11 22:24:43.247   691   717 E android.os.Debug: Failed to get binder state info for pid: 628 status: -2: Success
+10-11 22:24:43.248   691   717 I system_server: libdebuggerd_client: started dumping process 628
+10-11 22:24:43.248   300   300 I tombstoned: registered intercept for pid 628 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.248   628   628 I libc    : Requested dump for pid 628 (mediametrics)
+10-11 22:24:43.263 30578 30584 I tore.debug.test: Compiler allocated 5042KB to compile void android.view.ViewRootImpl.performTraversals()
+10-11 22:24:43.266 30621 30621 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:43.266   300   300 I tombstoned: received crash request for pid 628
+10-11 22:24:43.266   300   300 I tombstoned: found intercept fd 512 for pid 628 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.266 30621 30621 I crash_dump64: performing dump of process 628 (target tid = 628)
+10-11 22:24:43.270 30437 30437 D WindowLayoutComponentImpl: Register WindowLayoutInfoListener on Context=com.vibe.store.MainActivity@86e9ece, of which baseContext=android.app.ContextImpl@b22f8c0
+10-11 22:24:43.277   691   711 I ActivityTaskManager: Displayed com.vibe.store.debug/com.vibe.store.MainActivity for user 0: +317ms
+10-11 22:24:43.279 30578 30578 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@fe7ffdb
+10-11 22:24:43.281   691   717 I system_server: libdebuggerd_client: done dumping process 628
+10-11 22:24:43.282   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.285 30578 30578 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:43.295   691   806 I ImeTracker: com.vibe.store.debug:258fe1eb: onRequestHide at ORIGIN_SERVER reason HIDE_UNSPECIFIED_WINDOW fromUser false
+10-11 22:24:43.296 30437 30437 D InsetsController: hide(ime(), fromIme=false)
+10-11 22:24:43.296 30437 30437 I ImeTracker: com.vibe.store.debug:258fe1eb: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+10-11 22:24:43.299  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():2043
+10-11 22:24:43.300  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 0, locked = false
+10-11 22:24:43.300  1738  1738 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1293 onStartInput(EditorInfo{EditorInfo{packageName=com.vibe.store.debug, inputType=0, inputTypeString=NULL, enableLearning=false, autoCorrection=false, autoComplete=false, imeOptions=0, privateImeOptions=null, actionName=UNSPECIFIED, actionLabel=null, initialSelStart=-1, initialSelEnd=-1, initialCapsMode=0, label=null, fieldId=0, fieldName=null, extras=null, hintText=null, hintLocales=[]}}, false)
+10-11 22:24:43.301   691  2116 I ImeTracker: system_server:bfe3a627: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:43.304  1738  1738 I Module  : DeviceLockedStatusModuleProvider$Module.updateDeviceLockedStatus():100 repeatCheckTimes = 1, locked = false
+10-11 22:24:43.305   691   714 I ImeTracker: system_server:bfe3a627: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:43.324  1367  1367 D RecentsView: onTaskRemoved: 333, not handling task stack changes
+10-11 22:24:43.324  1367  1367 D RecentsView: onTaskRemoved: 333, not handling task stack changes
+10-11 22:24:43.410   691   717 E android.os.Debug: Failed to get binder state info for pid: 629 status: -2: Success
+10-11 22:24:43.415   691   717 I system_server: libdebuggerd_client: started dumping process 629
+10-11 22:24:43.415   300   300 I tombstoned: registered intercept for pid 629 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.416   629   629 I libc    : Requested dump for pid 629 (mediaserver)
+10-11 22:24:43.439 30626 30626 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:43.440   300   300 I tombstoned: received crash request for pid 629
+10-11 22:24:43.440   300   300 I tombstoned: found intercept fd 512 for pid 629 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.440 30626 30626 I crash_dump64: performing dump of process 629 (target tid = 629)
+10-11 22:24:43.459   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.459   691   717 I system_server: libdebuggerd_client: done dumping process 629
+10-11 22:24:43.495   691  1003 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+10-11 22:24:43.495   691  1003 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+10-11 22:24:43.495   691  1003 D InetDiagMessage: Destroyed live tcp sockets for uids={10172} in 1ms
+10-11 22:24:43.495   691  1003 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+10-11 22:24:43.496   691  1003 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+10-11 22:24:43.496   691  1003 D InetDiagMessage: Destroyed live tcp sockets for uids={20172} in 1ms
+10-11 22:24:43.526   473 18028 I netd    : tetherGetStats() -> {[]} <0.86ms>
+10-11 22:24:43.528  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:43.528  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:43.528  1367  1367 D BaseDepthController: 	mBaseSurface: null
+10-11 22:24:43.528  1367  1367 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+10-11 22:24:43.528  1367  1367 D StateManager: goToState - fromState: Normal, toState: Normal, partial trace:
+10-11 22:24:43.528  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:4)
+10-11 22:24:43.528  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StateManager.moveToRestState(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-11 22:24:43.528  1367  1367 D StateManager: 	at com.android.launcher3.statemanager.StatefulActivity.onStop(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:34)
+10-11 22:24:43.529  1367  1367 D StatsLog: LAUNCHER_ONSTOP
+10-11 22:24:43.529  1367  1367 D StatsLog: LAUNCHER_GOOGLE_SEARCH_RESTORE_LIST_SIZE_AFTER_ACTIVITY_RESTART
+10-11 22:24:43.529  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:43.529  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=7}
+10-11 22:24:43.554   691   717 I system_server: libdebuggerd_client: started dumping process 633
+10-11 22:24:43.555   300   300 I tombstoned: registered intercept for pid 633 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.555   300   300 I tombstoned: received crash request for pid 633
+10-11 22:24:43.555   300   300 I tombstoned: found intercept fd 512 for pid 633 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.648   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.649   691   717 I system_server: libdebuggerd_client: done dumping process 633
+10-11 22:24:43.685   691   717 E android.os.Debug: Failed to get binder state info for pid: 506 status: -2: Success
+10-11 22:24:43.685   691   717 I system_server: libdebuggerd_client: started dumping process 506
+10-11 22:24:43.685   300   300 I tombstoned: registered intercept for pid 506 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.686   506   506 I libc    : Requested dump for pid 506 (android.hardwar)
+10-11 22:24:43.691 30631 30631 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:43.691   300   300 I tombstoned: received crash request for pid 506
+10-11 22:24:43.691   300   300 I tombstoned: found intercept fd 512 for pid 506 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.691 30631 30631 I crash_dump64: performing dump of process 506 (target tid = 506)
+10-11 22:24:43.698   691   717 I system_server: libdebuggerd_client: done dumping process 506
+10-11 22:24:43.698   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.737   691   717 I system_server: libdebuggerd_client: started dumping process 250
+10-11 22:24:43.737   300   300 I tombstoned: registered intercept for pid 250 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.737   250   250 I libc    : Requested dump for pid 250 (binder:250_2)
+10-11 22:24:43.745 30636 30636 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:43.745   300   300 I tombstoned: received crash request for pid 250
+10-11 22:24:43.745   300   300 I tombstoned: found intercept fd 512 for pid 250 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.745 30636 30636 I crash_dump64: performing dump of process 250 (target tid = 250)
+10-11 22:24:43.753   691   717 I system_server: libdebuggerd_client: done dumping process 250
+10-11 22:24:43.753   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:43.796   691   717 E android.os.Debug: Failed to get binder state info for pid: 508 status: -2: Success
+10-11 22:24:43.796   691   717 I system_server: libdebuggerd_client: started dumping process 508
+10-11 22:24:43.796   300   300 I tombstoned: registered intercept for pid 508 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.796   508   508 I libc    : Requested dump for pid 508 (binder:508_2)
+10-11 22:24:43.802 30641 30641 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-11 22:24:43.802   300   300 I tombstoned: received crash request for pid 508
+10-11 22:24:43.802   300   300 I tombstoned: found intercept fd 512 for pid 508 and type kDebuggerdNativeBacktrace
+10-11 22:24:43.802 30641 30641 I crash_dump64: performing dump of process 508 (target tid = 508)
+10-11 22:24:43.806   691   717 I system_server: libdebuggerd_client: done dumping process 508
+10-11 22:24:43.806   300   300 W tombstoned: skipping tombstone file creation due to intercept
+10-11 22:24:44.081   691  2103 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10308, packageName = null, attributionTag = null, token = android.os.Binder@50a6667, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-11 22:24:44.083   550   575 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:44.084  1088  1222 I ndroid.systemui: AssetManager2(0x71737542c1b8) locale list changing from [] to [en-US]
+10-11 22:24:44.085  1088  1224 D SplashScreenView: Build android.window.SplashScreenView{9887f6a V.E...... ......ID 0,0-0,0}
+10-11 22:24:44.085  1088  1224 D SplashScreenView: Icon: view: null drawable: null size: 0
+10-11 22:24:44.085  1088  1224 D SplashScreenView: Branding: view: android.view.View{becbc5b G.ED..... ......I. 0,0-0,0 #1020541 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+10-11 22:24:44.085 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: PAUSED
+10-11 22:24:44.085 30437 30437 V ActivityScenario: Update currentActivityStage to PAUSED, currentActivity=com.vibe.store.MainActivity@86e9ece
+10-11 22:24:44.086   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.086   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.086   621   621 W IPCThreadState: Sending oneway calls to frozen process.
+10-11 22:24:44.086 30578 30597 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+10-11 22:24:44.087 30578 30597 I EGL_emulation: Opening libGLESv2_emulation.so
+10-11 22:24:44.091   550   550 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:44.096 30578 30578 D AutofillManager: Fill dialog is enabled:false, hints=[]
+10-11 22:24:44.099 30578 30597 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+10-11 22:24:44.109  1088  1162 I ndroid.systemui: AssetManager2(0x7173753edcd8) locale list changing from [] to [en-US]
+10-11 22:24:44.111  1088  1162 I ndroid.systemui: AssetManager2(0x7173753f11f8) locale list changing from [] to [en-US]
+10-11 22:24:44.117   550   576 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+10-11 22:24:44.124 30437 30442 W ibe.store.debug: Cleared Reference was only reachable from finalizer (only reported once)
+10-11 22:24:44.177  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:44.177  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:44.177  1367  1376 W System  : A resource failed to call release.
+10-11 22:24:44.185  1367  1367 D StatsLog: LAUNCHER_ONRESUME
+10-11 22:24:44.189  1367  1389 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=workspace/0/[-1,-1]/[1,1]
+10-11 22:24:44.192  1367  1367 D NexusLauncherModelDelegate: notifySmartspaceEvent: SmartspaceTargetEvent{mSmartspaceTarget=null, mSmartspaceActionId='null', mEventType=6}
+10-11 22:24:44.194  1833  2075 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+10-11 22:24:44.194  1833  2075 I AiAiEcho: EchoTargets:
+10-11 22:24:44.194  1833  2075 I AiAiEcho: Filtered by AiAi flag check:
+10-11 22:24:44.194  1833  2075 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+10-11 22:24:44.194  1833  2075 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+10-11 22:24:44.195  1833  2075 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+10-11 22:24:44.195  1367  1367 D BaseDepthController: setSurface:
+10-11 22:24:44.195  1367  1367 D BaseDepthController: 	mWaitingOnSurfaceValidity: false
+10-11 22:24:44.195  1367  1367 D BaseDepthController: 	mBaseSurface: Surface(name=com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity)/@0x55ffb91
+10-11 22:24:44.207  1367  1367 I NotificationListener: Handling notification state refresh for com.android.systemui#0
+10-11 22:24:44.207  1367  1367 D SsBaseTemplateCard: No text view can be set up
+10-11 22:24:44.207  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:44.207  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:44.207  1367  1367 D SsBaseTemplateCard: Passed-in item info is null
+10-11 22:24:44.207  1367  1367 I SsBaseTemplateCard: Secondary card pane is null
+10-11 22:24:44.223 30437 30437 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+10-11 22:24:44.226  1367  1367 D StateManager: createAtomicAnimation - fromState: Background, toState: Normal, partial trace:
+10-11 22:24:44.226  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.prepareToAnimate(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:22)
+10-11 22:24:44.226  1367  1367 D StateManager: 	at com.android.quickstep.util.WorkspaceRevealAnim.<init>(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-11 22:24:44.226  1367  1367 D StateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:339)
+10-11 22:24:44.226  1367  1367 D b/311077782: LauncherAnimationRunner.setAnimation
+10-11 22:24:44.228 30437 30457 D HWUI    : endAllActiveAnimators on 0x7172453e1580 (UnprojectedRipple) with handle 0x7173353f8750
+10-11 22:24:44.231 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: STOPPED
+10-11 22:24:44.232 30437 30437 V ActivityScenario: Update currentActivityStage to STOPPED, currentActivity=com.vibe.store.MainActivity@86e9ece
+10-11 22:24:44.238 30437 30437 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.app.Activity$$ExternalSyntheticLambda0@7a9ca32
+10-11 22:24:44.238 30437 30437 D LifecycleMonitor: Lifecycle status change: com.vibe.store.MainActivity@86e9ece in: DESTROYED
+10-11 22:24:44.238 30437 30437 V ActivityScenario: Update currentActivityStage to DESTROYED, currentActivity=null
+10-11 22:24:44.244 30437 30452 D IdlingRegistry: Unregistering idling resources: [androidx.compose.ui.test.EspressoLink@ae0922a]
+10-11 22:24:44.247 30437 30437 D ViewRootImpl: Skipping stats log for color mode
+10-11 22:24:44.248   691  2104 I ImeTracker: system_server:fcfdb62b: onRequestHide at ORIGIN_SERVER reason IME_REQUESTED_CHANGED_LISTENER fromUser false
+10-11 22:24:44.249   691   714 I ImeTracker: system_server:fcfdb62b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+10-11 22:24:44.253 30437 30452 I TestRunner: finished: employeeSeesOnlyPermittedPhoneDestinations(com.vibe.store.StoreNavigationUiTest)

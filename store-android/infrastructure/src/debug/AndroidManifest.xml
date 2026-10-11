@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <service
+            android:name="com.vibe.store.infrastructure.persistence.I12RecoveryCrashService"
+            android:exported="false"
+            android:process=":i12recoverycrash" />
+        <service
+            android:name="com.vibe.store.infrastructure.persistence.I12RecoveryVerifyService"
+            android:exported="false"
+            android:process=":i12recoveryverify" />
+        <service
+            android:name="com.vibe.store.infrastructure.persistence.I12RecoveryUiFixtureService"
+            android:exported="false" />
+    </application>
+</manifest>

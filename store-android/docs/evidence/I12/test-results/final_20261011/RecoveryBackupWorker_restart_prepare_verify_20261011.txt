@@ -1,0 +1,24 @@
+STORE I12 WorkManager process-restart protocol — synthetic API 36 x86_64
+AVD: STORE_I12_API36_CLEAN, emulator-5558
+
+PREPARE command:
+adb -s emulator-5558 shell am instrument -w -e class com.vibe.store.RecoveryBackupSchedulerTest#prepareDelayedWorkerForExternalProcessRestart com.vibe.store.debug.test/androidx.test.runner.AndroidJUnitRunner
+Observed output: OK (1 test)
+Prepared target process PID: 30938
+Persisted delayed request UUID: dd3f084d-b3f6-4489-9ffa-e0c1004cc3c2
+Configured delay: 60 seconds
+
+External interruption:
+adb -s emulator-5558 shell am force-stop com.vibe.store.debug
+Observed target PID after stop: absent
+Waited at least 60 seconds before verification.
+
+VERIFY command:
+adb -s emulator-5558 shell am instrument -w -e class com.vibe.store.RecoveryBackupSchedulerTest#verifyDelayedWorkerCatchUpAfterExternalProcessRestart com.vibe.store.debug.test/androidx.test.runner.AndroidJUnitRunner
+Observed output: OK (1 test). The test asserts current process PID differs from 30938, the same WorkManager request reaches SUCCEEDED, and a new automatic archive has both manifest.txt and database/store.db.
+
+Post-run inspection:
+- /data/user/0/com.vibe.store.debug/no_backup/backups/auto-914fdee1-9642-4ff6-82d8-28be7a976491.storebackup exists (14,306 bytes).
+- The exact protocol marker was removed by the verifier after success.
+- This verifies delayed one-time work resumption after app process force-stop/restart; it does not claim a 24-hour periodic interval elapsed.
+- App/test APKs were installed with adb install -r on the disposable AVD. No package data was cleared and no emulator profile was wiped.

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.RecoveryUiTest" tests="2" failures="1" errors="0" skipped="0" time="6.841" timestamp="2026-10-10T14:28:59" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive" classname="com.vibe.store.RecoveryUiTest" time="3.926">
+    <failure>java.lang.AssertionError
+at org.junit.Assert.fail(Assert.java:87)
+at org.junit.Assert.assertTrue(Assert.java:42)
+at org.junit.Assert.assertTrue(Assert.java:53)
+at com.vibe.store.RecoveryUiTest.realDocumentsUiProviderRoundTripsSyntheticRecoveryArchive(RecoveryUiTest.kt:122)
+</failure>
+  </testcase>
+  <testcase name="backupAndConfirmedRestoreUseExplicitSelections" classname="com.vibe.store.RecoveryUiTest" time="2.186" />
+</testsuite>

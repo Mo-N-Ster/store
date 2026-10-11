@@ -112,6 +112,7 @@ class ReportingUiTest {
     }
 
     private fun clickTab(tab: ReportTab) {
+        compose.onNodeWithTag("reports-tabs").performScrollTo()
         compose.onNodeWithTag("report-tab-${tab.name}").performScrollTo().performClick()
     }
 
@@ -218,7 +219,9 @@ class ReportingUiTest {
         compose.onNodeWithTag("reports-filter-error").assertExists()
         compose.onNodeWithTag("reports-apply").assertIsNotEnabled()
         compose.onNodeWithTag("reports-reset").performScrollTo().performClick()
-        compose.waitUntil(10_000) { reports.filters.size == 1 }
+        compose.waitUntil(10_000) {
+            reports.filters.size == 1 && compose.onAllNodesWithTag("reports-document-title").fetchSemanticsNodes().isNotEmpty()
+        }
         assertEquals(ReportTab.SUMMARY, reports.filters.last().tab)
         clickTab(ReportTab.PURCHASES)
         compose.onNodeWithTag("reports-grain-WEEK").assertDoesNotExist()

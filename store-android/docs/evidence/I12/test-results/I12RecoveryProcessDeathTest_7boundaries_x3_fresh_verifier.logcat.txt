@@ -1,0 +1,1256 @@
+10-10 16:54:05.330 16855 16870 I TestRunner: started: sevenDurableBoundariesRecoverAfterThreeExternalProcessKillsEach(com.vibe.store.I12RecoveryProcessDeathTest)
+10-10 16:54:05.338 16855 16872 D WM-PackageManagerHelper: Skipping component enablement for androidx.work.impl.background.systemalarm.RescheduleReceiver
+10-10 16:54:05.342   485   529 I netd    : tetherGetStats() -> {[]} <0.39ms>
+10-10 16:54:05.355 16855 16874 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:05.676   699  2066 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:05.681   488   488 D Zygote  : Forked child process 16878
+10-10 16:54:05.702 16878 16878 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:05.713 16878 16878 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:05.713 16878 16878 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:05.713 16878 16878 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:05.714   570   584 I adbd    : jdwp connection from 16878
+10-10 16:54:05.717 16878 16878 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:05.732 16878 16878 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:05.732 16878 16878 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:05.944 16878 16878 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:05.946 16878 16878 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:05.947 16878 16878 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:05.972 16878 16891 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:06.031 16855 16870 I Process : Sending signal. PID: 16878 SIG: 9
+10-10 16:54:06.037   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:06.037   488   488 I Zygote  : Process 16878 exited due to signal 9 (Killed)
+10-10 16:54:06.038   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16878
+10-10 16:54:06.058   699  2066 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:06.062   488   488 D Zygote  : Forked child process 16895
+10-10 16:54:06.082 16895 16895 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:06.092 16895 16895 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:06.092 16895 16895 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:06.092 16895 16895 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:06.093   570   584 I adbd    : jdwp connection from 16895
+10-10 16:54:06.095 16895 16895 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:06.105 16895 16895 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:06.105 16895 16895 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:06.298 16895 16895 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:06.300  1071  1071 D CarrierSvcBindHelper: onPackageModified: com.vibe.store.debug
+10-10 16:54:06.301 16895 16895 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:06.301  1071  1309 I SatelliteAppTracker: onPackageModified : com.vibe.store.debug
+10-10 16:54:06.302   948   948 D ControlsListingControllerImpl: ServiceConfig reloaded, count: 0
+10-10 16:54:06.302  1071  1071 D CarrierSvcBindHelper: No carrier app for: 0
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:06.304 16895 16895 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:06.304   699   800 I RoleService: Granting default roles...
+10-10 16:54:06.305   699   722 I system_server: AssetManager2(0x783f5e682998) locale list changing from [] to [en-US]
+10-10 16:54:06.306  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:54:06.307  1208  4686 I PermissionControllerServiceImpl: Updating user sensitive for uid 10285
+10-10 16:54:06.309   699   727 I system_server: AssetManager2(0x783f5e70b518) locale list changing from [] to [en-US]
+10-10 16:54:06.310   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.retaildemo
+10-10 16:54:06.311   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms.supervision, role: android.app.role.SYSTEM_SUPERVISION
+10-10 16:54:06.312  1577 16802 I AiAiEcho: AppIndexer Package:[com.vibe.store.debug] UserProfile:[0] Enabled:[true].
+10-10 16:54:06.312  1577 16802 I AiAiEcho: AppFetcherImplV2 updateApps package:[com.vibe.store.debug], userId:[0], reason:[package is updated.].
+10-10 16:54:06.312  1082  1145 D PackageUpdatedTask: Package updated: mOp=UPDATE packages=[com.vibe.store.debug], user=UserHandle{0}
+10-10 16:54:06.313  1071  1307 D ImsResolver: maybeAddedImsService, packageName: com.vibe.store.debug
+10-10 16:54:06.313  1071  1307 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-10 16:54:06.313  1071  1307 V ImsResolver: searchForImsServices: package=com.vibe.store.debug, users=[UserHandle{0}]
+10-10 16:54:06.314  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: java.lang.Exception
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.addIconToDBAndMemCache(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:23)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.updateIconsForPkg(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:35)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:302)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:54:06.315  1082  1145 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-10 16:54:06.315  1071  1071 D SatelliteController: packageStateChanged: package:com.vibe.store.debug DefaultSmsPackageName:com.google.android.apps.messaging
+10-10 16:54:06.315   699  2667 W SignedPackage: Package doesn't have required signing certificate: com.google.android.apps.work.clouddpc
+10-10 16:54:06.315  1071  1071 V SatelliteController: Neither SMS or SatelliteGateway package
+10-10 16:54:06.316  1082  1145 W HWUI    : Image decoding logging dropped!
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: loadIcon: Default app icon returned from PackageManager. component=ComponentInfo{com.vibe.store.debug/com.vibe.store.MainActivity}, user=UserHandle{0}
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: java.lang.Exception
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:11)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.LauncherActivityCachingLogic.loadIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.loadFallbackIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:17)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:14)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked$default(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:15)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.cache.BaseIconCache.cacheLocked(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:13)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.icons.IconCache.getTitleAndIcon(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.AllAppsList.updatePackage(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:163)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.PackageUpdatedTask.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:309)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$enqueueModelUpdateTask$1.run(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:39)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.util.LooperExecutor.execute(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:20)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel.enqueueModelUpdateTask(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:16)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:1)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.LauncherModel$newModelCallbacks$1.accept(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:2)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at com.android.launcher3.model.ModelLauncherCallbacks.onPackageChanged(go/retraceme 43e00d9cd0eb17b3d9dd30fc1741b1c71445c4c0f7c8c9b81300265c86c5b873:19)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at android.content.pm.LauncherApps$CallbackMessageHandler.handleMessage(LauncherApps.java:2265)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Handler.dispatchMessage(Handler.java:110)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loopOnce(Looper.java:248)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at android.os.Looper.loop(Looper.java:338)
+10-10 16:54:06.317  1082  1145 W LauncherActivityCachingLogic: 	at android.os.HandlerThread.run(HandlerThread.java:85)
+10-10 16:54:06.317  1082  1145 D AlphabeticIndexCompat: computeSectionName: cs: STORE · 57€|2£!/v9 sectionName: S
+10-10 16:54:06.317  1071  1071 E SmsApplication: com.google.android.apps.messaging lost android:read_cell_broadcasts:  (fixing)
+10-10 16:54:06.317  1082  1082 D AllAppsStore: setApps: apps.length=19
+10-10 16:54:06.317  1082  1082 D AllAppsStore: notifyUpdate: notifying listeners
+10-10 16:54:06.317  1082  1082 D ActivityAllAppsContainerView: onAppsUpdated; number of apps: 19
+10-10 16:54:06.317  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: force: false
+10-10 16:54:06.317  1082  1082 D ActivityAllAppsContainerView: rebindAdapters: Not needed.
+10-10 16:54:06.317  1082  1082 D StatsLog: LAUNCHER_ALLAPPS_COUNT
+10-10 16:54:06.317  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: Clearing FastScrollerSections.
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: Adding apps with sections. HasPrivateApps: false
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: C with appInfoTitle: Calendar
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: D with appInfoTitle: Drive
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: F with appInfoTitle: Files
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: G with appInfoTitle: Gmail
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: M with appInfoTitle: Maps
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: P with appInfoTitle: Phone
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: S with appInfoTitle: Safety
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: T with appInfoTitle: TMoble
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: addAppsWithSections: adding sectionName: Y with appInfoTitle: YouTube
+10-10 16:54:06.318  1082  1082 D AlphabeticalAppsList: Adding FastScrollSection duplicate to scroll to the bottom.
+10-10 16:54:06.319  1082  1082 D b/387844520: getOutlineOffsetX: measured width = 173, mNormalizedIconSize = 159, last updated width = 173
+10-10 16:54:06.320  1071  1071 D SatelliteAccessController: Current default SMS app:ComponentInfo{com.google.android.apps.messaging/com.google.android.apps.messaging.shared.receiver.SmsDeliverReceiver}
+10-10 16:54:06.320  1071  1071 D SatelliteController: getSelectedSatelliteSubId: subId=-1
+10-10 16:54:06.320  1071  1071 D SatelliteAccessController: supportedMsgApps:com.google.android.apps.messaging
+10-10 16:54:06.320   699   727 I system_server: AssetManager2(0x783f5e6e4a58) locale list changing from [] to [en-US]
+10-10 16:54:06.321   699   727 I system_server: AssetManager2(0x783f5e67e7f8) locale list changing from [] to [en-US]
+10-10 16:54:06.331   699   821 I system_server: AssetManager2(0x783f5e680738) locale list changing from [] to [en-US]
+10-10 16:54:06.333   699   821 I system_server: AssetManager2(0x783f5e686818) locale list changing from [] to [en-US]
+10-10 16:54:06.335   699  2667 E RoleControllerServiceImpl: Default/fallback role holder package doesn't qualify for the role, package: com.google.android.gms, role: android.app.role.WALLET
+10-10 16:54:06.337   699   821 I system_server: AssetManager2(0x783f5e6edd38) locale list changing from [] to [en-US]
+10-10 16:54:06.338   699  2667 W SignedPackage: Cannot get ApplicationInfo for package: com.google.android.devicelockcontroller
+10-10 16:54:06.338   699   821 I system_server: AssetManager2(0x783f5e686b38) locale list changing from [] to [en-US]
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.340   699   699 W IPCThreadState: Sending oneway calls to frozen process.
+10-10 16:54:06.351 16895 16909 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:06.412 16855 16870 I I12_RECOVERY_KILL: boundary=restore_before_staging repetition=1 killedPid=16878 verifyPid=16895 verifyToken=8209727935568 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:06.412 16855 16870 I Process : Sending signal. PID: 16895 SIG: 9
+10-10 16:54:06.418   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:06.418   488   488 I Zygote  : Process 16895 exited due to signal 9 (Killed)
+10-10 16:54:06.419   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16895
+10-10 16:54:06.473 16671 16678 I AidlLazyServiceRegistrar: Process has 0 (of 2 available) client(s) in use after notification android.system.virtualizationmaintenance has clients: 0
+10-10 16:54:06.473 16671 16678 I AidlLazyServiceRegistrar: Trying to shut down the service. No clients in use for any service in process.
+10-10 16:54:06.478 16671 16678 I AidlLazyServiceRegistrar: Unregistered all clients and exiting
+10-10 16:54:06.659   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:06.663   488   488 D Zygote  : Forked child process 16913
+10-10 16:54:06.682 16913 16913 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:06.691 16913 16913 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:06.691 16913 16913 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:06.691 16913 16913 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:06.693   570   584 I adbd    : jdwp connection from 16913
+10-10 16:54:06.694 16913 16913 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:06.705 16913 16913 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:06.705 16913 16913 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:06.888 16913 16913 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:06.890 16913 16913 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:06.892 16913 16913 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:06.894   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:06.894   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:06.894   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:06.894   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:06.894   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:06.894   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:06.894   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:06.894   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:06.894   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3001] from screen [on:0 period:8016325] score=60
+10-10 16:54:06.920 16913 16926 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:06.987 16855 16870 I Process : Sending signal. PID: 16913 SIG: 9
+10-10 16:54:06.993   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:06.993   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16913
+10-10 16:54:06.994   488   488 I Zygote  : Process 16913 exited due to signal 9 (Killed)
+10-10 16:54:07.013   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:07.018   488   488 D Zygote  : Forked child process 16930
+10-10 16:54:07.050 16930 16930 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:07.060 16930 16930 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:07.061 16930 16930 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:07.061 16930 16930 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:07.062   570   584 I adbd    : jdwp connection from 16930
+10-10 16:54:07.064 16930 16930 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:07.074 16930 16930 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:07.074 16930 16930 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:07.255 16930 16930 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:07.257 16930 16930 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:07.259 16930 16930 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:07.281 16930 16943 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:07.342 16855 16870 I I12_RECOVERY_KILL: boundary=restore_before_staging repetition=2 killedPid=16913 verifyPid=16930 verifyToken=8210671882064 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:07.342 16855 16870 I Process : Sending signal. PID: 16930 SIG: 9
+10-10 16:54:07.347   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:07.348   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16930
+10-10 16:54:07.348   488   488 I Zygote  : Process 16930 exited due to signal 9 (Killed)
+10-10 16:54:07.555   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:07.560   488   488 D Zygote  : Forked child process 16947
+10-10 16:54:07.578 16947 16947 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:07.591 16947 16947 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:07.591 16947 16947 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:07.591 16947 16947 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:07.593   570   584 I adbd    : jdwp connection from 16947
+10-10 16:54:07.595 16947 16947 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:07.606 16947 16947 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:07.606 16947 16947 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:07.781 16947 16947 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:07.783 16947 16947 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:07.786 16947 16947 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:07.809 16947 16960 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:07.859 16855 16870 I Process : Sending signal. PID: 16947 SIG: 9
+10-10 16:54:07.865   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:07.865   488   488 I Zygote  : Process 16947 exited due to signal 9 (Killed)
+10-10 16:54:07.866   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16947
+10-10 16:54:07.886   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:07.890   488   488 D Zygote  : Forked child process 16964
+10-10 16:54:07.914 16964 16964 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:07.923 16964 16964 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:07.924 16964 16964 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:07.924 16964 16964 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:07.925   570   584 I adbd    : jdwp connection from 16964
+10-10 16:54:07.927 16964 16964 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:07.938 16964 16964 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:07.938 16964 16964 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:08.114 16964 16964 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:08.117 16964 16964 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:08.118 16964 16964 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:08.139 16964 16977 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:08.189 16855 16870 I I12_RECOVERY_KILL: boundary=restore_before_staging repetition=3 killedPid=16947 verifyPid=16964 verifyToken=8211531364345 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:08.189 16855 16870 I Process : Sending signal. PID: 16964 SIG: 9
+10-10 16:54:08.194   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:08.194   488   488 I Zygote  : Process 16964 exited due to signal 9 (Killed)
+10-10 16:54:08.194   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16964
+10-10 16:54:08.397   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:08.403   488   488 D Zygote  : Forked child process 16981
+10-10 16:54:08.429 16981 16981 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:08.441 16981 16981 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:08.441 16981 16981 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:08.441 16981 16981 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:08.443   570   584 I adbd    : jdwp connection from 16981
+10-10 16:54:08.445 16981 16981 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:08.455 16981 16981 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:08.455 16981 16981 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:08.631 16981 16981 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:08.634 16981 16981 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:08.635 16981 16981 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:08.655 16981 16995 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:08.726 16855 16870 I Process : Sending signal. PID: 16981 SIG: 9
+10-10 16:54:08.732   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:08.733   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16981
+10-10 16:54:08.733   488   488 I Zygote  : Process 16981 exited due to signal 9 (Killed)
+10-10 16:54:08.753   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:08.758   488   488 D Zygote  : Forked child process 16999
+10-10 16:54:08.781 16999 16999 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:08.790 16999 16999 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:08.791 16999 16999 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:08.791 16999 16999 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:08.792   570   584 I adbd    : jdwp connection from 16999
+10-10 16:54:08.794 16999 16999 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:08.803 16999 16999 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:08.803 16999 16999 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:08.983 16999 16999 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:08.985 16999 16999 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:08.987 16999 16999 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:09.007 16999 17012 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:09.056 16855 16870 I I12_RECOVERY_KILL: boundary=restore_during_media_staging repetition=1 killedPid=16981 verifyPid=16999 verifyToken=8212398557166 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:09.056 16855 16870 I Process : Sending signal. PID: 16999 SIG: 9
+10-10 16:54:09.062   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:09.063   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_16999
+10-10 16:54:09.063   488   488 I Zygote  : Process 16999 exited due to signal 9 (Killed)
+10-10 16:54:09.261   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:09.265   488   488 D Zygote  : Forked child process 17017
+10-10 16:54:09.307 17017 17017 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:09.317 17017 17017 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:09.318 17017 17017 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:09.318 17017 17017 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:09.319   570   584 I adbd    : jdwp connection from 17017
+10-10 16:54:09.321 17017 17017 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:09.330 17017 17017 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:09.330 17017 17017 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:09.508 17017 17017 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:09.510 17017 17017 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:09.511 17017 17017 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:09.511 17017 17017 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:09.511 17017 17017 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:09.511 17017 17017 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:09.512 17017 17017 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:09.512 17017 17017 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:09.512 17017 17017 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:09.534 17017 17030 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:09.589 16855 16870 I Process : Sending signal. PID: 17017 SIG: 9
+10-10 16:54:09.595   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:09.595   488   488 I Zygote  : Process 17017 exited due to signal 9 (Killed)
+10-10 16:54:09.596   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17017
+10-10 16:54:09.616   699  1844 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:09.621   488   488 D Zygote  : Forked child process 17034
+10-10 16:54:09.642 17034 17034 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:09.655 17034 17034 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:09.656 17034 17034 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:09.656 17034 17034 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:09.657   570   584 I adbd    : jdwp connection from 17034
+10-10 16:54:09.659 17034 17034 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:09.670 17034 17034 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:09.670 17034 17034 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:09.850 17034 17034 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:09.852 17034 17034 I 2recoveryverify: AssetManager2(0x783f5e61f618) locale list changing from [] to [en-US]
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:09.853 17034 17034 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:09.854 17034 17034 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:09.874 17034 17048 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:09.896   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:09.896   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:09.896   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:09.896   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:09.896   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:09.896   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:09.896   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:09.896   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:09.897   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:09.897   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:09.897   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:09.897   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:09.897   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:09.897   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:09.897   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:09.897   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3003] from screen [on:0 period:8019328] score=60
+10-10 16:54:09.920 16855 16870 I I12_RECOVERY_KILL: boundary=restore_during_media_staging repetition=2 killedPid=17017 verifyPid=17034 verifyToken=8213265697359 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:09.920 16855 16870 I Process : Sending signal. PID: 17034 SIG: 9
+10-10 16:54:09.925   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:09.925   488   488 I Zygote  : Process 17034 exited due to signal 9 (Killed)
+10-10 16:54:09.926   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17034
+10-10 16:54:10.136   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:10.140   488   488 D Zygote  : Forked child process 17051
+10-10 16:54:10.170 17051 17051 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:10.181 17051 17051 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:10.182 17051 17051 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:10.182 17051 17051 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:10.183   570   584 I adbd    : jdwp connection from 17051
+10-10 16:54:10.186 17051 17051 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:10.196 17051 17051 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:10.196 17051 17051 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:10.376 17051 17051 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:10.378 17051 17051 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:10.380 17051 17051 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:10.406 17051 17065 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:10.464 16855 16870 I Process : Sending signal. PID: 17051 SIG: 9
+10-10 16:54:10.470   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:10.470   488   488 I Zygote  : Process 17051 exited due to signal 9 (Killed)
+10-10 16:54:10.471   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17051
+10-10 16:54:10.491   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:10.495   488   488 D Zygote  : Forked child process 17068
+10-10 16:54:10.513 17068 17068 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:10.523 17068 17068 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:10.523 17068 17068 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:10.523 17068 17068 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:10.525   570   584 I adbd    : jdwp connection from 17068
+10-10 16:54:10.527 17068 17068 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:10.537 17068 17068 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:10.537 17068 17068 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:10.565   485   529 I netd    : tetherGetStats() -> {[]} <0.43ms>
+10-10 16:54:10.710 17068 17068 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:10.712 17068 17068 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:10.714 17068 17068 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:10.737 17068 17081 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:10.794 16855 16870 I I12_RECOVERY_KILL: boundary=restore_during_media_staging repetition=3 killedPid=17051 verifyPid=17068 verifyToken=8214128148176 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:10.794 16855 16870 I Process : Sending signal. PID: 17068 SIG: 9
+10-10 16:54:10.800   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:10.800   488   488 I Zygote  : Process 17068 exited due to signal 9 (Killed)
+10-10 16:54:10.800   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17068
+10-10 16:54:11.010   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:11.015   488   488 D Zygote  : Forked child process 17085
+10-10 16:54:11.034 17085 17085 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:11.044 17085 17085 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:11.044 17085 17085 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:11.044 17085 17085 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:11.046   570   584 I adbd    : jdwp connection from 17085
+10-10 16:54:11.048 17085 17085 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:11.060 17085 17085 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:11.060 17085 17085 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:11.146 16855 17097 D ProfileInstaller: Installing profile for com.vibe.store.debug
+10-10 16:54:11.242 17085 17085 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:11.244 17085 17085 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:11.246 17085 17085 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:11.267 17085 17099 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:11.365 16855 16870 I Process : Sending signal. PID: 17085 SIG: 9
+10-10 16:54:11.374   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:11.375   488   488 I Zygote  : Process 17085 exited due to signal 9 (Killed)
+10-10 16:54:11.375   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17085
+10-10 16:54:11.392   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:11.398   488   488 D Zygote  : Forked child process 17105
+10-10 16:54:11.426 17105 17105 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:11.438 17105 17105 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:11.438 17105 17105 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:11.438 17105 17105 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:11.439   570   584 I adbd    : jdwp connection from 17105
+10-10 16:54:11.441 17105 17105 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:11.451 17105 17105 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:11.451 17105 17105 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:11.628 17105 17105 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:11.630 17105 17105 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:11.631 17105 17105 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:11.631 17105 17105 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:11.631 17105 17105 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:11.631 17105 17105 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:11.632 17105 17105 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:11.632 17105 17105 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:11.632 17105 17105 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:11.652 17105 17119 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:11.696 16855 16870 I I12_RECOVERY_KILL: boundary=restore_candidate_staged repetition=1 killedPid=17085 verifyPid=17105 verifyToken=8215044985176 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:11.696 16855 16870 I Process : Sending signal. PID: 17105 SIG: 9
+10-10 16:54:11.701   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:11.702   488   488 I Zygote  : Process 17105 exited due to signal 9 (Killed)
+10-10 16:54:11.702   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17105
+10-10 16:54:11.903   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:11.908   488   488 D Zygote  : Forked child process 17123
+10-10 16:54:11.946 17123 17123 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:11.960 17123 17123 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:11.961 17123 17123 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:11.961 17123 17123 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:11.962   570   584 I adbd    : jdwp connection from 17123
+10-10 16:54:11.964 17123 17123 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:11.974 17123 17123 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:11.974 17123 17123 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:12.049  1223  2354 I ActivityScheduler: nextTriggerTime: 8453553, in 238100ms, detectorType: 39, FULL_TYPE alarmWindowMillis: 80000
+10-10 16:54:12.152 17123 17123 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:12.154 17123 17123 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:12.156 17123 17123 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:12.177 17123 17137 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:12.257 16855 16870 I Process : Sending signal. PID: 17123 SIG: 9
+10-10 16:54:12.263   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:12.264   488   488 I Zygote  : Process 17123 exited due to signal 9 (Killed)
+10-10 16:54:12.264   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17123
+10-10 16:54:12.284   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:12.289   488   488 D Zygote  : Forked child process 17143
+10-10 16:54:12.306 17143 17143 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:12.315 17143 17143 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:12.315 17143 17143 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:12.315 17143 17143 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:12.317   570   584 I adbd    : jdwp connection from 17143
+10-10 16:54:12.319 17143 17143 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:12.330 17143 17143 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:12.330 17143 17143 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:12.507 17143 17143 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:12.509 17143 17143 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:12.511 17143 17143 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:12.534 17143 17156 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:12.588 16855 16870 I I12_RECOVERY_KILL: boundary=restore_candidate_staged repetition=2 killedPid=17123 verifyPid=17143 verifyToken=8215924251322 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:12.588 16855 16870 I Process : Sending signal. PID: 17143 SIG: 9
+10-10 16:54:12.593   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:12.594   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17143
+10-10 16:54:12.594   488   488 I Zygote  : Process 17143 exited due to signal 9 (Killed)
+10-10 16:54:12.793   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:12.797   488   488 D Zygote  : Forked child process 17160
+10-10 16:54:12.823 17160 17160 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:12.833 17160 17160 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:12.833 17160 17160 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:12.833 17160 17160 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:12.834   570   584 I adbd    : jdwp connection from 17160
+10-10 16:54:12.837 17160 17160 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:12.846 17160 17160 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:12.846 17160 17160 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:12.900   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:12.900   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:12.900   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:12.900   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:12.900   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:12.900   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:12.900   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:12.900   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:12.901   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:12.901   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:12.901   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:12.901   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:12.901   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:12.901   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:12.901   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:12.901   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3004] from screen [on:0 period:8022332] score=60
+10-10 16:54:13.024 17160 17160 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:13.025 17160 17160 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:13.027 17160 17160 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:13.051 17160 17173 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:13.146 16855 16870 I Process : Sending signal. PID: 17160 SIG: 9
+10-10 16:54:13.152   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:13.152   488   488 I Zygote  : Process 17160 exited due to signal 9 (Killed)
+10-10 16:54:13.153   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17160
+10-10 16:54:13.173   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:13.177   488   488 D Zygote  : Forked child process 17179
+10-10 16:54:13.210 17179 17179 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:13.223 17179 17179 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:13.223 17179 17179 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:13.223 17179 17179 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:13.224   570   584 I adbd    : jdwp connection from 17179
+10-10 16:54:13.226 17179 17179 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:13.237 17179 17179 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:13.237 17179 17179 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:13.416 17179 17179 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:13.418 17179 17179 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:13.419 17179 17179 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:13.441 17179 17192 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:13.501 16855 16870 I I12_RECOVERY_KILL: boundary=restore_candidate_staged repetition=3 killedPid=17160 verifyPid=17179 verifyToken=8216832226067 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:13.501 16855 16870 I Process : Sending signal. PID: 17179 SIG: 9
+10-10 16:54:13.506   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:13.506   488   488 I Zygote  : Process 17179 exited due to signal 9 (Killed)
+10-10 16:54:13.507   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17179
+10-10 16:54:13.710   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:13.715   488   488 D Zygote  : Forked child process 17197
+10-10 16:54:13.738 17197 17197 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:13.749 17197 17197 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:13.749 17197 17197 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:13.749 17197 17197 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:13.751   570   584 I adbd    : jdwp connection from 17197
+10-10 16:54:13.754 17197 17197 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:13.764 17197 17197 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:13.764 17197 17197 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:13.937 17197 17197 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:13.940 17197 17197 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:13.942 17197 17197 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:13.964 17197 17211 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:14.064 16855 16870 I Process : Sending signal. PID: 17197 SIG: 9
+10-10 16:54:14.070   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:14.070   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17197
+10-10 16:54:14.070   488   488 I Zygote  : Process 17197 exited due to signal 9 (Killed)
+10-10 16:54:14.091   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:14.095   488   488 D Zygote  : Forked child process 17216
+10-10 16:54:14.130 17216 17216 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:14.144 17216 17216 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:14.144 17216 17216 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:14.144 17216 17216 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:14.146   570   584 I adbd    : jdwp connection from 17216
+10-10 16:54:14.148 17216 17216 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:14.157 17216 17216 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:14.158 17216 17216 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:14.205   699   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+10-10 16:54:14.205   699   860 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+10-10 16:54:14.205   699   860 D InetDiagMessage: Destroyed live tcp sockets for uids={10104} in 0ms
+10-10 16:54:14.329 17216 17216 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:14.331 17216 17216 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:14.333 17216 17216 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:14.363 17216 17229 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:14.419 16855 16870 I I12_RECOVERY_KILL: boundary=restore_journal_prepared repetition=1 killedPid=17197 verifyPid=17216 verifyToken=8217745919965 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:14.419 16855 16870 I Process : Sending signal. PID: 17216 SIG: 9
+10-10 16:54:14.425   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:14.426   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17216
+10-10 16:54:14.426   488   488 I Zygote  : Process 17216 exited due to signal 9 (Killed)
+10-10 16:54:14.629   699  2066 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:14.634   488   488 D Zygote  : Forked child process 17233
+10-10 16:54:14.658 17233 17233 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:14.667 17233 17233 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:14.668 17233 17233 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:14.668 17233 17233 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:14.669   570   584 I adbd    : jdwp connection from 17233
+10-10 16:54:14.671 17233 17233 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:14.683 17233 17233 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:14.683 17233 17233 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:14.864 17233 17233 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:14.866 17233 17233 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:14.868 17233 17233 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:14.891 17233 17246 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:15.008 16855 16870 I Process : Sending signal. PID: 17233 SIG: 9
+10-10 16:54:15.014   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:15.014   488   488 I Zygote  : Process 17233 exited due to signal 9 (Killed)
+10-10 16:54:15.014   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17233
+10-10 16:54:15.035   699  2066 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:15.039   488   488 D Zygote  : Forked child process 17252
+10-10 16:54:15.054 17252 17252 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:15.063 17252 17252 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:15.063 17252 17252 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:15.063 17252 17252 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:15.065   570   584 I adbd    : jdwp connection from 17252
+10-10 16:54:15.067 17252 17252 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:15.077 17252 17252 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:15.077 17252 17252 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:15.145  1071  1309 D SatelliteController: iisInCarrierRoamingNbIotNtn: satellite is disabled
+10-10 16:54:15.260 17252 17252 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:15.262 17252 17252 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:15.264 17252 17252 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:15.292 17252 17266 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:15.338 16855 16870 I I12_RECOVERY_KILL: boundary=restore_journal_prepared repetition=2 killedPid=17233 verifyPid=17252 verifyToken=8218676710048 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:15.338 16855 16870 I Process : Sending signal. PID: 17252 SIG: 9
+10-10 16:54:15.345   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:15.346   488   488 I Zygote  : Process 17252 exited due to signal 9 (Killed)
+10-10 16:54:15.346   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17252
+10-10 16:54:15.543   699  1011 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:15.547   488   488 D Zygote  : Forked child process 17269
+10-10 16:54:15.571 17269 17269 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:15.582 17269 17269 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:15.582 17269 17269 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:15.582 17269 17269 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:15.584   570   584 I adbd    : jdwp connection from 17269
+10-10 16:54:15.586 17269 17269 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:15.595 17269 17269 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:15.595 17269 17269 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:15.771 17269 17269 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:15.773 17269 17269 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:15.774 17269 17269 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:15.794 17269 17282 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:15.897 16855 16870 I Process : Sending signal. PID: 17269 SIG: 9
+10-10 16:54:15.903   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:15.903   488   488 I Zygote  : Process 17269 exited due to signal 9 (Killed)
+10-10 16:54:15.903   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17269
+10-10 16:54:15.904   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:15.904   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:15.904   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:15.904   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:15.904   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:15.904   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:15.904   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:15.904   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:15.904   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3003] from screen [on:0 period:8025335] score=60
+10-10 16:54:15.923   699  1011 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:15.928   488   488 D Zygote  : Forked child process 17288
+10-10 16:54:15.950 17288 17288 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:15.961 17288 17288 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:15.961 17288 17288 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:15.961 17288 17288 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:15.962   570   584 I adbd    : jdwp connection from 17288
+10-10 16:54:15.964 17288 17288 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:15.977 17288 17288 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:15.977 17288 17288 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:16.160 17288 17288 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:16.162 17288 17288 I 2recoveryverify: AssetManager2(0x783f5e61f618) locale list changing from [] to [en-US]
+10-10 16:54:16.164 17288 17288 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:16.165 17288 17288 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:16.196 17288 17302 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:16.253 16855 16870 I I12_RECOVERY_KILL: boundary=restore_journal_prepared repetition=3 killedPid=17269 verifyPid=17288 verifyToken=8219578051539 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:16.253 16855 16870 I Process : Sending signal. PID: 17288 SIG: 9
+10-10 16:54:16.260   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:16.260   488   488 I Zygote  : Process 17288 exited due to signal 9 (Killed)
+10-10 16:54:16.261   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17288
+10-10 16:54:16.461   699  1011 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:16.466   488   488 D Zygote  : Forked child process 17306
+10-10 16:54:16.498 17306 17306 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:16.508 17306 17306 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:16.509 17306 17306 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:16.509 17306 17306 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:16.510   570   584 I adbd    : jdwp connection from 17306
+10-10 16:54:16.512 17306 17306 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:16.522 17306 17306 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:16.522 17306 17306 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:16.695 17306 17306 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:16.697 17306 17306 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:16.700 17306 17306 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:16.701 17306 17306 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:16.724 17306 17320 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:16.840 16855 16870 I Process : Sending signal. PID: 17306 SIG: 9
+10-10 16:54:16.845   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:16.846   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17306
+10-10 16:54:16.846   488   488 I Zygote  : Process 17306 exited due to signal 9 (Killed)
+10-10 16:54:16.867   699  1850 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:16.872   488   488 D Zygote  : Forked child process 17325
+10-10 16:54:16.894 17325 17325 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:16.904 17325 17325 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:16.905 17325 17325 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:16.905 17325 17325 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:16.906   570   584 I adbd    : jdwp connection from 17325
+10-10 16:54:16.908 17325 17325 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:16.917 17325 17325 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:16.917 17325 17325 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:17.091 17325 17325 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:17.093 17325 17325 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:17.095 17325 17325 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:17.122 17325 17338 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:17.170 16855 16870 I I12_RECOVERY_KILL: boundary=generation_pointer_temp_synced repetition=1 killedPid=17306 verifyPid=17325 verifyToken=8220507012199 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:17.170 16855 16870 I Process : Sending signal. PID: 17325 SIG: 9
+10-10 16:54:17.176   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:17.176   488   488 I Zygote  : Process 17325 exited due to signal 9 (Killed)
+10-10 16:54:17.177   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17325
+10-10 16:54:17.383   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:17.387   488   488 D Zygote  : Forked child process 17342
+10-10 16:54:17.418 17342 17342 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:17.427 17342 17342 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:17.428 17342 17342 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:17.428 17342 17342 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:17.429   570   584 I adbd    : jdwp connection from 17342
+10-10 16:54:17.431 17342 17342 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:17.441 17342 17342 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:17.441 17342 17342 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:17.622 17342 17342 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:17.625 17342 17342 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:17.626 17342 17342 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:17.646 17342 17356 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:17.761 16855 16870 I Process : Sending signal. PID: 17342 SIG: 9
+10-10 16:54:17.767   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:17.767   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17342
+10-10 16:54:17.767   488   488 I Zygote  : Process 17342 exited due to signal 9 (Killed)
+10-10 16:54:17.788   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:17.793   488   488 D Zygote  : Forked child process 17361
+10-10 16:54:17.813 17361 17361 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:17.824 17361 17361 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:17.824 17361 17361 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:17.824 17361 17361 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:17.826   570   584 I adbd    : jdwp connection from 17361
+10-10 16:54:17.827 17361 17361 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:17.837 17361 17361 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:17.837 17361 17361 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:18.009 17361 17361 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:18.011 17361 17361 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:18.012 17361 17361 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:18.044 17361 17375 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:18.091 16855 16870 I I12_RECOVERY_KILL: boundary=generation_pointer_temp_synced repetition=2 killedPid=17342 verifyPid=17361 verifyToken=8221426831470 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:18.091 16855 16870 I Process : Sending signal. PID: 17361 SIG: 9
+10-10 16:54:18.097   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:18.098   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17361
+10-10 16:54:18.098   488   488 I Zygote  : Process 17361 exited due to signal 9 (Killed)
+10-10 16:54:18.296   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:18.303   488   488 D Zygote  : Forked child process 17379
+10-10 16:54:18.322 17379 17379 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:18.334 17379 17379 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:18.335 17379 17379 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:18.335 17379 17379 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:18.336   570   584 I adbd    : jdwp connection from 17379
+10-10 16:54:18.338 17379 17379 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:18.347 17379 17379 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:18.347 17379 17379 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:18.524 17379 17379 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:18.526 17379 17379 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:18.527 17379 17379 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:18.527 17379 17379 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:18.527 17379 17379 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:18.527 17379 17379 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:18.528 17379 17379 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:18.528 17379 17379 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:18.528 17379 17379 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:18.549 17379 17392 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:18.675 16855 16870 I Process : Sending signal. PID: 17379 SIG: 9
+10-10 16:54:18.681   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:18.682   488   488 I Zygote  : Process 17379 exited due to signal 9 (Killed)
+10-10 16:54:18.682   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17379
+10-10 16:54:18.702   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:18.706   488   488 D Zygote  : Forked child process 17398
+10-10 16:54:18.726 17398 17398 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:18.737 17398 17398 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:18.738 17398 17398 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:18.738 17398 17398 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:18.739   570   584 I adbd    : jdwp connection from 17398
+10-10 16:54:18.741 17398 17398 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:18.751 17398 17398 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:18.751 17398 17398 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:18.906   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:18.906   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:18.906   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:18.906   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:18.906   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:18.906   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:18.906   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:18.906   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:18.906   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3002] from screen [on:0 period:8028337] score=60
+10-10 16:54:18.927 17398 17398 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:18.929 17398 17398 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:18.930 17398 17398 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:18.930 17398 17398 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:18.930 17398 17398 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:18.930 17398 17398 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:18.931 17398 17398 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:18.931 17398 17398 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:18.931 17398 17398 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:18.962 17398 17411 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:19.006 16855 16870 I I12_RECOVERY_KILL: boundary=generation_pointer_temp_synced repetition=3 killedPid=17379 verifyPid=17398 verifyToken=8222344443130 generation=main state=OLD-SYNTHETIC integrity=OK
+10-10 16:54:19.006 16855 16870 I Process : Sending signal. PID: 17398 SIG: 9
+10-10 16:54:19.011   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:19.011   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17398
+10-10 16:54:19.012   488   488 I Zygote  : Process 17398 exited due to signal 9 (Killed)
+10-10 16:54:19.206   699  1891 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:19.210   488   488 D Zygote  : Forked child process 17415
+10-10 16:54:19.239 17415 17415 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:19.250 17415 17415 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:19.251 17415 17415 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:19.251 17415 17415 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:19.252   570   584 I adbd    : jdwp connection from 17415
+10-10 16:54:19.254 17415 17415 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:19.263 17415 17415 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:19.263 17415 17415 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:19.438 17415 17415 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:19.440 17415 17415 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:19.441 17415 17415 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:19.441 17415 17415 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:19.441 17415 17415 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:19.441 17415 17415 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:19.442 17415 17415 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:19.442 17415 17415 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:19.442 17415 17415 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:19.461 17415 17428 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:19.585 16855 16870 I Process : Sending signal. PID: 17415 SIG: 9
+10-10 16:54:19.592   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:19.593   488   488 I Zygote  : Process 17415 exited due to signal 9 (Killed)
+10-10 16:54:19.593   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17415
+10-10 16:54:19.613   699  1891 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:19.617   488   488 D Zygote  : Forked child process 17434
+10-10 16:54:19.642 17434 17434 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:19.654 17434 17434 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:19.654 17434 17434 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:19.654 17434 17434 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:19.655   570   584 I adbd    : jdwp connection from 17434
+10-10 16:54:19.657 17434 17434 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:19.667 17434 17434 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:19.667 17434 17434 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:19.847 17434 17434 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:19.849 17434 17434 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:19.851 17434 17434 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:19.879 17434 17448 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:19.942 16855 16870 I I12_RECOVERY_KILL: boundary=restore_pointer_published repetition=1 killedPid=17415 verifyPid=17434 verifyToken=8223263863726 generation=cdeda260-f250-485c-82a3-db26ad76492b state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:19.942 16855 16870 I Process : Sending signal. PID: 17434 SIG: 9
+10-10 16:54:19.948   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:19.948   488   488 I Zygote  : Process 17434 exited due to signal 9 (Killed)
+10-10 16:54:19.948   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17434
+10-10 16:54:20.153   699  1891 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:20.158   488   488 D Zygote  : Forked child process 17451
+10-10 16:54:20.177 17451 17451 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:20.189 17451 17451 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:20.189 17451 17451 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:20.189 17451 17451 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:20.190   570   584 I adbd    : jdwp connection from 17451
+10-10 16:54:20.192 17451 17451 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:20.201 17451 17451 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:20.201 17451 17451 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:20.379 17451 17451 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:20.382 17451 17451 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:20.383 17451 17451 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:20.406 17451 17464 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:20.532 16855 16870 I Process : Sending signal. PID: 17451 SIG: 9
+10-10 16:54:20.538   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:20.538   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17451
+10-10 16:54:20.538   488   488 I Zygote  : Process 17451 exited due to signal 9 (Killed)
+10-10 16:54:20.559   699  1011 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:20.564   488   488 D Zygote  : Forked child process 17470
+10-10 16:54:20.585 17470 17470 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:20.596 17470 17470 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:20.596 17470 17470 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:20.596 17470 17470 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:20.598   570   584 I adbd    : jdwp connection from 17470
+10-10 16:54:20.600 17470 17470 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:20.609 17470 17470 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:20.609 17470 17470 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:20.796 17470 17470 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:20.798 17470 17470 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:20.799 17470 17470 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:20.799 17470 17470 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:20.799 17470 17470 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:20.799 17470 17470 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:20.800 17470 17470 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:20.800 17470 17470 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:20.800 17470 17470 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:20.826 17470 17483 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:20.888 16855 16870 I I12_RECOVERY_KILL: boundary=restore_pointer_published repetition=2 killedPid=17451 verifyPid=17470 verifyToken=8224213381979 generation=a3aad38a-3820-4a2b-9b17-eca78142ff36 state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:20.888 16855 16870 I Process : Sending signal. PID: 17470 SIG: 9
+10-10 16:54:20.895   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:20.895   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17470
+10-10 16:54:20.895   488   488 I Zygote  : Process 17470 exited due to signal 9 (Killed)
+10-10 16:54:21.102   699  1011 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:21.107   488   488 D Zygote  : Forked child process 17487
+10-10 16:54:21.122 17487 17487 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:21.131 17487 17487 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:21.131 17487 17487 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:21.131 17487 17487 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:21.132   570   584 I adbd    : jdwp connection from 17487
+10-10 16:54:21.135 17487 17487 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:21.146 17487 17487 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:21.146 17487 17487 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:21.322 17487 17487 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:21.324 17487 17487 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:21.326 17487 17487 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:21.351 17487 17500 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:21.481 16855 16870 I Process : Sending signal. PID: 17487 SIG: 9
+10-10 16:54:21.487   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:21.487   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17487
+10-10 16:54:21.487   488   488 I Zygote  : Process 17487 exited due to signal 9 (Killed)
+10-10 16:54:21.508   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:21.513   488   488 D Zygote  : Forked child process 17507
+10-10 16:54:21.526 17507 17507 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:21.536 17507 17507 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:21.536 17507 17507 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:21.536 17507 17507 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:21.538   570   584 I adbd    : jdwp connection from 17507
+10-10 16:54:21.540 17507 17507 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:21.550 17507 17507 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:21.550 17507 17507 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:21.725 17507 17507 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:21.727 17507 17507 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:21.728 17507 17507 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:21.729 17507 17507 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:21.756 17507 17521 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:21.811 16855 16870 I I12_RECOVERY_KILL: boundary=restore_pointer_published repetition=3 killedPid=17487 verifyPid=17507 verifyToken=8225141506173 generation=20377cc5-d929-4b4a-90f8-06eae6d32a40 state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:21.811 16855 16870 I Process : Sending signal. PID: 17507 SIG: 9
+10-10 16:54:21.819   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:21.819   488   488 I Zygote  : Process 17507 exited due to signal 9 (Killed)
+10-10 16:54:21.820   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17507
+10-10 16:54:21.909   699   850 D WifiClientModeImpl[193971:wlan0]: updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=1 freq=2437 RxLinkSpeed=2
+10-10 16:54:21.909   699   850 D WifiDataStall: tx tput in kbps: 37000
+10-10 16:54:21.909   699   850 D WifiDataStall: rx tput in kbps: 37000
+10-10 16:54:21.909   699   850 V WifiConfigManager: Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for "AndroidWifi"NONE
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80
+10-10 16:54:21.909   699   850 D WifiThroughputPredictor:  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37
+10-10 16:54:21.909   699   850 D WifiScoreCard: BSSID update SIGNAL_POLL ID: 764990262 SSID: "AndroidWifi", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 1Mbps, Tx Link speed: 1Mbps, Max Supported Tx Link speed: 54Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 60, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>"AndroidWifi"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>
+10-10 16:54:21.909   699   850 D WifiScoreCard: txRate: 1 txSpeed: 1
+10-10 16:54:21.909   699   850 D WifiScoreCard: network update SIGNAL_POLL "AndroidWifi" ID: 460407006 RSSI -50 txSpeed -1
+10-10 16:54:21.909   699   850 D WifiClientModeImpl[193971:wlan0]:  ClientModeImpl$L2ConnectedState screen=on 1 0 "AndroidWifi" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=60 link=1 tx=0.0, 0.0, 0.0 rx=0.0 bcn=0 [on:0 tx:0 rx:0 period:3003] from screen [on:0 period:8031340] score=60
+10-10 16:54:22.019   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:22.023   488   488 D Zygote  : Forked child process 17524
+10-10 16:54:22.042 17524 17524 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:22.053 17524 17524 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:22.053 17524 17524 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:22.053 17524 17524 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:22.054   570   584 I adbd    : jdwp connection from 17524
+10-10 16:54:22.056 17524 17524 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:22.065 17524 17524 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:22.065 17524 17524 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:22.241 17524 17524 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:22.243 17524 17524 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:22.245 17524 17524 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:22.266 17524 17537 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:22.397 16855 16870 I Process : Sending signal. PID: 17524 SIG: 9
+10-10 16:54:22.404   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:22.405   488   488 I Zygote  : Process 17524 exited due to signal 9 (Killed)
+10-10 16:54:22.405   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17524
+10-10 16:54:22.424   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:22.429   488   488 D Zygote  : Forked child process 17543
+10-10 16:54:22.449 17543 17543 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:22.461 17543 17543 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:22.462 17543 17543 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:22.462 17543 17543 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:22.463   570   584 I adbd    : jdwp connection from 17543
+10-10 16:54:22.465 17543 17543 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:22.475 17543 17543 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:22.475 17543 17543 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:22.648 17543 17543 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:22.650 17543 17543 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:22.652 17543 17543 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:22.652 17543 17543 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:22.652 17543 17543 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:22.652 17543 17543 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:22.652 17543 17543 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:22.653 17543 17543 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:22.653 17543 17543 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:22.682 17543 17556 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:22.728 16855 16870 I I12_RECOVERY_KILL: boundary=restore_complete_before_staging_cleanup repetition=1 killedPid=17524 verifyPid=17543 verifyToken=8226066212531 generation=cf86dc6a-c819-4b88-b440-7f4d32b5a34f state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:22.728 16855 16870 I Process : Sending signal. PID: 17543 SIG: 9
+10-10 16:54:22.733   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:22.733   488   488 I Zygote  : Process 17543 exited due to signal 9 (Killed)
+10-10 16:54:22.735   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17543
+10-10 16:54:22.934   699  1029 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:22.938   488   488 D Zygote  : Forked child process 17560
+10-10 16:54:22.970 17560 17560 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:22.981 17560 17560 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:22.981 17560 17560 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:22.981 17560 17560 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:22.983   570   584 I adbd    : jdwp connection from 17560
+10-10 16:54:22.986 17560 17560 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:22.996 17560 17560 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:22.996 17560 17560 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:23.171 17560 17560 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:23.173 17560 17560 I 12recoverycrash: AssetManager2(0x783f5e61f618) locale list changing from [] to [en-US]
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:23.175 17560 17560 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:23.195 17560 17575 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:23.338 16855 16870 I Process : Sending signal. PID: 17560 SIG: 9
+10-10 16:54:23.343   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:23.344   488   488 I Zygote  : Process 17560 exited due to signal 9 (Killed)
+10-10 16:54:23.344   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17560
+10-10 16:54:23.366   699  1891 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:23.373   488   488 D Zygote  : Forked child process 17581
+10-10 16:54:23.401 17581 17581 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:23.412 17581 17581 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:23.412 17581 17581 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:23.412 17581 17581 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:23.414   570   584 I adbd    : jdwp connection from 17581
+10-10 16:54:23.416 17581 17581 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:23.427 17581 17581 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:23.427 17581 17581 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:23.603 17581 17581 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:23.605 17581 17581 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:23.607 17581 17581 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:23.633 17581 17594 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:23.695 16855 16870 I I12_RECOVERY_KILL: boundary=restore_complete_before_staging_cleanup repetition=2 killedPid=17560 verifyPid=17581 verifyToken=8227019821370 generation=c811e724-08d1-46e6-af2a-ba43d0c65350 state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:23.695 16855 16870 I Process : Sending signal. PID: 17581 SIG: 9
+10-10 16:54:23.700   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:23.701   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17581
+10-10 16:54:23.701   488   488 I Zygote  : Process 17581 exited due to signal 9 (Killed)
+10-10 16:54:23.901   699  2066 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:23.905   488   488 D Zygote  : Forked child process 17598
+10-10 16:54:23.938 17598 17598 I 12recoverycrash: Late-enabling -Xcheck:jni
+10-10 16:54:23.949 17598 17598 I 12recoverycrash: Using CollectorTypeCMC GC.
+10-10 16:54:23.950 17598 17598 W 12recoverycrash: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:23.950 17598 17598 W 12recoverycrash: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:23.951   570   584 I adbd    : jdwp connection from 17598
+10-10 16:54:23.953 17598 17598 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:23.962 17598 17598 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:23.962 17598 17598 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:24.149 17598 17598 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:24.151 17598 17598 I 12recoverycrash: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:24.152 17598 17598 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:24.152 17598 17598 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:24.152 17598 17598 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:24.152 17598 17598 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:24.153 17598 17598 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:24.153 17598 17598 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:24.153 17598 17598 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:24.173 17598 17611 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:24.305 16855 16870 I Process : Sending signal. PID: 17598 SIG: 9
+10-10 16:54:24.312   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:24.312   488   488 I Zygote  : Process 17598 exited due to signal 9 (Killed)
+10-10 16:54:24.313   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17598
+10-10 16:54:24.332   699  1891 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10285, packageName = null, attributionTag = null, token = android.os.Binder@73e2816, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+10-10 16:54:24.338   488   488 D Zygote  : Forked child process 17617
+10-10 16:54:24.358 17617 17617 I 2recoveryverify: Late-enabling -Xcheck:jni
+10-10 16:54:24.368 17617 17617 I 2recoveryverify: Using CollectorTypeCMC GC.
+10-10 16:54:24.368 17617 17617 W 2recoveryverify: Unexpected CPU variant for x86: x86_64.
+10-10 16:54:24.368 17617 17617 W 2recoveryverify: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, goldmont-without-sha-xsaves, tremont, kabylake, alderlake, default
+10-10 16:54:24.369   570   584 I adbd    : jdwp connection from 17617
+10-10 16:54:24.371 17617 17617 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+10-10 16:54:24.381 17617 17617 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+10-10 16:54:24.381 17617 17617 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+10-10 16:54:24.557 17617 17617 D nativeloader: Configuring clns-9 for other apk /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/lib/x86_64:/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.vibe.store.debug
+10-10 16:54:24.559 17617 17617 I 2recoveryverify: AssetManager2(0x783f5e626378) locale list changing from [] to [en-US]
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment: Currently set values for:
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment: com.vibe.store.debug is not listed in per-application setting
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment: com.vibe.store.debug is not listed in ANGLE allowlist or settings, returning default
+10-10 16:54:24.561 17617 17617 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+10-10 16:54:24.591 17617 17631 D nativeloader: Load /data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!/lib/x86_64/libsqliteJni.so using class loader ns clns-9 (caller=/data/app/~~gqmCEvRFfWldB5mqpl5_Lw==/com.vibe.store.debug-BYvJNcKSGjb6TtW1Tz1RBQ==/base.apk!classes5.dex): ok
+10-10 16:54:24.636 16855 16870 I I12_RECOVERY_KILL: boundary=restore_complete_before_staging_cleanup repetition=3 killedPid=17598 verifyPid=17617 verifyToken=8227975610409 generation=2d49a2ef-752a-4f9a-82a7-f134a2574032 state=NEW-SYNTHETIC integrity=OK
+10-10 16:54:24.636 16855 16870 I Process : Sending signal. PID: 17617 SIG: 9
+10-10 16:54:24.641   570   570 I adbd    : Remote process closed the socket (on MSG_PEEK)
+10-10 16:54:24.641   699   730 I libprocessgroup: Removed cgroup /sys/fs/cgroup/apps/uid_10285/pid_17617
+10-10 16:54:24.641   488   488 I Zygote  : Process 17617 exited due to signal 9 (Killed)
+10-10 16:54:24.664 16855 16870 I TestRunner: finished: sevenDurableBoundariesRecoverAfterThreeExternalProcessKillsEach(com.vibe.store.I12RecoveryProcessDeathTest)

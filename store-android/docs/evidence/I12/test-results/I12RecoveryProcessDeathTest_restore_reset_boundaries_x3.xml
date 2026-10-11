@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.vibe.store.I12RecoveryProcessDeathTest" tests="1" failures="0" errors="0" skipped="0" time="29.039" timestamp="2026-10-10T15:13:06" hostname="localhost">
+  <properties>
+    <property name="device" value="STORE_API36_Main(AVD) - 16" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="durableRestoreAndResetBoundariesRecoverAfterThreeExternalProcessKillsEach" classname="com.vibe.store.I12RecoveryProcessDeathTest" time="28.546" />
+</testsuite>
