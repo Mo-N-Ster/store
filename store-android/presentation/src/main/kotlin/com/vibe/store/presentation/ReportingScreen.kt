@@ -118,7 +118,8 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
     delivery: DeliveryService? = null, scheduleDelivery: () -> Unit = {},
     printDocument: (suspend (Long, DocumentResult) -> Unit)? = null, shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
     saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
-    onBack: (() -> Unit)? = null) {
+    onBack: (() -> Unit)? = null,
+    onOpenHelp: ((String) -> Unit)? = null) {
     val zoneId = remember(identity.id) { ZoneId.systemDefault().id }
     var draft by remember(service, identity.id, zoneId) { mutableStateOf(initialReportDraft(ReportTab.SUMMARY, zoneId)) }
     var applied by remember(service, identity.id) { mutableStateOf<AppliedReport?>(null) }
@@ -322,7 +323,7 @@ fun ReportingScreen(service: ReportingService, identity: PublicIdentity, french:
                         }) { Text(if (queueBusy) label("Préparation…", "Preparing…") else label("Envoyer le rapport par e-mail", "Email this report")) }
                         queueMessage?.let { Text(it, Modifier.testTag("report-email-status"), color = MaterialTheme.colorScheme.onSurfaceVariant) }
                     }
-                    ReportDocument(current.document, french)
+                    ReportDocument(current.document, french, onOpenHelp)
                 }
                 }
             }
@@ -360,7 +361,7 @@ private fun StatusPicker(value: String, values: List<String>, french: Boolean, m
 }
 
 @Composable
-private fun ReportDocument(document: DocumentModel, french: Boolean) {
+private fun ReportDocument(document: DocumentModel, french: Boolean, onOpenHelp: ((String) -> Unit)?) {
     val unavailable = document.currencyAvailability == ReportCurrencyAvailability.UNAVAILABLE
     val metricCurrencyApplies = document.tab in setOf(ReportTab.SUMMARY, ReportTab.SALES, ReportTab.PRODUCTS, ReportTab.FINANCES) &&
         document.metrics.currency != null
@@ -393,7 +394,7 @@ private fun ReportDocument(document: DocumentModel, french: Boolean) {
             Modifier.testTag("reports-product-history-disclosure"), style = MaterialTheme.typography.bodySmall)
     }
     if (document.tab in setOf(ReportTab.SUMMARY, ReportTab.SALES, ReportTab.PRODUCTS, ReportTab.FINANCES)) {
-        ReportMetrics(document, french)
+        ReportMetrics(document, french, onOpenHelp)
     }
     if (document.tab in setOf(ReportTab.SUMMARY, ReportTab.SALES, ReportTab.PRODUCTS, ReportTab.FINANCES) &&
         (document.metrics.estimatedGrossMargin.signum() != 0 ||
@@ -495,18 +496,18 @@ private fun reportCellValue(cell: ReportCell, cellIndex: Int, unavailable: Boole
 }
 
 @Composable
-private fun ReportMetrics(document: DocumentModel, french: Boolean) {
+private fun ReportMetrics(document: DocumentModel, french: Boolean, onOpenHelp: ((String) -> Unit)?) {
     val m = document.metrics
     // Finance snapshots can have unavailable purchase currency while the sales metric still
     // carries its own authoritative currency snapshot.
     val currency = m.currency
     val monetaryMetricsAvailable = currency != null
     val cards = buildList {
-        if (monetaryMetricsAvailable) add(Triple("revenue", if (french) "Chiffre d’affaires validé" else "Validated revenue", "$currency ${DecimalInput.display(m.revenue, french)}"))
-        add(Triple("transactions", if (french) "Transactions validées" else "Validated transactions", m.transactionCount.toString()))
-        if (monetaryMetricsAvailable) add(Triple("average-basket", if (french) "Panier moyen" else "Average basket", "$currency ${DecimalInput.display(m.averageBasket, french)}"))
-        add(Triple("cancelled", if (french) "Ventes annulées" else "Cancelled sales", m.cancelledCount.toString()))
-        if (monetaryMetricsAvailable) add(Triple("estimated-margin", if (french) "Marge brute estimée" else "Estimated gross margin", "$currency ${DecimalInput.display(m.estimatedGrossMargin, french)}"))
+        if (monetaryMetricsAvailable) add(ReportKpi("revenue", R.string.help_kpi_revenue_title, R.string.help_kpi_revenue_body, "$currency ${DecimalInput.display(m.revenue, french)}"))
+        add(ReportKpi("transactions", R.string.help_kpi_transactions_title, R.string.help_kpi_transactions_body, m.transactionCount.toString()))
+        if (monetaryMetricsAvailable) add(ReportKpi("average-basket", R.string.help_kpi_average_title, R.string.help_kpi_average_body, "$currency ${DecimalInput.display(m.averageBasket, french)}"))
+        add(ReportKpi("cancelled", R.string.help_kpi_cancelled_title, R.string.help_kpi_cancelled_body, m.cancelledCount.toString()))
+        if (monetaryMetricsAvailable) add(ReportKpi("estimated-margin", R.string.help_kpi_margin_title, R.string.help_kpi_margin_body, "$currency ${DecimalInput.display(m.estimatedGrossMargin, french)}"))
     }
     Text(if (french) "Indicateurs" else "Key metrics", style = MaterialTheme.typography.titleMedium)
     BoxWithConstraints(Modifier.fillMaxWidth()) {
@@ -515,11 +516,17 @@ private fun ReportMetrics(document: DocumentModel, french: Boolean) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             cards.chunked(columns).forEach { row ->
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    row.forEach { (key, title, value) ->
-                        ElevatedCard(Modifier.width(width).testTag("reports-kpi-$key")) {
+                    row.forEach { kpi ->
+                        ElevatedCard(Modifier.width(width).testTag("reports-kpi-${kpi.key}")) {
                             Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                                Text(title, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                Text(value, Modifier.testTag("reports-kpi-value-$key"), style = MaterialTheme.typography.titleMedium)
+                                Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                                    Text(localizedStoreString(kpi.title, french), Modifier.weight(1f), style = MaterialTheme.typography.labelLarge,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                    ContextualHelp(localizedStoreString(kpi.title, french), localizedStoreString(kpi.explanation, french), french,
+                                        onOpenHelp = if (onOpenHelp == null) null else ({ onOpenHelp("reports") }),
+                                        testTag = "reports-help-${kpi.key}")
+                                }
+                                Text(kpi.value, Modifier.testTag("reports-kpi-value-${kpi.key}"), style = MaterialTheme.typography.titleMedium)
                             }
                         }
                     }
@@ -529,6 +536,8 @@ private fun ReportMetrics(document: DocumentModel, french: Boolean) {
         }
     }
 }
+
+private data class ReportKpi(val key: String, val title: Int, val explanation: Int, val value: String)
 
 @Composable
 private fun ReportSeriesCard(series: ReportSeries, currency: String, currencyUnavailable: Boolean, french: Boolean) {

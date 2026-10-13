@@ -452,6 +452,40 @@ class ReportingUiTest {
         }
     }
 
+    @Test fun reportKpiExplanationsAreLocalizedAndLinkToHelpWithoutChangingMetrics() {
+        val reports = Reports()
+        val helpTopic = java.util.concurrent.atomic.AtomicReference<String?>()
+        compose.runOnUiThread { compose.activity.setContent { SpatialTheme(dark = false) {
+            ReportingScreen(reports, identity(), french = true, onOpenHelp = { helpTopic.set(it) })
+        } } }
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("reports-draft").fetchSemanticsNodes().isNotEmpty() }
+        apply()
+        compose.waitUntil(10_000) { compose.onAllNodesWithTag("reports-kpi-revenue").fetchSemanticsNodes().isNotEmpty() }
+        compose.onNodeWithTag("reports-help-revenue-action").performScrollTo().performClick()
+        compose.onNodeWithTag("reports-help-revenue-details").assertExists()
+        compose.onNodeWithTag("reports-help-revenue-explanation").assertTextContains("Somme des revenus reconnus", substring = true)
+        compose.onNodeWithTag("reports-help-revenue-open-help").performScrollTo().performClick()
+        assertEquals("reports", helpTopic.get())
+        compose.onNodeWithTag("reports-kpi-value-revenue").assertExists()
+    }
+
+    @Test fun reportHelpControlWorksInCompactAndExpandedWidths() {
+        for (width in listOf(400, 1000)) {
+            val reports = Reports()
+            compose.runOnUiThread { compose.activity.setContent { SpatialTheme(dark = width > 800) {
+                Box(Modifier.requiredWidth(width.dp)) {
+                    ReportingScreen(reports, identity(), french = width < 800)
+                }
+            } } }
+            compose.waitUntil(10_000) { compose.onAllNodesWithTag("reports-draft").fetchSemanticsNodes().isNotEmpty() }
+            apply()
+            compose.waitUntil(10_000) { compose.onAllNodesWithTag("reports-kpi-revenue").fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("reports-help-revenue-action").performScrollTo().performClick()
+            compose.onNodeWithTag("reports-help-revenue-explanation").assertExists()
+            compose.onNodeWithTag("reports-help-revenue-details").assertExists()
+        }
+    }
+
     @Test fun authorizedShellAddsReportsAndEnforcesEffectiveRightBeforeNavigation() {
         val user = identity()
         val identityService = identityService(user)

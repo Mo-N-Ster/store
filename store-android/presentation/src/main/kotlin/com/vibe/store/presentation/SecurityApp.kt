@@ -69,6 +69,7 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
     var teamNavigationLocked by remember { mutableStateOf(false) }
     var settingsDirty by remember { mutableStateOf(false) }
     var supportNavigationLocked by remember { mutableStateOf(false) }
+    var contextualHelpTopic by remember { mutableStateOf<String?>(null) }
     var resumeRefresh by remember { mutableStateOf<Job?>(null) }
     var lastDocumentSessionId by remember { mutableStateOf<Long?>(null) }
     val scope = rememberCoroutineScope()
@@ -190,8 +191,9 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                     key(user.id) {
                         SupportScreen(support, service, user, fr, documents = documents, printDocument = printDocument,
                             shareDocument = shareDocument, saveDocument = saveDocument,
+                            initialHelpTopic = contextualHelpTopic,
                             onSettings = { navigate("settings") },
-                            onBack = { supportNavigationLocked = false; page = "home" },
+                            onBack = { contextualHelpTopic = null; supportNavigationLocked = false; page = "home" },
                             onNavigationLock = { supportNavigationLocked = it })
                     }
                 }
@@ -199,7 +201,13 @@ fun SecurityApp(service: IdentityService, catalog: CatalogService? = null,
                 identity?.let { user -> key(user.id) {
                     ReportingScreen(reporting, user, fr, documents = documents, delivery = delivery,
                         scheduleDelivery = scheduleDelivery, printDocument = printDocument, shareDocument = shareDocument,
-                        saveDocument = saveDocument) { page = "home" }
+                        saveDocument = saveDocument, onBack = { page = "home" },
+                        onOpenHelp = if (support == null) null else { topic ->
+                            if ("FINANCES:READ" in user.permissions) {
+                                contextualHelpTopic = topic
+                                page = "support"
+                            }
+                        })
                 } }
             } else if (page == "delivery" && delivery != null) {
                 identity?.let { user -> key(user.id) { EmailQueueScreen(delivery, fr, { page = "home" }, scheduleDelivery) } }

@@ -67,4 +67,22 @@ class SupportUiTest {
         compose.onNodeWithTag("i08-tab-audit").assertExists()
         compose.onNodeWithTag("i08-tab-diagnostics").assertExists()
     }
+
+    @Test fun contextualReportLinkOpensTheMatchingOfflineHelpArticle() {
+        compose.runOnUiThread { compose.activity.setContent {
+            SpatialTheme(false) {
+                SupportScreen(store, identity, PublicIdentity(3, "test", "Synthetic", "User", "employee", emptySet()),
+                    french = false, onSettings = {}, onBack = {}, onNavigationLock = {}, initialHelpTopic = "reports")
+            }
+        } }
+        compose.waitForIdle()
+        compose.onNodeWithTag("i08-tab-help").assertExists()
+        compose.onNodeWithText("Understanding reports").assertExists()
+        compose.onNodeWithText("First setup").assertDoesNotExist()
+        compose.onNodeWithTag("help-show-all-topics").assertTextContains("Show all help topics").performClick()
+        compose.onNodeWithText("First setup").assertExists()
+        compose.onNodeWithTag("i08-help-search").performTextInput("validated revenue")
+        compose.onNodeWithText("Understanding reports").assertExists()
+        compose.onNodeWithTag("help-category-reports").assertExists()
+    }
 }

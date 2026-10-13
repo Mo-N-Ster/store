@@ -2,6 +2,7 @@ package com.vibe.store.presentation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -21,6 +22,7 @@ fun SupportScreen(
     documents: DocumentService? = null,
     printDocument: (suspend (Long, DocumentResult) -> Unit)? = null, shareDocument: (suspend (Long, DocumentResult) -> Unit)? = null,
     saveDocument: (Long, DocumentResult, (PdfSaveOutcome) -> Unit) -> Unit = { _, _, complete -> complete(PdfSaveOutcome.Failed()) },
+    initialHelpTopic: String? = null,
 ) {
     fun t(fr: String, en: String) = if (french) fr else en
     val admin = actor.role == "owner" && "ADMINISTRATION:READ" in actor.permissions
@@ -48,6 +50,14 @@ fun SupportScreen(
     var auditFilter by remember(actor.id) { mutableStateOf(AuditFilter()) }
     var auditActorInput by remember(actor.id) { mutableStateOf("") }
     var helpSearch by remember(actor.id) { mutableStateOf("") }
+    var helpCategory by remember(actor.id) { mutableStateOf("all") }
+    var selectedHelpTopic by remember(actor.id) { mutableStateOf<String?>(null) }
+    LaunchedEffect(initialHelpTopic, actor.id) {
+        if (initialHelpTopic != null) {
+            selectedHelpTopic = initialHelpTopic
+            tab = "help"; helpCategory = "all"; helpSearch = ""
+        }
+    }
     val scope = rememberCoroutineScope()
     val hasDraft = tab == "chat" && (subject.isNotBlank() || body.isNotBlank())
     LaunchedEffect(hasDraft) { onNavigationLock(hasDraft) }
@@ -291,20 +301,49 @@ fun SupportScreen(
             }
             "help" -> {
                 Text(t("Guide hors ligne", "Offline help"), style = MaterialTheme.typography.titleLarge)
-                OutlinedTextField(helpSearch, { helpSearch = it.take(100) }, Modifier.fillMaxWidth().testTag("i08-help-search"),
-                    label = { Text(t("Rechercher une procédure", "Search procedures")) })
+                Text(localizedStoreString(R.string.help_offline_note, french), style = MaterialTheme.typography.bodySmall)
+                if (selectedHelpTopic != null) {
+                    TextButton(onClick = { selectedHelpTopic = null }, modifier = Modifier.testTag("help-show-all-topics")) {
+                        Text(localizedStoreString(R.string.help_all_topics, french))
+                    }
+                }
+                OutlinedTextField(helpSearch, { helpSearch = it.take(100); selectedHelpTopic = null }, Modifier.fillMaxWidth().testTag("i08-help-search"),
+                    label = { Text(localizedStoreString(R.string.help_search_label, french)) },
+                    placeholder = { Text(localizedStoreString(R.string.help_search_hint, french)) })
+                val categories = listOf(
+                    "all" to t("Tout", "All"),
+                    "start" to localizedStoreString(R.string.help_category_getting_started, french),
+                    "daily" to localizedStoreString(R.string.help_category_daily_work, french),
+                    "reports" to localizedStoreString(R.string.help_category_reports, french),
+                    "safety" to localizedStoreString(R.string.help_category_safety, french),
+                    "documents" to localizedStoreString(R.string.help_category_documents, french),
+                )
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    categories.take(3).forEach { (id, label) ->
+                        FilterChip(selected = helpCategory == id, onClick = { helpCategory = id; selectedHelpTopic = null }, label = { Text(label) },
+                            modifier = Modifier.testTag("help-category-$id"))
+                    }
+                }
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    categories.drop(3).forEach { (id, label) ->
+                        FilterChip(selected = helpCategory == id, onClick = { helpCategory = id; selectedHelpTopic = null }, label = { Text(label) },
+                            modifier = Modifier.testTag("help-category-$id"))
+                    }
+                }
                 HelpArticles.all.filter { topic ->
-                    val content = if (french) "${topic.titleFr} ${topic.bodyFr}" else "${topic.titleEn} ${topic.bodyEn}"
-                    content.contains(helpSearch.trim(), ignoreCase = true)
+                    (helpCategory == "all" || helpCategory == topic.category) &&
+                        ("${localizedStoreString(topic.title, french)} ${localizedStoreString(topic.body, french)}")
+                            .contains(helpSearch.trim(), ignoreCase = true) &&
+                        (selectedHelpTopic == null || selectedHelpTopic == topic.id)
                 }.forEach { topic ->
                     Card(Modifier.fillMaxWidth()) { Column(Modifier.padding(14.dp)) {
-                        val title = if (french) topic.titleFr else topic.titleEn
-                        val body = if (french) topic.bodyFr else topic.bodyEn
+                        val title = localizedStoreString(topic.title, french)
+                        val body = localizedStoreString(topic.body, french)
                         Text(title, style = MaterialTheme.typography.titleMedium)
                         Text(body)
                         if (documents != null) DocumentExportAction(documents, french,
                             t("Enregistrer l’aide en PDF", "Save help as PDF"),
-                            request = { DocumentRequest("help-${topic.titleEn}", DocumentType.HELP, title,
+                            request = { DocumentRequest("help-${topic.id}", DocumentType.HELP, title,
                                 java.time.Instant.now(), DocumentSnapshot.Help(title, body), if (french) "fr" else "en") },
                             save = saveDocument, printDocument = printDocument, shareDocument = shareDocument,
                             actorId = actor.id)
@@ -324,32 +363,17 @@ private fun PagingControls(offset: Int, enabled: Boolean, hasMore: Boolean, onPa
     }
 }
 
-private data class HelpArticle(val titleFr: String, val titleEn: String, val bodyFr: String, val bodyEn: String)
+private data class HelpArticle(val id: String, val category: String, val title: Int, val body: Int)
 private object HelpArticles {
     val all = listOf(
-        HelpArticle("Première utilisation", "First setup",
-            "Créer un compte Owner puis renseigner les paramètres de la boutique. Aucun mot de passe par défaut.",
-            "Create the Owner account, then configure shop settings. There is no default password."),
-        HelpArticle("Connexion et comptes", "Sign-in and accounts",
-            "Chaque personne utilise son identifiant et son mot de passe. La connexion ne signe pas la présence. Vérifier les droits avant toute opération.",
-            "Each person signs in with their own credentials. Sign-in does not record attendance. Check rights before acting."),
-        HelpArticle("Caisse et ventes", "Cash and sales",
-            "Ouvrir la caisse autorisée, saisir les articles, vérifier les montants exacts puis valider. Un reçu est enregistré localement. Fermer la caisse avant de changer d’utilisateur.",
-            "Open an authorized cash session, enter items, check exact amounts, and validate. The receipt is stored locally. Close cash before switching users."),
-        HelpArticle("Achats et inventaires", "Purchases and inventory",
-            "Un brouillon ne modifie pas le stock. Vérifier les quantités avant validation. Une opération validée ne doit jamais être validée deux fois.",
-            "Drafts do not change stock. Check quantities before validating. A validated operation must not be applied twice."),
-        HelpArticle("Messagerie locale", "Local chat",
-            "Les messages restent sur cet appareil. Choisir le destinataire ou diffuser avec autorisation. Masquer un message ne le supprime pas chez les autres.",
-            "Messages stay on this device. Choose a recipient or use authorized broadcast. Hiding a message does not remove it for others."),
-        HelpArticle("Perte de l’appareil", "Lost device",
-            "Les données sont locales. La sauvegarde produit et la restauration seront disponibles après I12 ; ne pas considérer le snapshot pré-migration comme une sauvegarde utilisateur.",
-            "Data are local. Product backup and restore will be available after I12; the pre-migration snapshot is not a user backup."),
-        HelpArticle("Documents et e-mail", "Documents and email",
-            "La génération PDF est prévue en I10 et l’impression, le partage et le SMTP en I11. Aucune sortie externe n’est annoncée fonctionnelle avant leur validation.",
-            "PDF generation is planned for I10 and printing, sharing, and SMTP for I11. External delivery is not available until validated."),
-        HelpArticle("Urgence et passation", "Emergency and handover",
-            "Arrêter les opérations en cas de défaut d’intégrité ; ne pas réinitialiser pour résoudre une erreur de connexion. Vérifier la caisse et l’identité active lors de la passation.",
-            "Stop operations if integrity fails; never reset to fix a login failure. Check cash and current identity during handover."),
+        HelpArticle("setup", "start", R.string.help_article_setup_title, R.string.help_article_setup_body),
+        HelpArticle("accounts", "start", R.string.help_article_accounts_title, R.string.help_article_accounts_body),
+        HelpArticle("sales", "daily", R.string.help_article_sales_title, R.string.help_article_sales_body),
+        HelpArticle("inventory", "daily", R.string.help_article_inventory_title, R.string.help_article_inventory_body),
+        HelpArticle("chat", "daily", R.string.help_article_chat_title, R.string.help_article_chat_body),
+        HelpArticle("backup", "safety", R.string.help_article_backup_title, R.string.help_article_backup_body),
+        HelpArticle("documents", "documents", R.string.help_article_documents_title, R.string.help_article_documents_body),
+        HelpArticle("handover", "safety", R.string.help_article_handover_title, R.string.help_article_handover_body),
+        HelpArticle("reports", "reports", R.string.help_article_reports_title, R.string.help_article_reports_body),
     )
 }

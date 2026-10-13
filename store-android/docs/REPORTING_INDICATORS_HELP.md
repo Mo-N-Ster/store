@@ -1,0 +1,21 @@
+# Reporting indicators and interpretation
+
+This guide documents the formulas currently implemented in `ReportingCalculations.kt` and `RoomReportingRepository.kt`. It does not define new business rules. Report dates use the selected timezone and half-open interval `[fromInclusive, toExclusive)`; the UI's end date is inclusive and is converted to the following day. Row display is capped at 200, while aggregate metrics cover all filtered matches.
+
+| Indicator / report | Current calculation and source | Period, units, and interpretation |
+|---|---|---|
+| Validated revenue | Sum of line revenue allocated from each validated invoice total. Discount is allocated proportionally to line subtotal; the last line receives the residual so allocations equal the invoice total. Room invoice and line snapshots feed `SalesReportCalculation`. | Selected period and filters; report currency. Cancelled invoices are excluded. |
+| Validated transactions | Count of validated invoices (`status == VALIDATED`). | Selected period and filters; count of invoices, not item lines. |
+| Average basket | Validated revenue divided by validated invoice count; zero when count is zero. Repeating decimals use the implementation's defined precision. | Selected period and filters; report currency. |
+| Cancelled sales | Count of invoices whose current mapped status is cancelled. | Selected period and filters; count. Their revenue is excluded from validated revenue. |
+| Estimated gross margin | For each validated line: allocated line revenue minus quantity × snapshot unit cost. When the saved unit cost is absent, unit price is the fallback; `MarginDisclosure` identifies this case. | Selected period and filters; report currency. This is an estimate, not certified profit. |
+| Sales rows / revenue series | Invoice snapshot rows and allocated validated revenue grouped by selected day/week/month grain. | Period, timezone and supported product/category/status filters apply. Cancelled invoice revenue is excluded. |
+| Product/category ranking | Sum of sold quantity and allocated validated revenue grouped by product/category using the sale-line category snapshot. | Selected period and product/category filters. Price history contains recorded observations only and may be empty. |
+| Current stock | Current catalog stock snapshot for matching products; out of stock is stock exactly zero, low stock is stock less than or equal to the configured minimum (so zero stock can also be low stock). | Current state, not a historical stock balance for the selected report period. |
+| Stock movements | Movement rows within the selected interval; positive quantities sum to entries and absolute negative quantities sum to exits. | Selected period/timezone, product/category/type filters. These are movement totals, not current stock. |
+| Purchase status counts | Count of purchase records by current `VALIDATED`, `DRAFT`, or `CANCELLED` status, among purchases created in the selected interval. | Count only. Monetary purchase totals are unavailable where a common currency is not recorded; unavailable is not zero. |
+| Team sessions and hours | Counts of sessions, ended sessions, open sessions, corrected and interrupted statuses; completed hours sum recorded end-start durations for all ended sessions. | Selected period/timezone and employee/status filters. “Completed” is based on a non-null end time, not only a particular status label. |
+| Finance comparison | Validated sales revenue is available from sale snapshots. Sales minus purchases is deliberately not calculated when purchase currency is unavailable. | Never interpret unavailable purchase values as zero or the revenue figure as net profit. |
+| Dashboard today/month values | Reuses validated sales calculations over the local day or month-to-date interval. Attendance month metrics are requested only with `PRESENCE:READ`. | Currency for money, counts for transactions/products/sessions, decimal hours for completed attendance. Dashboard stock is current state. |
+
+No report formula was changed for this UX work. The Help center and contextual descriptions are offline and available in English and French. Report access remains guarded by `FINANCES:READ`; contextual navigation re-enters the existing Support route and does not grant a new permission.
